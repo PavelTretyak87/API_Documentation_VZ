@@ -8,6 +8,8 @@ paths:
   /api/v1/companies:
     get:
       summary: Company list
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: Успешный ответ
@@ -1871,6 +1873,155 @@ paths:
       security:
       - bearerAuth: []
     post:
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Название компании
+                project_name:
+                  type: string
+                  description: Название проекта
+                inn:
+                  type: string
+                  description: ИНН
+                image:
+                  type: string
+                  format: binary
+                  description: Лого
+                  nullable: true
+                data_depth:
+                  type: integer
+                  nullable: true
+                  description: Глубина расчета статистики по заказам
+                unit_account:
+                  type: integer
+                  description: Единица учета % выкупа (0 - default, 1 - Рубли (НП), 2 - Штуки (кол-во отправлений))
+                tariff_calculation:
+                  type: boolean
+                  description: Не включать возврат в формулу расчета тарифа
+                turn_off_sd:
+                  type: boolean
+                  description: Самостоятельное отключение СД, 0 - нет, 1 - да
+                debt:
+                  type: float
+                  description: Входящая задолженность (руб.)
+                acquiring:
+                  type: enum
+                  enum: [average, card, cash, sbp]
+                  description: Какой эквайринг использовать при расчете тарифа доставки
+                acquiring_with_delivery:
+                  type: boolean
+                  description: Включать стоимость доставки в расчет эквайринга
+                active:
+                  type: boolean
+                  description: Активность компании
+                rate_limit_calc:
+                  type: integer
+                  nullable: true
+                  description: Ограничение запросов к апи-роуту калькулятора
+                rate_limit_reports:
+                  type: integer
+                  nullable: true
+                  description: Ограничение запросов к апи-роуту для выгрузки отчетов аналитических/операционных
+                rate_limit_data:
+                  type: integer
+                  nullable: true
+                  description: Ограничение запросов к апи-роуту для массовой загрузки данных
+                legal_address:
+                  type: string
+                  description: Юридический адрес
+                actual_address:
+                  type: string
+                  description: Фактический адрес
+                ogrn:
+                  type: string
+                  description: ОГРН
+                kpp:
+                  type: string
+                  description: КПП
+                fio:
+                  type: string
+                  description: ФИО ген.директора
+                contact_person:
+                  type: string
+                  description: Контактное лицо
+                  nullable: true
+                phone:
+                  type: string
+                  description: Телефон
+                  nullable: true
+                email:
+                  type: string
+                  description: Почта
+                  nullable: true
+                web_site:
+                  type: string
+                  description: Сайт
+                  nullable: true
+                name_storage:
+                  type: string
+                  description: Название склада
+                  nullable: true
+                address_storage:
+                  type: string
+                  description: Адрес склада
+                  nullable: true
+                ogrn_storage:
+                  type: string
+                  description: ОГРН склада
+                  nullable: true
+                inn_storage:
+                  type: string
+                  description: ИНН склада
+                  nullable: true
+                kpp_storage:
+                  type: string
+                  description: КПП склада
+                  nullable: true
+                okpo_storage:
+                  type: string
+                  description: ОКПО склада
+                  nullable: true
+                contracts[0][number]:
+                  type: string
+                  description: Номер договора
+                contracts[0][from]:
+                  type: string
+                  description: Дата начала договора
+                contracts[0][to]:
+                  type: string
+                  description: Дата окончания договора
+                finflows[0][bik]:
+                  type: string
+                  description: БИК
+                finflows[0][rs]:
+                  type: string
+                  description: Расчетный счет
+                finflows[0][ks]:
+                  type: string
+                  description: Корреспондентский счет
+                finflows[0][bank]:
+                  type: string
+                  description: Наименование банка
+                finflows[0][is_default]:
+                  type: boolean
+                  description: Использовать фин.поток по умолчанию
+                finflows[0][is_single]:
+                  type: boolean
+                  description: Использовать единый Р/С для перевода НП для всех СД
+                finflows[0][is_active]:
+                  type: boolean
+                  description: Активность фин.потока
+                deliveries[0]:
+                  type: integer
+                  description: Идентификаторы СД, которые надо подключить
       summary: Create company
       responses:
         '201':
@@ -2001,6 +2152,159 @@ paths:
           schema:
             type: integer
           description: ID компании
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Название компании
+                project_name:
+                  type: string
+                  description: Название проекта
+                inn:
+                  type: string
+                  description: ИНН
+                image:
+                  type: string
+                  format: binary
+                  description: Лого
+                  nullable: true
+                data_depth:
+                  type: integer
+                  nullable: true
+                  description: Глубина расчета статистики по заказам
+                unit_account:
+                  type: integer
+                  description: Единица учета % выкупа (0 - default, 1 - Рубли (НП), 2 - Штуки (кол-во отправлений))
+                tariff_calculation:
+                  type: boolean
+                  description: Не включать возврат в формулу расчета тарифа
+                turn_off_sd:
+                  type: boolean
+                  description: Самостоятельное отключение СД, 0 - нет, 1 - да
+                debt:
+                  type: float
+                  description: Входящая задолженность (руб.)
+                acquiring:
+                  type: enum
+                  enum: [average, card, cash, sbp]
+                  description: Какой эквайринг использовать при расчете тарифа доставки
+                acquiring_with_delivery:
+                  type: boolean
+                  description: Включать стоимость доставки в расчет эквайринга
+                active:
+                  type: boolean
+                  description: Активность компании
+                rate_limit_calc:
+                  type: integer
+                  nullable: true
+                  description: Ограничение запросов к апи-роуту калькулятора
+                rate_limit_reports:
+                  type: integer
+                  nullable: true
+                  description: Ограничение запросов к апи-роуту для выгрузки отчетов аналитических/операционных
+                rate_limit_data:
+                  type: integer
+                  nullable: true
+                  description: Ограничение запросов к апи-роуту для массовой загрузки данных
+                legal_address:
+                  type: string
+                  description: Юридический адрес
+                actual_address:
+                  type: string
+                  description: Фактический адрес
+                ogrn:
+                  type: string
+                  description: ОГРН
+                kpp:
+                  type: string
+                  description: КПП
+                fio:
+                  type: string
+                  description: ФИО ген.директора
+                contact_person:
+                  type: string
+                  description: Контактное лицо
+                  nullable: true
+                phone:
+                  type: string
+                  description: Телефон
+                  nullable: true
+                email:
+                  type: string
+                  description: Почта
+                  nullable: true
+                web_site:
+                  type: string
+                  description: Сайт
+                  nullable: true
+                name_storage:
+                  type: string
+                  description: Название склада
+                  nullable: true
+                address_storage:
+                  type: string
+                  description: Адрес склада
+                  nullable: true
+                ogrn_storage:
+                  type: string
+                  description: ОГРН склада
+                  nullable: true
+                inn_storage:
+                  type: string
+                  description: ИНН склада
+                  nullable: true
+                kpp_storage:
+                  type: string
+                  description: КПП склада
+                  nullable: true
+                okpo_storage:
+                  type: string
+                  description: ОКПО склада
+                  nullable: true
+                contracts[0][number]:
+                  type: string
+                  description: Номер договора
+                contracts[0][from]:
+                  type: string
+                  description: Дата начала договора
+                contracts[0][to]:
+                  type: string
+                  description: Дата окончания договора
+                finflows[0][bik]:
+                  type: string
+                  description: БИК
+                finflows[0][rs]:
+                  type: string
+                  description: Расчетный счет
+                finflows[0][ks]:
+                  type: string
+                  description: Корреспондентский счет
+                finflows[0][bank]:
+                  type: string
+                  description: Наименование банка
+                finflows[0][is_default]:
+                  type: boolean
+                  description: Использовать фин.поток по умолчанию
+                finflows[0][is_single]:
+                  type: boolean
+                  description: Использовать единый Р/С для перевода НП для всех СД
+                finflows[0][is_active]:
+                  type: boolean
+                  description: Активность фин.потока
+                deliveries[0]:
+                  type: integer
+                  description: Идентификаторы СД, которые надо подключить
+                _method:
+                  type: enum
+                  enum: [PUT]
+                  description: Добавить для изменения компании
       responses:
         '202':
           description: Успешный ответ
@@ -2180,6 +2484,8 @@ paths:
           schema:
             type: integer
           description: ID компании
+      security:
+        - bearerAuth: []
       responses:
         '202':
           description: Успешный ответ
@@ -2338,6 +2644,8 @@ paths:
       - bearerAuth: []
     delete:
       summary: Deletes a company
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: company_id
