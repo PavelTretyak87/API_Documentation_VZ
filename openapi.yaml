@@ -2,6 +2,8 @@ openapi: 3.0.0
 info:
   title: Ваш Заказ/Клиенты
   version: 1.0.0
+servers:
+  - url: https://dev-vz-api.3owls.su
 paths:
   /api/v1/companies:
     get:
@@ -1989,9 +1991,16 @@ paths:
                 data: []
       security:
       - bearerAuth: []
-  /api/v1/companies/:company_id:
+  /api/v1/companies/{company_id}:
     post:
       summary: Company update
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+            type: integer
+          description: ID компании
       responses:
         '202':
           description: Успешный ответ
@@ -2163,7 +2172,14 @@ paths:
       security:
       - bearerAuth: []
     get:
-      summary: Companies
+      summary: Company by id
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+            type: integer
+          description: ID компании
       responses:
         '202':
           description: Успешный ответ
@@ -2322,6 +2338,13 @@ paths:
       - bearerAuth: []
     delete:
       summary: Deletes a company
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+            type: integer
+          description: ID компании
       responses:
         '202':
           description: Успешный ответ
