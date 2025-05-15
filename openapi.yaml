@@ -1870,8 +1870,6 @@ paths:
                 request_id: 4d1b2b4e-eba1-4231-a119-a42911dba910
                 message: Ошибка аутентификации.
                 data: []
-      security:
-      - bearerAuth: []
     post:
       security:
         - bearerAuth: []
@@ -2140,8 +2138,6 @@ paths:
                 request_id: 3cfc7e0b-a792-405d-88ee-50afd5ecfd32
                 message: Ошибка аутентификации.
                 data: []
-      security:
-      - bearerAuth: []
   /api/v1/companies/{company_id}:
     post:
       summary: Company update
@@ -2473,8 +2469,6 @@ paths:
                 data:
                 - Такое значение поля имя уже существует.
                 - Значение поля data depth не может быть больше 365.
-      security:
-      - bearerAuth: []
     get:
       summary: Company by id
       parameters:
@@ -2640,8 +2634,6 @@ paths:
                 request_id: 032f28eb-e534-4505-971d-226e4e905131
                 message: Ошибка аутентификации.
                 data: []
-      security:
-      - bearerAuth: []
     delete:
       summary: Deletes a company
       security:
@@ -2718,8 +2710,6 @@ paths:
                 request_id: 3be8407d-ce4f-4293-aa21-ce3591c484cb
                 message: Ошибка аутентификации.
                 data: []
-      security:
-      - bearerAuth: []
 components:
   securitySchemes:
     bearerAuth:
