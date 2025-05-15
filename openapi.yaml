@@ -1883,12 +1883,15 @@ paths:
                 name:
                   type: string
                   description: Название компании
+                  example: ""
                 project_name:
                   type: string
                   description: Название проекта
+                  example: ""
                 inn:
                   type: string
                   description: ИНН
+                  example: "" 
                 image:
                   type: string
                   format: binary
@@ -1898,128 +1901,164 @@ paths:
                   type: integer
                   nullable: true
                   description: Глубина расчета статистики по заказам
+                  example:
                 unit_account:
                   type: integer
                   description: Единица учета % выкупа (0 - default, 1 - Рубли (НП), 2 - Штуки (кол-во отправлений))
+                  example:
                 tariff_calculation:
-                  type: boolean
-                  description: Не включать возврат в формулу расчета тарифа
+                  type: integer
+                  description: Не включать возврат в формулу расчета тарифа (0 - нет, 1 - да)
+                  example:
                 turn_off_sd:
-                  type: boolean
+                  type: integer
                   description: Самостоятельное отключение СД, 0 - нет, 1 - да
+                  example:
                 debt:
-                  type: float
+                  type: integer
                   description: Входящая задолженность (руб.)
+                  example:
                 acquiring:
                   type: enum
                   enum: [average, card, cash, sbp]
                   description: Какой эквайринг использовать при расчете тарифа доставки
                 acquiring_with_delivery:
-                  type: boolean
-                  description: Включать стоимость доставки в расчет эквайринга
+                  type: integer
+                  description: Включать стоимость доставки в расчет эквайринга (0 - нет, 1 - да)
+                  example:
                 active:
-                  type: boolean
-                  description: Активность компании
+                  type: integer
+                  description: Активность компании (0 - нет, 1 - да)
+                  example:
                 rate_limit_calc:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту калькулятора
+                  example:
                 rate_limit_reports:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту для выгрузки отчетов аналитических/операционных
+                  example:
                 rate_limit_data:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту для массовой загрузки данных
+                  example:
                 legal_address:
                   type: string
                   description: Юридический адрес
+                  example: ""
                 actual_address:
                   type: string
                   description: Фактический адрес
+                  example: ""
                 ogrn:
                   type: string
                   description: ОГРН
+                  example: ""
                 kpp:
                   type: string
                   description: КПП
+                  example: ""
                 fio:
                   type: string
                   description: ФИО ген.директора
+                  example: ""
                 contact_person:
                   type: string
                   description: Контактное лицо
                   nullable: true
+                  example: ""
                 phone:
                   type: string
                   description: Телефон
                   nullable: true
+                  example: ""
                 email:
                   type: string
                   description: Почта
                   nullable: true
+                  example: ""
                 web_site:
                   type: string
                   description: Сайт
                   nullable: true
+                  example: ""
                 name_storage:
                   type: string
                   description: Название склада
                   nullable: true
+                  example: ""
                 address_storage:
                   type: string
                   description: Адрес склада
                   nullable: true
+                  example: ""
                 ogrn_storage:
                   type: string
                   description: ОГРН склада
                   nullable: true
+                  example: ""
                 inn_storage:
                   type: string
                   description: ИНН склада
                   nullable: true
+                  example: ""
                 kpp_storage:
                   type: string
                   description: КПП склада
                   nullable: true
+                  example: ""
                 okpo_storage:
                   type: string
                   description: ОКПО склада
                   nullable: true
+                  example: ""
                 contracts[0][number]:
                   type: string
                   description: Номер договора
+                  example: ""
                 contracts[0][from]:
                   type: string
                   description: Дата начала договора
+                  example: ""
                 contracts[0][to]:
                   type: string
                   description: Дата окончания договора
+                  example: ""
                 finflows[0][bik]:
                   type: string
                   description: БИК
+                  example: ""
                 finflows[0][rs]:
                   type: string
                   description: Расчетный счет
+                  example: ""
                 finflows[0][ks]:
                   type: string
                   description: Корреспондентский счет
+                  example: ""
                 finflows[0][bank]:
                   type: string
                   description: Наименование банка
+                  example: ""
                 finflows[0][is_default]:
-                  type: boolean
-                  description: Использовать фин.поток по умолчанию
+                  type: integer
+                  description: Использовать фин.поток по умолчанию (0 - нет, 1 - да)
+                  example:
                 finflows[0][is_single]:
-                  type: boolean
-                  description: Использовать единый Р/С для перевода НП для всех СД
+                  type: integer
+                  description: Использовать единый Р/С для перевода НП для всех СД (0 - нет, 1 - да)
+                  example:
                 finflows[0][is_active]:
-                  type: boolean
-                  description: Активность фин.потока
+                  type: integer
+                  description: Активность фин.потока (0 - нет, 1 - да)
+                  example:
                 deliveries[0]:
                   type: integer
                   description: Идентификаторы СД, которые надо подключить
+                  example:
       summary: Create company
       responses:
         '201':
@@ -2160,12 +2199,15 @@ paths:
                 name:
                   type: string
                   description: Название компании
+                  example: ""
                 project_name:
                   type: string
                   description: Название проекта
+                  example: ""
                 inn:
                   type: string
                   description: ИНН
+                  example: "" 
                 image:
                   type: string
                   format: binary
@@ -2175,128 +2217,164 @@ paths:
                   type: integer
                   nullable: true
                   description: Глубина расчета статистики по заказам
+                  example:
                 unit_account:
                   type: integer
                   description: Единица учета % выкупа (0 - default, 1 - Рубли (НП), 2 - Штуки (кол-во отправлений))
+                  example:
                 tariff_calculation:
-                  type: boolean
-                  description: Не включать возврат в формулу расчета тарифа
+                  type: integer
+                  description: Не включать возврат в формулу расчета тарифа (0 - нет, 1 - да)
+                  example:
                 turn_off_sd:
-                  type: boolean
+                  type: integer
                   description: Самостоятельное отключение СД, 0 - нет, 1 - да
+                  example:
                 debt:
-                  type: float
+                  type: integer
                   description: Входящая задолженность (руб.)
+                  example:
                 acquiring:
                   type: enum
                   enum: [average, card, cash, sbp]
                   description: Какой эквайринг использовать при расчете тарифа доставки
                 acquiring_with_delivery:
-                  type: boolean
-                  description: Включать стоимость доставки в расчет эквайринга
+                  type: integer
+                  description: Включать стоимость доставки в расчет эквайринга (0 - нет, 1 - да)
+                  example:
                 active:
-                  type: boolean
-                  description: Активность компании
+                  type: integer
+                  description: Активность компании (0 - нет, 1 - да)
+                  example:
                 rate_limit_calc:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту калькулятора
+                  example:
                 rate_limit_reports:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту для выгрузки отчетов аналитических/операционных
+                  example:
                 rate_limit_data:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту для массовой загрузки данных
+                  example:
                 legal_address:
                   type: string
                   description: Юридический адрес
+                  example: ""
                 actual_address:
                   type: string
                   description: Фактический адрес
+                  example: ""
                 ogrn:
                   type: string
                   description: ОГРН
+                  example: ""
                 kpp:
                   type: string
                   description: КПП
+                  example: ""
                 fio:
                   type: string
                   description: ФИО ген.директора
+                  example: ""
                 contact_person:
                   type: string
                   description: Контактное лицо
                   nullable: true
+                  example: ""
                 phone:
                   type: string
                   description: Телефон
                   nullable: true
+                  example: ""
                 email:
                   type: string
                   description: Почта
                   nullable: true
+                  example: ""
                 web_site:
                   type: string
                   description: Сайт
                   nullable: true
+                  example: ""
                 name_storage:
                   type: string
                   description: Название склада
                   nullable: true
+                  example: ""
                 address_storage:
                   type: string
                   description: Адрес склада
                   nullable: true
+                  example: ""
                 ogrn_storage:
                   type: string
                   description: ОГРН склада
                   nullable: true
+                  example: ""
                 inn_storage:
                   type: string
                   description: ИНН склада
                   nullable: true
+                  example: ""
                 kpp_storage:
                   type: string
                   description: КПП склада
                   nullable: true
+                  example: ""
                 okpo_storage:
                   type: string
                   description: ОКПО склада
                   nullable: true
+                  example: ""
                 contracts[0][number]:
                   type: string
                   description: Номер договора
+                  example: ""
                 contracts[0][from]:
                   type: string
                   description: Дата начала договора
+                  example: ""
                 contracts[0][to]:
                   type: string
                   description: Дата окончания договора
+                  example: ""
                 finflows[0][bik]:
                   type: string
                   description: БИК
+                  example: ""
                 finflows[0][rs]:
                   type: string
                   description: Расчетный счет
+                  example: ""
                 finflows[0][ks]:
                   type: string
                   description: Корреспондентский счет
+                  example: ""
                 finflows[0][bank]:
                   type: string
                   description: Наименование банка
+                  example: ""
                 finflows[0][is_default]:
-                  type: boolean
-                  description: Использовать фин.поток по умолчанию
+                  type: integer
+                  description: Использовать фин.поток по умолчанию (0 - нет, 1 - да)
+                  example:
                 finflows[0][is_single]:
-                  type: boolean
-                  description: Использовать единый Р/С для перевода НП для всех СД
+                  type: integer
+                  description: Использовать единый Р/С для перевода НП для всех СД (0 - нет, 1 - да)
+                  example:
                 finflows[0][is_active]:
-                  type: boolean
-                  description: Активность фин.потока
+                  type: integer
+                  description: Активность фин.потока (0 - нет, 1 - да)
+                  example:
                 deliveries[0]:
                   type: integer
                   description: Идентификаторы СД, которые надо подключить
+                  example:
                 _method:
                   type: enum
                   enum: [PUT]
