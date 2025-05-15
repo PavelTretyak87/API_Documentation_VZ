@@ -1,0 +1,2398 @@
+openapi: 3.0.0
+info:
+  title: Ваш Заказ/Клиенты
+  version: 1.0.0
+paths:
+  /api/v1/companies:
+    get:
+      summary: Company list
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                code: 200
+                status: OK
+                success: true
+                request_id: 0816132b-3b4e-470c-a231-5765f1a22de3
+                data:
+                  companies:
+                  - id: 1
+                    name: HSR
+                    project_name: ООО "Хом шоппинг раша"
+                    active: true
+                    rate_limit_calc: 10000000
+                    rate_limit_reports: null
+                    rate_limit_data: null
+                    data_depth: 60
+                    unit_account: 1
+                    tariff_calculation: true
+                    turn_off_sd: true
+                    legal_address: 111024, г. Москва, ул. 2-я Кабельная, дом 2, строение
+                      6, этаж 4, помещ.2
+                    actual_address: 111024, г. Москва, ул. 2-я Кабельная, дом 2, строение
+                      6, этаж 4, помещ.2
+                    ogrn: '1137746372290'
+                    inn: '7722807332'
+                    kpp: '772201001'
+                    token: 481|nk1Om1Ufj9L39Bki574OnjtqtTzmK5lVWl7FNC3rd99870e4
+                    fio: Липин Сергей Евгеньевич
+                    contact_person: 'null'
+                    phone: 'null'
+                    email: 'null'
+                    web_site: 'null'
+                    name_storage: ООО «Бета ПРО»
+                    address_storage: 111024, Москва, Кабельная 2-я ул., дом № 2, строение
+                      6
+                    ogrn_storage: undefined
+                    inn_storage: '7722317962'
+                    kpp_storage: '772201001'
+                    okpo_storage: '41561325'
+                    debt: null
+                    acquiring: average
+                    acquiring_with_delivery: false
+                    image:
+                      id: 746
+                      original_name: хшр.png
+                      user_id: 2
+                      download_url: https://dev-vz-api.3owls.su/api/v1/file/746/download
+                      get_url: https://dev-vz-api.3owls.su/api/v1/file/746
+                      created_at: '2024-11-12T10:09:12+03:00'
+                      updated_at: '2024-11-12T10:09:12+03:00'
+                  - id: 57
+                    name: тест
+                    project_name: ООО "Тест"
+                    active: true
+                    rate_limit_calc: null
+                    rate_limit_reports: null
+                    rate_limit_data: null
+                    data_depth: null
+                    unit_account: 1
+                    tariff_calculation: true
+                    turn_off_sd: true
+                    legal_address: Москва, ул. Тверская, д. 10
+                    actual_address: Москва, ул. Тверская, д. 10
+                    ogrn: '1027739244741'
+                    inn: '7704217370'
+                    kpp: '770301001'
+                    token: null
+                    fio: Петров Сергей Петрович
+                    contact_person: null
+                    phone: null
+                    email: null
+                    web_site: null
+                    name_storage: ООО "Ромашка"
+                    address_storage: null
+                    ogrn_storage: null
+                    inn_storage: null
+                    kpp_storage: null
+                    okpo_storage: null
+                    debt: null
+                    acquiring: card
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 62
+                    name: test123
+                    project_name: ООО test
+                    active: true
+                    rate_limit_calc: null
+                    rate_limit_reports: null
+                    rate_limit_data: null
+                    data_depth: null
+                    unit_account: 2
+                    tariff_calculation: false
+                    turn_off_sd: true
+                    legal_address: asdadsads987
+                    actual_address: asdasd987
+                    ogrn: '1231231987'
+                    inn: '213123987'
+                    kpp: '123123123987'
+                    token: 1401|wIVkeunelIQyEJpxVMujYe60szEEmx8eDjurzuuXb65b7551
+                    fio: '11'
+                    contact_person: '11'
+                    phone: '11'
+                    email: '11'
+                    web_site: '11'
+                    name_storage: '11'
+                    address_storage: '11'
+                    ogrn_storage: undefined
+                    inn_storage: '11'
+                    kpp_storage: '11'
+                    okpo_storage: '11'
+                    debt: null
+                    acquiring: card
+                    acquiring_with_delivery: false
+                    image: null
+                  - id: 63
+                    name: '1'
+                    project_name: '1'
+                    active: true
+                    rate_limit_calc: null
+                    rate_limit_reports: null
+                    rate_limit_data: null
+                    data_depth: null
+                    unit_account: 1
+                    tariff_calculation: true
+                    turn_off_sd: true
+                    legal_address: '1'
+                    actual_address: '1'
+                    ogrn: '1'
+                    inn: '1'
+                    kpp: '1'
+                    token: null
+                    fio: '1'
+                    contact_person: '1'
+                    phone: '1'
+                    email: '1'
+                    web_site: '1'
+                    name_storage: '1'
+                    address_storage: '1'
+                    ogrn_storage: '1'
+                    inn_storage: '1'
+                    kpp_storage: '1'
+                    okpo_storage: '1'
+                    debt: 1
+                    acquiring: card
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 84
+                    name: ООО «ИМД»
+                    project_name: ООО «ИМД»
+                    active: true
+                    rate_limit_calc: null
+                    rate_limit_reports: null
+                    rate_limit_data: null
+                    data_depth: 30
+                    unit_account: 1
+                    tariff_calculation: true
+                    turn_off_sd: false
+                    legal_address: 111024, г.Москва, ул. 2-я Кабельная, дом 2, стр.19
+                    actual_address: 111024, г.Москва, ул. 2-я Кабельная, дом 2, стр.19
+                    ogrn: '1127746433462'
+                    inn: '7722777825'
+                    kpp: '772201001'
+                    token: 1341|SpmnijBKqNdofqLBCsjnotUR3ryR8D7l0Kn2eXUJfa483e92
+                    fio: Шепелев Александр Анатольевич
+                    contact_person: null
+                    phone: null
+                    email: null
+                    web_site: null
+                    name_storage: ООО «Бета ПРО»
+                    address_storage: 111024, Москва, Кабельная 2-я ул., дом № 2, строение
+                      6
+                    ogrn_storage: null
+                    inn_storage: '7722317962'
+                    kpp_storage: '772201001'
+                    okpo_storage: '41561325'
+                    debt: null
+                    acquiring: card
+                    acquiring_with_delivery: false
+                    image: null
+                  - id: 100
+                    name: Ваш Заказ
+                    project_name: ООО «Ваш заказ»
+                    active: true
+                    rate_limit_calc: null
+                    rate_limit_reports: null
+                    rate_limit_data: null
+                    data_depth: null
+                    unit_account: 0
+                    tariff_calculation: true
+                    turn_off_sd: true
+                    legal_address: 111024, Москва г, вн.тер.г. муниципальный округ
+                      Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15
+                    actual_address: 111024, Москва г, вн.тер.г. муниципальный округ
+                      Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15
+                    ogrn: '044525225'
+                    inn: '9722000285'
+                    kpp: '772201001'
+                    token: 5843|aRsAlPpKQ4ym5xhdYNWV2TcaExhnK8aGWw7KLI128edb5a6f
+                    fio: Липин Сергей Евгеньевич
+                    contact_person: Контактное лицо
+                    phone: телефон
+                    email: email
+                    web_site: сайт
+                    name_storage: Наименование склада
+                    address_storage: Адрес склада
+                    ogrn_storage: null
+                    inn_storage: ИНН склада
+                    kpp_storage: КПП склада
+                    okpo_storage: ОКПО склада
+                    debt: null
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 102
+                    name: Welch - Spinka
+                    project_name: Handcrafted Cotton Gloves
+                    active: true
+                    rate_limit_calc: 123
+                    rate_limit_reports: 234
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: sfsdf
+                    actual_address: dfghdfg
+                    ogrn: asdasd
+                    inn: dgfdfg
+                    kpp: asdads
+                    token: null
+                    fio: dfgdfg
+                    contact_person: sdfsdf
+                    phone: fhgfgh
+                    email: sdfsf
+                    web_site: dfgdfg
+                    name_storage: g
+                    address_storage: sdf
+                    ogrn_storage: fgh
+                    inn_storage: sdf
+                    kpp_storage: asd
+                    okpo_storage: dfg
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 103
+                    name: аilbkхёу3t
+                    project_name: njаырyе9
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 456
+                    rate_limit_data: 678
+                    data_depth: 16
+                    unit_account: 0
+                    tariff_calculation: true
+                    turn_off_sd: false
+                    legal_address: sfsdf
+                    actual_address: dfghdfg
+                    ogrn: asdasd
+                    inn: '5168615718'
+                    kpp: asdads
+                    token: null
+                    fio: dfgdfg
+                    contact_person: sdfsdf
+                    phone: fhgfgh
+                    email: sdfsf
+                    web_site: dfgdfg
+                    name_storage: g
+                    address_storage: sdf
+                    ogrn_storage: fgh
+                    inn_storage: sdf
+                    kpp_storage: asd
+                    okpo_storage: dfg
+                    debt: 4877
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 105
+                    name: Schaden Group
+                    project_name: Incredible Rubber Table
+                    active: true
+                    rate_limit_calc: 123
+                    rate_limit_reports: 234
+                    rate_limit_data: 345
+                    data_depth: 3
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: sfsdf
+                    actual_address: dfghdfg
+                    ogrn: asdasd
+                    inn: dgfdfg
+                    kpp: asdads
+                    token: null
+                    fio: dfgdfg
+                    contact_person: sdfsdf
+                    phone: fhgfgh
+                    email: sdfsf
+                    web_site: dfgdfg
+                    name_storage: g
+                    address_storage: sdf
+                    ogrn_storage: fgh
+                    inn_storage: sdf
+                    kpp_storage: asd
+                    okpo_storage: dfg
+                    debt: 3119
+                    acquiring: cash
+                    acquiring_with_delivery: false
+                    image: null
+                  - id: 106
+                    name: asdasdTEST2
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 116
+                    name: Boyle, Koelpin and Muller
+                    project_name: Gorgeous Metal Pants
+                    active: true
+                    rate_limit_calc: 123
+                    rate_limit_reports: 234
+                    rate_limit_data: 345
+                    data_depth: 5
+                    unit_account: 0
+                    tariff_calculation: true
+                    turn_off_sd: false
+                    legal_address: sfsdf
+                    actual_address: dfghdfg
+                    ogrn: asdasd
+                    inn: dgfdfg
+                    kpp: asdads
+                    token: null
+                    fio: dfgdfg
+                    contact_person: sdfsdf
+                    phone: fhgfgh
+                    email: sdfsf
+                    web_site: dfgdfg
+                    name_storage: g
+                    address_storage: sdf
+                    ogrn_storage: fgh
+                    inn_storage: sdf
+                    kpp_storage: asd
+                    okpo_storage: dfg
+                    debt: 8930
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 252
+                    name: tfVCVE3ZJuoj
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 253
+                    name: RUwC0kmiS1Yj
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 255
+                    name: PCLTRomVhJRT
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 256
+                    name: EOV2DRZbyz9K
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 258
+                    name: Tc7HVQqpt08H
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 259
+                    name: ku8QEeIS7s1L
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 261
+                    name: tw5T3gTzAORq
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 262
+                    name: ppHdrgmj73El
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 263
+                    name: Im9FrjF3Jx6v
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 264
+                    name: 2Jl2zZOgko8M
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 265
+                    name: BmexyjJ7hCgf
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 266
+                    name: 47Lb9jyLhek2
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 267
+                    name: AygBKtO2YtDj
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 268
+                    name: pvy6g3ybXKe1
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 269
+                    name: UyIj94w567Py
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 270
+                    name: Br5EtmGUhbJt
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 271
+                    name: A7T079rY5xLE
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 274
+                    name: 9flCU2bEB0YX
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 275
+                    name: ZLEgzQdKFUEQ
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 277
+                    name: M4qPoRpj8JNI
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 278
+                    name: PNse77SA9IEJ
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 279
+                    name: NtNxeFyStQyg
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 281
+                    name: BhxJy9VGqF6h
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 282
+                    name: kO1v7ZRXugmz
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 283
+                    name: ONngTw1nduWH
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 284
+                    name: 42Th8xUAYAkY
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 285
+                    name: Q8SJITN7vXsp
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 286
+                    name: STmR5KzpVJPz
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 287
+                    name: QPwhVyRMcQuS
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 288
+                    name: DMH8lML9Cn2c
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 289
+                    name: KS3k3ZDprtpx
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 290
+                    name: CbLT0pbcTpme
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 291
+                    name: Gtme4isenU21
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 292
+                    name: mdGNAaWRPCSI
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 293
+                    name: w3xT4pempFqS
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 294
+                    name: ik8nhK4aetyl
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 295
+                    name: DeKO4U6WzUXU
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 296
+                    name: 1f5aGIsGun56
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 297
+                    name: V5mBRfZcraSO
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 298
+                    name: JnbC2DHgiKfW
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 299
+                    name: xve4ZsKvBEPg
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 308
+                    name: omJirwXathYe
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 309
+                    name: SUiXr0tyc8EE
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 1911
+                    name: k7kILffLM4Yf
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 4387
+                    name: qk3LpKgt1uy3
+                    project_name: asdkl teqwek test
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 345
+                    rate_limit_data: 345
+                    data_depth: 7
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdasd
+                    actual_address: asdasfxcz
+                    ogrn: bxcv
+                    inn: '465465464'
+                    kpp: zxc
+                    token: null
+                    fio: zxbvkl
+                    contact_person: poxzpco
+                    phone: akjdkqje
+                    email: alskdl
+                    web_site: bklasdk
+                    name_storage: lskdpo
+                    address_storage: asxzck
+                    ogrn_storage: zxpco
+                    inn_storage: awekj
+                    kpp_storage: ghfgg
+                    okpo_storage: asda
+                    debt: 7017
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                  - id: 4527
+                    name: test@test.test
+                    project_name: test@test.test
+                    active: true
+                    rate_limit_calc: null
+                    rate_limit_reports: null
+                    rate_limit_data: null
+                    data_depth: null
+                    unit_account: 0
+                    tariff_calculation: false
+                    turn_off_sd: false
+                    legal_address: asdad
+                    actual_address: asd
+                    ogrn: asd
+                    inn: asd
+                    kpp: asd
+                    token: null
+                    fio: asd
+                    contact_person: asd
+                    phone: asd
+                    email: asd
+                    web_site: asd
+                    name_storage: asd
+                    address_storage: asd
+                    ogrn_storage: asd
+                    inn_storage: asd
+                    kpp_storage: asd
+                    okpo_storage: asd
+                    debt: null
+                    acquiring: card
+                    acquiring_with_delivery: false
+                    image: null
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 4d1b2b4e-eba1-4231-a119-a42911dba910
+                message: Ошибка аутентификации.
+                data: []
+      security:
+      - bearerAuth: []
+    post:
+      summary: Create company
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                code: 201
+                status: Created
+                success: true
+                request_id: b87d7d57-29af-426f-a6b5-abcf92aaa910
+                data:
+                  company:
+                    id: 4528
+                    name: Тест компания
+                    project_name: Тест проект
+                    active: true
+                    rate_limit_calc: 100000
+                    rate_limit_reports: 100000
+                    rate_limit_data: 100000
+                    data_depth: 180
+                    unit_account: 0
+                    tariff_calculation: true
+                    turn_off_sd: true
+                    legal_address: Москва, ул. Тверская, д. 1
+                    actual_address: Москва, ул. Арбат, д. 1
+                    ogrn: '123123123'
+                    inn: '123123123'
+                    kpp: '123123123'
+                    token: null
+                    fio: Фамилия Имя Отчество
+                    contact_person: Контактное Лицо
+                    phone: '+71234567890'
+                    email: test@test.com
+                    web_site: https://test.ru
+                    name_storage: Склад
+                    address_storage: Москва, ул. Арбат, д. 10
+                    ogrn_storage: '321321321'
+                    inn_storage: '321321321'
+                    kpp_storage: '321321321'
+                    okpo_storage: '321321321'
+                    debt: null
+                    acquiring: sbp
+                    acquiring_with_delivery: true
+                    image: null
+                    company_deliveries:
+                    - id: 65
+                      company_id: 4528
+                      delivery_id: 1
+                      password_id: null
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: false
+                      registry_email: null
+                    contracts:
+                    - id: 6706
+                      company_id: 4528
+                      number: '1111111'
+                      from: '2023-12-21T00:00:00+03:00'
+                      to: '2026-12-20T00:00:00+03:00'
+                      dops: []
+                      created_at: '2025-05-15T14:49:25+03:00'
+                      updated_at: '2025-05-15T14:49:25+03:00'
+                      deleted_at: null
+                    finflows:
+                    - id: 6488
+                      company_id: 4528
+                      bank: asd
+                      bik: asdasd
+                      rs: asdasd
+                      ks: test
+                      is_active: true
+                      is_default: true
+                      is_single: true
+                      finflow_deliveries: []
+                      created_at: '2025-04-09T11:23:15+03:00'
+                      updated_at: '2025-04-09T11:23:15+03:00'
+                      deleted_at: null
+                    - id: 9094
+                      company_id: 4528
+                      bank: Банк
+                      bik: '22222222'
+                      rs: '3333333'
+                      ks: '4444444'
+                      is_active: true
+                      is_default: true
+                      is_single: true
+                      finflow_deliveries: []
+                      created_at: '2025-05-15T14:49:25+03:00'
+                      updated_at: '2025-05-15T14:49:25+03:00'
+                      deleted_at: null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                code: 400
+                status: Bad Request
+                success: false
+                request_id: e0c2d19b-c64d-4429-9855-7e3fcf892f49
+                message: Такое значение поля имя уже существует.|Значение поля data
+                  depth не может быть больше 365.|
+                data:
+                - Такое значение поля имя уже существует.
+                - Значение поля data depth не может быть больше 365.
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 3cfc7e0b-a792-405d-88ee-50afd5ecfd32
+                message: Ошибка аутентификации.
+                data: []
+      security:
+      - bearerAuth: []
+  /api/v1/companies/:company_id:
+    post:
+      summary: Company update
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                code: 202
+                status: Accepted
+                success: true
+                request_id: 2fe8f09e-cc7f-4721-9c16-e86f1a164397
+                data:
+                  company:
+                    id: 100
+                    name: Ваш Заказ
+                    project_name: ООО «Ваш заказ»
+                    active: true
+                    rate_limit_calc: null
+                    rate_limit_reports: null
+                    rate_limit_data: null
+                    data_depth: null
+                    unit_account: 0
+                    tariff_calculation: true
+                    turn_off_sd: true
+                    legal_address: 111024, Москва г, вн.тер.г. муниципальный округ
+                      Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15
+                    actual_address: 111024, Москва г, вн.тер.г. муниципальный округ
+                      Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15
+                    ogrn: '044525225'
+                    inn: '9722000285'
+                    kpp: '772201001'
+                    token: 5843|aRsAlPpKQ4ym5xhdYNWV2TcaExhnK8aGWw7KLI128edb5a6f
+                    fio: Липин Сергей Евгеньевич
+                    contact_person: Контактное лицо
+                    phone: телефон
+                    email: email
+                    web_site: сайт
+                    name_storage: Наименование склада
+                    address_storage: Адрес склада
+                    ogrn_storage: null
+                    inn_storage: ИНН склада
+                    kpp_storage: КПП склада
+                    okpo_storage: ОКПО склада
+                    debt: null
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                    company_deliveries:
+                    - id: 52
+                      company_id: 100
+                      delivery_id: 1
+                      password_id: 3
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: test1@test1.test15
+                    - id: 53
+                      company_id: 100
+                      delivery_id: 2
+                      password_id: 2
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: null
+                    - id: 54
+                      company_id: 100
+                      delivery_id: 3
+                      password_id: 5
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: false
+                      registry_email: null
+                    - id: 55
+                      company_id: 100
+                      delivery_id: 4
+                      password_id: 6
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: null
+                    - id: 56
+                      company_id: 100
+                      delivery_id: 5
+                      password_id: 4
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: null
+                    - id: 57
+                      company_id: 100
+                      delivery_id: 6
+                      password_id: 8
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: null
+                    - id: 58
+                      company_id: 100
+                      delivery_id: 7
+                      password_id: 7
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: null
+                    contracts: []
+                    finflows:
+                    - id: 6
+                      company_id: 100
+                      bank: ПАО Сбербанк г.Москва
+                      bik: '044525225'
+                      rs: '40702810138000272396'
+                      ks: '30101810400000000225'
+                      is_active: true
+                      is_default: true
+                      is_single: true
+                      finflow_deliveries: []
+                      created_at: '2025-02-03T11:16:45+03:00'
+                      updated_at: '2025-02-03T11:16:45+03:00'
+                      deleted_at: null
+        '404':
+          description: Ошибка - компания не найдена
+          content:
+            application/json:
+              example:
+                code: 404
+                status: Not Found
+                success: false
+                request_id: 0092353d-16c4-4dc8-9ffb-6ad68311bf29
+                message: Требуемый ресурс не найден
+                data: []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 14d66031-f3b7-43f0-963a-9d5d930934f1
+                message: Ошибка аутентификации.
+                data: []
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                code: 400
+                status: Bad Request
+                success: false
+                request_id: 86949f39-c3d6-434d-94d6-28dd0467fa0e
+                message: Такое значение поля имя уже существует.|Значение поля data
+                  depth не может быть больше 365.|
+                data:
+                - Такое значение поля имя уже существует.
+                - Значение поля data depth не может быть больше 365.
+      security:
+      - bearerAuth: []
+    get:
+      summary: Companies
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                code: 202
+                status: Accepted
+                success: true
+                request_id: 8509f09b-230c-469c-a3a1-ded2e94945fe
+                data:
+                  company:
+                    id: 100
+                    name: Ваш Заказ
+                    project_name: ООО «Ваш заказ»
+                    active: true
+                    rate_limit_calc: null
+                    rate_limit_reports: null
+                    rate_limit_data: null
+                    data_depth: null
+                    unit_account: 0
+                    tariff_calculation: true
+                    turn_off_sd: true
+                    legal_address: 111024, Москва г, вн.тер.г. муниципальный округ
+                      Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15
+                    actual_address: 111024, Москва г, вн.тер.г. муниципальный округ
+                      Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15
+                    ogrn: '044525225'
+                    inn: '9722000285'
+                    kpp: '772201001'
+                    token: 5843|aRsAlPpKQ4ym5xhdYNWV2TcaExhnK8aGWw7KLI128edb5a6f
+                    fio: Липин Сергей Евгеньевич
+                    contact_person: Контактное лицо
+                    phone: телефон
+                    email: email
+                    web_site: сайт
+                    name_storage: Наименование склада
+                    address_storage: Адрес склада
+                    ogrn_storage: null
+                    inn_storage: ИНН склада
+                    kpp_storage: КПП склада
+                    okpo_storage: ОКПО склада
+                    debt: null
+                    acquiring: average
+                    acquiring_with_delivery: true
+                    image: null
+                    company_deliveries:
+                    - id: 52
+                      company_id: 100
+                      delivery_id: 1
+                      password_id: 3
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: test1@test1.test15
+                    - id: 53
+                      company_id: 100
+                      delivery_id: 2
+                      password_id: 2
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: null
+                    - id: 54
+                      company_id: 100
+                      delivery_id: 3
+                      password_id: 5
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: false
+                      registry_email: null
+                    - id: 55
+                      company_id: 100
+                      delivery_id: 4
+                      password_id: 6
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: null
+                    - id: 56
+                      company_id: 100
+                      delivery_id: 5
+                      password_id: 4
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: null
+                    - id: 57
+                      company_id: 100
+                      delivery_id: 6
+                      password_id: 8
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: null
+                    - id: 58
+                      company_id: 100
+                      delivery_id: 7
+                      password_id: 7
+                      tariff_acquiring_cash: 0
+                      tariff_acquiring_card: 0
+                      tariff_acquiring_sbp: 0
+                      tariff_acquiring_average: null
+                      is_active: true
+                      registry_email: null
+                    contracts: []
+                    finflows:
+                    - id: 6
+                      company_id: 100
+                      bank: ПАО Сбербанк г.Москва
+                      bik: '044525225'
+                      rs: '40702810138000272396'
+                      ks: '30101810400000000225'
+                      is_active: true
+                      is_default: true
+                      is_single: true
+                      finflow_deliveries: []
+                      created_at: '2025-02-03T11:16:45+03:00'
+                      updated_at: '2025-02-03T11:16:45+03:00'
+                      deleted_at: null
+        '404':
+          description: Ошибка - компания не найдена
+          content:
+            application/json:
+              example:
+                code: 404
+                status: Not Found
+                success: false
+                request_id: 225c8743-0f94-4bd3-9e22-c38ac7fa1a94
+                message: Требуемый ресурс не найден
+                data: []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 032f28eb-e534-4505-971d-226e4e905131
+                message: Ошибка аутентификации.
+                data: []
+      security:
+      - bearerAuth: []
+    delete:
+      summary: Deletes a company
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                code: 202
+                status: Accepted
+                success: true
+                request_id: 55946f13-be37-4e13-84ac-53d94ada4c74
+                data:
+                  company:
+                    id: 103
+                    name: аilbkхёу3t
+                    project_name: njаырyе9
+                    active: true
+                    rate_limit_calc: 345
+                    rate_limit_reports: 456
+                    rate_limit_data: 678
+                    data_depth: 16
+                    unit_account: 0
+                    tariff_calculation: true
+                    turn_off_sd: false
+                    legal_address: sfsdf
+                    actual_address: dfghdfg
+                    ogrn: asdasd
+                    inn: '5168615718'
+                    kpp: asdads
+                    token: null
+                    fio: dfgdfg
+                    contact_person: sdfsdf
+                    phone: fhgfgh
+                    email: sdfsf
+                    web_site: dfgdfg
+                    name_storage: g
+                    address_storage: sdf
+                    ogrn_storage: fgh
+                    inn_storage: sdf
+                    kpp_storage: asd
+                    okpo_storage: dfg
+                    debt: 4877
+                    acquiring: average
+                    acquiring_with_delivery: true
+        '404':
+          description: Ошибка - компания не найдена
+          content:
+            application/json:
+              example:
+                code: 404
+                status: Not Found
+                success: false
+                request_id: dd54dbf3-e073-4c70-94bb-e6fe6c4b082c
+                message: Требуемый ресурс не найден
+                data: []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 3be8407d-ce4f-4293-aa21-ce3591c484cb
+                message: Ошибка аутентификации.
+                data: []
+      security:
+      - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+- bearerAuth: []
