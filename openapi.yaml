@@ -7,6 +7,8 @@ servers:
 paths:
   /api/v1/companies:
     get:
+      tags:
+        - Клиенты
       summary: Company list
       security:
         - bearerAuth: []
@@ -1871,6 +1873,8 @@ paths:
                 message: Ошибка аутентификации.
                 data: []
     post:
+      tags:
+        - Клиенты
       security:
         - bearerAuth: []
       requestBody:
@@ -1879,6 +1883,33 @@ paths:
           multipart/form-data:
             schema:
               type: object
+              required:
+                - name
+                - project_name
+                - inn
+                - unit_account
+                - tariff_calculation
+                - turn_off_sd
+                - debt
+                - acquiring
+                - acquiring_with_delivery
+                - active
+                - legal_address
+                - actual_address
+                - ogrn
+                - kpp
+                - fio
+                - contracts[0][number]
+                - contracts[0][from]
+                - contracts[0][to]
+                - finflows[0][bik]
+                - finflows[0][rs]
+                - finflows[0][ks]
+                - finflows[0][bank]
+                - finflows[0][is_default]
+                - finflows[0][is_single]
+                - finflows[0][is_active]
+                - deliveries[0]
               properties:
                 name:
                   type: string
@@ -1901,50 +1932,50 @@ paths:
                   type: integer
                   nullable: true
                   description: Глубина расчета статистики по заказам
-                  example:
+                  example: ""
                 unit_account:
                   type: integer
                   description: Единица учета % выкупа (0 - default, 1 - Рубли (НП), 2 - Штуки (кол-во отправлений))
-                  example:
+                  example: ""
                 tariff_calculation:
                   type: integer
                   description: Не включать возврат в формулу расчета тарифа (0 - нет, 1 - да)
-                  example:
+                  example: ""
                 turn_off_sd:
                   type: integer
                   description: Самостоятельное отключение СД, 0 - нет, 1 - да
-                  example:
+                  example: ""
                 debt:
                   type: integer
                   description: Входящая задолженность (руб.)
-                  example:
+                  example: ""
                 acquiring:
-                  type: enum
+                  type: string
                   enum: [average, card, cash, sbp]
                   description: Какой эквайринг использовать при расчете тарифа доставки
                 acquiring_with_delivery:
                   type: integer
                   description: Включать стоимость доставки в расчет эквайринга (0 - нет, 1 - да)
-                  example:
+                  example: ""
                 active:
                   type: integer
                   description: Активность компании (0 - нет, 1 - да)
-                  example:
+                  example: ""
                 rate_limit_calc:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту калькулятора
-                  example:
+                  example: ""
                 rate_limit_reports:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту для выгрузки отчетов аналитических/операционных
-                  example:
+                  example: ""
                 rate_limit_data:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту для массовой загрузки данных
-                  example:
+                  example: ""
                 legal_address:
                   type: string
                   description: Юридический адрес
@@ -2046,11 +2077,11 @@ paths:
                 finflows[0][is_default]:
                   type: integer
                   description: Использовать фин.поток по умолчанию (0 - нет, 1 - да)
-                  example:
+                  example: ""
                 finflows[0][is_single]:
                   type: integer
                   description: Использовать единый Р/С для перевода НП для всех СД (0 - нет, 1 - да)
-                  example:
+                  example: ""
                 finflows[0][is_active]:
                   type: integer
                   description: Активность фин.потока (0 - нет, 1 - да)
@@ -2179,6 +2210,8 @@ paths:
                 data: []
   /api/v1/companies/{company_id}:
     post:
+      tags:
+        - Клиенты
       summary: Company update
       parameters:
         - in: path
@@ -2217,50 +2250,50 @@ paths:
                   type: integer
                   nullable: true
                   description: Глубина расчета статистики по заказам
-                  example:
+                  example: ""
                 unit_account:
                   type: integer
                   description: Единица учета % выкупа (0 - default, 1 - Рубли (НП), 2 - Штуки (кол-во отправлений))
-                  example:
+                  example: ""
                 tariff_calculation:
                   type: integer
                   description: Не включать возврат в формулу расчета тарифа (0 - нет, 1 - да)
-                  example:
+                  example: ""
                 turn_off_sd:
                   type: integer
                   description: Самостоятельное отключение СД, 0 - нет, 1 - да
-                  example:
+                  example: ""
                 debt:
                   type: integer
                   description: Входящая задолженность (руб.)
-                  example:
+                  example: ""
                 acquiring:
-                  type: enum
+                  type: string
                   enum: [average, card, cash, sbp]
                   description: Какой эквайринг использовать при расчете тарифа доставки
                 acquiring_with_delivery:
                   type: integer
                   description: Включать стоимость доставки в расчет эквайринга (0 - нет, 1 - да)
-                  example:
+                  example: ""
                 active:
                   type: integer
                   description: Активность компании (0 - нет, 1 - да)
-                  example:
+                  example: ""
                 rate_limit_calc:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту калькулятора
-                  example:
+                  example: ""
                 rate_limit_reports:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту для выгрузки отчетов аналитических/операционных
-                  example:
+                  example: ""
                 rate_limit_data:
                   type: integer
                   nullable: true
                   description: Ограничение запросов к апи-роуту для массовой загрузки данных
-                  example:
+                  example: ""
                 legal_address:
                   type: string
                   description: Юридический адрес
@@ -2362,21 +2395,21 @@ paths:
                 finflows[0][is_default]:
                   type: integer
                   description: Использовать фин.поток по умолчанию (0 - нет, 1 - да)
-                  example:
+                  example: ""
                 finflows[0][is_single]:
                   type: integer
                   description: Использовать единый Р/С для перевода НП для всех СД (0 - нет, 1 - да)
-                  example:
+                  example: ""
                 finflows[0][is_active]:
                   type: integer
                   description: Активность фин.потока (0 - нет, 1 - да)
-                  example:
+                  example: ""
                 deliveries[0]:
                   type: integer
                   description: Идентификаторы СД, которые надо подключить
                   example:
                 _method:
-                  type: enum
+                  type: string
                   enum: [PUT]
                   description: Добавить для изменения компании
       responses:
@@ -2548,6 +2581,8 @@ paths:
                 - Такое значение поля имя уже существует.
                 - Значение поля data depth не может быть больше 365.
     get:
+      tags:
+        - Клиенты
       summary: Company by id
       parameters:
         - in: path
