@@ -2748,6 +2748,8 @@ paths:
                 message: Ошибка аутентификации.
                 data: []
     delete:
+      tags:
+        - Клиенты
       summary: Deletes a company
       security:
         - bearerAuth: []
