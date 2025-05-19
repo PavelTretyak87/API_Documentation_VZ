@@ -20445,13 +20445,11 @@ paths:
           content:
             application/json:
               schema:
-               oneOf:
+               anyOf:
                 - title: Ответ при использовании 2ФА
-                  allOf:
-                    - $ref: '#/components/schemas/LoginWith2FA'
+                  $ref: '#/components/schemas/LoginWith2FA'
                 - title: Ответ без 2ФА
-                  allOf:
-                    - $ref: '#/components/schemas/LoginWithout2FA'
+                  $ref: '#/components/schemas/LoginWithout2FA'
         '400':
           description: Ошибка в запросе
           content:
