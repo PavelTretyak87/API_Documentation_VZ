@@ -20675,7 +20675,7 @@ paths:
                 message: Не найден пользователь с такими параметрами
 components:
   schemas:
-   LoginWith2FA:
+    LoginWith2FA:
      type: object
      description: Ответ при двухфакторной авторизации - шаг 1
      properties:
@@ -20697,7 +20697,7 @@ components:
           uuid_token: 
             type: string
             example: "9eec7971-13a5-4245-915a-5028a1653590"
-  LoginWithout2FA:
+    LoginWithout2FA:
      type: object
      description: Ответ при авторизации без двухфакторной авторизации
      properties:
