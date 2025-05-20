@@ -2,6 +2,11 @@ openapi: 3.0.0
 info:
   title: Ваш Заказ - документация API
   version: 1.0.0
+  description: |
+    ## История изменений:
+    - Тест запись 1
+    - Тест запись 2
+    - Тест запись 3
 servers:
   - url: https://dev-vz-api.3owls.su
 paths:
