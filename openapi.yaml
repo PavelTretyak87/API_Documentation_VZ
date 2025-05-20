@@ -21340,7 +21340,7 @@ paths:
                   example: ""
                 two_factor_auth:
                   type: integer
-                  description: Двухфакторная авторизацию (0 - нет, 1 - да)
+                  description: Двухфакторная авторизация (0 - нет, 1 - да)
                   example: ""
                 login:
                   type: string
@@ -21607,7 +21607,8 @@ paths:
                 - roles[0]
                 - password_confirmation
                 - company_id
-                - status 
+                - status
+                - _method 
               properties:
                 name:
                   type: string
@@ -21644,7 +21645,7 @@ paths:
                   example: ""
                 two_factor_auth:
                   type: integer
-                  description: Двухфакторная авторизацию (0 - нет, 1 - да)
+                  description: Двухфакторная авторизация (0 - нет, 1 - да)
                   example: ""
                 login:
                   type: string
@@ -22352,7 +22353,150 @@ paths:
                 success: false
                 request_id: 3be8407d-ce4f-4293-aa21-ce3591c484cb
                 message: Ошибка аутентификации.
-                data: []  
+                data: []
+  /api/v1/deliveries:
+     get:
+      tags:
+        - Службы доставки
+      summary: Получить список служб доставки с фильтрами
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[id]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по id службы доставки
+        - in: query
+          name: filter[name]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по названию службы доставки
+        - in: query
+          name: filter[code]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по коду службы доставки
+        - in: query
+          name: filter[type]
+          required: false
+          schema:
+            type: string
+            enum: [pvz, curier]
+          description: Фильтр по типу доставки - курьер/пвз
+        - in: query
+          name: filter[with_nds]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по параметру НДС (1 - с НДС, 0 - без НДС)
+        - in: query
+          name: filter[is_active]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по активности (1 - активна, 0 - нективна)
+        - in: query
+          name: filter[trashed]
+          required: false
+          schema:
+            type: string
+            enum: [with, only]
+          description: with - с удаленными, only - только удаленные (не добавленные в менеджерском блоке)
+      responses:
+        '200':
+          description: Успешное получение списка служб доставки
+          content:
+            application/json:
+              example:
+                code: 200
+                status: OK
+                success: true
+                request_id: d1c60be8-66ea-439f-8f40-638bcf6bb407
+                data:
+                  deliveries:
+                    - id: 1
+                      code: sdek
+                      name: СДЕК
+                      is_active: false
+                      image_id: 265
+                      with_nds: true
+                      tariff_insurance: 12
+                      tariff_acquiring_card: 23
+                      tariff_acquiring_cash: 31
+                      tariff_acquiring_sbp: 12
+                      tariff_acquiring_average: 123
+                      tariff_return: 23
+                      wait_registry: 15
+                      add_weekend: false
+                      law_name: sfsdf
+                      law_address: sdfgdfg
+                      fact_address: ghjgh
+                      inn: 123345
+                      ogrn: 234345
+                      kpp: 32234543
+                      bank_name: fdgcv
+                      bank_bik: 3242
+                      bank_rs: 234234
+                      bank_ks: 234234
+                      gendir: sddfg dgfdfg  hgfhfgh
+                      phone: 243234
+                      contact: dfsdfghdfg
+                      email: sdffsd@dgfdgh.cvcv
+                      site: sdfsdf.fg
+                      image:
+                        id: 265
+                        original_name: Frame 7337.png
+                        user_id: 13
+                        download_url: http://localhost/api/v1/file/265/download
+                        get_url: http://localhost/api/v1/file/265
+                        created_at: 2024-07-22T13:18:10+03:00
+                        updated_at: "2024-07-22T13:18:10+03:00
+                      types:
+                        - id: 2
+                          delivery_id: 1
+                          type: pvz
+                          max_width: 456
+                          max_length: 234
+                          max_height: 123
+                          max_weight: 567
+                          max_delivery_time: 4
+                          max_cost: 12345
+                          max_np: 23445
+                          storage: 1
+                          deadline_searches: 5
+                          min_redemption_rub: 12
+                          min_redemption_count: 23
+                          is_mobile: false
+                          geo_exceptions: 
+                            - id: 1
+                              delivery_type_id: 2
+                              geo_id: 176
+                              created_at: 2024-09-16T12:44:19+03:00
+                              updated_at: 2024-09-16T12:44:19+03:00
+                          created_at: 2024-08-16T08:49:16+03:00
+                          updated_at: 2024-09-19T07:43:22+03:00
+                          deleted_at: null
+                      deleted_at: null
+                      pass_inputs:
+                        - name: login
+                          title: Логин (client_id)
+                        - name: password
+                          title: Пароль (client_secret)
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []                  
 components:
   schemas:
     LoginWith2FA:
