@@ -20890,6 +20890,395 @@ paths:
                 success: false
                 request_id: 17fa97aa-14e7-47ae-b0d6-399ec56a3e9c
                 message: Не найден пользователь с такими параметрами
+  /api/v1/users:
+    get:
+      tags:
+        - Пользователи
+      summary: Получить список пользователей с фильтрами
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[name]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по имени
+        - in: query
+          name: filter[subunit]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по подразделению
+        - in: query
+          name: filter[status]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по статусу
+        - in: query
+          name: filter[company_id]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по клиенту
+        - in: query
+          name: filter[page]
+          required: false
+          schema:
+            type: integer
+          description: Номер страницы
+      responses:
+        '200':
+          description: Успешное получение списка пользователей
+          content:
+            application/json:
+              example:
+                code: 200
+                status: OK
+                success: true
+                request_id: 123baf56-f3e3-4dbf-a3ae-6cc5d1692fda
+                data:
+                  users:
+                    - id: 2
+                      name: Супер Админ
+                      position: 
+                      subunit: 
+                      email: ylukyanova@moymir.ru
+                      phone: 
+                      image: null
+                      company_id: 100
+                      roles:
+                        1: admin
+                        6: admin_templates
+                        7: admin_reference
+                        10: admin_claims
+                        11: admin_claims_search
+                        12: admin_claims_search_orders
+                        13: admin_claims_search_payments
+                        14: admin_claims_orders
+                        15: admin_claims_orders_orders
+                        16: admin_claims_orders_payments
+                        17: admin_claims_claims
+                        18: admin_claims_claims_orders
+                        19: admin_claims_claims_payments
+                        24: admin_finance
+                        25: admin_finance_registries
+                        26: admin_finance_registries_incoming
+                        27: admin_finance_registries_outgoing
+                        28: admin_finance_acts
+                        29: admin_finance_acts_incoming
+                        30: admin_finance_acts_outgoing
+                        31: admin_finance_cost_setting
+                        35: admin_admin
+                        36: admin_admin_technical
+                        37: admin_admin_management
+                        38: admin_admin_manager
+                        44: admin_priorities
+                        45: admin_manager
+                        46: admin_manager_deliveries
+                        47: admin_manager_companies
+                        48: admin_manager_registries
+                        49: admin_manager_templates
+                        50: admin_manager_acts
+                      login:
+                      status:
+                      two_factor_auth: 0
+                      permissions:
+                        1: analytic
+                        2: template
+                        3: priority
+                        4: edit_registries
+                        5: get_priorities
+                        6: get_priority
+                        7: delete_priority
+                        8: create_priority
+                        9: edit_priority
+                        10: get_props
+                        11: create_prop
+                        12: delete_prop
+                        13: get_templates
+                        14: get_template
+                        15: create_template
+                        16: edit_template
+                        17: delete_template
+                        19: get_template_statistic
+                        20: create_template_check
+                        21: get_order_info
+                        22: get_orders
+                        23: get_orders_by_deliveries
+                        24: get_companies_list
+                        25: create_company
+                        26: get_company
+                        27: edit_company
+                        28: delete_company
+                        29: get_payment_systems_list
+                        30: create_payment_system
+                        31: get_payment_system
+                        32: edit_payment_system
+                        33: delete_payment_system
+                        34: get_company_settings_list
+                        35: create_company_setting
+                        36: get_company_setting
+                        37: edit_company_setting
+                        38: delete_company_setting
+                        39: get_role_permission_list
+                        40: get_users_list
+                        41: create_user
+                        42: get_user
+                        43: edit_user
+                        44: delete_user
+                        45: create_user_group_action
+                        46: get_company_payment_system
+                        47: create_company_payment_system
+                        48: get_company_deliveries_list
+                        49: create_company_delivery
+                        50: get_company_delivery
+                        51: edit_company_delivery
+                        52: delete_company_delivery
+                        53: get_delivery_systems
+                        54: get_company_delivery_system
+                        55: create_company_delivery_system
+                        56: create_delivery_calculate
+                        57: get_passwords_list
+                        58: create_password
+                        59: get_password
+                        60: edit_password
+                        61: delete_password
+                        62: get_registries_export
+                        63: create_registries
+                        64: get_registries_list
+                        65: get_registry_id
+                        66: create_registry_upload_delivery_code
+                        67: create_registry_upload_user
+                        68: create_registry_upload_delivery
+                        69: create_registry_upload_approve
+                        70: get_registry_download
+                        71: get_registry_errors
+                        72: get_registry_errors_update
+                        73: get_acts
+                        74: create_act
+                        75: get_acts_download
+                        76: get_act_download_execute
+                        77: get_act_download_agency_free
+                        78: get_act_id
+                        79: create_act_upload
+                        80: get_costs
+                        81: create_cost
+                        82: add_cost
+                        83: get_directories_list
+                        84: create_directory
+                        85: get_directory
+                        86: edit_directory
+                        87: delete_directory
+                        88: get_fields_list
+                        89: create_field
+                        90: get_field_id
+                        91: edit_field
+                        92: delete_field
+                        93: access_fields_upload
+                        94: get_custom_fields
+                        95: create_custom_field
+                        96: get_custom_field_id
+                        97: edit_custom_field_id
+                        98: delete_custom_field
+                        99: get_custom_fields_list_info
+                        100: create_custom_field_union
+                        101: delete_custom_field_union
+                        102: get_custom_field_group_id
+                        103: create_custom_field_group
+                        104: delete_custom_field_group_id
+                        105: create_custom_field_group_str
+                        106: delete_custom_field_group_str
+                        107: get_file_download
+                        108: get_file_id
+                        109: get_claims_list
+                        111: get_claim
+                        112: edit_claim
+                        113: delete_claim
+                        114: create_claim
+                        115: create_template_find
+                        116: get_accesses
+                        117: get_delivery_settings_list
+                        118: create_delivery_setting
+                        119: get_delivery_setting
+                        120: edit_delivery_setting
+                        121: delete_delivery_setting
+                        122: edit_delivery
+                        123: get_deliveries
+                        124: get_company_delivery_types
+                        125: edit_company_delivery_types
+                        126: create_company_delivery_rules
+                        127: edit_company_delivery_rules
+                        128: get_registry_id_export
+                        129: create_warehouses
+                        130: get_warehouses_types
+                        131: show_warehouses
+                        132: delete_warehouse
+                        133: edit_warehouse
+                        134: get_warehouse
+                        135: get_warehouses
+                        136: get_company_contracts
+                        137: create_delivery_contract
+                        138: update_delivery_contract
+                        139: delete_delivery_contract
+                        140: create_delivery_contract_dop
+                        141: update_delivery_contract_dop
+                        142: delete_delivery_contract_dop
+                        143: create_delivery
+                        144: delete_delivery
+                        145: download_geo_exceptions
+                        146: upload_sdek_tariffs
+                        147: create_company_contract
+                        148: update_company_contract
+                        149: delete_company_contract
+                        150: create_company_contract_dop
+                        151: update_company_contract_dop
+                        152: delete_company_contract_dop
+                        153: get_company_admin_auth
+                        154: create_company_admin_auth
+                        155: update_company_admin_auth
+                        156: delete_company_admin_auth
+                        157: get_act_download_np
+                        158: get_act_agency
+                        159: get_search_order_suitables
+                        160: create_search_order
+                        161: edit_search_order
+                        162: delete_search_order
+                        163: read_search_order
+                        164: update_search_order
+                        165: create_claim_order
+                        166: read_claim_order
+                        167: update_claim_order
+                        168: delete_claim_order
+                        169: read_claim
+                        170: update_claim
+                      company:
+                        id: 100
+                        name: Ваш Заказ
+                        project_name: ООО «Ваш заказ»
+                        active: true
+                        rate_limit_calc: null
+                        rate_limit_reports: null
+                        rate_limit_data: null
+                        data_depth: null
+                        unit_account: 0
+                        tariff_calculation: true
+                        turn_off_sd: true
+                        legal_address: 111024, Москва г, вн.тер.г. муниципальный округ Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15
+                        actual_address: 111024, Москва г, вн.тер.г. муниципальный округ Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15
+                        ogrn: 044525225
+                        inn: 9722000285
+                        kpp: 772201001
+                        token: 5843|aRsAlPpKQ4ym5xhdYNWV2TcaExhnK8aG7KLI128edb5a6f
+                        fio: Липин Сергей Евгеньевич
+                        contact_person: Контактное лицо
+                        phone: телефон
+                        email: email
+                        web_site: сайт
+                        name_storage: Наименование склада
+                        address_storage: Адрес склада
+                        ogrn_storage: null
+                        inn_storage: ИНН склада
+                        kpp_storage: КПП склада
+                        okpo_storage: ОКПО склада
+                        debt: null
+                        acquiring: average
+                        acquiring_with_delivery: true
+                      created_at: 2024-10-14T12:33:23+03:00
+                      updated_at: 2025-05-16T14:20:03+03:00
+                      deleted_at: null
+                    - id: 111
+                      name: Кондакова Юлия Александровна
+                      position: Финансовый менеджер
+                      subunit: Финансово-экономический отдел
+                      email: ykondakova@moymir.ru
+                      phone: null
+                      image: null
+                      company_id: 100
+                      roles:
+                        2: manager
+                        24: admin_finance
+                        25: admin_finance_registries
+                        26: admin_finance_registries_incoming
+                        27: admin_finance_registries_outgoing
+                        28: admin_finance_acts
+                        29: admin_finance_acts_incoming
+                        30: admin_finance_acts_outgoing
+                        31: admin_finance_cost_setting
+                      login: ykondakova@moymir.ru
+                      status: 1
+                      two_factor_auth: 0
+                      permissions:
+                        4: edit_registries
+                        24: get_companies_list
+                        62: get_registries_export
+                        63: create_registries
+                        64: get_registries_list
+                        65: get_registry_id
+                        66: create_registry_upload_delivery_code
+                        67: create_registry_upload_user
+                        68: create_registry_upload_delivery
+                        69: create_registry_upload_approve
+                        70: get_registry_download
+                        71: get_registry_errors
+                        72: get_registry_errors_update
+                        73: get_acts
+                        74: create_act
+                        75: get_acts_download
+                        76: get_act_download_execute
+                        77: get_act_download_agency_free
+                        78: get_act_id
+                        79: create_act_upload
+                        80: get_costs
+                        81: create_cost
+                        82: add_cost
+                      company:
+                        id: 100
+                        name: Ваш Заказ
+                        project_name: ООО «Ваш заказ»
+                        active: true
+                        rate_limit_calc: null
+                        rate_limit_reports: null
+                        rate_limit_data: null
+                        data_depth: null
+                        unit_account: 0
+                        tariff_calculation: true
+                        turn_off_sd: true
+                        legal_address: 111024, Москва г, вн.тер.г. муниципальный округ Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15
+                        actual_address: 111024, Москва г, вн.тер.г. муниципальный округ Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15
+                        ogrn: 044525225
+                        inn: 9722000285
+                        kpp: 772201001
+                        token: 5843|aRsAlPpKQ4ym5xhdYNWV2TcaExhnK8aG7KLI128edb5a6f
+                        fio: Липин Сергей Евгеньевич
+                        contact_person: Контактное лицо
+                        phone: телефон
+                        email: email
+                        web_site: сайт
+                        name_storage: Наименование склада
+                        address_storage: Адрес склада
+                        ogrn_storage: null
+                        inn_storage: ИНН склада
+                        kpp_storage: КПП склада
+                        okpo_storage: ОКПО склада
+                        debt: null
+                        acquiring: average
+                        acquiring_with_delivery: true
+                      created_at: 2024-10-16T10:10:41+03:00
+                      updated_at: 2025-04-02T17:05:09+03:00
+                      deleted_at: null
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []              
 components:
   schemas:
     LoginWith2FA:
