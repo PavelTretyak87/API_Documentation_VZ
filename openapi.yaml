@@ -23363,7 +23363,89 @@ paths:
                       - "name": "login"
                         "title": "Логин"
                       - "name": "password"
-                        "title": "Пароль"          
+                        "title": "Пароль"
+        '404':
+          description: Ошибка - служба доставки не найдена
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "2eddc3a1-3b0e-4444-9621-264fa0484f0a"
+                "message": "Требуемый ресурс не найден"
+                "data": []  
+  /api/v1/delivery/upload_sdek_tariffs:
+    post:
+      tags:
+        - Службы доставки
+      summary: Загрузить тарифы СДЭК
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - upload_sdek_tariffs
+              properties:
+                upload_sdek_tariffs:
+                  type: string
+                  format: binary
+                  description: Файл
+        responses:
+          '202':
+            description: Успешный ответ
+            content:
+              application/json:
+                example:
+                  "code": 202
+                  "status": "Accepted"
+                  "success": true
+                  "request_id": "dc461524-ef98-4157-bde0-cd8dbedb26d6"
+                  "message": "Данные успешно загружены"
+          '400':
+            description: Ошибка - не передан файл
+            content:
+              application/json:
+                example:
+                  "code": 400
+                  "status": "Bad Request"
+                  "success": false
+                  "request_id": "8666f4a1-b872-446d-88af-cd02f740fb82"
+                  "message": "Поле return tariffs file обязательно.|"
+                  "data":
+                    - "Поле return tariffs file обязательно."
+          '401':
+            description: Ошибка авторизации
+            content:
+              application/json:
+                example:
+                  code: 401
+                  status: Unauthorized
+                  success: false
+                  request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                  message: Ошибка аутентификации.
+                  data: []
+  /api/v1/delivery_type/{delivery_type_id}/download_geo_exceptions:
+    get:
+      tags:
+        - Службы доставки
+      summary: Скачать гео-исключения типа доставки
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: delivery_type_id
+          required: true
+          schema:
+            type: integer
+          description: ID типа доставки
+      responses:
+        '200':
+          description: Скачан файл excel          
 components:
   schemas:
     LoginWith2FA:
