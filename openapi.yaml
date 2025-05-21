@@ -20420,7 +20420,7 @@ paths:
                 data: []
       security:
       - bearerAuth: []
-  /api/v1/costs/login:
+  /api/v1/login:
     post:
       tags: 
       - Логин
@@ -20696,7 +20696,7 @@ paths:
                 success: false
                 request_id: 17fa97aa-14e7-47ae-b0d6-399ec56a3e9c
                 message: Не найден пользователь с такими параметрами
-  /api/v1/costs/2fa_login:
+  /api/v1/2fa_login:
     post:
       tags: 
       - Логин
@@ -22496,7 +22496,418 @@ paths:
                 success: false
                 request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
                 message: Ошибка аутентификации.
-                data: []                  
+                data: []
+  /api/v1/delivery/{delivery_id}/create:
+    post:
+      tags:
+        - Службы доставки
+      summary: Создать службу доставки
+      description: Допустимо только 7 служб доставки
+      parameters:
+        - in: path
+          name: delivery_id
+          required: true
+          schema:
+            type: integer
+          description: ID службы доставки
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+                - is_active
+                - with_nds
+                - law_name
+                - law_address
+                - inn
+                - ogrn
+                - kpp
+                - bank_name
+                - bank_bik
+                - bank_rs
+                - bank_ks
+                - gendir
+                - tariff_insurance
+                - tariff_acquiring_card
+                - tariff_acquiring_cash
+                - tariff_return
+                - types[0][type]
+                - types[0][max_height]
+                - types[0][max_length]
+                - types[0][max_width]
+                - types[0][max_weight]
+                - types[0][storage]
+                - types[0][max_delivery_time]
+                - types[0][deadline_searches]
+                - types[0][max_cost]
+                - types[0][max_np]
+                - types[0][is_mobile]
+                - types[0][tariff_type]
+                - types[0][tariff_code]
+                - contracts[0][number]
+                - contracts[0][basis]
+                - contracts[0][from]
+                - contracts[0][to]
+              properties:
+                name:
+                  type: string
+                  description: Название службы доставки
+                  example: ""
+                is_active:
+                  type: integer
+                  description: Включение службы доставки (1 - включена, 0 - выключена)
+                  example: ""
+                with_nds:
+                  type: integer
+                  description: Признак с НДС или без (1 - с НДС, 0 - без НДС)
+                  example: ""
+                law_name:
+                  type: string
+                  description: Юридическое лицо
+                  example: ""
+                law_address:
+                  type: string
+                  description: Юридический адрес
+                  example: ""
+                fact_address:
+                  type: string
+                  description: Фактический адрес
+                  example: ""
+                inn:
+                  type: string
+                  description: ИНН
+                  example: ""
+                ogrn:
+                  type: string
+                  description: ОГРН
+                  example: ""
+                kpp:
+                  type: string
+                  description: КПП
+                  example: ""
+                bank_name:
+                  type: string
+                  description: Наименование банка
+                  example: ""
+                bank_bik:
+                  type: string
+                  description: БИК банка
+                  example: ""
+                bank_rs:
+                  type: string
+                  description: Расчетный счет банка
+                  example: ""
+                bank_ks:
+                  type: string
+                  description: Корреспондентский счет банка
+                  example: ""
+                gendir:
+                  type: string
+                  description: ФИО генерального директора
+                  example: ""
+                phone:
+                  type: string
+                  description: Телефон для связи
+                  example: ""
+                contact:
+                  type: string
+                  description: Контактное лицо
+                  example: ""
+                email:
+                  type: string
+                  description: Почта для связи
+                  example: ""
+                site:
+                  type: string
+                  description: Сайт
+                  example: ""
+                tariff_insurance:
+                  type: integer
+                  description: Тариф на страховку
+                  example: ""
+                tariff_acquiring_card:
+                  type: integer
+                  description: Тариф эквайринга по картам
+                  example: ""
+                tariff_acquiring_cash:
+                  type: integer
+                  description: Тариф эквайринга по наличным
+                  example: ""
+                tariff_acquiring_sbp:
+                  type: integer
+                  description: Тариф эквайринга по СБП
+                  example: ""
+                tariff_acquiring_average:
+                  type: integer
+                  description: Усредненное значение тарифа за эквайринг
+                  example: ""
+                tariff_return:
+                  type: integer
+                  description: Тариф за возврат
+                  example: ""
+                wait_registry:
+                  type: integer
+                  description: Срок ожидания реестра наложенных платежей от СД
+                  example: ""
+                add_weekend_wait_registry:
+                  type: integer
+                  description: Прибавлять ли выходные дни к сроку ожидания НП
+                  example: ""
+                add_weekend_max_delivery_time:
+                  type: integer
+                  description: Прибавлять ли выходные дни к максимальному сроку доставки
+                  example: ""
+                add_weekend_storage:
+                  type: integer
+                  description: Прибавлять ли выходные дни к сроку хранения в регионах
+                  example: ""
+                add_weekend_deadline_searches:
+                  type: integer
+                  description: Прибавлять ли выходные дни к сроку подачи розысков
+                  example: ""
+                add_weekend_calc:
+                  type: integer
+                  description: Прибавлять ли выходные дни к сроку доставки калькулятора
+                  example: ""
+                redemption_rub:
+                  type: integer
+                  description: Процент выкупа в цене по умолчанию
+                  example: ""
+                redemption_count:
+                  type: integer
+                  description: Количество выкупа по количеству по умолчанию            
+                  example: ""
+                types[0][type]:
+                  type: string
+                  description: Тип доставки. Если типов два - то нужно передавать здесь и далее в types - types[1][type] и т.д.
+                  example: ""
+                types[0][max_height]:
+                  type: integer
+                  description: Максимальная высота
+                  example: ""
+                types[0][max_length]:
+                  type: integer
+                  description: Максимальная длина
+                  example: ""
+                types[0][max_width]:
+                  type: integer
+                  description: Максимальная ширина
+                  example: ""
+                types[0][max_weight]:
+                  type: integer
+                  description: Максимальный вес
+                  example: ""
+                types[0][storage]:
+                  type: integer
+                  description: Срок хранения
+                  example: ""
+                types[0][max_delivery_time]:
+                  type: integer
+                  description: Максимальный срок доставки
+                  example: ""
+                types[0][deadline_searches]:
+                  type: integer
+                  description: Срок подачи розысков
+                  example: ""
+                types[0][max_cost]:
+                  type: integer
+                  description: Максимальная оценочная стоимость
+                  example: ""
+                types[0][max_np]:
+                  type: integer
+                  description: Максимальный наложенный платеж
+                  example: ""
+                types[0][is_mobile]:
+                  type: boolean
+                  description: Использовать только при указании мобильного
+                  example: ""
+                types[0][geo_exceptions][0]:
+                  type: integer
+                  description: Локации, где не использовать данный тип доставки. Если более одной, передавать types[0][geo_exceptions][1] и т.д.
+                  example: ""
+                types[0][tariff_type]:
+                  type: integer
+                  description: Складской тип тарифа
+                  example: ""
+                types[0][tariff_code]:
+                  type: integer
+                  description: Складской тип доставки
+                  example: ""
+                contracts[0][number]:
+                  type: string
+                  description: Номер договора. Если договоров более одного, передавать contracts[1] и т.д.
+                  example: ""
+                contracts[0][basis]:
+                  type: string
+                  description: Основание действия договора
+                  example: ""
+                contracts[0][from]:
+                  type: string
+                  description: Дата начала договора
+                  example: ""
+                contracts[0][to]:
+                  type: string
+                  description: Дата окончания договора
+                  example: ""
+                delivery_image:
+                  type: string
+                  format: binary
+                  description: Изображение доставки
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                code: 201
+                status: Created
+                success: true
+                request_id: a1cd9b02-6df7-4ebb-a548-e2c5dca7a273
+                data:
+                  id: 7
+                  code: cse
+                  name: Cse
+                  is_active: true
+                  image_id: null
+                  with_nds: true
+                  tariff_insurance: 1.2
+                  tariff_acquiring_card: 2.3
+                  tariff_acquiring_cash: 3.1
+                  tariff_acquiring_sbp: 1.2
+                  tariff_acquiring_average: 1.23
+                  tariff_return: 2.3
+                  wait_registry: 6
+                  add_weekend_wait_registry: 1
+                  add_weekend_max_delivery_time: 0
+                  add_weekend_storage: 0
+                  add_weekend_deadline_searches: 0
+                  add_weekend_calc: 0
+                  redemption_rub: 12
+                  redemption_count: 23
+                  law_name: sfsdf
+                  law_address: sdfgdfg
+                  fact_address: ghjgh
+                  inn: 123345
+                  ogrn: 234345
+                  kpp: 32234543
+                  bank_name: fdgcv
+                  bank_bik: 3242
+                  bank_rs: 234234
+                  bank_ks: 234234
+                  gendir: sddfg dgfdfg  hgfhfgh
+                  phone: 243234
+                  contact: dfsdfghdfg
+                  email: sdffsd@dgfdgh.cvcv
+                  site: sdfsdf.fg
+                  image: null
+                  types:
+                    - id: 14
+                      delivery_id: 7
+                      type: pvz
+                      max_width: 456
+                      max_length: 234
+                      max_height: 123
+                      max_weight: 567
+                      max_delivery_time: 4
+                      max_side: null
+                      max_sum_sides: null
+                      max_cost: 123456
+                      max_np: 234456
+                      storage: 1
+                      deadline_searches: 5
+                      is_mobile: false
+                      tariff_type: "3"
+                      tariff_code: "166"
+                      geo_exceptions:
+                        - id: 242
+                          delivery_type_id: 14
+                          geo_id: 176
+                          created_at: 2025-03-11T14:24:35+03:00
+                          updated_at: 2025-03-11T14:24:35+03:00
+                      created_at: 2024-08-16T11:49:16+03:00
+                      updated_at: 2025-03-11T14:24:35+03:00
+                      deleted_at: null
+                  contracts:
+                    - id: 30
+                      delivery_id: 7
+                      number: 556-СЭС/ИМ
+                      basis: "5.1.2"
+                      from: 2023-09-28T00:00:00+03:00
+                      to: 2028-09-28T00:00:00+03:00
+                      dops: []
+                      created_at: 2024-11-07T13:14:06+03:00
+                      updated_at: 2024-11-07T13:16:35+03:00
+                      deleted_at: null
+                    - id: 31
+                      delivery_id: 7
+                      number: 556-СЭС/ИМ
+                      basis: "5.1"
+                      from: 2023-09-28T00:00:00+03:00
+                      to: 2028-09-28T00:00:00+03:00
+                      dops: []
+                      created_at: 2024-11-07T13:15:58+03:00
+                      updated_at: 2024-11-07T13:15:58+03:00
+                      deleted_at: null
+                    - id: 518
+                      delivery_id: 7
+                      number: 2344567
+                      basis: dfgfdg dfggd  dfgdfg
+                      from: 2024-12-21T00:00:00+03:00
+                      to: 2025-12-21T00:00:00+03:00
+                      dops: []
+                      created_at: 2025-03-11T14:24:35+03:00
+                      updated_at: 2025-03-11T14:24:35+03:00
+                      deleted_at: null
+                  deleted_at: null
+                  pass_inputs:
+                    - name: login
+                      title: Логин
+                    - name: password
+                      title: Пароль
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                code: 400
+                status: Bad Request
+                success: false
+                request_id: 47de19a4-db4d-4753-80b5-62e9ec26c10e
+                message: Поле with nds обязательно.|Поле law name обязательно.|Поле law address обязательно.|Поле fact address обязательно.|Поле inn обязательно.|Поле ogrn обязательно.|Поле kpp обязательно.|Поле bank name обязательно.|Поле bank bik обязательно.|Поле bank rs обязательно.|Поле bank ks обязательно.|Поле gendir обязательно.|Поле tariff insurance обязательно.|Поле tariff acquiring card обязательно.|Поле tariff acquiring cash обязательно.|Поле types обязательно.|Поле contracts обязательно.|
+                data:
+                  - "Поле with nds обязательно."
+                  - "Поле law name обязательно."
+                  - "Поле law address обязательно."
+                  - "Поле fact address обязательно."
+                  - "Поле inn обязательно."
+                  - "Поле ogrn обязательно."
+                  - "Поле kpp обязательно."
+                  - "Поле bank name обязательно."
+                  - "Поле bank bik обязательно."
+                  - "Поле bank rs обязательно."
+                  - "Поле bank ks обязательно."
+                  - "Поле gendir обязательно."
+                  - "Поле tariff insurance обязательно."
+                  - "Поле tariff acquiring card обязательно."
+                  - "Поле tariff acquiring cash обязательно."
+                  - "Поле types обязательно."
+                  - "Поле contracts обязательно."
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []
 components:
   schemas:
     LoginWith2FA:
