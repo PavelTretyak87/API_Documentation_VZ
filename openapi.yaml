@@ -23825,8 +23825,8 @@ paths:
                           "created_at": "2024-11-21T14:10:35+03:00"
                           "updated_at": "2024-11-21T14:10:35+03:00"
                           "deleted_at": null
-                      "created_at": "2024-11-21T14:10:35+03:00",
-                      "updated_at": "2024-12-17T15:23:29+03:00",
+                      "created_at": "2024-11-21T14:10:35+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
                       "deleted_at": null
                     - "id": 71
                       "number": "dalli_Dalli_14.10.2024.МОЙ МИР(ВАШ ЗАКАЗ)456738"
@@ -23876,9 +23876,9 @@ paths:
                       "date": "2024-10-11"
                       "registryFiles":
                         - "id": 156
-                          "type": "delivery",
+                          "type": "delivery"
                           "amount": 1837629.96,
-                          "date": "2024-10-11",
+                          "date": "2024-10-11"
                           "comment": null,
                           "file":
                             "id": 766
@@ -23896,11 +23896,11 @@ paths:
                               "amount": 1837629.96
                               "company_id": 1
                               "status": "without_pp"
-                          "created_at": "2024-11-21T14:46:03+03:00",
-                          "updated_at": "2024-11-21T14:46:03+03:00",
+                          "created_at": "2024-11-21T14:46:03+03:00"
+                          "updated_at": "2024-11-21T14:46:03+03:00"
                           "deleted_at": null
-                      "created_at": "2024-11-21T14:46:03+03:00",
-                      "updated_at": "2024-12-17T15:23:29+03:00",
+                      "created_at": "2024-11-21T14:46:03+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
                       "deleted_at": null
                     - "id": 74
                       "number": "fivepost_реестр от 5пост new"
