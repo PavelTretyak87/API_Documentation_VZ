@@ -23702,6 +23702,719 @@ paths:
                 request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
                 message: Ошибка аутентификации.
                 data: []      
+  /api/v1/registries:
+    get:
+      summary: Получение списка реестров с фильтрами
+      tags:
+        - Реестры
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID реестра
+        - in: query
+          name: filter[number]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по названию реестра
+        - in: query
+          name: filter[before]
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Фильтр по дате "До"
+        - in: query
+          name: filter[after]
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Фильтр по дате "После"
+        - in: query
+          name: filter[amount_less]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по сумме "Менее"
+        - in: query
+          name: filter[amount_more]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по сумме "Более"
+        - in: query
+          name: filter[company_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по клиенту
+        - in: query
+          name: filter[delivery_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по доставке
+        - in: query
+          name: filter[status]
+          required: false
+          schema:
+            type: string
+            enum: [uploaded,accepted, error, with_pp, accepted_condition, cancelled]
+          description: Фильтр по статусу реестра
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: string
+          description: Порядок сортировки date,amount,company_name
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: integer
+          description: Номер страницы
+      responses:
+        '200':
+          description: Успешное получение списка реестров
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "f142736a-b079-41a4-9edc-4c83154671b3"
+                "data":
+                  "registries": 
+                    - "id": 69
+                      "number": "fivepost_5ПОСТ"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 5
+                      "date": "2024-03-05"
+                      "registryFiles":
+                        - "id": 153
+                          "type": "delivery"
+                          "amount": 80384.71
+                          "date": "2024-03-05"
+                          "comment": null
+                          "file": 
+                            "id": 761
+                            "original_name": "5ПОСТ.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/761/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/761"
+                            "created_at": "2024-11-21T14:10:33+03:00"
+                            "updated_at": "2024-11-21T14:10:33+03:00"
+                          "finflows":
+                            - "id": 1
+                              "registry_file_id": 153
+                              "finflow_id": 1
+                              "amount": 80384.71
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-21T14:10:35+03:00"
+                          "updated_at": "2024-11-21T14:10:35+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-21T14:10:35+03:00",
+                      "updated_at": "2024-12-17T15:23:29+03:00",
+                      "deleted_at": null
+                    - "id": 71
+                      "number": "dalli_Dalli_14.10.2024.МОЙ МИР(ВАШ ЗАКАЗ)456738"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 4
+                      "date": "2024-10-14"
+                      "registryFiles":
+                        - "id": 155
+                          "type": "delivery"
+                          "amount": 3709388.41
+                          "date": "2024-10-14"
+                          "comment": null
+                          "file": 
+                            "id": 765
+                            "original_name": "Dalli_14.10.2024.МОЙ МИР(ВАШ ЗАКАЗ)456738.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/765/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/765"
+                            "created_at": "2024-11-21T14:32:10+03:00"
+                            "updated_at": "2024-11-21T14:32:10+03:00"
+                          "finflows":
+                            - "id": 3
+                              "registry_file_id": 155
+                              "finflow_id": 1
+                              "amount": 3709388.41
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-21T14:32:14+03:00"
+                          "updated_at": "2024-11-21T14:32:14+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-21T14:32:14+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                    - "id": 72
+                      "number": "dalli_Dalli_11.10.2024.МОЙ МИР(ВАШ ЗАКАЗ)455848"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 4
+                      "date": "2024-10-11"
+                      "registryFiles":
+                        - "id": 156
+                          "type": "delivery",
+                          "amount": 1837629.96,
+                          "date": "2024-10-11",
+                          "comment": null,
+                          "file":
+                            "id": 766
+                            "original_name": "Dalli_11.10.2024.МОЙ МИР(ВАШ ЗАКАЗ)455848.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/766/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/766"
+                            "created_at": "2024-11-21T14:46:00+03:00"
+                            "updated_at": "2024-11-21T14:46:00+03:00"
+                          "finflows":
+                            - "id": 4
+                              "registry_file_id": 156
+                              "finflow_id": 1
+                              "amount": 1837629.96
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-21T14:46:03+03:00",
+                          "updated_at": "2024-11-21T14:46:03+03:00",
+                          "deleted_at": null
+                      "created_at": "2024-11-21T14:46:03+03:00",
+                      "updated_at": "2024-12-17T15:23:29+03:00",
+                      "deleted_at": null
+                    - "id": 74
+                      "number": "fivepost_реестр от 5пост new"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 5
+                      "date": "2024-09-20"
+                      "registryFiles":
+                        - "id": 158
+                          "type": "delivery"
+                          "amount": 4973700.23,
+                          "date": "2024-09-20"
+                          "comment": null,
+                          "file":
+                            "id": 768
+                            "original_name": "реестр от 5пост new.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/768/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/768"
+                            "created_at": "2024-11-21T14:49:10+03:00"
+                            "updated_at": "2024-11-21T14:49:10+03:00"
+                          "finflows":
+                            - "id": 5,
+                              "registry_file_id": 158
+                              "finflow_id": 1
+                              "amount": 4973700.23
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-21T14:49:15+03:00"
+                          "updated_at": "2024-11-21T14:49:15+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-21T14:49:15+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                    - "id": 75
+                      "number": "dalli_dalliTest"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 4
+                      "date": "2023-12-18"
+                      "registryFiles":
+                        - "id": 159
+                          "type": "delivery"
+                          "amount": 22264.4
+                          "date": "2023-12-18"
+                          "comment": null
+                          "file":
+                            "id": 778
+                            "original_name": "dalliTest.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/778/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/778"
+                            "created_at": "2024-11-21T17:11:40+03:00"
+                            "updated_at": "2024-11-21T17:11:40+03:00"
+                          "finflows":
+                            - "id": 6
+                              "registry_file_id": 159
+                              "finflow_id": 1
+                              "amount": 22264.4
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-21T17:11:42+03:00"
+                          "updated_at": "2024-11-21T17:11:42+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-21T17:11:42+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                    - "id": 78
+                      "number": "cse_КСЭ отчет по переводам нп от 21.10.2024 Мой Мир 41328"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 7
+                      "date": "2024-10-21"
+                      "registryFiles":
+                        - "id": 167
+                          "type": "delivery"
+                          "amount": 286014.87
+                          "date": "2024-10-21"
+                          "comment": null
+                          "file":
+                            "id": 812
+                            "original_name": "КСЭ отчет по переводам нп от 21.10.2024 Мой Мир 41328.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/812/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/812"
+                            "created_at": "2024-11-26T10:34:03+03:00"
+                            "updated_at": "2024-11-26T10:34:03+03:00"
+                          "finflows":
+                            - "id": 13
+                              "registry_file_id": 167
+                              "finflow_id": 1
+                              "amount": 286014.87
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-26T10:34:08+03:00"
+                          "updated_at": "2024-11-26T10:34:08+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-26T10:34:08+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                    - "id": 80
+                      "number": "fivepost_80214642-1024-69954001d5-7b62-48f2-b5ed-d4500d960229"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 5
+                      "date": "2024-10-17"
+                      "registryFiles":
+                        - "id": 171
+                          "type": "delivery"
+                          "amount": 9488559.71
+                          "date": "2024-10-17"
+                          "comment": null
+                          "file":
+                            "id": 818
+                            "original_name": "80214642-1024-69954001d5-7b62-48f2-b5ed-d4500d960229.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/818/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/818"
+                            "created_at": "2024-11-26T11:50:16+03:00"
+                            "updated_at": "2024-11-26T11:50:16+03:00"
+                          "finflows":
+                            - "id": 17
+                              "registry_file_id": 171
+                              "finflow_id": 1
+                              "amount": 9488559.71
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-26T11:50:26+03:00"
+                          "updated_at": "2024-11-26T11:50:26+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-26T11:50:26+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                    - "id": 82
+                      "number": "dalli_Dalli_01.10.2024.МОЙ МИР(ВАШ ЗАКАЗ)453243"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 4
+                      "date": "2024-10-01"
+                      "registryFiles":
+                        - "id": 174
+                          "type": "delivery"
+                          "amount": 1387292
+                          "date": "2024-10-01"
+                          "comment": null
+                          "file":
+                            "id": 822
+                            "original_name": "Dalli_01.10.2024.МОЙ МИР(ВАШ ЗАКАЗ)453243.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/822/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/822"
+                            "created_at": "2024-11-26T16:06:02+03:00"
+                            "updated_at": "2024-11-26T16:06:02+03:00"
+                          "finflows": 
+                            - "id": 19
+                              "registry_file_id": 174
+                              "finflow_id": 1
+                              "amount": 1387292
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-26T16:06:06+03:00"
+                          "updated_at": "2024-11-26T16:06:06+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-26T16:06:06+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                    - "id": 83
+                      "number": "cse_КСЭ отчет по переводам нп от 01.10.2024 Мой Мир 38233"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 7
+                      "date": "2024-10-01"
+                      "registryFiles":
+                        - "id": 175
+                          "type": "delivery"
+                          "amount": 772980.08
+                          "date": "2024-10-01"
+                          "comment": null
+                          "file":
+                            "id": 823
+                            "original_name": "КСЭ отчет по переводам нп от 01.10.2024 Мой Мир 38233.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/823/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/823"
+                            "created_at": "2024-11-26T16:09:18+03:00"
+                            "updated_at": "2024-11-26T16:09:18+03:00"
+                          "finflows":
+                            - "id": 20
+                              "registry_file_id": 175
+                              "finflow_id": 1
+                              "amount": 772980.08
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-26T16:09:21+03:00"
+                          "updated_at": "2024-11-26T16:09:21+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-26T16:09:21+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                    - "id": 84
+                      "number": "fivepost_80214642-0924-1290bfa659a-6462-4c2b-a679-3aabb4cb796dтестовый"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 5
+                      "date": "2024-10-01"
+                      "registryFiles":
+                        - "id": 176
+                          "type": "delivery"
+                          "amount": 8245346.3
+                          "date": "2024-10-01"
+                          "comment": null
+                          "file":
+                            "id": 827
+                            "original_name": "80214642-0924-1290bfa659a-6462-4c2b-a679-3aabb4cb796dтестовый.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/827/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/827"
+                            "created_at": "2024-11-26T16:14:32+03:00"
+                            "updated_at": "2024-11-26T16:14:32+03:00"
+                          "finflows":
+                            - "id": 21
+                              "registry_file_id": 176
+                              "finflow_id": 1
+                              "amount": 8245346.3
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-26T16:14:45+03:00"
+                          "updated_at": "2024-11-26T16:14:45+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-26T16:14:45+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                    - "id": 85
+                      "number": "sdek_Реестр НП №13606970 от 2024-10-03"
+                      "status": "cancelled"
+                      "status_title": "Аннулирован"
+                      "status_out_title": ""
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 1
+                      "date": "2024-09-25"
+                      "registryFiles":
+                        - "id": 177
+                          "type": "delivery"
+                          "amount": 5169
+                          "date": "2024-09-25"
+                          "comment": null
+                          "file":
+                            "id": 845
+                            "original_name": "Реестр НП №13606970 от 2024-10-03.xls"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/845/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/845"
+                            "created_at": "2024-11-26T17:07:42+03:00"
+                            "updated_at": "2024-11-26T17:07:42+03:00"
+                          "finflows":
+                            - "id": 22
+                              "registry_file_id": 177
+                              "finflow_id": 1
+                              "amount": 5169
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-26T17:07:45+03:00"
+                          "updated_at": "2024-11-26T17:07:45+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-26T17:07:45+03:00"
+                      "updated_at": "2025-01-28T11:56:15+03:00"
+                      "deleted_at": null
+                    - "id": 86
+                      "number": "sdek_Вложение без имени 00064"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 1
+                      "date": "2024-10-02"
+                      "registryFiles":
+                        - "id": 178
+                          "type": "delivery"
+                          "amount": 19634.08
+                          "date": "2024-10-02"
+                          "comment": null
+                          "file":
+                            "id": 846
+                            "original_name": "Вложение без имени 00064.xls"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/846/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/846"
+                            "created_at": "2024-11-26T17:12:43+03:00"
+                            "updated_at": "2024-11-26T17:12:43+03:00"
+                          "finflows":
+                            - "id": 23
+                              "registry_file_id": 178
+                              "finflow_id": 1
+                              "amount": 19634.08
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-26T17:12:45+03:00"
+                          "updated_at": "2024-11-26T17:12:45+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-26T17:12:45+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                    - "id": 87
+                      "number": "dalli_Dalli_02.09.2024.МОЙ МИР(ВАШ ЗАКАЗ)444046"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 4
+                      "date": "2024-09-02"
+                      "registryFiles":
+                        - "id": 180
+                          "type": "delivery"
+                          "amount": 2267499.22
+                          "date": "2024-09-02"
+                          "comment": null,
+                          "file":
+                            "id": 851
+                            "original_name": "Dalli_02.09.2024.МОЙ МИР(ВАШ ЗАКАЗ)444046.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/851/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/851"
+                            "created_at": "2024-11-28T16:07:25+03:00"
+                            "updated_at": "2024-11-28T16:07:25+03:00"
+                          "finflows":
+                            - "id": 25
+                              "registry_file_id": 180
+                              "finflow_id": 1
+                              "amount": 2267499.22
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-28T16:07:28+03:00"
+                          "updated_at": "2024-11-28T16:07:28+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-28T16:07:28+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                    - "id": 88
+                      "number": "boxberry_Отчет по оплатам детализация Ваш заказ-Мой мир № 123312 от 1 сентября 2024г"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 2
+                      "date": "2024-09-02"
+                      "registryFiles":
+                        - "id": 181
+                          "type": "delivery"
+                          "amount": 29473.88
+                          "date": "2024-09-02"
+                          "comment": null
+                          "file":
+                            "id": 860
+                            "original_name": "Отчет по оплатам детализация Ваш заказ-Мой мир № 123312 от 1 сентября 2024г.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/860/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/860"
+                            "created_at": "2024-11-29T11:24:02+03:00"
+                            "updated_at": "2024-11-29T11:24:02+03:00"
+                          "finflows":
+                            - "id": 26
+                              "registry_file_id": 181
+                              "finflow_id": 1
+                              "amount": 29473.88
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-29T11:24:05+03:00"
+                          "updated_at": "2024-11-29T11:24:05+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-29T11:24:05+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                    - "id": 89
+                      "number": "boxberry_Отчет по оплатам детализация Ваш заказ-Мой Мир № 123462 от 2 сентября 2024г"
+                      "status": "with_pp"
+                      "status_title": "Подтвержден"
+                      "status_out_title": "Отправлено"
+                      "comment": null
+                      "company_id": 1
+                      "delivery_id": 2
+                      "date": "2024-09-03"
+                      "registryFiles":
+                        - "id": 182
+                          "type": "delivery"
+                          "amount": 238120.88
+                          "date": "2024-09-03"
+                          "comment": null
+                          "file":
+                            "id": 861
+                            "original_name": "Отчет по оплатам детализация Ваш заказ-Мой Мир № 123462 от 2 сентября 2024г.xlsx"
+                            "user_id": 2
+                            "user_name": "Супер Админ"
+                            "download_url": "https://dev-vz-api.3owls.su/api/v1/file/861/download"
+                            "get_url": "https://dev-vz-api.3owls.su/api/v1/file/861"
+                            "created_at": "2024-11-29T11:24:40+03:00"
+                            "updated_at": "2024-11-29T11:24:40+03:00"
+                          "finflows":
+                            - "id": 27
+                              "registry_file_id": 182
+                              "finflow_id": 1
+                              "amount": 238120.88
+                              "company_id": 1
+                              "status": "without_pp"
+                          "created_at": "2024-11-29T11:24:42+03:00"
+                          "updated_at": "2024-11-29T11:24:42+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-11-29T11:24:42+03:00"
+                      "updated_at": "2024-12-17T15:23:29+03:00"
+                      "deleted_at": null
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=2"
+                      "label": "2"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=3"
+                      "label": "3"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=4"
+                      "label": "4"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=5"
+                      "label": "5"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=6"
+                      "label": "6"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=7"
+                      "label": "7"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=8"
+                      "label": "8"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=9"
+                      "label": "9"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=10"
+                      "label": "10"
+                      "active": false
+                    - "url": null
+                      "label": "..."
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=109"
+                      "label": "109"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=110"
+                      "label": "110"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries?page=2"
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                      "current_page": 1
+                      "first_page_url": "https://dev-vz-api.3owls.su/api/v1/registries?page=1"
+                      "from": 1
+                      "last_page": 110
+                      "last_page_url": "https://dev-vz-api.3owls.su/api/v1/registries?page=110"
+                      "next_page_url": "https://dev-vz-api.3owls.su/api/v1/registries?page=2"
+                      "path": "https://dev-vz-api.3owls.su/api/v1/registries"
+                      "per_page": 15
+                      "prev_page_url": null
+                      "to": 15
+                      "total": 1640
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []                 
 components:
   schemas:
     LoginWith2FA:
