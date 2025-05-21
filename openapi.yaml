@@ -23338,39 +23338,32 @@ paths:
           content:
             application/json:
               example:
-                "code": 202,
-                "status": "Accepted",
-                "success": true,
-                "request_id": "ad799134-e74a-440f-9389-8adf2705f9bf",
-                "data": {
-                  "delivery": {
-                    "id": 7,
-                    "code": "cse",
-                    "name": "Cse",
-                    "is_active": false,
-                    "image_id": null,
-                    "with_nds": false,
-                    "tariff_insurance": 1,
-                    "tariff_acquiring_card": 2,
-                    "tariff_acquiring_cash": 3,
-                    "tariff_acquiring_sbp": 1,
-                    "tariff_acquiring_average": 123,
-                    "tariff_return": 23,
-                    "wait_registry": 15,
-                    "add_weekend": false,
-                    "deleted_at": "2024-09-23T10:36:49+03:00",
-                    "pass_inputs": [
-                      {
-                          "name": "login",
-                          "title": "Логин"
-                      },
-                      {
-                          "name": "password",
-                          "title": "Пароль"
-                      }
-                    ]
-                  }
-                }           
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "ad799134-e74a-440f-9389-8adf2705f9bf"
+                "data": 
+                  "delivery": 
+                    "id": 7
+                    "code": "cse"
+                    "name": "Cse"
+                    "is_active": false
+                    "image_id": null
+                    "with_nds": false
+                    "tariff_insurance": 1
+                    "tariff_acquiring_card": 2
+                    "tariff_acquiring_cash": 3
+                    "tariff_acquiring_sbp": 1
+                    "tariff_acquiring_average": 123
+                    "tariff_return": 23
+                    "wait_registry": 15
+                    "add_weekend": false
+                    "deleted_at": "2024-09-23T10:36:49+03:00"
+                    "pass_inputs": 
+                      - "name": "login"
+                        "title": "Логин"
+                      - "name": "password"
+                        "title": "Пароль"          
 components:
   schemas:
     LoginWith2FA:
