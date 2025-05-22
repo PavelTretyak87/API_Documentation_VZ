@@ -24415,6 +24415,1241 @@ paths:
                 request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
                 message: Ошибка аутентификации.
                 data: []                 
+  /api/v1/registries/finflows:
+    get:
+      summary: Список реестр-потоков
+      tags:
+        - Реестры
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[id]
+          required: true
+          schema:
+            type: integer
+          description: Фильтр по ID реестр-потока
+        - in: query
+          name: filter[finflow_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID фин.потока
+        - in: query
+          name: filter[before]
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Фильтр по дате "До"
+        - in: query
+          name: filter[after]
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Фильтр по дате "После"
+        - in: query
+          name: filter[amount_less]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по сумме "Менее"
+        - in: query
+          name: filter[amount_more]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по сумме "Более"
+        - in: query
+          name: filter[company_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по клиенту
+        - in: query
+          name: filter[delivery_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по доставке
+        - in: query
+          name: filter[status]
+          required: false
+          schema:
+            type: string
+            enum: [with_pp, with_pp_accepted, without_pp]
+          description: Фильтр по статусу реестра
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: string
+          description: Порядок сортировки date, amount, company_name, status, delivery_name
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: integer
+          description: Номер страницы
+      responses:
+        '200':
+          description: Успешное получение списка реестров
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "8bb08247-ea93-454b-aefa-9ac73ec5c274"
+                "data":
+                  "registry_finflows":
+                    - "id": 1
+                      "registry_file_id": 153
+                      "finflow_id": 1
+                      "registry_id": 69
+                      "amount": 80384.71
+                      "company_id": 1
+                      "delivery_id": 5
+                      "status": "without_pp"
+                      "registry_orders":
+                        - "order_id": 137364
+                          "registry_file_finflow_id": 1
+                          "amount": 8980.44
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137363
+                          "registry_file_finflow_id": 1
+                          "amount": 3994.94
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137362
+                          "registry_file_finflow_id": 1
+                          "amount": 2202.92
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137361
+                          "registry_file_finflow_id": 1
+                          "amount": 1801.58
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137360
+                          "registry_file_finflow_id": 1
+                          "amount": 1688.62
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137359
+                          "registry_file_finflow_id": 1
+                          "amount": 2483.84
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137358
+                          "registry_file_finflow_id": 1
+                          "amount": 5127.08
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137357
+                          "registry_file_finflow_id": 1
+                          "amount": 5359.03
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137356
+                          "registry_file_finflow_id": 1
+                          "amount": 4739.72
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137355
+                          "registry_file_finflow_id": 1
+                          "amount": 3190.43
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137354
+                          "registry_file_finflow_id": 1
+                          "amount": 2582.34
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137353
+                          "registry_file_finflow_id": 1
+                          "amount": 9023.59
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137352
+                          "registry_file_finflow_id": 1
+                          "amount": 3149
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137351
+                          "registry_file_finflow_id": 1
+                          "amount": 2758.91
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137350
+                          "registry_file_finflow_id": 1
+                          "amount": 3239
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137349
+                          "registry_file_finflow_id": 1
+                          "amount": 2273.85
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137348
+                          "registry_file_finflow_id": 1
+                          "amount": 3202.48
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137347
+                          "registry_file_finflow_id": 1
+                          "amount": 4642.12
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137346
+                          "registry_file_finflow_id": 1
+                          "amount": 1660.63
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137345
+                          "registry_file_finflow_id": 1
+                          "amount": 2566.22
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                        - "order_id": 137344
+                          "registry_file_finflow_id": 1
+                          "amount": 5717.97
+                          "date": "2024-03-05"
+                          "created_at": null
+                          "updated_at": null
+                      "registry_file":
+                        "id": 153
+                        "type": "delivery"
+                        "amount": 80384.71
+                        "date": "2024-03-05"
+                        "comment": null
+                        "created_at": "2024-11-21T14:10:35+03:00"
+                        "updated_at": "2024-11-21T14:10:35+03:00"
+                        "deleted_at": null
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registries/finflows?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": null
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                    "current_page": 1
+                    "first_page_url": "https://dev-vz-api.3owls.su/api/v1/registries/finflows?page=1"
+                    "from": 1
+                    "last_page": 1
+                    "last_page_url": "https://dev-vz-api.3owls.su/api/v1/registries/finflows?page=1"
+                    "next_page_url": null
+                    "path": "https://dev-vz-api.3owls.su/api/v1/registries/finflows"
+                    "per_page": 1000
+                    "prev_page_url": null
+                    "to": 1
+                    "total": 1
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []
+  /api/v1/registries/update:
+    post:
+      summary: Обновление реестров
+      tags:
+        - Реестры
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - ids[0]
+              properties:
+                ids[0]:
+                  type: integer
+                  description: Идентификатор реестра. Если реестр не один, передавать ids[1] и т.д.
+                  example: ""
+                comment:
+                  type: string
+                  description: Комментарий
+                  example: ""
+                status: 
+                  type: string
+                  enum: [uploaded, accepted, accepted_condition, error, cancelled, with_pp]
+                  description: Статус
+                  example: ""
+              responses:
+                '202':
+                  description: Успешный ответ
+                  content:
+                    application/json:
+                      example:
+                        "code": 202
+                        "status": "Accepted"
+                        "success": true
+                        "request_id": "53267547-3671-4afe-9e2b-509cbfbea86d"
+                        "data":
+                          "registries":
+                            - "id": 90
+                              "number": "boxberry_Отчет по оплатам детализация Ваш заказ-Мой Мир № 123554 от 3 сентября 2024г"
+                              "status": "cancelled"
+                              "status_title": "Аннулирован"
+                              "status_out_title": ""
+                              "comment": "new comment upd"
+                              "created_at": "2024-11-29T11:25:20+03:00"
+                              "updated_at": "2025-05-22T10:48:33+03:00"
+                              "deleted_at": null
+                            - "id": 91
+                              "number": "boxberry_Отчет по оплатам детализация Ваш заказ-Мой мир № 121652 от 31 августа 2024г"
+                              "status": "with_pp"
+                              "status_title": "Подтвержден"
+                              "status_out_title": "Отправлено"
+                              "comment": "new comment upd"
+                              "created_at": "2024-11-29T11:27:07+03:00"
+                              "updated_at": "2025-05-22T10:48:33+03:00"
+                              "deleted_at": null
+                '400':
+                  description: Ошибка в запросе
+                  content:
+                    application/json:
+                      example:
+                        "code": 400
+                        "status": "Bad Request"
+                        "success": false
+                        "request_id": "1133b000-4b7d-4227-9fed-b597d607d4ca"
+                        "message": "Значение поля ids.1 не существует.|"
+                        "data":
+                          - "Значение поля ids.1 не существует."
+                '401':
+                  description: Ошибка аутентификации
+                  content:
+                    application/json:
+                      example:
+                        "code": 401
+                        "status": "Unauthorized"
+                        "success": false
+                        "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                        "message": "Ошибка аутентификации."
+                        "data": []
+                '403':
+                  description: Ошибка - не хватает прав
+                  content:
+                    application/json:
+                      example:
+                        "code": 403
+                        "status": "Forbidden"
+                        "success": false
+                        "request_id": "26f2c980-ca4e-4cdd-92fb-d84b23c73a91"
+                        "message": "Не хватает прав на совершение данной операции"
+                        "data": []
+  /api/v1/registries/finflows:
+    post:
+      summary: Обновление финпотоков реестров
+      tags:
+        - Реестры
+      security: 
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - ids[0]
+                - status
+              properties:
+                ids[0]:
+                  type: integer
+                  description: Идентификатор фин.потока. Если фин.поток не один, передавать id[1] и т.д.
+                  example: ""
+                status: 
+                  type: string
+                  enum: [with_pp, without_pp]
+                  description: Статус
+                  example: ""
+              responses:
+                '202':
+                  description: Успешный ответ
+                  content:
+                    application/json:
+                      example:
+                        "code": 202
+                        "status": "Accepted"
+                        "success": true
+                        "request_id": "7de5b2e2-8c8d-4fe8-9c49-22e3d6edbeb5"
+                        "data":
+                          "registry_file_finflows":
+                            - "id": 90
+                              "registry_file_id": 186
+                              "finflow_id": 20
+                              "amount": 1093097.77
+                              "status": "with_pp"
+                            - "id": 91
+                              "registry_file_id": 186
+                              "finflow_id": 32
+                              "amount": 1587379.81
+                              "status": "with_pp"
+                '400':
+                  description: Ошибка в запросе
+                  content:
+                    application/json:
+                      example:
+                        "code": 400
+                        "status": "Bad Request"
+                        "success": false
+                        "request_id": "1133b000-4b7d-4227-9fed-b597d607d4ca"
+                        "message": "Значение поля статус отсутствует в списке разрешённых.|"
+                        "data":
+                          - "Значение поля статус отсутствует в списке разрешённых."
+                '401':
+                  description: Ошибка аутентификации
+                  content:
+                    application/json:
+                      example:
+                        "code": 401
+                        "status": "Unauthorized"
+                        "success": false
+                        "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                        "message": "Ошибка аутентификации."
+                        "data": []
+  /api/v1/registries/{registry_id}:
+    get:
+      summary: Информация по конкретному реестру
+      tags:
+        - Реестры
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: registry_id
+          required: true
+          schema:
+            type: integer
+          description: ID службы доставки
+      responses:
+        '200':
+          description: Успешное получение информации по реестру
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "1bd03a6d-5e78-4183-8916-5a94d2ae8169"
+                "data":
+                  "registry":
+                    "id": 90
+                    "number": "boxberry_Отчет по оплатам детализация Ваш заказ-Мой Мир № 123554 от 3 сентября 2024г"
+                    "status": "cancelled"
+                    "status_title": "Аннулирован"
+                    "status_out_title": ""
+                    "comment": "new comment upd"
+                    "registryFiles":
+                      - "id": 183
+                        "type": "delivery"
+                        "amount": 146158.65
+                        "date": "2024-09-04"
+                        "comment": null
+                        "file":
+                          "id": 862
+                          "original_name": "Отчет по оплатам детализация Ваш заказ-Мой Мир № 123554 от 3 сентября 2024г.xlsx"
+                          "user_id": 2
+                          "user_name": "Супер Админ"
+                          "download_url": "https://dev-vz-api.3owls.su/api/v1/file/862/download"
+                          "get_url": "https://dev-vz-api.3owls.su/api/v1/file/862"
+                          "created_at": "2024-11-29T11:25:18+03:00"
+                          "updated_at": "2024-11-29T11:25:18+03:00"
+                        "finflows":
+                          - "id": 28
+                            "registry_file_id": 183
+                            "finflow_id": 1
+                            "amount": 146158.65
+                            "company_id": 1
+                            "status": "without_pp"
+                            "registry_orders":
+                              - "order_id": 354651
+                                "registry_file_finflow_id": 28
+                                "amount": 5966
+                                "date": "2024-09-04"
+                                "order":
+                                  "id": 354651
+                                  "order_id": "240807-4309"
+                                  "delivery_id": 2
+                                  "company_id": 1
+                                  "shpi": "240087728971"
+                                  "track_number": "BBR324214977"
+                                  "barcode": "240087728971"
+                                  "order_np_sum": 5966
+                                  "order_assessed_sum": 5966
+                                  "mass": 470
+                                  "order_create_date": "2024-08-16T00:00:00+03:00"
+                                  "order_send_date": "2024-08-16T00:00:00+03:00"
+                                  "order_delivered_date": "2024-09-03T00:00:00+03:00"
+                                  "delivery_service_status_date": "2024-09-03T00:00:00+03:00"
+                                  "delivery_service_status": "COMPLETE"
+                                  "delivery_service_status_title": "Доставлен"
+                                  "delivery_service_status_original": "Выдано"
+                                  "registry_status": "without"
+                                  "registry_status_title": "Нет реестра"
+                                  "registry_number": null
+                                  "registry_id": null
+                                  "finflow_id": 9
+                                  "created_at": "2024-10-16T19:46:41+03:00"
+                                  "updated_at": "2025-04-07T15:14:16+03:00"
+                                  "company":
+                                    "id": 1
+                                    "name": "HSR"
+                                    "project_name": "ООО \"Хом шоппинг раша\""
+                                    "active": true
+                                    "rate_limit_calc": 10000000
+                                    "rate_limit_reports": null
+                                    "rate_limit_data": null
+                                    "data_depth": 60
+                                    "unit_account": 1
+                                    "tariff_calculation": true
+                                    "turn_off_sd": true
+                                    "legal_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                                    "actual_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                                    "ogrn": "1137746372290"
+                                    "inn": "7722807332"
+                                    "kpp": "772201001"
+                                    "token": "481|nk1Om1Ufj9L39Bki574OnjtqtTzmK5lVWl7FNC3rd99870e4"
+                                    "fio": "Липин Сергей Евгеньевич"
+                                    "contact_person": "null"
+                                    "phone": "null"
+                                    "email": "null"
+                                    "web_site": "null"
+                                    "name_storage": "ООО «Бета ПРО»"
+                                    "address_storage": "111024, Москва, Кабельная 2-я ул., дом № 2, строение 6"
+                                    "ogrn_storage": "undefined"
+                                    "inn_storage": "7722317962"
+                                    "kpp_storage": "772201001"
+                                    "okpo_storage": "41561325"
+                                    "debt": null
+                                    "acquiring": "average"
+                                    "acquiring_with_delivery": false
+                                  "delivery":
+                                    "id": 2
+                                    "code": "boxberry"
+                                    "name": "BoxBerry"
+                                    "is_active": true
+                                    "image_id": null
+                                    "with_nds": true
+                                    "tariff_insurance": 0.5
+                                    "tariff_acquiring_card": 2.3
+                                    "tariff_acquiring_cash": 1.6
+                                    "tariff_acquiring_sbp": 0
+                                    "tariff_acquiring_average": 1.95
+                                    "tariff_return": 50
+                                    "wait_registry": 1
+                                    "add_weekend_wait_registry": 1
+                                    "add_weekend_max_delivery_time": 0
+                                    "add_weekend_storage": 0
+                                    "add_weekend_deadline_searches": 0
+                                    "add_weekend_calc": 0
+                                    "redemption_rub": 80
+                                    "redemption_count": 83
+                                    "deleted_at": null
+                                    "pass_inputs":
+                                      - "name": "password"
+                                        "title": "API токен"
+                                "created_at": null
+                                "updated_at": null
+                              - "order_id": 365889
+                                "registry_file_finflow_id": 28
+                                "amount": 8382
+                                "date": "2024-09-04"
+                                "order":
+                                  "id": 365889
+                                  "order_id": "240824-0145"
+                                  "delivery_id": 2
+                                  "company_id": 1
+                                  "shpi": "240088201779"
+                                  "track_number": "BBR325118343"
+                                  "barcode": "240088201779"
+                                  "order_np_sum": 8382
+                                  "order_assessed_sum": 8382
+                                  "mass": 890
+                                  "order_create_date": "2024-08-26T00:00:00+03:00"
+                                  "order_send_date": "2024-08-26T00:00:00+03:00"
+                                  "order_delivered_date": "2024-09-03T00:00:00+03:00"
+                                  "delivery_service_status_date": "2024-09-03T00:00:00+03:00"
+                                  "delivery_service_status": "COMPLETE"
+                                  "delivery_service_status_title": "Доставлен"
+                                  "delivery_service_status_original": "Выдано"
+                                  "registry_status": "without"
+                                  "registry_status_title": "Нет реестра"
+                                  "registry_number": null
+                                  "registry_id": null
+                                  "finflow_id": 9
+                                  "created_at": "2024-10-17T13:52:22+03:00"
+                                  "updated_at": "2025-04-07T20:26:30+03:00"
+                                  "company":
+                                    "id": 1
+                                    "name": "HSR"
+                                    "project_name": "ООО \"Хом шоппинг раша\""
+                                    "active": true
+                                    "rate_limit_calc": 10000000
+                                    "rate_limit_reports": null
+                                    "rate_limit_data": null
+                                    "data_depth": 60
+                                    "unit_account": 1
+                                    "tariff_calculation": true
+                                    "turn_off_sd": true
+                                    "legal_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                                    "actual_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                                    "ogrn": "1137746372290"
+                                    "inn": "7722807332"
+                                    "kpp": "772201001"
+                                    "token": "481|nk1Om1Ufj9L39Bki574OnjtqtTzmK5lVWl7FNC3rd99870e4"
+                                    "fio": "Липин Сергей Евгеньевич"
+                                    "contact_person": "null"
+                                    "phone": "null"
+                                    "email": "null"
+                                    "web_site": "null"
+                                    "name_storage": "ООО «Бета ПРО»"
+                                    "address_storage": "111024, Москва, Кабельная 2-я ул., дом № 2, строение 6"
+                                    "ogrn_storage": "undefined"
+                                    "inn_storage": "7722317962"
+                                    "kpp_storage": "772201001"
+                                    "okpo_storage": "41561325"
+                                    "debt": null
+                                    "acquiring": "average"
+                                    "acquiring_with_delivery": false
+                                  "delivery":
+                                    "id": 2
+                                    "code": "boxberry"
+                                    "name": "BoxBerry"
+                                    "is_active": true
+                                    "image_id": null
+                                    "with_nds": true
+                                    "tariff_insurance": 0.5
+                                    "tariff_acquiring_card": 2.3
+                                    "tariff_acquiring_cash": 1.6
+                                    "tariff_acquiring_sbp": 0
+                                    "tariff_acquiring_average": 1.95
+                                    "tariff_return": 50
+                                    "wait_registry": 1
+                                    "add_weekend_wait_registry": 1
+                                    "add_weekend_max_delivery_time": 0
+                                    "add_weekend_storage": 0
+                                    "add_weekend_deadline_searches": 0
+                                    "add_weekend_calc": 0
+                                    "redemption_rub": 80
+                                    "redemption_count": 83
+                                    "deleted_at": null
+                                    "pass_inputs":
+                                      - "name": "password"
+                                        "title": "API токен"
+                                "created_at": null,
+                                "updated_at": null
+                              - "order_id": 366092
+                                "registry_file_finflow_id": 28
+                                "amount": 3968
+                                "date": "2024-09-04"
+                                "order":
+                                  "id": 366092
+                                  "order_id": "240823-0564"
+                                  "delivery_id": 2
+                                  "company_id": 1
+                                  "shpi": "240088201506"
+                                  "track_number": "BBR325118331"
+                                  "barcode": "240088201506"
+                                  "order_np_sum": 3968
+                                  "order_assessed_sum": 3968
+                                  "mass": 470
+                                  "order_create_date": "2024-08-26T00:00:00+03:00"
+                                  "order_send_date": "2024-08-26T00:00:00+03:00"
+                                  "order_delivered_date": "2024-09-03T00:00:00+03:00"
+                                  "delivery_service_status_date": "2024-09-03T00:00:00+03:00"
+                                  "delivery_service_status": "COMPLETE"
+                                  "delivery_service_status_title": "Доставлен"
+                                  "delivery_service_status_original": "Выдано"
+                                  "registry_status": "without"
+                                  "registry_status_title": "Нет реестра"
+                                  "registry_number": null
+                                  "registry_id": null
+                                  "finflow_id": 9
+                                  "created_at": "2024-10-17T13:53:20+03:00"
+                                  "updated_at": "2025-04-07T20:26:31+03:00"
+                                  "company":
+                                    "id": 1
+                                    "name": "HSR"
+                                    "project_name": "ООО \"Хом шоппинг раша\""
+                                    "active": true
+                                    "rate_limit_calc": 10000000
+                                    "rate_limit_reports": null
+                                    "rate_limit_data": null
+                                    "data_depth": 60
+                                    "unit_account": 1
+                                    "tariff_calculation": true
+                                    "turn_off_sd": true
+                                    "legal_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                                    "actual_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                                    "ogrn": "1137746372290"
+                                    "inn": "7722807332"
+                                    "kpp": "772201001"
+                                    "token": "481|nk1Om1Ufj9L39Bki574OnjtqtTzmK5lVWl7FNC3rd99870e4"
+                                    "fio": "Липин Сергей Евгеньевич"
+                                    "contact_person": "null"
+                                    "phone": "null"
+                                    "email": "null"
+                                    "web_site": "null"
+                                    "name_storage": "ООО «Бета ПРО»"
+                                    "address_storage": "111024, Москва, Кабельная 2-я ул., дом № 2, строение 6"
+                                    "ogrn_storage": "undefined"
+                                    "inn_storage": "7722317962"
+                                    "kpp_storage": "772201001"
+                                    "okpo_storage": "41561325"
+                                    "debt": null
+                                    "acquiring": "average"
+                                    "acquiring_with_delivery": false
+                                  "delivery":
+                                    "id": 2
+                                    "code": "boxberry"
+                                    "name": "BoxBerry"
+                                    "is_active": true
+                                    "image_id": null
+                                    "with_nds": true
+                                    "tariff_insurance": 0.5
+                                    "tariff_acquiring_card": 2.3
+                                    "tariff_acquiring_cash": 1.6
+                                    "tariff_acquiring_sbp": 0
+                                    "tariff_acquiring_average": 1.95
+                                    "tariff_return": 50
+                                    "wait_registry": 1
+                                    "add_weekend_wait_registry": 1
+                                    "add_weekend_max_delivery_time": 0
+                                    "add_weekend_storage": 0
+                                    "add_weekend_deadline_searches": 0
+                                    "add_weekend_calc": 0
+                                    "redemption_rub": 80
+                                    "redemption_count": 83
+                                    "deleted_at": null
+                                    "pass_inputs":
+                                      - "name": "password"
+                                        "title": "API токен"
+                                "created_at": null
+                                "updated_at": null                
+                        "created_at": "2024-11-29T11:25:20+03:00"
+                        "updated_at": "2024-11-29T11:25:20+03:00"
+                        "deleted_at": null
+                    "date": "2024-09-04"
+                    "created_at": "2024-11-29T11:25:20+03:00"
+                    "updated_at": "2025-05-16T16:25:54+03:00"
+                    "deleted_at": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "1133b000-4b7d-4227-9fed-b597d607d4ca"
+                "message": "Значение поля статус отсутствует в списке разрешённых.|"
+                "data":
+                  - "Значение поля статус отсутствует в списке разрешённых."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/registries/export:
+    get:
+      summary: Скачивание реестров
+      tags:
+        - Реестры
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: ids[0]
+          required: true
+          schema:
+            type: integer
+          description: ID реестра. Если нужно скачать более одного реестра, передавать ids[1] и т.д.
+      responses:
+        '200':
+          description: Скачан файл excel
+        '400':
+          description: Ошибка - реестр не найден
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "58bd7df9-101e-4b13-8064-0dfff997ff94"
+                "message": "Значение поля ids.0 не существует.|"
+                "data":
+                  - "Значение поля ids.0 не существует."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/registry/upload_user:
+    post:
+      summary: Загрузка файла реестра
+    tags:
+      - Реестры
+    security:
+      - bearerAuth: []
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            required:
+              - user_registries_file
+              - date
+            properties:
+              user_registries_file:
+                type: string
+                format: binary
+                description: Файл реестра
+              force:
+                type: string
+                description: Записывает реестр, даже если реестр с таким номером уже есть. Старый мягко удаляет. 1 - применить 0 - не применять
+                example: ""
+              date: 
+                type: string
+                format: date
+                description: Дата
+                example: ""
+            responses:
+              '202':
+                description: Успешный ответ
+                content:
+                  application/json:
+                    example:
+                      "code": 202
+                      "status": "Accepted"
+                      "success": true
+                      "request_id": "65f9be79-0b54-4716-b724-1ab7c3b018f1"
+                      "data":
+                        "registry":
+                          "id": 18
+                          "number": "boxberry_boxberry"
+                          "status": "uploaded"
+                          "comment": null
+                          "created_at": "2024-07-22T15:21:45+03:00"
+                          "updated_at": "2024-07-22T15:21:46+03:00"
+                          "deleted_at": null
+              '400':
+                description: Ошибка в запросе
+                content:
+                  application/json:
+                    example:
+                      "code": 400
+                      "status": "Bad Request"
+                      "success": false
+                      "request_id": "dbc159f5-a2eb-4667-b59e-11ad997b3856"
+                      "message": "Поле user registries file обязательно.|"
+                      "data":
+                        - "Поле user registries file обязательно."
+              '401':
+                description: Ошибка аутентификации
+                content:
+                  application/json:
+                    example:
+                      "code": 401
+                      "status": "Unauthorized"
+                      "success": false
+                      "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                      "message": "Ошибка аутентификации."
+                      "data": []
+  /api/v1/registry/errors:
+    get:
+      summary: Получить список ошибок загрузки реестров с фильтрами
+      tags:
+        - Реестры
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID ошибки
+        - in: query
+          name: filter[status]
+          required: false
+          schema:
+            type: string
+            enum: [created, readed, resolved]
+          description: Фильтр по статусу ошибки
+        - in: query
+          name: filter[type]
+          required: false
+          schema:
+            type: string
+            enum: [upload_number_repeat, upload_no_order, upload_no_number, upload_no_sum, upload_order_repeat, upload_order_exists]
+          description: Фильтр по типу ошибки. upload_number_repeat - реестр с данным номером уже загружен ранее; upload_no_order - не найден заказ; upload_no_number - нет совпадения по номеру реестра; upload_no_sum - нет совпадения по сумме и доставке; upload_order_repeat - повтор заказа внутри реестра; upload_order_exists - заказ уже есть в другом реестре
+        - in: query
+          name: filter[registry_number]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по названию реестра
+        - in: query
+          name: filter[delivery_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по службе доставки
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: string
+          description: Сортировка (id, registry_number, status, type, delivery_id)
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "c43a4942-7a63-4a92-8e58-775fd4a2ac48"
+                "data":
+                  "registry_errors":
+                    - "id": 31
+                      "registry_number": "fivepost_5ПОСТ"
+                      "type": "upload_no_number"
+                      "type_title": "Нет подтверждения реестра СД по номеру из 1С"
+                      "status": "resolved"
+                      "status_title": "Решено"
+                      "title": "Не получено п/п от 1С для реестра от СД fivepost_5ПОСТ от 2024-03-05"
+                      "description": "Реестр fivepost_5ПОСТ от 2024-03-05 с кол-вом заказов: 21 шт. на сумму 80384.71 не получил подтверждение через п/п от 1С в установленный срок"
+                      "delivery_id": 5
+                      "file_id": 761
+                      "delivery":
+                        "id": 5
+                        "code": "fivepost"
+                        "name": "5Post"
+                        "is_active": true
+                        "image_id": null
+                        "with_nds": true
+                        "tariff_insurance": 0.5
+                        "tariff_acquiring_card": 1.88
+                        "tariff_acquiring_cash": 1.88
+                        "tariff_acquiring_sbp": 1.88
+                        "tariff_acquiring_average": 1.88
+                        "tariff_return": 0
+                        "wait_registry": 2
+                        "add_weekend_wait_registry": 1
+                        "add_weekend_max_delivery_time": 0
+                        "add_weekend_storage": 0
+                        "add_weekend_deadline_searches": 0
+                        "add_weekend_calc": 0
+                        "redemption_rub": 83
+                        "redemption_count": 86
+                        "deleted_at": null
+                        "pass_inputs":
+                          - "name": "password"
+                            "title": "Ключ к АПИ (API key)"
+                      "file":
+                        "id": 761
+                        "original_name": "5ПОСТ.xlsx"
+                        "user_id": 2
+                        "download_url": "https://dev-vz-api.3owls.su/api/v1/file/761/download"
+                        "get_url": "https://dev-vz-api.3owls.su/api/v1/file/761"
+                        "created_at": "2024-11-21T14:10:33+03:00"
+                        "updated_at": "2024-11-21T14:10:33+03:00"
+                      "created_at": "2024-11-22T02:15:03+03:00"
+                      "updated_at": "2024-12-12T15:46:43+03:00"
+                    - "id": 32
+                      "registry_number": "boxberry_Отчет_по_оплатам_детализация_№_157103_от_2_ноября_2023г (2)"
+                      "type": "upload_no_number"
+                      "type_title": "Нет подтверждения реестра СД по номеру из 1С"
+                      "status": "resolved"
+                      "status_title": "Решено"
+                      "title": "Не получено п/п от 1С для реестра от СД boxberry_Отчет_по_оплатам_детализация_№_157103_от_2_ноября_2023г (2) от 2023-11-03"
+                      "description": "Реестр boxberry_Отчет_по_оплатам_детализация_№_157103_от_2_ноября_2023г (2) от 2023-11-03 с кол-вом заказов: 176 шт. на сумму 585736.49 не получил подтверждение через п/п от 1С в установленный срок"
+                      "delivery_id": 2
+                      "file_id": 762
+                      "delivery":
+                        "id": 2
+                        "code": "boxberry"
+                        "name": "BoxBerry"
+                        "is_active": true
+                        "image_id": null
+                        "with_nds": true
+                        "tariff_insurance": 0.5
+                        "tariff_acquiring_card": 2.3
+                        "tariff_acquiring_cash": 1.6
+                        "tariff_acquiring_sbp": 0
+                        "tariff_acquiring_average": 1.95
+                        "tariff_return": 50
+                        "wait_registry": 1
+                        "add_weekend_wait_registry": 1
+                        "add_weekend_max_delivery_time": 0
+                        "add_weekend_storage": 0
+                        "add_weekend_deadline_searches": 0
+                        "add_weekend_calc": 0
+                        "redemption_rub": 80
+                        "redemption_count": 83
+                        "deleted_at": null
+                        "pass_inputs":
+                          - "name": "password"
+                            "title": "API токен"
+                      "file":
+                        "id": 762
+                        "original_name": "Отчет_по_оплатам_детализация_№_157103_от_2_ноября_2023г (2).xlsx"
+                        "user_id": 2
+                        "download_url": "https://dev-vz-api.3owls.su/api/v1/file/762/download"
+                        "get_url": "https://dev-vz-api.3owls.su/api/v1/file/762"
+                        "created_at": "2024-11-21T14:11:12+03:00"
+                        "updated_at": "2024-11-21T14:11:12+03:00"
+                      "created_at": "2024-11-23T02:15:04+03:00"
+                      "updated_at": "2024-12-12T15:46:37+03:00"
+                    - "id": 33
+                      "registry_number": "dalli_Dalli_14.10.2024.МОЙ МИР(ВАШ ЗАКАЗ)456738"
+                      "type": "upload_no_number"
+                      "type_title": "Нет подтверждения реестра СД по номеру из 1С"
+                      "status": "resolved"
+                      "status_title": "Решено"
+                      "title": "Не получено п/п от 1С для реестра от СД dalli_Dalli_14.10.2024.МОЙ МИР(ВАШ ЗАКАЗ)456738 от 2024-10-14"
+                      "description": "Реестр dalli_Dalli_14.10.2024.МОЙ МИР(ВАШ ЗАКАЗ)456738 от 2024-10-14 с кол-вом заказов: 640 шт. на сумму 3709388.41 не получил подтверждение через п/п от 1С в установленный срок"
+                      "delivery_id": 4
+                      "file_id": 765
+                      "delivery":
+                        "id": 4
+                        "code": "dalli"
+                        "name": "Dalli"
+                        "is_active": true
+                        "image_id": null
+                        "with_nds": true
+                        "tariff_insurance": 0.55
+                        "tariff_acquiring_card": 2.8
+                        "tariff_acquiring_cash": 1.8
+                        "tariff_acquiring_sbp": 0
+                        "tariff_acquiring_average": 2.3
+                        "tariff_return": 50
+                        "wait_registry": 3
+                        "add_weekend_wait_registry": 1
+                        "add_weekend_max_delivery_time": 0
+                        "add_weekend_storage": 0
+                        "add_weekend_deadline_searches": 0
+                        "add_weekend_calc": 0
+                        "redemption_rub": 84
+                        "redemption_count": 86
+                        "deleted_at": null
+                        "pass_inputs":
+                          - "name": "password"
+                            "title": "Токен"
+                      "file":
+                        "id": 765
+                        "original_name": "Dalli_14.10.2024.МОЙ МИР(ВАШ ЗАКАЗ)456738.xlsx"
+                        "user_id": 2
+                        "download_url": "https://dev-vz-api.3owls.su/api/v1/file/765/download"
+                        "get_url": "https://dev-vz-api.3owls.su/api/v1/file/765"
+                        "created_at": "2024-11-21T14:32:10+03:00"
+                        "updated_at": "2024-11-21T14:32:10+03:00"
+                      "created_at": "2024-11-24T02:15:04+03:00"
+                      "updated_at": "2024-12-12T15:46:34+03:00"       
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registry/errors?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": null
+                      "label": "..."
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registry/errors?page=206"
+                      "label": "206"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/registry/errors?page=2"
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                    "current_page": 1
+                    "first_page_url": "https://dev-vz-api.3owls.su/api/v1/registry/errors?page=1"
+                    "from": 1
+                    "last_page": 206
+                    "last_page_url": "https://dev-vz-api.3owls.su/api/v1/registry/errors?page=206"
+                    "next_page_url": "https://dev-vz-api.3owls.su/api/v1/registry/errors?page=2"
+                    "path": "https://dev-vz-api.3owls.su/api/v1/registry/errors"
+                    "per_page": 15
+                    "prev_page_url": null
+                    "to": 15
+                    "total": 3081
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/registry/errors/update:
+    post:
+      summary: Обновление ошибок загрузки реестра
+      tags:
+        - Реестры
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - ids[0]
+              properties:
+                ids[0]:
+                  type: integer
+                  description: Идентификатор ошибки загрузки реестра. Если нужно обновить не одну ошибку, передавать ids[1] и т.д.
+                  example: ""
+                status: 
+                  type: string
+                  enum: [created, readed, resolved]
+                  description: Статус
+                  example: ""
+              responses:
+                '202':
+                  description: Успешный ответ
+                  content:
+                    application/json:
+                      example:
+                        "code": 202
+                        "status": "Accepted"
+                        "success": true
+                        "request_id": "96f392d8-bbdd-42bf-8fc5-ea8e718f952d"
+                        "data":
+                          "registry_errors":
+                            - "id": 3
+                              "registry_number": "boxberry_boxberry_дубль заказов"
+                              "type": "upload_order_repeat"
+                              "type_title": "Повтор заказа внутри реестра"
+                              "status": "resolved"
+                              "status_title": "Решено"
+                              "title": "В загружаемом реестре boxberry_boxberry_дубль заказов повторяются заказы: 1шт."
+                              "description": "В загружаемом реестре повторяются заказы: 240077881578от"
+                              "delivery_id": 2
+                              "file_id": 323
+                              "created_at": "2024-07-26T15:40:40+03:00"
+                              "updated_at": "2024-07-29T11:09:17+03:00"
+                            - "id": 22
+                              "registry_number": "boxberry_boxberry_дубль заказов"
+                              "type": "upload_order_repeat"
+                              "type_title": "Повтор заказа внутри реестра"
+                              "status": "resolved"
+                              "status_title": "Решено"
+                              "title": "В загружаемом реестре boxberry_boxberry_дубль заказов повторяются заказы: 1шт."
+                              "description": "В загружаемом реестре повторяются заказы: 240077881578от"
+                              "delivery_id": 2
+                              "file_id": 323
+                              "created_at": "2024-07-26T15:40:40+03:00"
+                              "updated_at": "2024-07-29T11:09:17+03:00"
+                '401':
+                  description: Ошибка аутентификации
+                  content:
+                    application/json:
+                      example:
+                        "code": 401
+                        "status": "Unauthorized"
+                        "success": false
+                        "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                        "message": "Ошибка аутентификации."
+                        "data": [] 
+  /api/v1/registry/download/np_waiting_orders:
+    get:
+      summary: Скачивание НП в пути
+      tags:
+        - Реестры
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: ids[0]
+          required: true
+          schema:
+            type: integer
+          description: ID НП. Если нужно скачать более одного НП, передавать ids[1] и т.д.
+      responses:
+        '200':
+          description: Скачан файл excel
+        '400':
+          description: Ошибка - реестр не найден
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "58bd7df9-101e-4b13-8064-0dfff997ff94"
+                "message": "Значение поля ids.0 не существует.|"
+                "data":
+                  - "Значение поля ids.0 не существует."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
 components:
   schemas:
     LoginWith2FA:
