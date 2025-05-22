@@ -25236,75 +25236,75 @@ paths:
   /api/v1/registry/upload_user:
     post:
       summary: Загрузка файла реестра
-    tags:
-      - Реестры
-    security:
-      - bearerAuth: []
-    requestBody:
-      required: true
-      content:
-        multipart/form-data:
-          schema:
-            type: object
-            required:
-              - user_registries_file
-              - date
-            properties:
-              user_registries_file:
-                type: string
-                format: binary
-                description: Файл реестра
-              force:
-                type: string
-                description: Записывает реестр, даже если реестр с таким номером уже есть. Старый мягко удаляет. 1 - применить 0 - не применять
-                example: ""
-              date: 
-                type: string
-                format: date
-                description: Дата
-                example: ""
-            responses:
-              '202':
-                description: Успешный ответ
-                content:
-                  application/json:
-                    example:
-                      "code": 202
-                      "status": "Accepted"
-                      "success": true
-                      "request_id": "65f9be79-0b54-4716-b724-1ab7c3b018f1"
-                      "data":
-                        "registry":
-                          "id": 18
-                          "number": "boxberry_boxberry"
-                          "status": "uploaded"
-                          "comment": null
-                          "created_at": "2024-07-22T15:21:45+03:00"
-                          "updated_at": "2024-07-22T15:21:46+03:00"
-                          "deleted_at": null
-              '400':
-                description: Ошибка в запросе
-                content:
-                  application/json:
-                    example:
-                      "code": 400
-                      "status": "Bad Request"
-                      "success": false
-                      "request_id": "dbc159f5-a2eb-4667-b59e-11ad997b3856"
-                      "message": "Поле user registries file обязательно.|"
-                      "data":
-                        - "Поле user registries file обязательно."
-              '401':
-                description: Ошибка аутентификации
-                content:
-                  application/json:
-                    example:
-                      "code": 401
-                      "status": "Unauthorized"
-                      "success": false
-                      "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
-                      "message": "Ошибка аутентификации."
-                      "data": []
+      tags:
+        - Реестры
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - user_registries_file
+                - date
+              properties:
+                user_registries_file:
+                  type: string
+                  format: binary
+                  description: Файл реестра
+                force:
+                  type: string
+                  description: Записывает реестр, даже если реестр с таким номером уже есть. Старый мягко удаляет. 1 - применить 0 - не применять
+                  example: ""
+                date: 
+                  type: string
+                  format: date
+                  description: Дата
+                  example: ""
+              responses:
+                '202':
+                  description: Успешный ответ
+                  content:
+                    application/json:
+                      example:
+                        "code": 202
+                        "status": "Accepted"
+                        "success": true
+                        "request_id": "65f9be79-0b54-4716-b724-1ab7c3b018f1"
+                        "data":
+                          "registry":
+                            "id": 18
+                            "number": "boxberry_boxberry"
+                            "status": "uploaded"
+                            "comment": null
+                            "created_at": "2024-07-22T15:21:45+03:00"
+                            "updated_at": "2024-07-22T15:21:46+03:00"
+                            "deleted_at": null
+                '400':
+                  description: Ошибка в запросе
+                  content:
+                    application/json:
+                      example:
+                        "code": 400
+                        "status": "Bad Request"
+                        "success": false
+                        "request_id": "dbc159f5-a2eb-4667-b59e-11ad997b3856"
+                        "message": "Поле user registries file обязательно.|"
+                        "data":
+                          - "Поле user registries file обязательно."
+                '401':
+                  description: Ошибка аутентификации
+                  content:
+                    application/json:
+                      example:
+                        "code": 401
+                        "status": "Unauthorized"
+                        "success": false
+                        "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                        "message": "Ошибка аутентификации."
+                        "data": []
   /api/v1/registry/errors:
     get:
       summary: Получить список ошибок загрузки реестров с фильтрами
