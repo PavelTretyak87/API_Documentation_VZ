@@ -24681,6 +24681,76 @@ paths:
                 request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
                 message: Ошибка аутентификации.
                 data: []
+    post:
+      summary: Обновление финпотоков реестров
+      tags:
+        - Реестры
+      security: 
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - ids[0]
+                - status
+              properties:
+                ids[0]:
+                  type: integer
+                  description: Идентификатор фин.потока. Если фин.поток не один, передавать id[1] и т.д.
+                  example: ""
+                status: 
+                  type: string
+                  enum: [with_pp, without_pp]
+                  description: Статус
+                  example: ""
+              responses:
+                '202':
+                  description: Успешный ответ
+                  content:
+                    application/json:
+                      example:
+                        "code": 202
+                        "status": "Accepted"
+                        "success": true
+                        "request_id": "7de5b2e2-8c8d-4fe8-9c49-22e3d6edbeb5"
+                        "data":
+                          "registry_file_finflows":
+                            - "id": 90
+                              "registry_file_id": 186
+                              "finflow_id": 20
+                              "amount": 1093097.77
+                              "status": "with_pp"
+                            - "id": 91
+                              "registry_file_id": 186
+                              "finflow_id": 32
+                              "amount": 1587379.81
+                              "status": "with_pp"
+                '400':
+                  description: Ошибка в запросе
+                  content:
+                    application/json:
+                      example:
+                        "code": 400
+                        "status": "Bad Request"
+                        "success": false
+                        "request_id": "1133b000-4b7d-4227-9fed-b597d607d4ca"
+                        "message": "Значение поля статус отсутствует в списке разрешённых.|"
+                        "data":
+                          - "Значение поля статус отсутствует в списке разрешённых."
+                '401':
+                  description: Ошибка аутентификации
+                  content:
+                    application/json:
+                      example:
+                        "code": 401
+                        "status": "Unauthorized"
+                        "success": false
+                        "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                        "message": "Ошибка аутентификации."
+                        "data": []
   /api/v1/registries/update:
     post:
       summary: Обновление реестров
@@ -24773,77 +24843,6 @@ paths:
                         "success": false
                         "request_id": "26f2c980-ca4e-4cdd-92fb-d84b23c73a91"
                         "message": "Не хватает прав на совершение данной операции"
-                        "data": []
-  /api/v1/registries/finflows:
-    post:
-      summary: Обновление финпотоков реестров
-      tags:
-        - Реестры
-      security: 
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              required:
-                - ids[0]
-                - status
-              properties:
-                ids[0]:
-                  type: integer
-                  description: Идентификатор фин.потока. Если фин.поток не один, передавать id[1] и т.д.
-                  example: ""
-                status: 
-                  type: string
-                  enum: [with_pp, without_pp]
-                  description: Статус
-                  example: ""
-              responses:
-                '202':
-                  description: Успешный ответ
-                  content:
-                    application/json:
-                      example:
-                        "code": 202
-                        "status": "Accepted"
-                        "success": true
-                        "request_id": "7de5b2e2-8c8d-4fe8-9c49-22e3d6edbeb5"
-                        "data":
-                          "registry_file_finflows":
-                            - "id": 90
-                              "registry_file_id": 186
-                              "finflow_id": 20
-                              "amount": 1093097.77
-                              "status": "with_pp"
-                            - "id": 91
-                              "registry_file_id": 186
-                              "finflow_id": 32
-                              "amount": 1587379.81
-                              "status": "with_pp"
-                '400':
-                  description: Ошибка в запросе
-                  content:
-                    application/json:
-                      example:
-                        "code": 400
-                        "status": "Bad Request"
-                        "success": false
-                        "request_id": "1133b000-4b7d-4227-9fed-b597d607d4ca"
-                        "message": "Значение поля статус отсутствует в списке разрешённых.|"
-                        "data":
-                          - "Значение поля статус отсутствует в списке разрешённых."
-                '401':
-                  description: Ошибка аутентификации
-                  content:
-                    application/json:
-                      example:
-                        "code": 401
-                        "status": "Unauthorized"
-                        "success": false
-                        "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
-                        "message": "Ошибка аутентификации."
                         "data": []
   /api/v1/registries/{registry_id}:
     get:
