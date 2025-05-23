@@ -25649,6 +25649,627 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": []
+  /api/v1/delivery/{delivery_id}/contracts/create:
+    post:
+      tags:
+        - Договоры СД
+      summary: Создать договор СД
+      parameters:
+        - in: path
+          name: delivery_id
+          required: true
+          schema:
+            type: integer
+          description: ID службы доставки
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - number
+                - from
+                - to
+              properties:
+                number:
+                  type: string
+                  description: Номер договора
+                  example: ""
+                basis:
+                  type: string
+                  description: Основание для договора
+                  example: ""
+                from:
+                  type: string
+                  format: date
+                  description: Дата начала договора
+                  example: ""
+                to:
+                  type: string
+                  format: date
+                  description: Дата окончания договора
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "4c5dd9af-9684-4683-84d8-e9eaa94f8c1d"
+                "data":
+                  "contract":
+                    "id": 1
+                    "delivery_id": 1
+                    "number": "sdfdfg"
+                    "basis": "adas dfgg  wrwer"
+                    "from": "2023-12-31T00:00:00+03:00"
+                    "to": "2024-12-31T00:00:00+03:00"
+                    "dops": []
+                    "created_at": "2024-09-12T18:02:54+03:00"
+                    "updated_at": "2024-09-12T18:02:54+03:00"
+                    "deleted_at": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "257a0a08-1c7b-4969-ae67-41cb649f7be0"
+                "message": "Поле номер обязательно.|Поле from обязательно.|Поле to обязательно.|"
+                "data":
+                  - "Поле номер обязательно."
+                  - "Поле from обязательно."
+                  - "Поле to обязательно."
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []
+  /api/v1/delivery/{delivery_id}/contracts/{contract_id}:
+    post:
+      tags:
+        - Договоры СД
+      summary: Редактировать договор СД
+      parameters:
+        - in: path
+          name: delivery_id
+          required: true
+          schema:
+            type: integer
+          description: ID службы доставки
+        - in: path
+          name: contract_id
+          required: true
+          schema:
+            type: integer
+          description: ID договора
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                number:
+                  type: string
+                  description: Номер договора
+                  example: ""
+                basis:
+                  type: string
+                  description: Основание для договора
+                  example: ""
+                from:
+                  type: string
+                  format: date
+                  description: Дата начала договора
+                  example: ""
+                to:
+                  type: string
+                  format: date
+                  description: Дата окончания договора
+                  example: ""
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "25557ce2-166c-417a-b6cc-e6d007f6a236"
+                "data":
+                  "contract":
+                    "id": 1
+                    "delivery_id": 1
+                    "number": "sdfdfg"
+                    "basis": "adas dfgg  wrwer"
+                    "from": "2023-12-31T00:00:00+03:00"
+                    "to": "2024-12-31T00:00:00+03:00"
+                    "dops": []
+                    "created_at": "2024-09-12T18:02:54+03:00"
+                    "updated_at": "2024-09-12T18:02:54+03:00"
+                    "deleted_at": null
+        '404':
+          description: Ошибка - договор не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "6f4d2abb-2faa-4b58-88ee-ca91d0ef4731"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []
+  /api/v1/delivery/{delivery_id}/contracts/{contract_id}/delete:
+    post:
+      tags:
+        - Договоры СД
+      summary: Удалить договор СД
+      parameters:
+        - in: path
+          name: delivery_id
+          required: true
+          schema:
+            type: integer
+          description: ID службы доставки
+        - in: path
+          name: contract_id
+          required: true
+          schema:
+            type: integer
+          description: ID договора
+      security:
+        - bearerAuth: []
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "25557ce2-166c-417a-b6cc-e6d007f6a236"
+                "data":
+                  "contract":
+                    "id": 1
+                    "delivery_id": 1
+                    "number": "sdfdfg"
+                    "basis": "adas dfgg  wrwer"
+                    "from": "2023-12-31T00:00:00+03:00"
+                    "to": "2024-12-31T00:00:00+03:00"
+                    "dops": []
+                    "created_at": "2024-09-12T18:02:54+03:00"
+                    "updated_at": "2024-09-12T18:02:54+03:00"
+                    "deleted_at": null
+        '404':
+          description: Ошибка - договор не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "6f4d2abb-2faa-4b58-88ee-ca91d0ef4731"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []
+  /api/v1/delivery/{delivery_id}/contracts/{contract_id}/dops/create:
+    post:
+      tags:
+        - Договоры СД
+      summary: Создать доп.соглашение
+      parameters:
+        - in: path
+          name: delivery_id
+          required: true
+          schema:
+            type: integer
+          description: ID службы доставки
+        - in: path
+          name: contract_id
+          required: true
+          schema:
+            type: integer
+          description: ID договора
+      security:
+        - bearerAuth: [] 
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - number
+                - from
+                - to
+              properties:
+                number:
+                  type: string
+                  description: Номер доп.соглашения
+                  example: ""
+                is_used:
+                  type: integer
+                  description: Использовать реквизиты доп.соглашения (1 - да, 0 - нет)
+                  example: ""
+                from:
+                  type: string
+                  format: date
+                  description: Дата начала доп.соглашения
+                  example: ""
+                to:
+                  type: string
+                  format: date
+                  description: Дата окончания доп.соглашения
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "51606bba-b48f-4ca3-a519-0562f2503924"
+                "data":
+                  "contract":
+                    "id": 1940
+                    "delivery_id": 2
+                    "number": "sdfdfg"
+                    "basis": "adas dfgg  wrwer"
+                    "from": "2023-12-31T00:00:00+03:00"
+                    "to": "2024-12-31T00:00:00+03:00"
+                    "dops":
+                      - "id": 1910
+                        "delivery_contract_id": 1940
+                        "number": "sddfgfh"
+                        "from": "2022-12-31T00:00:00+03:00"
+                        "to": "2023-12-31T00:00:00+03:00"
+                        "is_used": true
+                        "created_at": "2025-05-23T10:48:28+03:00"
+                        "updated_at": "2025-05-23T10:48:28+03:00"
+                        "deleted_at": null
+                    "created_at": "2025-05-23T10:04:35+03:00"
+                    "updated_at": "2025-05-23T10:04:35+03:00"
+                    "deleted_at": null
+        '404':
+          description: Ошибка - договор не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "6f4d2abb-2faa-4b58-88ee-ca91d0ef4731"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []
+  /api/v1/delivery/{delivery_id}/contracts/{contact_id}/dops/{dop_id}:
+    post:
+      tags:
+        - Договоры СД
+      summary: Редактировать доп.соглашение
+      parameters:
+        - in: path
+          name: delivery_id
+          required: true
+          schema:
+            type: integer
+          description: ID службы доставки
+        - in: path
+          name: contract_id
+          required: true
+          schema:
+            type: integer
+          description: ID договора
+        - in: path
+          name: dop_id
+          required: true
+          schema:
+            type: integer
+          description: ID доп.соглашения
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                number:
+                  type: string
+                  description: Номер доп.соглашения
+                  example: ""
+                is_used:
+                  type: integer
+                  description: Использовать реквизиты доп.соглашения (1 - да, 0 - нет)
+                  example: ""
+                from:
+                  type: string
+                  format: date
+                  description: Дата начала доп.соглашения
+                  example: ""
+                to:
+                  type: string
+                  format: date
+                  description: Дата окончания доп.соглашения
+                  example: ""
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "4c24fcba-1e34-42ac-8037-f8267706e69f"
+                "data":
+                  "contract":
+                    "id": 1940
+                    "delivery_id": 2
+                    "number": "sdfdfg"
+                    "basis": "adas dfgg  wrwer"
+                    "from": "2023-12-31T00:00:00+03:00"
+                    "to": "2024-12-31T00:00:00+03:00"
+                    "dops":
+                      - "id": 1910
+                        "delivery_contract_id": 1940
+                        "number": "sddfgfh"
+                        "from": "2022-12-31T00:00:00+03:00"
+                        "to": "2023-12-31T00:00:00+03:00"
+                        "is_used": true
+                        "created_at": "2025-05-23T10:48:28+03:00"
+                        "updated_at": "2025-05-23T10:48:28+03:00"
+                        "deleted_at": null
+                    "created_at": "2025-05-23T10:04:35+03:00"
+                    "updated_at": "2025-05-23T10:04:35+03:00"
+                    "deleted_at": null
+        '404':
+          description: Ошибка - договор/доп.соглашение не найдены
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "6f4d2abb-2faa-4b58-88ee-ca91d0ef4731"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []  
+  /api/v1/delivery/{delivery_id}/contracts/{contract_id}/dops/{dop_id}/delete:
+    post:
+      tags:
+        - Договоры СД
+      summary: Удалить доп.соглашение
+      parameters:
+        - in: path
+          name: delivery_id
+          required: true
+          schema:
+            type: integer
+          description: ID службы доставки
+        - in: path
+          name: contract_id
+          required: true
+          schema:
+            type: integer
+          description: ID договора
+        - in: path
+          name: dop_id
+          required: true
+          schema:
+            type: integer
+          description: ID доп.соглашения
+      security:
+        - bearerAuth: []
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "25557ce2-166c-417a-b6cc-e6d007f6a236"
+                "data":
+                  "contract":
+                    "id": 1
+                    "delivery_id": 1
+                    "number": "sdfdfg"
+                    "basis": "adas dfgg  wrwer"
+                    "from": "2023-12-31T00:00:00+03:00"
+                    "to": "2024-12-31T00:00:00+03:00"
+                    "dops": []
+                    "created_at": "2024-09-12T18:02:54+03:00"
+                    "updated_at": "2024-09-12T18:02:54+03:00"
+                    "deleted_at": null
+        '404':
+          description: Ошибка - доп.соглашение не найдено
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "6f4d2abb-2faa-4b58-88ee-ca91d0ef4731"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []        
+  /api/v1/delivery/contracts:
+    get:
+      summary: Получить список договоров СД с фильтрами
+      tags:
+        - Договоры СД
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[delivery_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по СД
+        - in: query
+          name: filter[id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID договора
+        - in: query
+          name: filter[number]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по номеру договора
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: string
+          description: Сортровка (id, delivery_id, number, from, to)
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: integer
+          description: Страница
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "3acb671a-fa1f-4817-ad26-6755f4751742"
+                "data":
+                  "contract":
+                    - "id": 2
+                      "delivery_id": 1
+                      "number": "sdfdfg"
+                      "basis": "adas dfgg  wrwer"
+                      "from": "2023-12-31T00:00:00+03:00"
+                      "to": "2024-12-31T00:00:00+03:00"
+                      "dops":
+                        - "id": 2
+                          "delivery_contract_id": 2
+                          "number": "sddfgfh"
+                          "from": "2022-12-31T00:00:00+03:00"
+                          "to": "2023-12-31T00:00:00+03:00"
+                          "is_used": false
+                          "created_at": "2024-09-12T19:57:31+03:00"
+                          "updated_at": "2024-09-12T19:57:31+03:00"
+                          "deleted_at": null
+                      "created_at": "2024-09-12T19:06:18+03:00"
+                      "updated_at": "2024-09-12T19:06:18+03:00"
+                      "deleted_at": null
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "http://localhost/api/v1/delivery/contracts?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": null
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                    "current_page": 1
+                    "first_page_url": "http://localhost/api/v1/delivery/contracts?page=1"
+                    "from": 1
+                    "last_page": 1
+                    "last_page_url": "http://localhost/api/v1/delivery/contracts?page=1"
+                    "next_page_url": null
+                    "path": "http://localhost/api/v1/delivery/contracts"
+                    "per_page": 1000
+                    "prev_page_url": null
+                    "to": 1
+                    "total": 1
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
 components:
   schemas:
     LoginWith2FA:
