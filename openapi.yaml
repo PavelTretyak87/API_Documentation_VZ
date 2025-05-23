@@ -26270,6 +26270,630 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": []
+  /api/v1/finflows/create:
+    post:
+      tags:
+        - Финпотоки
+      summary: Создать финпоток
+      security: 
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - company_id
+                - bank
+                - rs
+                - ks
+                - bik
+              properties:
+                company_id:
+                  type: integer
+                  description: ID клиента
+                  example: ""
+                bank:
+                  type: string
+                  description: Наименование банка
+                  example: ""
+                bik:
+                  type: string
+                  description: БИК
+                  example: ""
+                rs:
+                  type: string
+                  description: Расчетный счет
+                  example: ""
+                ks:
+                  type: string
+                  description: Корреспондентский счет
+                  example: ""
+                finflow_deliveries[0][delivery_id]:
+                  type: integer
+                  description: Расчетный счет СД - ID службы доставки
+                  example: ""
+                finflow_deliveries[0][bank]: 
+                  type: string
+                  description: Расчетный счет СД - наименование банка
+                  example: ""
+                finflow_deliveries[0][bik]:
+                  type: string
+                  description: Расчетный счет СД - БИК
+                  example: ""
+                finflow_deliveries[0][rs]:
+                  type: string
+                  description: Расчетный счет СД - расчетный счет
+                  example: ""
+                finflow_deliveries[0][ks]:
+                  type: string
+                  description: Расчетный счет СД - корреспондентский счет
+                  example: ""
+                is_active:
+                  type: integer
+                  description: Включен ли поток (1 - Включен, 0 - Не включен)
+                  example: ""
+                is_default:
+                  type: integer
+                  description: Использовать по умолчанию (1 - Использовать, 0 - Не использовать)
+                  example: ""
+                is_single:
+                  type: integer
+                  description: Использовать единый Р/С для перевода НП для всех СД (1 - Использовать, 0 - Не использовать)
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "a9bb69f2-b0e3-44c5-a4b2-0f39dd308f5e"
+                "data":
+                  "id": 9096
+                  "company_id": 1
+                  "bank": "sdfsdf"
+                  "bik": "sdfsdf"
+                  "rs": "fghfgh"
+                  "ks": "ghjghjg"
+                  "is_active": true
+                  "is_default": true
+                  "is_single": false
+                  "finflow_deliveries":
+                    - "id": 3368
+                      "finflow_id": 9096
+                      "delivery_id": 1
+                      "bank": "dsfsdf"
+                      "bik": "sdfsdf"
+                      "rs": "dfgdfg"
+                      "ks": "fghfgh"
+                      "created_at": "2025-05-23T10:45:32.000000Z"
+                      "updated_at": "2025-05-23T10:45:32.000000Z"
+                      "deleted_at": null
+                  "created_at": "2025-05-23T13:45:32+03:00"
+                  "updated_at": "2025-05-23T13:45:32+03:00"
+                  "deleted_at": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                code: 400
+                status: Bad Request
+                success: false
+                request_id: 3050ed5f-d1b6-40b7-b338-8be6af8ccbfb
+                message: Поле company id обязательно.|Поле bank обязательно.|Поле rs обязательно.|Поле ks обязательно.|Поле bik обязательно.|
+                data:
+                  - "Поле company id обязательно."
+                  - "Поле bank обязательно."
+                  - "Поле rs обязательно."
+                  - "Поле ks обязательно."
+                  - "Поле bik обязательно."
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []
+  /api/v1/finflows/{finflow_id}:
+    post:
+      tags:
+        - Финпотоки
+      summary: Редактировать финпоток
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: finflow_id
+          required: true
+          schema:
+            type: integer
+          description: ID финпотока
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                company_id:
+                  type: integer
+                  description: ID клиента
+                  example: ""
+                bank:
+                  type: string
+                  description: Наименование банка
+                  example: ""
+                bik:
+                  type: string
+                  description: БИК
+                  example: ""
+                rs:
+                  type: string
+                  description: Расчетный счет
+                  example: ""
+                ks:
+                  type: string
+                  description: Корреспондентский счет
+                  example: ""
+                is_active:
+                  type: integer
+                  description: Включен ли поток (1 - Включен, 0 - Не включен)
+                  example: ""
+                is_default:
+                  type: integer
+                  description: Использовать по умолчанию (1 - Использовать, 0 - Не использовать)
+                  example: ""
+                is_single:
+                  type: integer
+                  description: Использовать единый Р/С для перевода НП для всех СД (1 - Использовать, 0 - Не использовать)
+                  example: ""  
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "a9bb69f2-b0e3-44c5-a4b2-0f39dd308f5e"
+                "data":
+                  "id": 9096
+                  "company_id": 1
+                  "bank": "sdfsdf"
+                  "bik": "sdfsdf"
+                  "rs": "fghfgh"
+                  "ks": "ghjghjg"
+                  "is_active": true
+                  "is_default": true
+                  "is_single": false
+                  "finflow_deliveries":
+                    - "id": 3368
+                      "finflow_id": 9096
+                      "delivery_id": 1
+                      "bank": "dsfsdf"
+                      "bik": "sdfsdf"
+                      "rs": "dfgdfg"
+                      "ks": "fghfgh"
+                      "created_at": "2025-05-23T10:45:32.000000Z"
+                      "updated_at": "2025-05-23T10:45:32.000000Z"
+                      "deleted_at": null
+                  "created_at": "2025-05-23T13:45:32+03:00"
+                  "updated_at": "2025-05-23T13:45:32+03:00"
+                  "deleted_at": null
+        '404':
+          description: Ошибка - фин.поток не найден
+          content:
+            application/json:
+              example:
+                code: 404
+                status: Not Found
+                success: false
+                request_id: d8572a16-f5bc-4be3-88a7-7de9cae698b7
+                message: Требуемый ресурс не найден
+                data: []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []
+  /api/v1/finflows/{finflow_id}/deliveries/create:
+    post:
+      tags:
+        - Финпотоки
+      summary: Создать расчетный счет СД
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: finflow_id
+          required: true
+          schema:
+            type: integer
+          description: ID финпотока
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - delivery_id
+                - bank
+                - bik
+                - rs
+                - ks
+              properties:
+                delivery_id:
+                  type: integer
+                  description: ID службы доставки
+                  example: ""
+                bank:
+                  type: string
+                  description: Наименование банка
+                  example: ""
+                bik:
+                  type: string
+                  description: БИК
+                  example: ""
+                rs:
+                  type: string
+                  description: Расчетный счет
+                  example: ""
+                ks:
+                  type: string
+                  description: Корреспондентский счет
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "9c004568-1f6a-4d53-b8f0-45da78de1cd7"
+                "data":
+                  "finflow":
+                    "id": 4
+                    "company_id": 63
+                    "bank": "2"
+                    "bik": "3"
+                    "rs": "4"
+                    "ks": "5"
+                    "is_active": true
+                    "is_default": true
+                    "is_single": false
+                    "finflow_deliveries":
+                      - "id": 3370
+                        "finflow_id": 4
+                        "delivery_id": 3
+                        "bank": "sdfsdf23"
+                        "bik": "sdfsdf34"
+                        "rs": "fghfgh45"
+                        "ks": "ghjghjg56"
+                        "created_at": "2025-05-23T11:27:28.000000Z"
+                        "updated_at": "2025-05-23T11:27:28.000000Z"
+                        "deleted_at": null
+                    "created_at": null
+                    "updated_at": null
+                    "deleted_at": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400,
+                "status": "Bad Request"
+                "success": false
+                "request_id": "95d63f19-4748-4762-bb74-0bb379dff091"
+                "message": "Поле delivery id обязательно.|Поле bank обязательно.|Поле bik обязательно.|Поле rs обязательно.|Поле ks обязательно.|"
+                "data":
+                  - "Поле delivery id обязательно."
+                  - "Поле bank обязательно."
+                  - "Поле bik обязательно."
+                  - "Поле rs обязательно."
+                  - "Поле ks обязательно."
+        '404':
+          description: Ошибка - финпоток не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "9371c1f2-7c92-4a5a-a22b-276dc7892d5f"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []
+  /api/v1/finflows/{finflow_id}/deliveries/{finflow_delivery_id}:
+    post:
+      tags:
+        - Финпотоки
+      summary: Редактировать расчетный счет СД
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: finflow_id
+          required: true
+          schema:
+            type: integer
+          description: ID финпотока
+        - in: path
+          name: finflow_delivery_id
+          required: true
+          schema:
+            type: integer
+          description: ID расчетного счета СД
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                bank:
+                  type: string
+                  description: Наименование банка
+                  example: ""
+                bik:
+                  type: string
+                  description: БИК
+                  example: ""
+                rs:
+                  type: string
+                  description: Расчетный счет
+                  example: ""
+                ks:
+                  type: string
+                  description: Корреспондентский счет
+                  example: ""
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "9c004568-1f6a-4d53-b8f0-45da78de1cd7"
+                "data":
+                  "finflow":
+                    "id": 4
+                    "company_id": 63
+                    "bank": "2"
+                    "bik": "3"
+                    "rs": "4"
+                    "ks": "5"
+                    "is_active": true
+                    "is_default": true
+                    "is_single": false
+                    "finflow_deliveries":
+                      - "id": 3370
+                        "finflow_id": 4
+                        "delivery_id": 3
+                        "bank": "sdfsdf23"
+                        "bik": "sdfsdf34"
+                        "rs": "fghfgh45"
+                        "ks": "ghjghjg56"
+                        "created_at": "2025-05-23T11:27:28.000000Z"
+                        "updated_at": "2025-05-23T11:27:28.000000Z"
+                        "deleted_at": null
+                    "created_at": null
+                    "updated_at": null
+                    "deleted_at": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400,
+                "status": "Bad Request"
+                "success": false
+                "request_id": "95d63f19-4748-4762-bb74-0bb379dff091"
+                "message": "Поле delivery id обязательно.|Поле bank обязательно.|Поле bik обязательно.|Поле rs обязательно.|Поле ks обязательно.|"
+                "data":
+                  - "Поле delivery id обязательно."
+                  - "Поле bank обязательно."
+                  - "Поле bik обязательно."
+                  - "Поле rs обязательно."
+                  - "Поле ks обязательно."
+        '404':
+          description: Ошибка - финпоток не найден/расчетный счет СД не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "9371c1f2-7c92-4a5a-a22b-276dc7892d5f"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []
+  /api/v1/finflows/{finflow_id}/deliveries/{finflow_delivery_id}/delete:
+    post:
+      tags:
+        - Финпотоки
+      summary: Удалить расчетный счет СД
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: finflow_id
+          required: true
+          schema:
+            type: integer
+          description: ID финпотока
+        - in: path
+          name: finflow_delivery_id
+          required: true
+          schema:
+            type: integer
+          description: ID расчетного счета СД      
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "ff34e07c-20ef-4353-ae14-921e675be1c2"
+                "data":
+                  "id": 4
+                  "company_id": 1
+                  "bank": "sdfsdf"
+                  "bik": "sdfsdf"
+                  "rs": "fghfgh"
+                  "ks": "ghjghjg"
+                  "is_active": true
+                  "is_default": true
+                  "is_single": false
+                  "finflow_deliveries":
+                    - "id": 3
+                      "finflow_id": 4
+                      "delivery_id": 3
+                      "bank": "sdfsdf23"
+                      "bik": "sdfsdf34"
+                      "rs": "fghfgh45"
+                      "ks": "ghjghjg56"
+                      "created_at": "2024-12-25T15:19:06.000000Z"
+                      "updated_at": "2024-12-25T15:19:06.000000Z"
+                      "deleted_at": null
+                  "created_at": "2024-12-25T18:17:14+03:00"
+                  "updated_at": "2024-12-25T18:17:14+03:00"
+                  "deleted_at": null
+        '404':
+          description: Ошибка - расчетный счет не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "6f4d2abb-2faa-4b58-88ee-ca91d0ef4731"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []  
+  /api/v1/finflows/{finflow_id}/delete:
+    post:
+      tags:
+        - Финпотоки
+      summary: Удалить финпоток
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: finflow_id
+          required: true
+          schema:
+            type: integer
+          description: ID финпотока    
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "f271e1e7-ab84-4e81-9933-be532e432cae"
+                "data":
+                  "id": 3
+                  "company_id": 1
+                  "bank": "sdfsdf23"
+                  "bik": "sdfsdf34"
+                  "rs": "fghfgh45"
+                  "ks": "ghjghjg56"
+                  "is_active": true
+                  "is_default": true
+                  "is_single": false
+                  "finflow_deliveries":
+                    - "id": 1
+                      "finflow_id": 3
+                      "delivery_id": 1
+                      "bank": "dsfsdf"
+                      "bik": "sdfsdf"
+                      "rs": "dfgdfg"
+                      "ks": "fghfgh"
+                      "created_at": "2024-12-25T15:13:20.000000Z"
+                      "updated_at": "2024-12-25T15:13:20.000000Z"
+                      "deleted_at": null
+                  "created_at": "2024-12-25T18:13:20+03:00"
+                  "updated_at": "2024-12-25T18:16:43+03:00"
+                  "deleted_at": "2024-12-25T18:16:43+03:00"
+        '404':
+          description: Ошибка - финпоток не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "6f4d2abb-2faa-4b58-88ee-ca91d0ef4731"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                message: Ошибка аутентификации.
+                data: []          
 components:
   schemas:
     LoginWith2FA:
