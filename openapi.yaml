@@ -26894,6 +26894,1804 @@ paths:
                 request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
                 message: Ошибка аутентификации.
                 data: []          
+  /api/v1/templates:
+    get:
+      tags:
+        - Шаблоны
+      summary: Получить список шаблонов с фильтрами
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID шаблона
+        - in: query
+          name: filter[user_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID пользователя
+        - in: query
+          name: filter[active]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по активности шаблонов (1 - Активные, 0 - Неактивные)
+        - in: query
+          name: filter[trashed]
+          required: false
+          schema:
+            type: string
+            enum: [only, with]
+          description: Отображать ли удаленные шаблоны. only - только удаленные, with - с удаленными. Если не передано - то без удаленных (deleted_at = null)
+        - in: query
+          name: filter[type]
+          required: false
+          schema:
+            type: string
+            enum: [vz, user]
+          description: Фильтр по типу шаблонов. Если 'vz' - то шаблоны по умолчанию, если 'user' - пользовательские, связанные с данным пользователем. Если не передан, то возвращает все шаблоны.
+        - in: query
+          name: filter[location_in]
+          required: false
+          schema:
+            type: string
+          description: Идентификаторы локаций, для которых применяется данный шаблон
+        - in: query
+          name: filter[location_out]
+          required: false
+          schema:
+            type: string
+          description: Идентификаторы локаций, которые исключены для применения с данным шаблоном
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: string
+          description: Сортировка по указанным полям. Если минус - то обратная сортировка. Порядок сортировки совпадает с порядком в переданной строке. Принимает только name, active, id, user_id
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "f963dc87-4420-44c6-b340-61544be2dd4d"
+                "data":
+                  "templates":
+                    - "id": 236
+                      "company_id": 1
+                      "name": "Статистика по свердловсой области, исключая екб, для отправлений в амурскую область"
+                      "priority": 0
+                      "active": true
+                      "deleted_at": null
+                      "template_fields":
+                        - "id": 1
+                          "template_id": 236
+                          "field_id": 59,
+                          "field_strs":
+                            - "id": 1
+                              "field_id": 59
+                              "value": "5"
+                              "created_at": "2024-12-16T18:09:04+03:00"
+                              "updated_at": "2024-12-16T18:09:04+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "props"
+                          "field":
+                            "id": 59
+                            "name": "Включая локации"
+                            "system_name": "location_in"
+                            "type": "string"
+                            "company_id": null
+                            "unit": null
+                            "unit_value": null
+                            "order_id": null
+                        - "id": 2
+                          "template_id": 236
+                          "field_id": 59
+                          "field_strs":
+                            - "id": 2
+                              "field_id": 59
+                              "value": "77"
+                              "created_at": "2024-12-16T18:09:04+03:00"
+                              "updated_at": "2024-12-16T18:09:04+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "stats"
+                          "field":
+                            "id": 59
+                            "name": "Включая локации"
+                            "system_name": "location_in"
+                            "type": "string"
+                            "company_id": null
+                            "unit": null
+                            "unit_value": null
+                            "order_id": null
+                        - "id": 3
+                          "template_id": 236
+                          "field_id": 60
+                          "field_strs":
+                            - "id": 3
+                              "field_id": 60
+                              "value": "369"
+                              "created_at": "2024-12-16T18:09:04+03:00"
+                              "updated_at": "2024-12-16T18:09:04+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "stats"
+                          "field":
+                            "id": 60
+                            "name": "Исключая локации"
+                            "system_name": "location_out"
+                            "type": "string"
+                            "company_id": null
+                            "unit": null
+                            "unit_value": null
+                            "order_id": null
+                    - "id": 237
+                      "company_id": 1
+                      "name": "Статистика по ОЦ от 10 000 до 13 000 для НП от 5000 до 6000"
+                      "priority": 0
+                      "active": true
+                      "deleted_at": null
+                      "template_fields":
+                        - "id": 4
+                          "template_id": 237
+                          "field_id": 66
+                          "field_strs": []
+                          "min": "5000.00"
+                          "max": "6000.00"
+                          "type": "props"
+                          "field":
+                            "id": 66
+                            "name": "Наложенный платеж"
+                            "system_name": "COD"
+                            "type": "int"
+                            "company_id": null
+                            "unit": null
+                            "unit_value": null
+                            "order_id": null
+                        - "id": 5
+                          "template_id": 237
+                          "field_id": 65
+                          "field_strs": []
+                          "min": "10000.00"
+                          "max": "13000.00"
+                          "type": "stats"
+                          "field":
+                            "id": 65
+                            "name": "Оценочная стоимость отправления"
+                            "system_name": "price"
+                            "type": "int"
+                            "company_id": null
+                            "unit": null
+                            "unit_value": null
+                            "order_id": null
+                    - "id": 238
+                      "company_id": 1
+                      "name": "для всех отправлений статистика НП от 20 000"
+                      "priority": 0
+                      "active": true
+                      "deleted_at": null
+                      "template_fields":
+                        - "id": 6
+                          "template_id": 238
+                          "field_id": 66
+                          "field_strs": []
+                          "min": "20000.00"
+                          "max": "300000.00"
+                          "type": "stats"
+                          "field":
+                            "id": 66
+                            "name": "Наложенный платеж"
+                            "system_name": "COD"
+                            "type": "int"
+                            "company_id": null
+                            "unit": null
+                            "unit_value": null
+                            "order_id": null
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "http://localhost/api/v1/templates?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": null
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                    "current_page": 1
+                    "first_page_url": "http://localhost/api/v1/templates?page=1"
+                    "from": 1
+                    "last_page": 1
+                    "last_page_url": "http://localhost/api/v1/templates?page=1"
+                    "next_page_url": null
+                    "path": "http://localhost/api/v1/templates"
+                    "per_page": 15
+                    "prev_page_url": null
+                    "to": 11
+                    "total": 11
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/template:
+    post:
+      tags:
+        - Шаблоны
+      summary: Создать шаблон
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: 
+                  type: string
+                  description: Название шаблона
+                  example: ""
+                active:
+                  type: boolean
+                  description: true - активный шаблон / false - неактивный шаблон
+                company_id:
+                  type: integer
+                  description: Идентификатор клиента
+                  nullable: true
+                stats:
+                  type: object
+                  properties:
+                    location_in:
+                      type: array
+                      items:
+                        type: integer
+                      description: Включая локации
+                      example: ""
+                    location_out:
+                      type: array
+                      items:
+                        type: integer
+                      description: Исключая локации
+                      example: ""
+                    price:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Оценочная стоимость отправления "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Оценочная стоимость отправления "до"
+                          example: ""
+                      description: Оценочная стоимость отправления
+                    COD:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Наложенный платеж "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Наложенный платеж "до"
+                          example: ""
+                      description: Наложенный платеж
+                    weight:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Вес "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Вес "до"
+                          example: ""
+                      description: Вес
+                    width:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Ширина "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Ширина "до"
+                          example: ""
+                      description: Ширина
+                    height:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Высота "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Высота "до"
+                          example: ""
+                      description: Высота
+                    length:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Глубина "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Глубина "до"
+                          example: ""
+                      description: Глубина
+                  description: Информация в "статистику"
+                props:
+                  type: object
+                  properties:
+                    location_in:
+                      type: array
+                      items:
+                        type: integer
+                      description: Включая локации
+                      example: ""
+                    location_out:
+                      type: array
+                      items:
+                        type: integer
+                      description: Исключая локации
+                      example: ""
+                    price:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Оценочная стоимость отправления "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Оценочная стоимость отправления "до"
+                          example: ""
+                      description: Оценочная стоимость отправления
+                    COD:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Наложенный платеж "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Наложенный платеж "до"
+                          example: ""
+                      description: Наложенный платеж
+                    weight:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Вес "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Вес "до"
+                          example: ""
+                      description: Вес
+                    width:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Ширина "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Ширина "до"
+                          example: ""
+                      description: Ширина
+                    height:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Высота "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Высота "до"
+                          example: ""
+                      description: Высота
+                    length:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Глубина "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Глубина "до"
+                          example: ""
+                      description: Глубина
+                  description: Информация в "выборку"
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "d22d686d-4592-43b2-93a8-f8a4d0c26489"
+                "data":
+                  "template":
+                      "id": 409
+                      "company_id": null
+                      "name": "Тест шаблон"
+                      "priority": 0
+                      "active": true
+                      "deleted_at": null
+                      "template_fields":
+                        - "id": 725
+                          "template_id": 409
+                          "field_id": 59
+                          "field_strs":
+                            - "id": 2
+                              "field_id": 59
+                              "value": "2"
+                              "created_at": "2024-12-24T09:34:28+03:00"
+                              "updated_at": "2024-12-24T09:34:28+03:00"
+                              "deleted_at": null
+                            - "id": 162
+                              "field_id": 59
+                              "value": "3"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "props"
+                          "field":
+                            "id": 59
+                            "name": "Включая локации"
+                            "system_name": "location_in"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 726
+                          "template_id": 409
+                          "field_id": 60
+                          "field_strs":
+                            - "id": 40
+                              "field_id": 60,
+                              "value": "24"
+                              "created_at": "2025-03-11T10:21:41+03:00"
+                              "updated_at": "2025-03-11T10:21:41+03:00"
+                              "deleted_at": null
+                            - "id": 163
+                              "field_id": 60
+                              "value": "1"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "props"
+                          "field":
+                            "id": 60
+                            "name": "Исключая локации"
+                            "system_name": "location_out"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 727
+                          "template_id": 409
+                          "field_id": 65
+                          "field_strs": []
+                          "min": "100.00"
+                          "max": "1000.00"
+                          "type": "props"
+                          "field":
+                            "id": 65
+                            "name": "Оценочная стоимость отправления"
+                            "system_name": "price"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 728
+                          "template_id": 409
+                          "field_id": 66
+                          "field_strs": []
+                          "min": "200.00"
+                          "max": "2000.00"
+                          "type": "props"
+                          "field":
+                            "id": 66
+                            "name": "Наложенный платеж"
+                            "system_name": "COD"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 729
+                          "template_id": 409
+                          "field_id": 64
+                          "field_strs": []
+                          "min": "70.00"
+                          "max": "700.00"
+                          "type": "props"
+                          "field":
+                            "id": 64
+                            "name": "Вес"
+                            "system_name": "weight"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 730
+                          "template_id": 409
+                          "field_id": 61
+                          "field_strs": []
+                          "min": "30.00"
+                          "max": "300.00"
+                          "type": "props"
+                          "field":
+                            "id": 61
+                            "name": "Ширина"
+                            "system_name": "width"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 731
+                          "template_id": 409
+                          "field_id": 63
+                          "field_strs": []
+                          "min": "40.00"
+                          "max": "400.00"
+                          "type": "props"
+                          "field":
+                            "id": 63
+                            "name": "Высота"
+                            "system_name": "height"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 732
+                          "template_id": 409
+                          "field_id": 62
+                          "field_strs": []
+                          "min": "50.00"
+                          "max": "500.00"
+                          "type": "props"
+                          "field":
+                            "id": 62
+                            "name": "Глубина"
+                            "system_name": "length"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 733
+                          "template_id": 409
+                          "field_id": 59
+                          "field_strs":
+                            - "id": 2
+                              "field_id": 59
+                              "value": "2"
+                              "created_at": "2024-12-24T09:34:28+03:00"
+                              "updated_at": "2024-12-24T09:34:28+03:00"
+                              "deleted_at": null
+                            - "id": 162
+                              "field_id": 59
+                              "value": "3"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "stats"
+                          "field":
+                            "id": 59
+                            "name": "Включая локации"
+                            "system_name": "location_in"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 734
+                          "template_id": 409
+                          "field_id": 60
+                          "field_strs":
+                            - "id": 40
+                              "field_id": 60
+                              "value": "24"
+                              "created_at": "2025-03-11T10:21:41+03:00"
+                              "updated_at": "2025-03-11T10:21:41+03:00"
+                              "deleted_at": null
+                            - "id": 163
+                              "field_id": 60
+                              "value": "1"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "stats"
+                          "field":
+                            "id": 60
+                            "name": "Исключая локации"
+                            "system_name": "location_out"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 735
+                          "template_id": 409
+                          "field_id": 65
+                          "field_strs": []
+                          "min": "100.00"
+                          "max": "1000.00"
+                          "type": "stats"
+                          "field":
+                            "id": 65
+                            "name": "Оценочная стоимость отправления"
+                            "system_name": "price"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 736
+                          "template_id": 409
+                          "field_id": 66
+                          "field_strs": []
+                          "min": "200.00"
+                          "max": "2000.00"
+                          "type": "stats"
+                          "field":
+                            "id": 66
+                            "name": "Наложенный платеж"
+                            "system_name": "COD"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 737
+                          "template_id": 409
+                          "field_id": 64
+                          "field_strs": []
+                          "min": "70.00"
+                          "max": "700.00"
+                          "type": "stats"
+                          "field":
+                            "id": 64
+                            "name": "Вес"
+                            "system_name": "weight"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 738
+                          "template_id": 409
+                          "field_id": 61
+                          "field_strs": []
+                          "min": "30.00"
+                          "max": "300.00"
+                          "type": "stats"
+                          "field":
+                            "id": 61
+                            "name": "Ширина"
+                            "system_name": "width"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 739
+                          "template_id": 409
+                          "field_id": 63
+                          "field_strs": []
+                          "min": "40.00"
+                          "max": "400.00"
+                          "type": "stats"
+                          "field":
+                            "id": 63
+                            "name": "Высота"
+                            "system_name": "height"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 740
+                          "template_id": 409
+                          "field_id": 62
+                          "field_strs": []
+                          "min": "50.00"
+                          "max": "500.00"
+                          "type": "stats"
+                          "field":
+                            "id": 62
+                            "name": "Глубина"
+                            "system_name": "length"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "9596b8ce-cd54-4c36-8dcc-37e369fb553e"
+                "message": "Поле имя обязательно.|"
+                "data":
+                  - "Поле имя обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []        
+  /api/v1/orders_count:
+    post:
+      tags:
+        - Шаблоны
+      summary: Подсчет количества шаблонов по параметрам
+      security:
+        - bearerAuth: []  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - params
+              properties:
+                params:
+                  type: object
+                  properties:
+                    location_in:
+                      type: array
+                      items:
+                        type: integer
+                      description: Включая локации
+                      example: ""
+                    location_out:
+                      type: array
+                      items:
+                        type: integer
+                      description: Исключая локации
+                      example: ""
+                    price:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Оценочная стоимость отправления "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Оценочная стоимость отправления "до"
+                          example: ""
+                      description: Оценочная стоимость отправления
+                    COD:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Наложенный платеж "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Наложенный платеж "до"
+                          example: ""
+                      description: Наложенный платеж
+                    weight:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Вес "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Вес "до"
+                          example: ""
+                      description: Вес
+                    width:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Ширина "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Ширина "до"
+                          example: ""
+                      description: Ширина
+                    height:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Высота "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Высота "до"
+                          example: ""
+                      description: Высота
+                    length:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Глубина "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Глубина "до"
+                          example: ""
+                      description: Глубина  
+                  description: Параметры для поиска  
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "94564c74-ec10-461d-bc41-e76fd0cffc3c"
+                "data":
+                  "count": 3
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "9596b8ce-cd54-4c36-8dcc-37e369fb553e"
+                "message": "Поле params обязательно.|"
+                "data":
+                  - "Поле params обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
+  /api/v1/template/{template_id}:
+    get:
+        tags:
+          - Шаблоны
+        summary: Получить шаблон по ID
+        security:
+          - bearerAuth: []
+        parameters:
+          - in: path
+            name: template_id
+            required: true
+            schema:
+              type: integer
+            description: ID шаблона
+        responses:
+          '200':
+            description: Успешный ответ
+            content:
+              application/json:
+                example:
+                  "code": 200
+                  "status": "OK"
+                  "success": true
+                  "request_id": "85f2d670-79b6-4403-8fe1-a2da536998b8"
+                  "data":
+                    "template":
+                      "id": 410
+                      "company_id": null
+                      "name": "Тест шаблон"
+                      "priority": 0
+                      "active": true
+                      "deleted_at": null
+                      "template_fields":
+                        - "id": 741
+                          "template_id": 410
+                          "field_id": 59
+                          "field_strs":
+                            - "id": 2
+                              "field_id": 59
+                              "value": "2"
+                              "created_at": "2024-12-24T09:34:28+03:00"
+                              "updated_at": "2024-12-24T09:34:28+03:00"
+                              "deleted_at": null
+                            - "id": 162
+                              "field_id": 59
+                              "value": "3"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "props"
+                          "field":
+                            "id": 59
+                            "name": "Включая локации"
+                            "system_name": "location_in"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 742
+                          "template_id": 410
+                          "field_id": 60
+                          "field_strs":
+                            - "id": 40
+                              "field_id": 60
+                              "value": "24"
+                              "created_at": "2025-03-11T10:21:41+03:00"
+                              "updated_at": "2025-03-11T10:21:41+03:00"
+                              "deleted_at": null
+                            - "id": 163
+                              "field_id": 60
+                              "value": "1"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null,
+                          "max": null
+                          "type": "props"
+                          "field":
+                            "id": 60
+                            "name": "Исключая локации"
+                            "system_name": "location_out"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 743
+                          "template_id": 410
+                          "field_id": 65
+                          "field_strs": []
+                          "min": "100.00"
+                          "max": "1000.00"
+                          "type": "props"
+                          "field":
+                            "id": 65
+                            "name": "Оценочная стоимость отправления"
+                            "system_name": "price"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 744
+                          "template_id": 410
+                          "field_id": 66
+                          "field_strs": []
+                          "min": "200.00"
+                          "max": "2000.00"
+                          "type": "props"
+                          "field":
+                            "id": 66
+                            "name": "Наложенный платеж"
+                            "system_name": "COD"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 745
+                          "template_id": 410
+                          "field_id": 64
+                          "field_strs": []
+                          "min": "70.00"
+                          "max": "700.00"
+                          "type": "props"
+                          "field":
+                            "id": 64
+                            "name": "Вес"
+                            "system_name": "weight"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 746
+                          "template_id": 410
+                          "field_id": 61
+                          "field_strs": []
+                          "min": "30.00"
+                          "max": "300.00"
+                          "type": "props"
+                          "field":
+                            "id": 61
+                            "name": "Ширина"
+                            "system_name": "width"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 747
+                          "template_id": 410
+                          "field_id": 63
+                          "field_strs": []
+                          "min": "40.00"
+                          "max": "400.00"
+                          "type": "props"
+                          "field": 
+                            "id": 63
+                            "name": "Высота"
+                            "system_name": "height"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 748
+                          "template_id": 410
+                          "field_id": 62
+                          "field_strs": []
+                          "min": "50.00"
+                          "max": "500.00"
+                          "type": "props"
+                          "field":
+                            "id": 62
+                            "name": "Глубина"
+                            "system_name": "length"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 749
+                          "template_id": 410
+                          "field_id": 59
+                          "field_strs":
+                            - "id": 2
+                              "field_id": 59
+                              "value": "2"
+                              "created_at": "2024-12-24T09:34:28+03:00"
+                              "updated_at": "2024-12-24T09:34:28+03:00"
+                              "deleted_at": null
+                            - "id": 162
+                              "field_id": 59
+                              "value": "3"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "stats"
+                          "field":
+                            "id": 59
+                            "name": "Включая локации"
+                            "system_name": "location_in"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 750
+                          "template_id": 410
+                          "field_id": 60
+                          "field_strs":
+                            - "id": 40
+                              "field_id": 60
+                              "value": "24"
+                              "created_at": "2025-03-11T10:21:41+03:00"
+                              "updated_at": "2025-03-11T10:21:41+03:00"
+                              "deleted_at": null
+                            - "id": 163
+                              "field_id": 60
+                              "value": "1"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "stats"
+                          "field":
+                            "id": 60
+                            "name": "Исключая локации"
+                            "system_name": "location_out"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 751
+                          "template_id": 410
+                          "field_id": 65
+                          "field_strs": []
+                          "min": "100.00"
+                          "max": "1000.00"
+                          "type": "stats"
+                          "field":
+                            "id": 65
+                            "name": "Оценочная стоимость отправления"
+                            "system_name": "price"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 752
+                          "template_id": 410
+                          "field_id": 66
+                          "field_strs": []
+                          "min": "200.00"
+                          "max": "2000.00"
+                          "type": "stats"
+                          "field":
+                            "id": 66
+                            "name": "Наложенный платеж"
+                            "system_name": "COD"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 753
+                          "template_id": 410
+                          "field_id": 64
+                          "field_strs": []
+                          "min": "70.00"
+                          "max": "700.00"
+                          "type": "stats"
+                          "field":
+                            "id": 64
+                            "name": "Вес"
+                            "system_name": "weight"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 754
+                          "template_id": 410
+                          "field_id": 61
+                          "field_strs": []
+                          "min": "30.00"
+                          "max": "300.00"
+                          "type": "stats"
+                          "field":
+                            "id": 61
+                            "name": "Ширина"
+                            "system_name": "width"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 755
+                          "template_id": 410
+                          "field_id": 63
+                          "field_strs": []
+                          "min": "40.00"
+                          "max": "400.00"
+                          "type": "stats"
+                          "field":
+                            "id": 63
+                            "name": "Высота"
+                            "system_name": "height"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 756
+                          "template_id": 410
+                          "field_id": 62
+                          "field_strs": []
+                          "min": "50.00"
+                          "max": "500.00"
+                          "type": "stats"
+                          "field":
+                            "id": 62
+                            "name": "Глубина"
+                            "system_name": "length"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+          '400':
+            description: Ошибка - шаблон не найден
+            content:
+              application/json:
+                example:
+                  "code": 400
+                  "status": "Bad Request"
+                  "success": false
+                  "request_id": "8d2d4d12-a25d-4b0a-b315-13abe7ac10e5"
+                  "message": "Значение поля id не существует.|"
+                  "data":
+                    - "Значение поля id не существует."
+          '401':
+            description: Ошибка авторизации
+            content:
+              application/json:
+                example:
+                  code: 401
+                  status: Unauthorized
+                  success: false
+                  request_id: 422604fd-6899-4af5-9720-ba9410b54b0f
+                  message: Ошибка аутентификации.
+                  data: []                
+    put:
+      tags:
+        - Шаблоны
+      summary: Изменить шаблон
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: template_id
+          required: true
+          schema:
+              type: integer
+          description: ID шаблона
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: 
+                  type: string
+                  description: Название шаблона
+                  example: ""
+                active:
+                  type: boolean
+                  description: true - активный шаблон / false - неактивный шаблон
+                company_id:
+                  type: integer
+                  description: Идентификатор клиента
+                  nullable: true
+                stats:
+                  type: object
+                  properties:
+                    location_in:
+                      type: array
+                      items:
+                        type: integer
+                      description: Включая локации
+                      example: ""
+                    location_out:
+                      type: array
+                      items:
+                        type: integer
+                      description: Исключая локации
+                      example: ""
+                    price:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Оценочная стоимость отправления "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Оценочная стоимость отправления "до"
+                          example: ""
+                      description: Оценочная стоимость отправления
+                    COD:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Наложенный платеж "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Наложенный платеж "до"
+                          example: ""
+                      description: Наложенный платеж
+                    weight:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Вес "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Вес "до"
+                          example: ""
+                      description: Вес
+                    width:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Ширина "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Ширина "до"
+                          example: ""
+                      description: Ширина
+                    height:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Высота "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Высота "до"
+                          example: ""
+                      description: Высота
+                    length:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Глубина "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Глубина "до"
+                          example: ""
+                      description: Глубина
+                  description: Информация в "статистику"
+                props:
+                  type: object
+                  properties:
+                    location_in:
+                      type: array
+                      items:
+                        type: integer
+                      description: Включая локации
+                      example: ""
+                    location_out:
+                      type: array
+                      items:
+                        type: integer
+                      description: Исключая локации
+                      example: ""
+                    price:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Оценочная стоимость отправления "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Оценочная стоимость отправления "до"
+                          example: ""
+                      description: Оценочная стоимость отправления
+                    COD:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Наложенный платеж "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Наложенный платеж "до"
+                          example: ""
+                      description: Наложенный платеж
+                    weight:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Вес "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Вес "до"
+                          example: ""
+                      description: Вес
+                    width:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Ширина "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Ширина "до"
+                          example: ""
+                      description: Ширина
+                    height:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Высота "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Высота "до"
+                          example: ""
+                      description: Высота
+                    length:
+                      type: object
+                      properties:
+                        min:
+                          type: integer
+                          description: Глубина "от"
+                          example: ""
+                        max:
+                          type: integer
+                          description: Глубина "до"
+                          example: ""
+                      description: Глубина
+                  description: Информация в "выборку"
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "d22d686d-4592-43b2-93a8-f8a4d0c26489"
+                "data":
+                  "template":
+                      "id": 409
+                      "company_id": null
+                      "name": "Тест шаблон"
+                      "priority": 0
+                      "active": true
+                      "deleted_at": null
+                      "template_fields":
+                        - "id": 725
+                          "template_id": 409
+                          "field_id": 59
+                          "field_strs":
+                            - "id": 2
+                              "field_id": 59
+                              "value": "2"
+                              "created_at": "2024-12-24T09:34:28+03:00"
+                              "updated_at": "2024-12-24T09:34:28+03:00"
+                              "deleted_at": null
+                            - "id": 162
+                              "field_id": 59
+                              "value": "3"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "props"
+                          "field":
+                            "id": 59
+                            "name": "Включая локации"
+                            "system_name": "location_in"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 726
+                          "template_id": 409
+                          "field_id": 60
+                          "field_strs":
+                            - "id": 40
+                              "field_id": 60,
+                              "value": "24"
+                              "created_at": "2025-03-11T10:21:41+03:00"
+                              "updated_at": "2025-03-11T10:21:41+03:00"
+                              "deleted_at": null
+                            - "id": 163
+                              "field_id": 60
+                              "value": "1"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "props"
+                          "field":
+                            "id": 60
+                            "name": "Исключая локации"
+                            "system_name": "location_out"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 727
+                          "template_id": 409
+                          "field_id": 65
+                          "field_strs": []
+                          "min": "100.00"
+                          "max": "1000.00"
+                          "type": "props"
+                          "field":
+                            "id": 65
+                            "name": "Оценочная стоимость отправления"
+                            "system_name": "price"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 728
+                          "template_id": 409
+                          "field_id": 66
+                          "field_strs": []
+                          "min": "200.00"
+                          "max": "2000.00"
+                          "type": "props"
+                          "field":
+                            "id": 66
+                            "name": "Наложенный платеж"
+                            "system_name": "COD"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 729
+                          "template_id": 409
+                          "field_id": 64
+                          "field_strs": []
+                          "min": "70.00"
+                          "max": "700.00"
+                          "type": "props"
+                          "field":
+                            "id": 64
+                            "name": "Вес"
+                            "system_name": "weight"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 730
+                          "template_id": 409
+                          "field_id": 61
+                          "field_strs": []
+                          "min": "30.00"
+                          "max": "300.00"
+                          "type": "props"
+                          "field":
+                            "id": 61
+                            "name": "Ширина"
+                            "system_name": "width"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 731
+                          "template_id": 409
+                          "field_id": 63
+                          "field_strs": []
+                          "min": "40.00"
+                          "max": "400.00"
+                          "type": "props"
+                          "field":
+                            "id": 63
+                            "name": "Высота"
+                            "system_name": "height"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 732
+                          "template_id": 409
+                          "field_id": 62
+                          "field_strs": []
+                          "min": "50.00"
+                          "max": "500.00"
+                          "type": "props"
+                          "field":
+                            "id": 62
+                            "name": "Глубина"
+                            "system_name": "length"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 733
+                          "template_id": 409
+                          "field_id": 59
+                          "field_strs":
+                            - "id": 2
+                              "field_id": 59
+                              "value": "2"
+                              "created_at": "2024-12-24T09:34:28+03:00"
+                              "updated_at": "2024-12-24T09:34:28+03:00"
+                              "deleted_at": null
+                            - "id": 162
+                              "field_id": 59
+                              "value": "3"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "stats"
+                          "field":
+                            "id": 59
+                            "name": "Включая локации"
+                            "system_name": "location_in"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 734
+                          "template_id": 409
+                          "field_id": 60
+                          "field_strs":
+                            - "id": 40
+                              "field_id": 60
+                              "value": "24"
+                              "created_at": "2025-03-11T10:21:41+03:00"
+                              "updated_at": "2025-03-11T10:21:41+03:00"
+                              "deleted_at": null
+                            - "id": 163
+                              "field_id": 60
+                              "value": "1"
+                              "created_at": "2025-05-23T17:31:28+03:00"
+                              "updated_at": "2025-05-23T17:31:28+03:00"
+                              "deleted_at": null
+                          "min": null
+                          "max": null
+                          "type": "stats"
+                          "field":
+                            "id": 60
+                            "name": "Исключая локации"
+                            "system_name": "location_out"
+                            "type": "string"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 735
+                          "template_id": 409
+                          "field_id": 65
+                          "field_strs": []
+                          "min": "100.00"
+                          "max": "1000.00"
+                          "type": "stats"
+                          "field":
+                            "id": 65
+                            "name": "Оценочная стоимость отправления"
+                            "system_name": "price"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 736
+                          "template_id": 409
+                          "field_id": 66
+                          "field_strs": []
+                          "min": "200.00"
+                          "max": "2000.00"
+                          "type": "stats"
+                          "field":
+                            "id": 66
+                            "name": "Наложенный платеж"
+                            "system_name": "COD"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 737
+                          "template_id": 409
+                          "field_id": 64
+                          "field_strs": []
+                          "min": "70.00"
+                          "max": "700.00"
+                          "type": "stats"
+                          "field":
+                            "id": 64
+                            "name": "Вес"
+                            "system_name": "weight"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 738
+                          "template_id": 409
+                          "field_id": 61
+                          "field_strs": []
+                          "min": "30.00"
+                          "max": "300.00"
+                          "type": "stats"
+                          "field":
+                            "id": 61
+                            "name": "Ширина"
+                            "system_name": "width"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 739
+                          "template_id": 409
+                          "field_id": 63
+                          "field_strs": []
+                          "min": "40.00"
+                          "max": "400.00"
+                          "type": "stats"
+                          "field":
+                            "id": 63
+                            "name": "Высота"
+                            "system_name": "height"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+                        - "id": 740
+                          "template_id": 409
+                          "field_id": 62
+                          "field_strs": []
+                          "min": "50.00"
+                          "max": "500.00"
+                          "type": "stats"
+                          "field":
+                            "id": 62
+                            "name": "Глубина"
+                            "system_name": "length"
+                            "type": "int"
+                            "company_id": null
+                            "unit_id": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "9596b8ce-cd54-4c36-8dcc-37e369fb553e"
+                "message": "Поле имя обязательно.|"
+                "data":
+                  - "Поле имя обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка - шаблон не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "c577c900-a94d-4681-9f84-3b05371186fc"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+    delete:
+      tags:
+        - Шаблоны
+      summary: Изменить шаблон
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: template_id
+          required: true
+          schema:
+              type: integer
+          description: ID шаблона
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "14dcfc42-f58b-4356-a9e2-a68788b27250"
+                "message": "deleted"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка - шаблон не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "c577c900-a94d-4681-9f84-3b05371186fc"
+                "message": "Требуемый ресурс не найден"
+                "data": []    
 components:
   schemas:
     LoginWith2FA:
