@@ -27149,7 +27149,7 @@ paths:
                 name: 
                   type: string
                   description: Название шаблона
-                  example: ""
+                  example: "Тест шаблон"
                 active:
                   type: boolean
                   description: true - активный шаблон / false - неактивный шаблон
@@ -27157,6 +27157,7 @@ paths:
                   type: integer
                   description: Идентификатор клиента
                   nullable: true
+                  example: 1
                 stats:
                   type: object
                   properties:
@@ -27165,24 +27166,24 @@ paths:
                       items:
                         type: integer
                       description: Включая локации
-                      example: ""
+                      example: [2, 3]
                     location_out:
                       type: array
                       items:
                         type: integer
                       description: Исключая локации
-                      example: ""
+                      example: [24, 1]
                     price:
                       type: object
                       properties:
                         min:
                           type: integer
                           description: Оценочная стоимость отправления "от"
-                          example: ""
+                          example: 100
                         max:
                           type: integer
                           description: Оценочная стоимость отправления "до"
-                          example: ""
+                          example: 1000
                       description: Оценочная стоимость отправления
                     COD:
                       type: object
@@ -27190,11 +27191,11 @@ paths:
                         min:
                           type: integer
                           description: Наложенный платеж "от"
-                          example: ""
+                          example: 200
                         max:
                           type: integer
                           description: Наложенный платеж "до"
-                          example: ""
+                          example: 2000
                       description: Наложенный платеж
                     weight:
                       type: object
@@ -27202,11 +27203,11 @@ paths:
                         min:
                           type: integer
                           description: Вес "от"
-                          example: ""
+                          example: 70
                         max:
                           type: integer
                           description: Вес "до"
-                          example: ""
+                          example: 700
                       description: Вес
                     width:
                       type: object
@@ -27214,11 +27215,11 @@ paths:
                         min:
                           type: integer
                           description: Ширина "от"
-                          example: ""
+                          example: 30
                         max:
                           type: integer
                           description: Ширина "до"
-                          example: ""
+                          example: 300
                       description: Ширина
                     height:
                       type: object
@@ -27226,11 +27227,11 @@ paths:
                         min:
                           type: integer
                           description: Высота "от"
-                          example: ""
+                          example: 40
                         max:
                           type: integer
                           description: Высота "до"
-                          example: ""
+                          example: 400
                       description: Высота
                     length:
                       type: object
@@ -27238,11 +27239,11 @@ paths:
                         min:
                           type: integer
                           description: Глубина "от"
-                          example: ""
+                          example: 50
                         max:
                           type: integer
                           description: Глубина "до"
-                          example: ""
+                          example: 500
                       description: Глубина
                   description: Информация в "статистику"
                 props:
@@ -27253,24 +27254,24 @@ paths:
                       items:
                         type: integer
                       description: Включая локации
-                      example: ""
+                      example: [2, 3]
                     location_out:
                       type: array
                       items:
                         type: integer
                       description: Исключая локации
-                      example: ""
+                      example: [24, 1]
                     price:
                       type: object
                       properties:
                         min:
                           type: integer
                           description: Оценочная стоимость отправления "от"
-                          example: ""
+                          example: 100
                         max:
                           type: integer
                           description: Оценочная стоимость отправления "до"
-                          example: ""
+                          example: 1000
                       description: Оценочная стоимость отправления
                     COD:
                       type: object
@@ -27278,11 +27279,11 @@ paths:
                         min:
                           type: integer
                           description: Наложенный платеж "от"
-                          example: ""
+                          example: 200
                         max:
                           type: integer
                           description: Наложенный платеж "до"
-                          example: ""
+                          example: 2000
                       description: Наложенный платеж
                     weight:
                       type: object
@@ -27290,11 +27291,11 @@ paths:
                         min:
                           type: integer
                           description: Вес "от"
-                          example: ""
+                          example: 70
                         max:
                           type: integer
                           description: Вес "до"
-                          example: ""
+                          example: 700
                       description: Вес
                     width:
                       type: object
@@ -27302,11 +27303,11 @@ paths:
                         min:
                           type: integer
                           description: Ширина "от"
-                          example: ""
+                          example: 30
                         max:
                           type: integer
                           description: Ширина "до"
-                          example: ""
+                          example: 300
                       description: Ширина
                     height:
                       type: object
@@ -27314,11 +27315,11 @@ paths:
                         min:
                           type: integer
                           description: Высота "от"
-                          example: ""
+                          example: 40
                         max:
                           type: integer
                           description: Высота "до"
-                          example: ""
+                          example: 400
                       description: Высота
                     length:
                       type: object
@@ -27326,11 +27327,11 @@ paths:
                         min:
                           type: integer
                           description: Глубина "от"
-                          example: ""
+                          example: 50
                         max:
                           type: integer
                           description: Глубина "до"
-                          example: ""
+                          example: 500
                       description: Глубина
                   description: Информация в "выборку"
       responses:
@@ -27671,24 +27672,24 @@ paths:
                       items:
                         type: integer
                       description: Включая локации
-                      example: ""
+                      example: [2, 3]
                     location_out:
                       type: array
                       items:
                         type: integer
                       description: Исключая локации
-                      example: ""
+                      example: [24, 1]
                     price:
                       type: object
                       properties:
                         min:
                           type: integer
                           description: Оценочная стоимость отправления "от"
-                          example: ""
+                          example: 100
                         max:
                           type: integer
                           description: Оценочная стоимость отправления "до"
-                          example: ""
+                          example: 1000
                       description: Оценочная стоимость отправления
                     COD:
                       type: object
@@ -27696,11 +27697,11 @@ paths:
                         min:
                           type: integer
                           description: Наложенный платеж "от"
-                          example: ""
+                          example: 200
                         max:
                           type: integer
                           description: Наложенный платеж "до"
-                          example: ""
+                          example: 2000
                       description: Наложенный платеж
                     weight:
                       type: object
@@ -27708,11 +27709,11 @@ paths:
                         min:
                           type: integer
                           description: Вес "от"
-                          example: ""
+                          example: 70
                         max:
                           type: integer
                           description: Вес "до"
-                          example: ""
+                          example: 700
                       description: Вес
                     width:
                       type: object
@@ -27720,11 +27721,11 @@ paths:
                         min:
                           type: integer
                           description: Ширина "от"
-                          example: ""
+                          example: 30
                         max:
                           type: integer
                           description: Ширина "до"
-                          example: ""
+                          example: 300
                       description: Ширина
                     height:
                       type: object
@@ -27732,11 +27733,11 @@ paths:
                         min:
                           type: integer
                           description: Высота "от"
-                          example: ""
+                          example: 40
                         max:
                           type: integer
                           description: Высота "до"
-                          example: ""
+                          example: 400
                       description: Высота
                     length:
                       type: object
@@ -27744,11 +27745,11 @@ paths:
                         min:
                           type: integer
                           description: Глубина "от"
-                          example: ""
+                          example: 50
                         max:
                           type: integer
                           description: Глубина "до"
-                          example: ""
+                          example: 500
                       description: Глубина  
                   description: Параметры для поиска  
       responses:
@@ -28137,7 +28138,7 @@ paths:
                 name: 
                   type: string
                   description: Название шаблона
-                  example: ""
+                  example: "Тест шаблон"
                 active:
                   type: boolean
                   description: true - активный шаблон / false - неактивный шаблон
@@ -28145,6 +28146,7 @@ paths:
                   type: integer
                   description: Идентификатор клиента
                   nullable: true
+                  example: 1
                 stats:
                   type: object
                   properties:
@@ -28153,24 +28155,24 @@ paths:
                       items:
                         type: integer
                       description: Включая локации
-                      example: ""
+                      example: [2, 3]
                     location_out:
                       type: array
                       items:
                         type: integer
                       description: Исключая локации
-                      example: ""
+                      example: [24, 1]
                     price:
                       type: object
                       properties:
                         min:
                           type: integer
                           description: Оценочная стоимость отправления "от"
-                          example: ""
+                          example: 100
                         max:
                           type: integer
                           description: Оценочная стоимость отправления "до"
-                          example: ""
+                          example: 1000
                       description: Оценочная стоимость отправления
                     COD:
                       type: object
@@ -28178,11 +28180,11 @@ paths:
                         min:
                           type: integer
                           description: Наложенный платеж "от"
-                          example: ""
+                          example: 200
                         max:
                           type: integer
                           description: Наложенный платеж "до"
-                          example: ""
+                          example: 2000
                       description: Наложенный платеж
                     weight:
                       type: object
@@ -28190,11 +28192,11 @@ paths:
                         min:
                           type: integer
                           description: Вес "от"
-                          example: ""
+                          example: 70
                         max:
                           type: integer
                           description: Вес "до"
-                          example: ""
+                          example: 700
                       description: Вес
                     width:
                       type: object
@@ -28202,11 +28204,11 @@ paths:
                         min:
                           type: integer
                           description: Ширина "от"
-                          example: ""
+                          example: 30
                         max:
                           type: integer
                           description: Ширина "до"
-                          example: ""
+                          example: 300
                       description: Ширина
                     height:
                       type: object
@@ -28214,11 +28216,11 @@ paths:
                         min:
                           type: integer
                           description: Высота "от"
-                          example: ""
+                          example: 40
                         max:
                           type: integer
                           description: Высота "до"
-                          example: ""
+                          example: 400
                       description: Высота
                     length:
                       type: object
@@ -28226,11 +28228,11 @@ paths:
                         min:
                           type: integer
                           description: Глубина "от"
-                          example: ""
+                          example: 50
                         max:
                           type: integer
                           description: Глубина "до"
-                          example: ""
+                          example: 500
                       description: Глубина
                   description: Информация в "статистику"
                 props:
@@ -28241,24 +28243,24 @@ paths:
                       items:
                         type: integer
                       description: Включая локации
-                      example: ""
+                      example: [2, 3]
                     location_out:
                       type: array
                       items:
                         type: integer
                       description: Исключая локации
-                      example: ""
+                      example: [24, 1]
                     price:
                       type: object
                       properties:
                         min:
                           type: integer
                           description: Оценочная стоимость отправления "от"
-                          example: ""
+                          example: 100
                         max:
                           type: integer
                           description: Оценочная стоимость отправления "до"
-                          example: ""
+                          example: 1000
                       description: Оценочная стоимость отправления
                     COD:
                       type: object
@@ -28266,11 +28268,11 @@ paths:
                         min:
                           type: integer
                           description: Наложенный платеж "от"
-                          example: ""
+                          example: 200
                         max:
                           type: integer
                           description: Наложенный платеж "до"
-                          example: ""
+                          example: 2000
                       description: Наложенный платеж
                     weight:
                       type: object
@@ -28278,11 +28280,11 @@ paths:
                         min:
                           type: integer
                           description: Вес "от"
-                          example: ""
+                          example: 70
                         max:
                           type: integer
                           description: Вес "до"
-                          example: ""
+                          example: 700
                       description: Вес
                     width:
                       type: object
@@ -28290,11 +28292,11 @@ paths:
                         min:
                           type: integer
                           description: Ширина "от"
-                          example: ""
+                          example: 30
                         max:
                           type: integer
                           description: Ширина "до"
-                          example: ""
+                          example: 300
                       description: Ширина
                     height:
                       type: object
@@ -28302,11 +28304,11 @@ paths:
                         min:
                           type: integer
                           description: Высота "от"
-                          example: ""
+                          example: 40
                         max:
                           type: integer
                           description: Высота "до"
-                          example: ""
+                          example: 400
                       description: Высота
                     length:
                       type: object
@@ -28314,11 +28316,11 @@ paths:
                         min:
                           type: integer
                           description: Глубина "от"
-                          example: ""
+                          example: 50
                         max:
                           type: integer
                           description: Глубина "до"
-                          example: ""
+                          example: 500
                       description: Глубина
                   description: Информация в "выборку"
       responses:
@@ -28902,6 +28904,392 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": []
+  /api/v1/priorities:
+    get:
+      tags:
+        - Приоритеты
+      summary: Список типов приоритетов
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "6bf2abca-191a-476a-a070-93960874febe"
+                "data":
+                  "priorities":
+                    - "id": 1
+                      "name": "Скорость доставки"
+                      "code": "speed"
+                      "default_percent": 100
+                    - "id": 2
+                      "name": "Стоимость доставки"
+                      "code": "price"
+                      "default_percent": 0
+                    - "id": 3
+                      "name": "Процент выкупа"
+                      "code": "redemption"
+                      "default_percent": 0
+                    - "id": 4,
+                      "name": "Срок хранения в пункте выдачи"
+                      "code": "storage"
+                      "default_percent": 0
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/priority:
+    get:
+      tags:
+        - Приоритеты
+      summary: Список приоритетов пользователя
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "fc5bca55-ca2b-483f-9b08-6937603720d8"
+                "data":
+                  "local":
+                    - "id": 2198
+                      "priorities":
+                        "price": 0
+                        "speed": 80
+                        "storage": 3
+                        "redemption": 17
+                      "region":
+                        "57": "Респ Северная Осетия - Алания"
+                        "39": "Краснодарский край"
+                      "city":
+                        "443": "Евпатория"
+                        "442": "Ялта"
+                  "global":
+                    "id": 2199
+                    "priorities":
+                      "price": 100
+                      "speed": 0
+                      "storage": 0
+                      "redemption": 0
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []        
+    post:
+      tags:
+        - Приоритеты
+      summary: Список приоритетов пользователя
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                speed:
+                  type: integer
+                  description: "Скорость доставки"
+                  example: 0
+                price:
+                  type: integer
+                  description: "Стоимость доставки"
+                  example: 100
+                storage:
+                  type: integer
+                  description: "Срок хранения"
+                  example: 0
+                redemption:
+                  type: integer
+                  description: "Процент выкупа"
+                  example: 0
+                region_id:
+                  type: array
+                  items:
+                    type: integer
+                  description: Идентификатор региона. Если не указывать, создастся глобальный приоритет
+                  example: [63, 10, 529]
+                city_id:
+                  type: array
+                  items: 
+                    type: integer
+                  description: Идентификатор населенного пункта. Если не указывать, создастся глобальный приоритет
+                  example: [400]
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "6f2d2bf1-ff4f-455d-ad95-7fc738ae321c"
+                "data":
+                  "id": 2199
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              schema:
+               anyOf:
+                - title: Ответ при пересечении локаций приоритета
+                  $ref: '#/components/schemas/PriorityLocationsError'
+                - title: Ответ при сумме процентов не равной 100%
+                  $ref: '#/components/schemas/PriorityPercentageError'
+              examples:
+                PriorityLocationsError:
+                  summary: Ответ при пересечении локаций приоритета
+                  value:
+                    code: 400
+                    status: Bad Request
+                    success: false
+                    request_id: 3038baba-afad-4573-b7ea-38d0a9138294
+                    message: Пересечение локаций приоритета
+                PriorityPercentageError:
+                  summary: Ответ без 2ФА
+                  value:
+                    code: 400
+                    status: Bad Request
+                    success: false
+                    request_id: d6ec3f18-5f4c-48c5-9700-e2e032e24285
+                    message: Сумма процентов не равна 100%
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []                       
+  /api/v1/priority/{priority_id}:
+    put:
+      tags:
+        - Приоритеты
+      description: Обновить приоритет
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: priority_id
+          required: true
+          schema:
+              type: integer
+          description: ID приоритета
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                speed:
+                  type: integer
+                  description: "Скорость доставки"
+                  example: 0
+                price:
+                  type: integer
+                  description: "Стоимость доставки"
+                  example: 100
+                storage:
+                  type: integer
+                  description: "Срок хранения"
+                  example: 0
+                redemption:
+                  type: integer
+                  description: "Процент выкупа"
+                  example: 0
+                region_id:
+                  type: array
+                  items:
+                    type: integer
+                  description: Идентификатор региона. Для глобавльного приоритета не указывать
+                  example: [63, 10, 529]
+                city_id:
+                  type: array
+                  items: 
+                    type: integer
+                  description: Идентификатор населенного пункта. Для глобавльного приоритета не указывать
+                  example: [400]
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "80631041-bad6-4a39-9062-d699ab691de9"
+                "data":
+                  "price": 9
+                  "speed": 81
+                  "storage": 9
+                  "redemption": 1
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "f1296f16-60a3-4580-911d-4c8631033a74"
+                "message": "Пересечение локаций приоритета"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description:  Ошибка - приоритет не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "df14aad9-6882-4db0-8206-e47cabf65da9"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+    delete:
+      tags:
+        - Приоритеты
+      description: Удалить приоритет
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: priority_id
+          required: true
+          schema:
+              type: integer
+          description: ID приоритета
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "80631041-bad6-4a39-9062-d699ab691de9"
+                "data":
+                  "price": 9
+                  "speed": 81
+                  "storage": 9
+                  "redemption": 1
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description:  Ошибка - приоритет не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "df14aad9-6882-4db0-8206-e47cabf65da9"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+  /api/v1/priority/find:
+    get:
+      tags:
+        - Приоритеты
+      summary: Найти необходимый приоритет по географии
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: location
+          required: false
+          schema:
+            type: string
+          description: Название региона/населенного пункта
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "7c015713-84ad-4f4e-aebf-9dc4342c687c"
+                "data":
+                  "id": 2199
+                  "priorities":
+                    "price": 100
+                    "speed": 0
+                    "storage": 0
+                    "redemption": 0
+                  "region": []
+                  "city": []    
+        '400':
+          description: Ошибка - локация не найдена
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "53f10c8b-15de-48ae-b777-800f48e3ab7a"
+                "message": "указанная локация не найдена"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
 components:
   schemas:
     LoginWith2FA:
@@ -29178,6 +29566,44 @@ components:
           token: 
             type: string
             example: "51|ifC5eqpEwxs230qgOYx45zAekEPK8tjaGNuZTGPMfd6a0cea"
+    PriorityLocationsError:
+      type: object
+      description: Ошибка - пересечение локаций приоритета
+      properties:
+        code:
+          type: integer
+          example: 400
+        status:
+          type: string
+          example: "Bad Request"
+        success: 
+          type: boolean
+          example: false
+        request_id: 
+          type: string
+          example: ef2aa2a2-d2e8-489b-ba4f-23928b4c477a
+        message:
+          type: string
+          example: "Пересечение локаций приоритета"
+    PriorityPercentageError:
+      type: object
+      description: Ошибка - сумма процентов не равна 100%
+      properties:
+        code:
+          type: integer
+          example: 400
+        status:
+          type: string
+          example: "Bad Request"
+        success: 
+          type: boolean
+          example: false
+        request_id: 
+          type: string
+          example: ef2aa2a2-d2e8-489b-ba4f-23928b4c477a
+        message:
+          type: string
+          example: "Сумма процентов не равна 100%"
   securitySchemes:
     bearerAuth:
       type: http
