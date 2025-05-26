@@ -28649,7 +28649,7 @@ paths:
     delete:
       tags:
         - Шаблоны
-      summary: Изменить шаблон
+      summary: Удалить шаблон
       security:
         - bearerAuth: []
       parameters:
@@ -28692,6 +28692,216 @@ paths:
                 "request_id": "c577c900-a94d-4681-9f84-3b05371186fc"
                 "message": "Требуемый ресурс не найден"
                 "data": []    
+  /api/v1/geos:
+    get:
+      tags:
+        - География
+      summary: Получить список локаций с фильтрами
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID локации
+        - in: query
+          name: filter[parent_id]
+          required: false
+          schema:
+            type: integer
+          description: Поиск по непосредственной родительской локации, т.е. только на 1 уровень выше.
+        - in: query
+          name: filter[name]
+          required: false
+          schema:
+            type: string
+          description: Поиск по названию локаций (точное совпадение)
+        - in: query
+          name: filter[type]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по типу (для нескольких типов можно указать их через запятую)
+        - in: query
+          name: filter[like]
+          required: false
+          schema:
+            type: string
+          description: Поиск по части или полному совпадению с текстом 
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: string
+          description: Сортировка. Через запятую порядок сортировки. Если минус - обратная сортировка.
+      responses:
+        '200':
+          description: Успешый ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "97f2d68b-7e53-4a34-82ea-13d94df18e5c"
+                "data":
+                  "geos":
+                      "77":
+                        "id": 77
+                        "parent_id": 54
+                        "type": "region"
+                        "name": "Свердловская обл"
+                        "kladr": "6600000000000"
+                        "fias": "92b30014-4d52-4e2e-892d-928142b924bf"
+                        "zip": null
+                        "created_at": "2023-11-08T15:03:08+03:00"
+                        "updated_at": "2024-05-03T15:56:35+03:00"
+                      "79":
+                        "id": 79
+                        "parent_id": 18
+                        "type": "region"
+                        "name": "Хабаровский край"
+                        "kladr": "2700000000000"
+                        "fias": "7d468b39-1afa-41ec-8c4f-97a8603cb3d4"
+                        "zip": null
+                        "created_at": "2023-11-08T15:03:08+03:00"
+                        "updated_at": "2024-05-03T15:56:35+03:00"
+                      "179":
+                        "id": 179
+                        "parent_id": 77
+                        "type": "city"
+                        "name": "Сухой Лог"
+                        "kladr": "6602400100000"
+                        "fias": "9e41e6fc-a2a3-4ee4-9f60-045cf22d45d0"
+                        "zip": 624800
+                        "created_at": "2023-11-08T15:03:19+03:00"
+                        "updated_at": "2024-05-03T11:59:58+03:00"
+                      "279":
+                        "id": 279
+                        "parent_id": 87
+                        "type": "city"
+                        "name": "Пугачев"
+                        "kladr": "6400001000000"
+                        "fias": "c1d4d969-0083-4b04-9f4b-e9eaeaefbd6f"
+                        "zip": 413720
+                        "created_at": "2023-11-08T15:03:27+03:00"
+                        "updated_at": "2024-05-03T12:00:11+03:00"
+                      "379":
+                        "id": 379
+                        "parent_id": 53
+                        "type": "city"
+                        "name": "Колпино"
+                        "kladr": "7800000300000"
+                        "fias": "1e11a121-81c4-4b66-b11c-da8f47db2e1d"
+                        "zip": 196650
+                        "created_at": "2023-11-08T15:03:37+03:00"
+                        "updated_at": "2025-02-28T12:20:30+03:00"
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/geos?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": null
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                    "current_page": 1
+                    "first_page_url": "https://dev-vz-api.3owls.su/api/v1/geos?page=1"
+                    "from": 1
+                    "last_page": 1
+                    "last_page_url": "https://dev-vz-api.3owls.su/api/v1/geos?page=1"
+                    "next_page_url": null
+                    "path": "https://dev-vz-api.3owls.su/api/v1/geos"
+                    "per_page": 500
+                    "prev_page_url": null
+                    "to": 5
+                    "total": 5
+                  "parent_geos":
+                    "18":
+                      "id": 18
+                      "parent_id": null
+                      "type": "federal"
+                      "name": "Дальневосточный федеральный округ"
+                      "kladr": null
+                      "fias": null
+                      "zip": null
+                      "created_at": null
+                      "updated_at": null
+                    "53":
+                      "id": 53
+                      "parent_id": 31
+                      "type": "region"
+                      "name": "г Санкт-Петербург"
+                      "kladr": "7800000000000"
+                      "fias": null
+                      "zip": null
+                      "created_at": null
+                      "updated_at": null
+                    "54":
+                      "id": 54
+                      "parent_id": null
+                      "type": "federal"
+                      "name": "Уральский федеральный округ"
+                      "kladr": null
+                      "fias": null
+                      "zip": null
+                      "created_at": null
+                      "updated_at": null
+                    "77":
+                      "id": 77
+                      "parent_id": 54
+                      "type": "region"
+                      "name": "Свердловская обл"
+                      "kladr": "6600000000000"
+                      "fias": null
+                      "zip": null
+                      "created_at": null
+                      "updated_at": null
+                    "87":
+                      "id": 87
+                      "parent_id": 36
+                      "type": "region"
+                      "name": "Саратовская обл"
+                      "kladr": "6400000000000"
+                      "fias": null
+                      "zip": null
+                      "created_at": null
+                      "updated_at": null
+                    "31":
+                      "id": 31
+                      "parent_id": null
+                      "type": "federal"
+                      "name": "Северо-Западный федеральный округ"
+                      "kladr": null
+                      "fias": null
+                      "zip": null
+                      "created_at": null
+                      "updated_at": null
+                    "36":
+                      "id": 36
+                      "parent_id": null
+                      "type": "federal"
+                      "name": "Приволжский федеральный округ"
+                      "kladr": null
+                      "fias": null
+                      "zip": null
+                      "created_at": null
+                      "updated_at": null
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
 components:
   schemas:
     LoginWith2FA:
