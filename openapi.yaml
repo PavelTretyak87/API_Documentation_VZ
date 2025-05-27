@@ -28737,7 +28737,7 @@ paths:
           required: false
           schema:
             type: string
-          description: Сортировка. Через запятую порядок сортировки. Если минус - обратная сортировка.
+          description: Сортировка (id, parent_id, type, name). Через запятую порядок сортировки. Если минус - обратная сортировка.
       responses:
         '200':
           description: Успешый ответ
@@ -29002,7 +29002,7 @@ paths:
     post:
       tags:
         - Приоритеты
-      summary: Список приоритетов пользователя
+      summary: Создать приоритет
       security:
         - bearerAuth: []
       requestBody:
@@ -29072,7 +29072,7 @@ paths:
                     request_id: 3038baba-afad-4573-b7ea-38d0a9138294
                     message: Пересечение локаций приоритета
                 PriorityPercentageError:
-                  summary: Ответ без 2ФА
+                  summary: Ответ при сумме процентов не равной 100%
                   value:
                     code: 400
                     status: Bad Request
@@ -29290,6 +29290,549 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": []
+  /api/v1/company/{company_id}/auth/create:
+    post:
+      tags:
+        - Работа с клиент-админом
+      summary: Получить ссылку для активации аккаунта
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+              type: integer
+          description: ID клиента
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  description:  Е-мейл адрес, на который отправить ссылку для активации аккаунта клиент-админа
+                  example: ""
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "00061081-56bf-48b6-8453-60db41188fcc"
+                "message": "Ссылка на сброс пароля была отправлена."  
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "7ad17ff6-2325-4e87-b96c-dd4c43efb75b"
+                "message": "У компании уже есть пользователь с правами \"client_admin\"|Поле email адрес обязательно.|"
+                "data":
+                  - "У компании уже есть пользователь с правами \"client_admin\""
+                  - "Поле email адрес обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []   
+  /api/v1/company/{company_id}/auth/update:
+    post:
+      tags:
+        - Работа с клиент-админом
+      summary: Обновить email клиент-админа
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+              type: integer
+          description: ID клиента
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  description:  Е-мейл адрес, на который отправить ссылку для активации аккаунта клиент-админа
+                  example: ""
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "00061081-56bf-48b6-8453-60db41188fcc"
+                "message": "Ссылка на сброс пароля была отправлена."  
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "7ad17ff6-2325-4e87-b96c-dd4c43efb75b"
+                "message": "Поле email адрес обязательно.|"
+                "data":
+                  - "Поле email адрес обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []  
+  /api/v1/company/{company_id}/auth:
+    get:
+      tags:
+        - Работа с клиент-админом
+      summary: Просмотр клиент-админа для выбранного клиента
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+              type: integer
+          description: ID клиента
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "2a885d6a-3621-4081-8947-3f48b3309446"
+                "data":
+                  "user": 
+                    "id": 7358
+                    "name": "test swagger"
+                    "position": null
+                    "subunit": null
+                    "email": "paveltretyak87@icloud.com"
+                    "phone": null
+                    "company_id": 4529
+                    "roles":
+                      "3": "client_admin"
+                      "5": "client_templates"
+                      "8": "client_reference"
+                      "9": "client_priorities"
+                      "20": "client_claims"
+                      "21": "client_claims_orders"
+                      "22": "client_claims_orders_orders"
+                      "23": "client_claims_orders_payments"
+                      "32": "client_finance"
+                      "33": "client_finance_registries"
+                      "34": "client_finance_acts"
+                      "40": "client_admin_page"
+                      "41": "client_admin_technical"
+                      "42": "client_admin_management"
+                      "43": "client_admin_manager"
+                    "login": null
+                    "status": 1
+                    "two_factor_auth": 0
+                    "permissions":
+                      "1": "analytic"
+                      "3": "priority"
+                      "5": "get_priorities"
+                      "6": "get_priority"
+                      "7": "delete_priority"
+                      "8": "create_priority"
+                      "9": "edit_priority"
+                      "10": "get_props"
+                      "11": "create_prop"
+                      "12": "delete_prop"
+                      "13": "get_templates"
+                      "14": "get_template"
+                      "15": "create_template"
+                      "16": "edit_template"
+                      "17": "delete_template"
+                      "19": "get_template_statistic"
+                      "20": "create_template_check"
+                      "21": "get_order_info"
+                      "22": "get_orders"
+                      "23": "get_orders_by_deliveries"
+                      "24": "get_companies_list"
+                      "25": "create_company"
+                      "26": "get_company"
+                      "27": "edit_company"
+                      "28": "delete_company"
+                      "29": "get_payment_systems_list"
+                      "30": "create_payment_system"
+                      "31": "get_payment_system"
+                      "32": "edit_payment_system"
+                      "33": "delete_payment_system"
+                      "34": "get_company_settings_list"
+                      "35": "create_company_setting"
+                      "36": "get_company_setting"
+                      "37": "edit_company_setting"
+                      "38": "delete_company_setting"
+                      "39": "get_role_permission_list"
+                      "40": "get_users_list"
+                      "41": "create_user"
+                      "42": "get_user"
+                      "43": "edit_user"
+                      "44": "delete_user"
+                      "45": "create_user_group_action"
+                      "46": "get_company_payment_system"
+                      "47": "create_company_payment_system"
+                      "48": "get_company_deliveries_list"
+                      "49": "create_company_delivery"
+                      "50": "get_company_delivery"
+                      "51": "edit_company_delivery"
+                      "52": "delete_company_delivery"
+                      "53": "get_delivery_systems"
+                      "54": "get_company_delivery_system"
+                      "55": "create_company_delivery_system"
+                      "56": "create_delivery_calculate"
+                      "57": "get_passwords_list"
+                      "58": "create_password"
+                      "59": "get_password"
+                      "60": "edit_password"
+                      "61": "delete_password"
+                      "62": "get_registries_export"
+                      "63": "create_registries"
+                      "64": "get_registries_list"
+                      "65": "get_registry_id"
+                      "70": "get_registry_download"
+                      "71": "get_registry_errors"
+                      "72": "get_registry_errors_update"
+                      "73": "get_acts"
+                      "75": "get_acts_download"
+                      "76": "get_act_download_execute"
+                      "77": "get_act_download_agency_free"
+                      "78": "get_act_id"
+                      "83": "get_directories_list"
+                      "85": "get_directory"
+                      "88": "get_fields_list"
+                      "89": "create_field"
+                      "90": "get_field_id"
+                      "91": "edit_field"
+                      "92": "delete_field"
+                      "93": "access_fields_upload"
+                      "94": "get_custom_fields"
+                      "95": "create_custom_field"
+                      "96": "get_custom_field_id"
+                      "97": "edit_custom_field_id"
+                      "98": "delete_custom_field"
+                      "99": "get_custom_fields_list_info"
+                      "100": "create_custom_field_union"
+                      "101": "delete_custom_field_union"
+                      "102": "get_custom_field_group_id"
+                      "103": "create_custom_field_group"
+                      "104": "delete_custom_field_group_id"
+                      "105": "create_custom_field_group_str"
+                      "106": "delete_custom_field_group_str"
+                      "107": "get_file_download"
+                      "108": "get_file_id"
+                      "109": "get_claims_list"
+                      "114": "create_claim"
+                      "115": "create_template_find"
+                      "116": "get_accesses"
+                      "129": "create_warehouses"
+                      "130": "get_warehouses_types"
+                      "131": "show_warehouses"
+                      "132": "delete_warehouse"
+                      "133": "edit_warehouse"
+                      "134": "get_warehouse"
+                      "135": "get_warehouses"
+                    "created_at": "2025-05-27T09:45:33+03:00"
+                    "updated_at": "2025-05-27T10:04:13+03:00"
+                    "deleted_at": null
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка - клиент не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "05e8e36e-6bc4-4e60-89e2-66c5f80f719d"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+  /api/v1/company/set_password:
+    post:
+      tags:
+        - Работа с клиент-админом
+      summary: Задать пароль для клиент-админа
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - email
+                - token
+                - password
+                - password_confirmation
+              properties:
+                email:
+                  type: string
+                  description:  Е-мейл адрес клиент-админа
+                  example: ""
+                token:
+                  type: string
+                  description: Токен - берется из письма
+                  example: ""
+                password:
+                  type: string
+                  description: Пароль
+                  example: ""
+                password_confirmation:
+                  type: string
+                  description: Подтверждение пароля
+                  example: ""
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "4d594ecf-66a5-44d2-ad1c-efad34a03913"
+                "message": "Ваш пароль был сброшен."
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "d82f3dc0-c326-4878-8d3d-96f5be704fc5"
+                "message": "Значение поля пароль не совпадает с подтверждаемым.|"
+                "data":
+                  - "Значение поля пароль не совпадает с подтверждаемым."
+  /api/v1/company/{company_id}/auth/delete:
+    post:
+      tags:
+        - Работа с клиент-админом
+      summary: Удалить клиент-админа для выбранного клиента
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+              type: integer
+          description: ID клиента
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "b44e9d6f-eb9c-471d-a3c8-de885803e8c8"
+                "data":
+                  "user":
+                    "id": 7358
+                    "name": "test swagger"
+                    "position": null
+                    "subunit": null
+                    "email": "pasdasd44@icloud.com"
+                    "phone": null
+                    "company_id": 4529
+                    "roles":
+                      "3": "client_admin"
+                      "5": "client_templates"
+                      "8": "client_reference"
+                      "9": "client_priorities"
+                      "20": "client_claims"
+                      "21": "client_claims_orders"
+                      "22": "client_claims_orders_orders"
+                      "23": "client_claims_orders_payments"
+                      "32": "client_finance"
+                      "33": "client_finance_registries"
+                      "34": "client_finance_acts"
+                      "40": "client_admin_page"
+                      "41": "client_admin_technical"
+                      "42": "client_admin_management"
+                      "43": "client_admin_manager"
+                    "login": null
+                    "status": 0
+                    "two_factor_auth": 0
+                    "permissions":
+                      "1": "analytic"
+                      "3": "priority"
+                      "5": "get_priorities"
+                      "6": "get_priority"
+                      "7": "delete_priority"
+                      "8": "create_priority"
+                      "9": "edit_priority"
+                      "10": "get_props"
+                      "11": "create_prop"
+                      "12": "delete_prop"
+                      "13": "get_templates"
+                      "14": "get_template"
+                      "15": "create_template"
+                      "16": "edit_template"
+                      "17": "delete_template"
+                      "19": "get_template_statistic"
+                      "20": "create_template_check"
+                      "21": "get_order_info"
+                      "22": "get_orders"
+                      "23": "get_orders_by_deliveries"
+                      "24": "get_companies_list"
+                      "25": "create_company"
+                      "26": "get_company"
+                      "27": "edit_company"
+                      "28": "delete_company"
+                      "29": "get_payment_systems_list"
+                      "30": "create_payment_system"
+                      "31": "get_payment_system"
+                      "32": "edit_payment_system"
+                      "33": "delete_payment_system"
+                      "34": "get_company_settings_list"
+                      "35": "create_company_setting"
+                      "36": "get_company_setting"
+                      "37": "edit_company_setting"
+                      "38": "delete_company_setting"
+                      "39": "get_role_permission_list"
+                      "40": "get_users_list"
+                      "41": "create_user"
+                      "42": "get_user"
+                      "43": "edit_user"
+                      "44": "delete_user"
+                      "45": "create_user_group_action"
+                      "46": "get_company_payment_system"
+                      "47": "create_company_payment_system"
+                      "48": "get_company_deliveries_list"
+                      "49": "create_company_delivery"
+                      "50": "get_company_delivery"
+                      "51": "edit_company_delivery"
+                      "52": "delete_company_delivery"
+                      "53": "get_delivery_systems"
+                      "54": "get_company_delivery_system"
+                      "55": "create_company_delivery_system"
+                      "56": "create_delivery_calculate"
+                      "57": "get_passwords_list"
+                      "58": "create_password"
+                      "59": "get_password"
+                      "60": "edit_password"
+                      "61": "delete_password"
+                      "62": "get_registries_export"
+                      "63": "create_registries"
+                      "64": "get_registries_list"
+                      "65": "get_registry_id"
+                      "70": "get_registry_download"
+                      "71": "get_registry_errors"
+                      "72": "get_registry_errors_update"
+                      "73": "get_acts"
+                      "75": "get_acts_download"
+                      "76": "get_act_download_execute"
+                      "77": "get_act_download_agency_free"
+                      "78": "get_act_id"
+                      "83": "get_directories_list"
+                      "85": "get_directory"
+                      "88": "get_fields_list"
+                      "89": "create_field"
+                      "90": "get_field_id"
+                      "91": "edit_field"
+                      "92": "delete_field"
+                      "93": "access_fields_upload"
+                      "94": "get_custom_fields"
+                      "95": "create_custom_field"
+                      "96": "get_custom_field_id"
+                      "97": "edit_custom_field_id"
+                      "98": "delete_custom_field"
+                      "99": "get_custom_fields_list_info"
+                      "100": "create_custom_field_union"
+                      "101": "delete_custom_field_union"
+                      "102": "get_custom_field_group_id"
+                      "103": "create_custom_field_group"
+                      "104": "delete_custom_field_group_id"
+                      "105": "create_custom_field_group_str"
+                      "106": "delete_custom_field_group_str"
+                      "107": "get_file_download"
+                      "108": "get_file_id"
+                      "109": "get_claims_list"
+                      "114": "create_claim"
+                      "115": "create_template_find"
+                      "116": "get_accesses"
+                      "129": "create_warehouses"
+                      "130": "get_warehouses_types"
+                      "131": "show_warehouses"
+                      "132": "delete_warehouse"
+                      "133": "edit_warehouse"
+                      "134": "get_warehouse"
+                      "135": "get_warehouses"
+                    "created_at": "2025-05-27T09:45:33+03:00"
+                    "updated_at": "2025-05-27T10:44:47+03:00"
+                    "deleted_at": null
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка в запросе - клиент не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false,
+                "request_id": "0b73835a-f269-401f-8107-7366063b79a0"
+                "message": "Требуемый ресурс не найден"
+                "data": []        
 components:
   schemas:
     LoginWith2FA:
