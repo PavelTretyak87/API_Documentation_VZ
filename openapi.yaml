@@ -30487,6 +30487,1308 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": []
+  /api/v1/company_deliveries/create:
+    post:
+      tags:
+        - Настройка СД для клиента
+      summary: Создать
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - company_id
+                - delivery_id
+              properties:
+                company_id:
+                  type: integer
+                  description: ID клиента
+                  example: ""
+                delivery_id:
+                  type: integer
+                  description: ID службы доставки
+                  example: ""
+                login:
+                  type: string
+                  description: Логин от подключения к СД
+                  example: ""
+                password:
+                  type: string
+                  description: Пароль от подключения к СД
+                  example: ""
+                tariff_acquiring_cash:
+                  type: integer
+                  description: Тариф по эквайрингу за наличный расчет
+                  example: ""
+                  nullable: true
+                tariff_acquiring_card:
+                  type: integer
+                  description: Тариф по эквайрингу за оплату картой
+                  example: ""
+                  nullable: true
+                tariff_acquiring_sbp:
+                  type: integer
+                  description: Тариф по эквайрингу за оплату по СБП
+                  example: ""
+                  nullable: true
+                tariff_acquiring_average:
+                  type: integer
+                  description: Среднее значение тарифа по эквайрингу
+                  example: ""
+                  nullable: true
+                is_active:
+                  type: integer
+                  description: Готовность к подключению (1 - да, 0 - нет)
+                  example: ""
+                  nullable: true
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "bdc214a8-1bb4-4bdb-9674-cbb000c3d99c"
+                "data":
+                  "company_delivery":
+                    "id": 67
+                    "company_id": 4529
+                    "delivery_id": 2
+                    "password_id": 70
+                    "tariff_acquiring_cash": null
+                    "tariff_acquiring_card": null
+                    "tariff_acquiring_sbp": null
+                    "tariff_acquiring_average": null
+                    "is_active": true
+                    "registry_email": null
+                    "types":
+                      - "id": 157
+                        "company_delivery_id": 67
+                        "is_active": false
+                        "created_at": "2025-05-27T14:26:21+03:00"
+                        "updated_at": "2025-05-27T14:26:21+03:00"
+                        "deleted_at": null
+                        "company_delivery_rule": null
+                        "delivery_type":
+                          "id": 3
+                          "delivery_id": 2
+                          "type": "curier"
+                          "max_width": 1200
+                          "max_length": 1200
+                          "max_height": 1200
+                          "max_weight": 15000
+                          "max_delivery_time": 15
+                          "max_side": 1200
+                          "max_sum_sides": 2500
+                          "max_cost": 300000
+                          "max_np": 300000
+                          "storage": 14
+                          "deadline_searches": 45
+                          "is_mobile": false
+                          "tariff_type": "4"
+                          "tariff_code": ""
+                          "created_at": "2024-08-16T11:49:16+03:00"
+                          "updated_at": "2025-03-12T15:49:33+03:00"
+                          "deleted_at": null
+                      - "id": 158
+                        "company_delivery_id": 67
+                        "is_active": false
+                        "created_at": "2025-05-27T14:26:21+03:00"
+                        "updated_at": "2025-05-27T14:26:21+03:00"
+                        "deleted_at": null
+                        "company_delivery_rule": null
+                        "delivery_type":
+                          "id": 4
+                          "delivery_id": 2
+                          "type": "pvz"
+                          "max_width": 1200
+                          "max_length": 1200
+                          "max_height": 1200
+                          "max_weight": 15000
+                          "max_delivery_time": 15
+                          "max_side": 1200
+                          "max_sum_sides": 2500
+                          "max_cost": 300000
+                          "max_np": 300000
+                          "storage": 14
+                          "deadline_searches": 45
+                          "is_mobile": false
+                          "tariff_type": "4"
+                          "tariff_code": ""
+                          "created_at": "2024-08-16T11:49:16+03:00"
+                          "updated_at": "2025-03-12T15:49:33+03:00"
+                          "deleted_at": null
+                    "delivery":
+                      "id": 2
+                      "code": "boxberry"
+                      "name": "BoxBerry"
+                      "is_active": true
+                      "image_id": null
+                      "with_nds": true
+                      "tariff_insurance": 0.5
+                      "tariff_acquiring_card": 2.3
+                      "tariff_acquiring_cash": 1.6
+                      "tariff_acquiring_sbp": 0
+                      "tariff_acquiring_average": 1.95
+                      "tariff_return": 50
+                      "wait_registry": 1
+                      "add_weekend_wait_registry": 1
+                      "add_weekend_max_delivery_time": 0
+                      "add_weekend_storage": 0
+                      "add_weekend_deadline_searches": 0
+                      "add_weekend_calc": 0
+                      "redemption_rub": 80
+                      "redemption_count": 83
+                      "types":
+                        - "id": 3
+                          "delivery_id": 2
+                          "type": "curier"
+                          "max_width": 1200
+                          "max_length": 1200
+                          "max_height": 1200
+                          "max_weight": 15000
+                          "max_delivery_time": 15
+                          "max_side": 1200
+                          "max_sum_sides": 2500
+                          "max_cost": 300000
+                          "max_np": 300000
+                          "storage": 14
+                          "deadline_searches": 45
+                          "is_mobile": false
+                          "tariff_type": "4"
+                          "tariff_code": ""
+                          "created_at": "2024-08-16T11:49:16+03:00"
+                          "updated_at": "2025-03-12T15:49:33+03:00"
+                          "deleted_at": null
+                        - "id": 4
+                          "delivery_id": 2
+                          "type": "pvz"
+                          "max_width": 1200
+                          "max_length": 1200
+                          "max_height": 1200
+                          "max_weight": 15000
+                          "max_delivery_time": 15
+                          "max_side": 1200
+                          "max_sum_sides": 2500
+                          "max_cost": 300000
+                          "max_np": 300000
+                          "storage": 14
+                          "deadline_searches": 45
+                          "is_mobile": false
+                          "tariff_type": "4"
+                          "tariff_code": ""
+                          "created_at": "2024-08-16T11:49:16+03:00"
+                          "updated_at": "2025-03-12T15:49:33+03:00"
+                          "deleted_at": null
+                      "deleted_at": null
+                      "pass_inputs":
+                        - "name": "password"
+                          "title": "API токен"
+                    "password":
+                      "password": "dghfgjh"
+                      "type": "delivery_boxberry"
+                      "login": "sdfsd"
+                      "additional": null
+                      "title": null
+                      "company_id": 4529  
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "af14c4ea-dc26-4a8b-926d-328da8f41070"
+                "message": "Данная служба доставки уже имеет связь с данной компанией"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []         
+  /api/v1/company_deliveries/{company_delivery_id}:
+    post:
+      tags:
+        - Настройка СД для клиента
+      summary: Обновить
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_delivery_id
+          required: true
+          schema:
+              type: integer
+          description: ID настройки СД
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                login:
+                  type: string
+                  description: Логин от подключения к СД
+                  example: ""
+                password:
+                  type: string
+                  description: Пароль от подключения к СД
+                  example: ""
+                tariff_acquiring_cash:
+                  type: integer
+                  description: Тариф по эквайрингу за наличный расчет
+                  example: ""
+                  nullable: true
+                tariff_acquiring_card:
+                  type: integer
+                  description: Тариф по эквайрингу за оплату картой
+                  example: ""
+                  nullable: true
+                tariff_acquiring_sbp:
+                  type: integer
+                  description: Тариф по эквайрингу за оплату по СБП
+                  example: ""
+                  nullable: true
+                tariff_acquiring_average:
+                  type: integer
+                  description: Среднее значение тарифа по эквайрингу
+                  example: ""
+                  nullable: true
+                is_active:
+                  type: integer
+                  description: Готовность к подключению (1 - да, 0 - нет)
+                  example: ""
+                  nullable: true 
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "91fbd659-8511-48d4-a9ba-ba6b2659d7fb"
+                "data":
+                  "company_delivery":
+                    "id": 67
+                    "company_id": 4529
+                    "delivery_id": 2
+                    "password_id": 70
+                    "tariff_acquiring_cash": 500
+                    "tariff_acquiring_card": 501
+                    "tariff_acquiring_sbp": 502
+                    "tariff_acquiring_average": 503
+                    "is_active": true
+                    "registry_email": null
+                    "types":
+                      - "id": 157
+                        "company_delivery_id": 67
+                        "is_active": false
+                        "created_at": "2025-05-27T14:26:21+03:00"
+                        "updated_at": "2025-05-27T14:26:21+03:00"
+                        "deleted_at": null
+                        "company_delivery_rule": null
+                        "delivery_type":
+                          "id": 3
+                          "delivery_id": 2
+                          "type": "curier"
+                          "max_width": 1200
+                          "max_length": 1200
+                          "max_height": 1200
+                          "max_weight": 15000
+                          "max_delivery_time": 15
+                          "max_side": 1200
+                          "max_sum_sides": 2500
+                          "max_cost": 300000
+                          "max_np": 300000
+                          "storage": 14
+                          "deadline_searches": 45
+                          "is_mobile": false
+                          "tariff_type": "4"
+                          "tariff_code": ""
+                          "created_at": "2024-08-16T11:49:16+03:00"
+                          "updated_at": "2025-03-12T15:49:33+03:00"
+                          "deleted_at": null
+                      - "id": 158
+                        "company_delivery_id": 67
+                        "is_active": false
+                        "created_at": "2025-05-27T14:26:21+03:00"
+                        "updated_at": "2025-05-27T14:26:21+03:00"
+                        "deleted_at": null
+                        "company_delivery_rule": null
+                        "delivery_type":
+                          "id": 4
+                          "delivery_id": 2
+                          "type": "pvz"
+                          "max_width": 1200
+                          "max_length": 1200
+                          "max_height": 1200
+                          "max_weight": 15000
+                          "max_delivery_time": 15
+                          "max_side": 1200
+                          "max_sum_sides": 2500
+                          "max_cost": 300000
+                          "max_np": 300000
+                          "storage": 14
+                          "deadline_searches": 45
+                          "is_mobile": false
+                          "tariff_type": "4"
+                          "tariff_code": ""
+                          "created_at": "2024-08-16T11:49:16+03:00"
+                          "updated_at": "2025-03-12T15:49:33+03:00"
+                          "deleted_at": null
+                    "delivery":
+                      "id": 2
+                      "code": "boxberry"
+                      "name": "BoxBerry"
+                      "is_active": true
+                      "image_id": null
+                      "with_nds": true
+                      "tariff_insurance": 0.5
+                      "tariff_acquiring_card": 2.3
+                      "tariff_acquiring_cash": 1.6
+                      "tariff_acquiring_sbp": 0
+                      "tariff_acquiring_average": 1.95
+                      "tariff_return": 50
+                      "wait_registry": 1
+                      "add_weekend_wait_registry": 1
+                      "add_weekend_max_delivery_time": 0
+                      "add_weekend_storage": 0
+                      "add_weekend_deadline_searches": 0
+                      "add_weekend_calc": 0
+                      "redemption_rub": 80
+                      "redemption_count": 83
+                      "types": 
+                        - "id": 3
+                          "delivery_id": 2
+                          "type": "curier"
+                          "max_width": 1200
+                          "max_length": 1200
+                          "max_height": 1200
+                          "max_weight": 15000
+                          "max_delivery_time": 15
+                          "max_side": 1200
+                          "max_sum_sides": 2500
+                          "max_cost": 300000
+                          "max_np": 300000
+                          "storage": 14
+                          "deadline_searches": 45
+                          "is_mobile": false
+                          "tariff_type": "4"
+                          "tariff_code": ""
+                          "created_at": "2024-08-16T11:49:16+03:00"
+                          "updated_at": "2025-03-12T15:49:33+03:00"
+                          "deleted_at": null
+                        - "id": 4
+                          "delivery_id": 2
+                          "type": "pvz"
+                          "max_width": 1200
+                          "max_length": 1200
+                          "max_height": 1200
+                          "max_weight": 15000
+                          "max_delivery_time": 15
+                          "max_side": 1200
+                          "max_sum_sides": 2500
+                          "max_cost": 300000
+                          "max_np": 300000
+                          "storage": 14
+                          "deadline_searches": 45
+                          "is_mobile": false
+                          "tariff_type": "4"
+                          "tariff_code": ""
+                          "created_at": "2024-08-16T11:49:16+03:00"
+                          "updated_at": "2025-03-12T15:49:33+03:00"
+                          "deleted_at": null
+                      "deleted_at": null
+                      "pass_inputs":
+                        - "name": "password"
+                          "title": "API токен"
+                    "password":
+                      "password": "ghkhjk"
+                      "type": "delivery_boxberry"
+                      "login": "sdfdfg"
+                      "additional": null
+                      "title": null
+                      "company_id": 4529
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "b5f9c0ff-9e11-42f7-9f29-2e999e241afd"
+                "message": "Значение поля id не существует.|"
+                "data":
+                  - "Значение поля id не существует."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/company_deliveries:
+    get:
+      tags:
+        - Настройка СД для клиента
+      summary: Список настроек с фильтрами
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[id]
+          required: true
+          schema:
+              type: integer
+          description: Фильтр по ID настройки СД
+        - in: query
+          name: filter[delivery_id]
+          required: true
+          schema:
+              type: integer
+          description: Фильтр по ID службы доставки
+        - in: query
+          name: filter[company_id]
+          required: true
+          schema:
+              type: integer
+          description: Фильтр по ID клиента
+        - in: query
+          name: sort
+          required: true
+          schema:
+              type: integer
+          description: Сортировка (id, company_name, delivery_name)
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "cf374ab1-f369-4b5c-a1a7-a24073571fa0"
+                "data":
+                  "company_deliveries":
+                    - "id": 40
+                      "company_id": 57
+                      "delivery_id": 1
+                      "password_id": 52
+                      "tariff_acquiring_cash": null
+                      "tariff_acquiring_card": null
+                      "tariff_acquiring_sbp": null
+                      "tariff_acquiring_average": null
+                      "is_active": true
+                      "registry_email": null
+                      "types":
+                        - "id": 105
+                          "company_delivery_id": 40
+                          "is_active": false
+                          "created_at": "2024-12-24T13:21:44+03:00"
+                          "updated_at": "2024-12-24T13:21:44+03:00"
+                          "deleted_at": null
+                          "company_delivery_rule":
+                            "id": 32
+                            "company_delivery_type_id": 105
+                            "is_all": false
+                            "is_active": false
+                            "created_at": "2025-01-23T10:45:56+03:00"
+                            "updated_at": "2025-01-23T10:45:56+03:00"
+                          "delivery_type":
+                            "id": 1
+                            "delivery_id": 1
+                            "type": "curier"
+                            "max_width": 1000
+                            "max_length": 1000
+                            "max_height": 1000
+                            "max_weight": 30000
+                            "max_delivery_time": 15
+                            "max_side": 1000
+                            "max_sum_sides": 1500
+                            "max_cost": 150000
+                            "max_np": 150000
+                            "storage": 14
+                            "deadline_searches": 45
+                            "is_mobile": false
+                            "tariff_type": "3"
+                            "tariff_code": "137"
+                            "created_at": "2024-08-16T11:49:16+03:00"
+                            "updated_at": "2025-04-04T09:07:47+03:00"
+                            "deleted_at": null
+                        - "id": 106
+                          "company_delivery_id": 40
+                          "is_active": false
+                          "created_at": "2024-12-24T13:21:44+03:00"
+                          "updated_at": "2024-12-24T13:21:44+03:00"
+                          "deleted_at": null
+                          "company_delivery_rule":
+                            "id": 33
+                            "company_delivery_type_id": 106
+                            "is_all": false
+                            "is_active": false
+                            "created_at": "2025-01-23T10:46:05+03:00"
+                            "updated_at": "2025-01-23T10:46:05+03:00"
+                          "delivery_type":
+                            "id": 2
+                            "delivery_id": 1
+                            "type": "pvz"
+                            "max_width": 1000
+                            "max_length": 1000
+                            "max_height": 1000
+                            "max_weight": 30000
+                            "max_delivery_time": 14
+                            "max_side": 1000
+                            "max_sum_sides": 1500
+                            "max_cost": 150000
+                            "max_np": 150000
+                            "storage": 14
+                            "deadline_searches": 45
+                            "is_mobile": false
+                            "tariff_type": "3"
+                            "tariff_code": "136"
+                            "created_at": "2024-08-16T11:49:16+03:00"
+                            "updated_at": "2025-04-04T09:07:47+03:00"
+                            "deleted_at": null
+                      "delivery":
+                        "id": 1
+                        "code": "sdek"
+                        "name": "СДЕК"
+                        "is_active": true
+                        "image_id": 265
+                        "with_nds": true
+                        "tariff_insurance": 0.5
+                        "tariff_acquiring_card": 3
+                        "tariff_acquiring_cash": 1.3
+                        "tariff_acquiring_sbp": 0
+                        "tariff_acquiring_average": 2
+                        "tariff_return": 23
+                        "wait_registry": 5
+                        "add_weekend_wait_registry": 1
+                        "add_weekend_max_delivery_time": 0
+                        "add_weekend_storage": 0
+                        "add_weekend_deadline_searches": 0
+                        "add_weekend_calc": 0
+                        "redemption_rub": 81
+                        "redemption_count": 83
+                        "law_name": "ООО \"СДЭК-ГЛОБАЛ\""
+                        "law_address": "630007, Новосибирская область, город Новосибирск, Кривощековская ул., д. 15 к. 1, этаж 1,2"
+                        "fact_address": "\"111250, Москва, проезд Завода Серп и Молот, 3 корп.2\""
+                        "inn": "7722327689"
+                        "ogrn": "1157746448463"
+                        "kpp": "540601001"
+                        "bank_name": "Филиал «Новосибирский» АО «АЛЬФА-БАНК» г. Новосибирск"
+                        "bank_bik": "045004774"
+                        "bank_rs": "40702810323000003506"
+                        "bank_ks": "30101810600000000774"
+                        "gendir": "Пиксаев Вячеслав Викторович"
+                        "phone": "8 (495) 797-8108"
+                        "contact": "Кузнецова Евгения"
+                        "email": "tender@cdek.ru"
+                        "site": "https://www.cdek.ru/"
+                        "types":
+                          - "id": 1
+                            "delivery_id": 1
+                            "type": "curier"
+                            "max_width": 1000
+                            "max_length": 1000
+                            "max_height": 1000
+                            "max_weight": 30000
+                            "max_delivery_time": 15
+                            "max_side": 1000
+                            "max_sum_sides": 1500
+                            "max_cost": 150000
+                            "max_np": 150000
+                            "storage": 14
+                            "deadline_searches": 45
+                            "is_mobile": false
+                            "tariff_type": "3"
+                            "tariff_code": "137"
+                            "created_at": "2024-08-16T11:49:16+03:00"
+                            "updated_at": "2025-04-04T09:07:47+03:00"
+                            "deleted_at": null
+                          - "id": 2
+                            "delivery_id": 1
+                            "type": "pvz"
+                            "max_width": 1000
+                            "max_length": 1000
+                            "max_height": 1000
+                            "max_weight": 30000
+                            "max_delivery_time": 14
+                            "max_side": 1000
+                            "max_sum_sides": 1500
+                            "max_cost": 150000
+                            "max_np": 150000
+                            "storage": 14
+                            "deadline_searches": 45
+                            "is_mobile": false
+                            "tariff_type": "3"
+                            "tariff_code": "136"
+                            "created_at": "2024-08-16T11:49:16+03:00"
+                            "updated_at": "2025-04-04T09:07:47+03:00"
+                            "deleted_at": null
+                        "deleted_at": null
+                        "pass_inputs":
+                          - "name": "login"
+                            "title": "Логин (client_id)"
+                          - "name": "password"
+                            "title": "Пароль (client_secret)"
+                      "password":
+                        "password": "$2y$10$Jm4jT/Fbj7MJPFPvzn3PjOzGEGH3yYHsx.YBrax0FOb11nTFotssG"
+                        "type": "delivery_sdek"
+                        "login": "undefined"
+                        "additional": null
+                        "title": null
+                        "company_id": 57
+                    - "id": 41
+                      "company_id": 57
+                      "delivery_id": 2
+                      "password_id": 53
+                      "tariff_acquiring_cash": null
+                      "tariff_acquiring_card": null
+                      "tariff_acquiring_sbp": null
+                      "tariff_acquiring_average": null
+                      "is_active": false
+                      "registry_email": null
+                      "types":
+                        - "id": 107
+                          "company_delivery_id": 41
+                          "is_active": false
+                          "created_at": "2024-12-24T13:32:59+03:00"
+                          "updated_at": "2025-03-12T15:49:33+03:00"
+                          "deleted_at": null
+                          "company_delivery_rule":
+                            "id": 34
+                            "company_delivery_type_id": 107
+                            "is_all": false
+                            "is_active": false
+                            "created_at": "2025-01-23T10:46:11+03:00"
+                            "updated_at": "2025-01-23T10:46:11+03:00"
+                          "delivery_type":
+                            "id": 3
+                            "delivery_id": 2
+                            "type": "curier"
+                            "max_width": 1200
+                            "max_length": 1200
+                            "max_height": 1200
+                            "max_weight": 15000
+                            "max_delivery_time": 15
+                            "max_side": 1200
+                            "max_sum_sides": 2500
+                            "max_cost": 300000
+                            "max_np": 300000
+                            "storage": 14
+                            "deadline_searches": 45
+                            "is_mobile": false
+                            "tariff_type": "4"
+                            "tariff_code": ""
+                            "created_at": "2024-08-16T11:49:16+03:00"
+                            "updated_at": "2025-03-12T15:49:33+03:00"
+                            "deleted_at": null
+                        - "id": 108
+                          "company_delivery_id": 41
+                          "is_active": false
+                          "created_at": "2024-12-24T13:32:59+03:00"
+                          "updated_at": "2025-03-12T15:49:33+03:00"
+                          "deleted_at": null
+                          "company_delivery_rule":
+                            "id": 35
+                            "company_delivery_type_id": 108
+                            "is_all": false
+                            "is_active": false
+                            "created_at": "2025-01-23T10:46:15+03:00"
+                            "updated_at": "2025-01-23T10:46:15+03:00"
+                          "delivery_type":
+                            "id": 4
+                            "delivery_id": 2
+                            "type": "pvz"
+                            "max_width": 1200
+                            "max_length": 1200
+                            "max_height": 1200
+                            "max_weight": 15000
+                            "max_delivery_time": 15
+                            "max_side": 1200
+                            "max_sum_sides": 2500
+                            "max_cost": 300000
+                            "max_np": 300000
+                            "storage": 14
+                            "deadline_searches": 45
+                            "is_mobile": false
+                            "tariff_type": "4"
+                            "tariff_code": ""
+                            "created_at": "2024-08-16T11:49:16+03:00"
+                            "updated_at": "2025-03-12T15:49:33+03:00"
+                            "deleted_at": null
+                      "delivery":
+                        "id": 2
+                        "code": "boxberry"
+                        "name": "BoxBerry"
+                        "is_active": true
+                        "image_id": null
+                        "with_nds": true
+                        "tariff_insurance": 0.5
+                        "tariff_acquiring_card": 2.3
+                        "tariff_acquiring_cash": 1.6
+                        "tariff_acquiring_sbp": 0
+                        "tariff_acquiring_average": 1.95
+                        "tariff_return": 50
+                        "wait_registry": 1
+                        "add_weekend_wait_registry": 1
+                        "add_weekend_max_delivery_time": 0
+                        "add_weekend_storage": 0
+                        "add_weekend_deadline_searches": 0
+                        "add_weekend_calc": 0
+                        "redemption_rub": 80
+                        "redemption_count": 83
+                        "law_name": "ООО \"БОКСБЕРРИ СОФТ\""
+                        "law_address": "\"620100, Россия, Свердловская область,  г. Екатеринбург, ул. Сибирский тракт,  д.12, стр.1, оф 501 \""
+                        "fact_address": "\"620100, Россия, Свердловская область,  г. Екатеринбург, ул. Сибирский тракт,  д.12, стр.1, оф 501\""
+                        "inn": "6685157931"
+                        "ogrn": "1196658000615"
+                        "kpp": "668501001"
+                        "bank_name": "УРАЛЬСКИЙ ФИЛИАЛ АО \"РАЙФФАЙЗЕНБАНК\" г. Екатеринбург"
+                        "bank_bik": "046577906"
+                        "bank_rs": "40702810104000022703"
+                        "bank_ks": "30101810100000000906"
+                        "gendir": "Тагунова Вероника Николаевна"
+                        "phone": "(343) 385-87-24"
+                        "contact": "Пимонова Екатерина"
+                        "email": "e_pimonova@boxberry.ru"
+                        "site": null
+                        "types":
+                          - "id": 3
+                            "delivery_id": 2
+                            "type": "curier"
+                            "max_width": 1200
+                            "max_length": 1200
+                            "max_height": 1200
+                            "max_weight": 15000
+                            "max_delivery_time": 15
+                            "max_side": 1200
+                            "max_sum_sides": 2500
+                            "max_cost": 300000
+                            "max_np": 300000
+                            "storage": 14
+                            "deadline_searches": 45
+                            "is_mobile": false
+                            "tariff_type": "4"
+                            "tariff_code": ""
+                            "created_at": "2024-08-16T11:49:16+03:00"
+                            "updated_at": "2025-03-12T15:49:33+03:00"
+                            "deleted_at": null
+                          - "id": 4
+                            "delivery_id": 2
+                            "type": "pvz"
+                            "max_width": 1200
+                            "max_length": 1200
+                            "max_height": 1200
+                            "max_weight": 15000
+                            "max_delivery_time": 15
+                            "max_side": 1200
+                            "max_sum_sides": 2500
+                            "max_cost": 300000
+                            "max_np": 300000
+                            "storage": 14
+                            "deadline_searches": 45
+                            "is_mobile": false
+                            "tariff_type": "4"
+                            "tariff_code": ""
+                            "created_at": "2024-08-16T11:49:16+03:00"
+                            "updated_at": "2025-03-12T15:49:33+03:00"
+                            "deleted_at": null
+                        "deleted_at": null
+                        "pass_inputs":
+                          - "name": "password"
+                            "title": "API токен"
+                      "password":
+                        "password": "$2y$10$Jm4jT/Fbj7MJPFPvzn3PjOzGEGH3yYHsx.YBrax0FOb11nTFotssG"
+                        "type": "delivery_boxberry"
+                        "login": "undefined"
+                        "additional": null
+                        "title": null
+                        "company_id": 57
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/company_delivery_types:
+    get:
+      tags:
+        - Настройка СД для клиента
+      summary: Список настроек типов СД для клиента с фильтрами
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[id]
+          required: true
+          schema:
+              type: integer
+          description: Фильтр по ID настройки типа СД
+        - in: query
+          name: filter[delivery_id]
+          required: true
+          schema:
+              type: integer
+          description: Фильтр по ID службы доставки
+        - in: query
+          name: filter[company_id]
+          required: true
+          schema:
+              type: integer
+          description: Фильтр по ID клиента
+        - in: query
+          name: filter[delivery_type]
+          required: true
+          schema:
+              type: string
+              enum: [pvz, curier]
+          description: Фильтр по типу доставки (pvz, curier)
+        - in: query
+          name: filter[is_active]
+          required: true
+          schema:
+              type: integer
+          description: Фильтр по включенным/отключенным типам доставок для компании (1 - включенные, 0 - отключенные)
+        - in: query
+          name: filter[ready]
+          required: true
+          schema:
+              type: integer
+          description: Только готовые для включения (или неготовые, если 0)
+        - in: query
+          name: sort
+          required: true
+          schema:
+              type: integer
+          description: Сортировка (company_name, delivery_name, delivery_type)
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "fe3c9eb2-6c20-4136-ad6b-0e99c6cbef82"
+                "data":
+                  "company_delivery_types":
+                    - "id": 1
+                      "company_delivery_id": 1
+                      "is_active": true
+                      "created_at": "2024-08-16T11:49:16+03:00"
+                      "updated_at": "2024-12-24T11:53:55+03:00"
+                      "deleted_at": null
+                      "company_delivery_rule":
+                        "id": 51
+                        "company_delivery_type_id": 1
+                        "is_all": false
+                        "is_active": false
+                        "created_at": "2025-02-03T10:10:02+03:00"
+                        "updated_at": "2025-02-03T10:10:02+03:00"
+                        "geos": []
+                      "delivery_type":
+                        "id": 1
+                        "delivery_id": 1
+                        "type": "curier"
+                        "max_width": 1000
+                        "max_length": 1000
+                        "max_height": 1000
+                        "max_weight": 30000
+                        "max_delivery_time": 15
+                        "max_side": 1000
+                        "max_sum_sides": 1500
+                        "max_cost": 150000
+                        "max_np": 150000
+                        "storage": 14
+                        "deadline_searches": 45
+                        "is_mobile": false
+                        "tariff_type": "3"
+                        "tariff_code": "137"
+                        "created_at": "2024-08-16T11:49:16+03:00"
+                        "updated_at": "2025-04-04T09:07:47+03:00"
+                        "deleted_at": null
+                      "company_delivery":
+                        "id": 1
+                        "company_id": 1
+                        "delivery_id": 1
+                        "password_id": 3
+                        "tariff_acquiring_cash": null
+                        "tariff_acquiring_card": null
+                        "tariff_acquiring_sbp": null
+                        "tariff_acquiring_average": null
+                        "is_active": true
+                        "registry_email": "test1@test1.test15"
+                        "delivery":
+                          "id": 1
+                          "code": "sdek"
+                          "name": "СДЕК"
+                          "is_active": true
+                          "image_id": 265
+                          "with_nds": true
+                          "tariff_insurance": 0.5
+                          "tariff_acquiring_card": 3
+                          "tariff_acquiring_cash": 1.3
+                          "tariff_acquiring_sbp": 0
+                          "tariff_acquiring_average": 2
+                          "tariff_return": 23
+                          "wait_registry": 5
+                          "add_weekend_wait_registry": 1
+                          "add_weekend_max_delivery_time": 0
+                          "add_weekend_storage": 0
+                          "add_weekend_deadline_searches": 0
+                          "add_weekend_calc": 0
+                          "redemption_rub": 81
+                          "redemption_count": 83
+                          "deleted_at": null
+                          "pass_inputs":
+                            - "name": "login"
+                              "title": "Логин (client_id)"
+                            - "name": "password"
+                              "title": "Пароль (client_secret)"
+                    - "id": 3
+                      "company_delivery_id": 1
+                      "is_active": true
+                      "created_at": "2024-08-16T11:49:16+03:00"
+                      "updated_at": "2024-12-24T11:53:55+03:00"
+                      "deleted_at": null
+                      "company_delivery_rule":
+                        "id": 50
+                        "company_delivery_type_id": 3
+                        "is_all": false
+                        "is_active": false
+                        "created_at": "2025-02-03T10:09:55+03:00"
+                        "updated_at": "2025-02-03T10:09:55+03:00"
+                        "geos": []
+                      "delivery_type":
+                        "id": 2
+                        "delivery_id": 1
+                        "type": "pvz"
+                        "max_width": 1000
+                        "max_length": 1000
+                        "max_height": 1000
+                        "max_weight": 30000
+                        "max_delivery_time": 14
+                        "max_side": 1000
+                        "max_sum_sides": 1500
+                        "max_cost": 150000
+                        "max_np": 150000
+                        "storage": 14
+                        "deadline_searches": 45
+                        "is_mobile": false
+                        "tariff_type": "3"
+                        "tariff_code": "136"
+                        "created_at": "2024-08-16T11:49:16+03:00"
+                        "updated_at": "2025-04-04T09:07:47+03:00"
+                        "deleted_at": null
+                      "company_delivery":
+                        "id": 1
+                        "company_id": 1
+                        "delivery_id": 1
+                        "password_id": 3
+                        "tariff_acquiring_cash": null
+                        "tariff_acquiring_card": null
+                        "tariff_acquiring_sbp": null
+                        "tariff_acquiring_average": null
+                        "is_active": true
+                        "registry_email": "test1@test1.test15"
+                        "delivery":
+                          "id": 1
+                          "code": "sdek"
+                          "name": "СДЕК"
+                          "is_active": true
+                          "image_id": 265
+                          "with_nds": true
+                          "tariff_insurance": 0.5
+                          "tariff_acquiring_card": 3
+                          "tariff_acquiring_cash": 1.3
+                          "tariff_acquiring_sbp": 0
+                          "tariff_acquiring_average": 2
+                          "tariff_return": 23
+                          "wait_registry": 5
+                          "add_weekend_wait_registry": 1
+                          "add_weekend_max_delivery_time": 0
+                          "add_weekend_storage": 0
+                          "add_weekend_deadline_searches": 0
+                          "add_weekend_calc": 0
+                          "redemption_rub": 81
+                          "redemption_count": 83
+                          "deleted_at": null
+                          "pass_inputs":
+                            - "name": "login"
+                              "title": "Логин (client_id)"
+                            - "name": "password"
+                              "title": "Пароль (client_secret)"
+                    - "id": 105
+                      "company_delivery_id": 40
+                      "is_active": false
+                      "created_at": "2024-12-24T13:21:44+03:00"
+                      "updated_at": "2024-12-24T13:21:44+03:00"
+                      "deleted_at": null
+                      "company_delivery_rule":
+                        "id": 32
+                        "company_delivery_type_id": 105
+                        "is_all": false
+                        "is_active": false
+                        "created_at": "2025-01-23T10:45:56+03:00"
+                        "updated_at": "2025-01-23T10:45:56+03:00"
+                        "geos": []
+                      "delivery_type":
+                        "id": 1
+                        "delivery_id": 1
+                        "type": "curier"
+                        "max_width": 1000
+                        "max_length": 1000
+                        "max_height": 1000
+                        "max_weight": 30000
+                        "max_delivery_time": 15
+                        "max_side": 1000
+                        "max_sum_sides": 1500
+                        "max_cost": 150000
+                        "max_np": 150000
+                        "storage": 14
+                        "deadline_searches": 45
+                        "is_mobile": false
+                        "tariff_type": "3"
+                        "tariff_code": "137"
+                        "created_at": "2024-08-16T11:49:16+03:00"
+                        "updated_at": "2025-04-04T09:07:47+03:00"
+                        "deleted_at": null
+                      "company_delivery":
+                        "id": 40
+                        "company_id": 57
+                        "delivery_id": 1
+                        "password_id": 52
+                        "tariff_acquiring_cash": null
+                        "tariff_acquiring_card": null
+                        "tariff_acquiring_sbp": null
+                        "tariff_acquiring_average": null
+                        "is_active": true
+                        "registry_email": null
+                        "delivery":
+                          "id": 1
+                          "code": "sdek"
+                          "name": "СДЕК"
+                          "is_active": true
+                          "image_id": 265
+                          "with_nds": true
+                          "tariff_insurance": 0.5
+                          "tariff_acquiring_card": 3
+                          "tariff_acquiring_cash": 1.3
+                          "tariff_acquiring_sbp": 0
+                          "tariff_acquiring_average": 2
+                          "tariff_return": 23
+                          "wait_registry": 5
+                          "add_weekend_wait_registry": 1
+                          "add_weekend_max_delivery_time": 0
+                          "add_weekend_storage": 0
+                          "add_weekend_deadline_searches": 0
+                          "add_weekend_calc": 0
+                          "redemption_rub": 81
+                          "redemption_count": 83
+                          "deleted_at": null
+                          "pass_inputs":
+                            - "name": "login"
+                              "title": "Логин (client_id)"
+                            - "name": "password"
+                              "title": "Пароль (client_secret)"
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/company_delivery_types?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/company_delivery_types?page=2"
+                      "label": "2"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/company_delivery_types?page=2"
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                    "current_page": 1
+                    "first_page_url": "https://dev-vz-api.3owls.su/api/v1/company_delivery_types?page=1"
+                    "from": 1
+                    "last_page": 2
+                    "last_page_url": "https://dev-vz-api.3owls.su/api/v1/company_delivery_types?page=2"
+                    "next_page_url": "https://dev-vz-api.3owls.su/api/v1/company_delivery_types?page=2"
+                    "path": "https://dev-vz-api.3owls.su/api/v1/company_delivery_types"
+                    "per_page": 15
+                    "prev_page_url": null
+                    "to": 15
+                    "total": 28  
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/company_delivery_types/{company_delivery_type_id}:
+    post:
+      tags:
+        - Настройка СД для клиента
+      summary: Включение/выключение типа СД в настройках
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_delivery_type_id
+          required: true
+          schema:
+              type: integer
+          description: ID настройки типа СД
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                is_active:
+                  type: integer
+                  description: 1 - Включить, 0 - отключить тип СД
+                  example: ""
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "a1a2432f-105e-4b83-a689-7deb90bd13a5"
+                "data":
+                  "company_delivery_type":
+                    "id": 3
+                    "company_delivery_id": 1
+                    "is_active": false
+                    "created_at": "2024-08-16T11:49:16+03:00"
+                    "updated_at": "2025-05-27T16:13:19+03:00"
+                    "deleted_at": null
+                    "company_delivery_rule":
+                      "id": 50
+                      "company_delivery_type_id": 3
+                      "is_all": false
+                      "is_active": false
+                      "created_at": "2025-02-03T10:09:55+03:00"
+                      "updated_at": "2025-02-03T10:09:55+03:00"
+                      "geos": []
+                    "delivery_type":
+                      "id": 2
+                      "delivery_id": 1
+                      "type": "pvz"
+                      "max_width": 1000
+                      "max_length": 1000
+                      "max_height": 1000
+                      "max_weight": 30000
+                      "max_delivery_time": 14
+                      "max_side": 1000
+                      "max_sum_sides": 1500
+                      "max_cost": 150000
+                      "max_np": 150000
+                      "storage": 14
+                      "deadline_searches": 45
+                      "is_mobile": false
+                      "tariff_type": "3"
+                      "tariff_code": "136"
+                      "created_at": "2024-08-16T11:49:16+03:00"
+                      "updated_at": "2025-04-04T09:07:47+03:00"
+                      "deleted_at": null
+                    "company_delivery":
+                      "id": 1
+                      "company_id": 1
+                      "delivery_id": 1
+                      "password_id": 3
+                      "tariff_acquiring_cash": null
+                      "tariff_acquiring_card": null
+                      "tariff_acquiring_sbp": null
+                      "tariff_acquiring_average": null
+                      "is_active": true
+                      "registry_email": "test1@test1.test15"
+                      "delivery":
+                        "id": 1
+                        "code": "sdek"
+                        "name": "СДЕК"
+                        "is_active": true
+                        "image_id": 265
+                        "with_nds": true
+                        "tariff_insurance": 0.5
+                        "tariff_acquiring_card": 3
+                        "tariff_acquiring_cash": 1.3
+                        "tariff_acquiring_sbp": 0
+                        "tariff_acquiring_average": 2
+                        "tariff_return": 23
+                        "wait_registry": 5
+                        "add_weekend_wait_registry": 1
+                        "add_weekend_max_delivery_time": 0
+                        "add_weekend_storage": 0
+                        "add_weekend_deadline_searches": 0
+                        "add_weekend_calc": 0
+                        "redemption_rub": 81
+                        "redemption_count": 83
+                        "deleted_at": null
+                        "pass_inputs": 
+                          - "name": "login"
+                            "title": "Логин (client_id)"
+                          - "name": "password"
+                            "title": "Пароль (client_secret)"
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "83a5b1b3-9413-4dc4-9968-1519c22633f9"
+                "message": "Значение поля is active должно быть логического типа.|"
+                "data":
+                  - "Значение поля is active должно быть логического типа."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
 components:
   schemas:
     LoginWith2FA:
