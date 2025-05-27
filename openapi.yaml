@@ -29833,6 +29833,660 @@ paths:
                 "request_id": "0b73835a-f269-401f-8107-7366063b79a0"
                 "message": "Требуемый ресурс не найден"
                 "data": []        
+  /api/v1/company/{company_id}/contracts/create:
+    post:
+      tags:
+        - Договоры клиентов
+      summary: Создать договор
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+              type: integer
+          description: ID клиента
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - number
+                - from
+                - to
+              properties:
+                number:
+                  type: string
+                  description: Номер договора
+                  example: ""
+                basis:
+                  type: string
+                  description: Основание для договора
+                  example: ""
+                from:
+                  type: string
+                  format: date
+                  description: Дата начала действия договора
+                  example: ""
+                to:
+                  type: string
+                  format: date
+                  description: Дата окончания действия договора
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "c03bb56b-6f15-4a30-be98-cdd719b68e65"
+                "data":
+                  "contract":
+                    "id": 6709
+                    "company_id": 4529
+                    "number": "sdfdfg"
+                    "from": "2023-12-31T00:00:00+03:00"
+                    "to": "2024-12-31T00:00:00+03:00"
+                    "dops": []
+                    "created_at": "2025-05-27T11:15:36+03:00"
+                    "updated_at": "2025-05-27T11:15:36+03:00"
+                    "deleted_at": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "00465daf-edf6-4d28-a535-de4f9a278507"
+                "message": "Поле from обязательно.|Поле to обязательно.|"
+                "data":
+                  - "Поле from обязательно."
+                  - "Поле to обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка в запросе - клиент не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false,
+                "request_id": "0b73835a-f269-401f-8107-7366063b79a0"
+                "message": "Требуемый ресурс не найден"
+                "data": []  
+  /api/v1/company/{company_id}/contracts/{contract_id}:
+    post:
+      tags:
+        - Договоры клиентов
+      summary: Редактировать договор
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+              type: integer
+          description: ID клиента
+        - in: path
+          name: contract_id
+          required: true
+          schema:
+              type: integer
+          description: ID договора
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - number
+                - from
+                - to
+              properties:
+                number:
+                  type: string
+                  description: Номер договора
+                  example: ""
+                basis:
+                  type: string
+                  description: Основание для договора
+                  example: ""
+                from:
+                  type: string
+                  format: date
+                  description: Дата начала действия договора
+                  example: ""
+                to:
+                  type: string
+                  format: date
+                  description: Дата окончания действия договора
+                  example: ""
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "1e16b3e8-4697-463b-97bb-97b58877b405"
+                "data":
+                  "contract":
+                    "id": 1
+                    "company_id": 1
+                    "number": "dfgdgf"
+                    "from": "2024-12-31T00:00:00+03:00"
+                    "to": "2025-12-31T00:00:00+03:00"
+                    "dops": []
+                    "created_at": "2024-10-02T08:31:02+03:00"
+                    "updated_at": "2024-10-02T08:31:28+03:00"
+                    "deleted_at": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "00465daf-edf6-4d28-a535-de4f9a278507"
+                "message": "Поле from обязательно.|Поле to обязательно.|"
+                "data":
+                  - "Поле from обязательно."
+                  - "Поле to обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка в запросе - клиент/договор не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false,
+                "request_id": "0b73835a-f269-401f-8107-7366063b79a0"
+                "message": "Требуемый ресурс не найден"
+                "data": []    
+  /api/v1/company/{company_id}/contracts/{contract_id}/dops/create:
+    post:
+      tags:
+        - Договоры клиентов
+      summary: Создать доп.соглашение
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+              type: integer
+          description: ID клиента
+        - in: path
+          name: contract_id
+          required: true
+          schema:
+              type: integer
+          description: ID договора
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - number
+                - from
+                - to
+              properties:
+                number:
+                  type: string
+                  description: Номер договора
+                  example: ""
+                from:
+                  type: string
+                  format: date
+                  description: Дата начала действия договора
+                  example: ""
+                to:
+                  type: string
+                  format: date
+                  description: Дата окончания действия договора
+                  example: ""
+                is_used:
+                  type: number
+                  description: Использовать реквизиты доп.соглашения (1 - использовать, 0 - не использовать)
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "e99f9f54-dd57-451c-ba26-352540006724"
+                "data":
+                  "contract":
+                    "id": 1
+                    "company_id": 1
+                    "number": "dfgdgf"
+                    "from": "2024-12-31T00:00:00+03:00"
+                    "to": "2025-12-31T00:00:00+03:00"
+                    "dops":
+                      - "id": 1
+                        "company_contract_id": 1
+                        "number": "sddfgfh"
+                        "from": "2022-12-31T00:00:00+03:00"
+                        "to": "2023-12-31T00:00:00+03:00"
+                        "is_used": false
+                        "created_at": "2024-10-02T08:33:08+03:00"
+                        "updated_at": "2024-10-02T08:33:08+03:00"
+                        "deleted_at": null
+                    "created_at": "2024-10-02T08:31:02+03:00"
+                    "updated_at": "2024-10-02T08:31:28+03:00"
+                    "deleted_at": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "00465daf-edf6-4d28-a535-de4f9a278507"
+                "message": "Поле from обязательно.|Поле to обязательно.|"
+                "data":
+                  - "Поле from обязательно."
+                  - "Поле to обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка в запросе - клиент/договор не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false,
+                "request_id": "0b73835a-f269-401f-8107-7366063b79a0"
+                "message": "Требуемый ресурс не найден"
+                "data": [] 
+  /api/v1/company/{company_id}/contracts/{contract_id}/dops/{dop_id}:
+    post:
+      tags:
+        - Договоры клиентов
+      summary: Редактировать доп.соглашение
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+              type: integer
+          description: ID клиента
+        - in: path
+          name: contract_id
+          required: true
+          schema:
+              type: integer
+          description: ID договора
+        - in: path
+          name: dop_id
+          required: true
+          schema:
+              type: integer
+          description: ID доп.соглашения
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - number
+                - from
+                - to
+              properties:
+                number:
+                  type: string
+                  description: Номер договора
+                  example: ""
+                from:
+                  type: string
+                  format: date
+                  description: Дата начала действия договора
+                  example: ""
+                to:
+                  type: string
+                  format: date
+                  description: Дата окончания действия договора
+                  example: ""
+                is_used:
+                  type: number
+                  description: Использовать реквизиты доп.соглашения (1 - использовать, 0 - не использовать)
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "e99f9f54-dd57-451c-ba26-352540006724"
+                "data":
+                  "contract":
+                    "id": 1
+                    "company_id": 1
+                    "number": "dfgdgf"
+                    "from": "2024-12-31T00:00:00+03:00"
+                    "to": "2025-12-31T00:00:00+03:00"
+                    "dops":
+                      - "id": 1
+                        "company_contract_id": 1
+                        "number": "sddfgfh"
+                        "from": "2022-12-31T00:00:00+03:00"
+                        "to": "2023-12-31T00:00:00+03:00"
+                        "is_used": false
+                        "created_at": "2024-10-02T08:33:08+03:00"
+                        "updated_at": "2024-10-02T08:33:08+03:00"
+                        "deleted_at": null
+                    "created_at": "2024-10-02T08:31:02+03:00"
+                    "updated_at": "2024-10-02T08:31:28+03:00"
+                    "deleted_at": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "00465daf-edf6-4d28-a535-de4f9a278507"
+                "message": "Поле from обязательно.|Поле to обязательно.|"
+                "data":
+                  - "Поле from обязательно."
+                  - "Поле to обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка в запросе - клиент/договор/доп не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false,
+                "request_id": "0b73835a-f269-401f-8107-7366063b79a0"
+                "message": "Требуемый ресурс не найден"
+                "data": [] 
+  /api/v1/company/{company_id}/contracts/{contract_id}/dops/{dop_id}/delete:
+    post:
+      tags:
+        - Договоры клиентов
+      summary: Удалить доп.соглашение
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+              type: integer
+          description: ID клиента
+        - in: path
+          name: contract_id
+          required: true
+          schema:
+              type: integer
+          description: ID договора
+        - in: path
+          name: dop_id
+          required: true
+          schema:
+              type: integer
+          description: ID доп.соглашения
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "8a8ced7c-e29d-4086-9bda-193f69380f45"
+                "data":
+                  "contract":
+                    "id": 1
+                    "company_id": 1
+                    "number": "dfgdgf"
+                    "from": "2024-12-31T00:00:00+03:00"
+                    "to": "2025-12-31T00:00:00+03:00"
+                    "dops": []
+                    "created_at": "2024-10-02T08:31:02+03:00"
+                    "updated_at": "2024-10-02T08:31:28+03:00"
+                    "deleted_at": null
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка в запросе - клиент/договор/доп не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false,
+                "request_id": "0b73835a-f269-401f-8107-7366063b79a0"
+                "message": "Требуемый ресурс не найден"
+                "data": []  
+  /api/v1/company/{company_id}/contracts/{contract_id}/delete:
+    post:
+      tags:
+        - Договоры клиентов
+      summary: Удалить договор
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_id
+          required: true
+          schema:
+              type: integer
+          description: ID клиента
+        - in: path
+          name: contract_id
+          required: true
+          schema:
+              type: integer
+          description: ID договора
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "6922df66-3deb-482e-92c2-cce9151249cb"
+                "data":
+                  "contract":
+                    "id": 1
+                    "company_id": 1
+                    "number": "dfgdgf"
+                    "from": "2024-12-31T00:00:00+03:00"
+                    "to": "2025-12-31T00:00:00+03:00"
+                    "dops":
+                      - "id": 2
+                        "company_contract_id": 1
+                        "number": "sddfgfh"
+                        "from": "2022-12-31T00:00:00+03:00"
+                        "to": "2023-12-31T00:00:00+03:00"
+                        "is_used": false
+                        "created_at": "2024-10-02T08:35:00+03:00"
+                        "updated_at": "2024-10-02T08:35:00+03:00"
+                        "deleted_at": null
+                    "created_at": "2024-10-02T08:31:02+03:00"
+                    "updated_at": "2024-10-02T08:35:36+03:00"
+                    "deleted_at": "2024-10-02T08:35:36+03:00"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка в запросе - клиент/договор не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false,
+                "request_id": "0b73835a-f269-401f-8107-7366063b79a0"
+                "message": "Требуемый ресурс не найден"
+                "data": []    
+  /api/v1/company/contracts:
+    get:
+      tags:
+        - Договоры клиентов
+      summary: Получить список договоров с фильтром
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[company_id]
+          required: false
+          schema:
+              type: integer
+          description: ID клиента  
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "266848fc-7dd9-480a-9205-6c1d6607ea96"
+                "data":
+                  "contract":
+                    - "id": 6707
+                      "company_id": 4529
+                      "number": "46444"
+                      "from": "2025-01-01T00:00:00+03:00"
+                      "to": "2030-01-01T00:00:00+03:00"
+                      "dops": []
+                      "created_at": "2025-05-15T17:41:23+03:00"
+                      "updated_at": "2025-05-15T17:41:23+03:00"
+                      "deleted_at": null
+                    - "id": 6709
+                      "company_id": 4529
+                      "number": "sdfdfg"
+                      "from": "2023-12-31T00:00:00+03:00"
+                      "to": "2024-12-31T00:00:00+03:00"
+                      "dops": []
+                      "created_at": "2025-05-27T11:15:36+03:00"
+                      "updated_at": "2025-05-27T11:15:36+03:00"
+                      "deleted_at": null
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/company/contracts?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": null
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                    "current_page": 1
+                    "first_page_url": "https://dev-vz-api.3owls.su/api/v1/company/contracts?page=1"
+                    "from": 1
+                    "last_page": 1
+                    "last_page_url": "https://dev-vz-api.3owls.su/api/v1/company/contracts?page=1"
+                    "next_page_url": null
+                    "path": "https://dev-vz-api.3owls.su/api/v1/company/contracts"
+                    "per_page": 1000
+                    "prev_page_url": null
+                    "to": 2
+                    "total": 2
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
 components:
   schemas:
     LoginWith2FA:
