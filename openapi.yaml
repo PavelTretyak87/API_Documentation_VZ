@@ -31808,7 +31808,7 @@ paths:
                 company_delivery_type_id:
                   type: integer
                   description: Идентификатор связанного типа компании-доставки
-                   example: ""
+                  example: ""
                 geos[0]:
                   type: integer
                   description: Идентификаторы регионов из таблицы geos. Если нужно передать больше одного, передавать geos[1] и т.д.
