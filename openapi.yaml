@@ -32335,7 +32335,7 @@ paths:
                   description: Тип склада. На текущий момент есть только один тип - beta
                   example: ""
       responses:
-        '200':
+        '202':
           description: Успешный ответ
           content:
             application/json:
@@ -32473,6 +32473,560 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": [] 
+  /api/v1/props/priorities:
+    post:
+      tags:
+        - Кастомные поля - клиент
+      summary: Приоритет параметров, согласно которому выбирать шаблон
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - priorities[0][prop_id]
+                - priorities[0][number]
+              properties:
+                priorities[0][prop_id]:
+                  type: integer
+                  description: Идентификатор параметра. Если нужно передать более одного, то передавать priorities[1][prop_id] и т.д.
+                  example: ""
+                priorities[0][number]:
+                  type: integer
+                  description: Приоритет. Если нужно передать более одного, то передавать priorities[1][number] и т.д.
+                  example: ""
+                company_id:
+                  type: integer
+                  description: ID клиента
+                  example: ""
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "8e02113c-dd06-4658-aa95-3d087578eae4"
+                "data":
+                  "fields":
+                    - "id": 75
+                      "name": "йцуйц"
+                      "system_name": "йцуйцуйу"
+                      "order_fileds": null
+                      "type": "int"
+                      "company_id": null
+                      "file_id": null
+                      "priorities":
+                        - "id": 39
+                          "field_id": 75
+                          "company_id": 1
+                          "number": 2
+                          "created_at": "2025-01-24T12:50:02+03:00"
+                          "updated_at": "2025-01-24T12:50:02+03:00"
+                      "created_at": "2024-12-24T14:23:42+03:00"
+                      "updated_at": "2024-12-24T14:23:42+03:00"
+                    - "id": 76
+                      "name": "11"
+                      "system_name": "11"
+                      "order_fileds": null
+                      "type": "int"
+                      "company_id": null
+                      "file_id": null
+                      "priorities":
+                        - "id": 38
+                          "field_id": 76
+                          "company_id": 1
+                          "number": 1
+                          "created_at": "2025-01-24T12:50:02+03:00"
+                          "updated_at": "2025-01-24T12:50:02+03:00"
+                      "created_at": "2024-12-25T00:04:17+03:00"
+                      "updated_at": "2024-12-25T00:04:17+03:00"  
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "d5b88a60-910b-43f9-9a22-dcc0310ba20e"
+                "message": "Админу необходимо передать идентификатор компании клиента.|Поле priorities.1.number обязательно.|"
+                "data": 
+                  - "Админу необходимо передать идентификатор компании клиента."
+                  - "Поле priorities.1.number обязательно."  
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []  
+  /api/v1/fields:
+    get:
+      tags:
+        - Кастомные поля - клиент
+      summary: Список полей с фильтрами
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[system_name]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по системному названию кастомного поля
+        - in: query
+          name: filter[name]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по названию кастомного поля
+        - in: query
+          name: filter[type]
+          required: false
+          schema:
+            type: string
+            enum: [int, string]
+          description: Фильтр по типу кастомного поля (int - числовой, string - текстовый)
+        - in: query
+          name: filter[company_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID клиента
+        - in: query
+          name: filter[id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID кастомного поля
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "c083b8cc-5f18-4a35-ae14-0a4295941422"
+                "data":
+                  "fields":
+                    - "id": 59
+                      "name": "Включая локации"
+                      "system_name": "location_in"
+                      "company_name": null
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": null
+                      "file_id": null
+                      "unit": null
+                      "field_strs": []
+                      "file": null
+                      "priorities": []
+                      "created_at": null
+                      "updated_at": null
+                    - "id": 60
+                      "name": "Исключая локации"
+                      "system_name": "location_out"
+                      "company_name": null
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": null
+                      "file_id": null
+                      "unit": null
+                      "field_strs": []
+                      "file": null
+                      "priorities": []
+                      "created_at": null
+                      "updated_at": null
+                    - "id": 61
+                      "name": "Ширина"
+                      "system_name": "width"
+                      "company_name": null
+                      "order_fileds": null
+                      "type": "int"
+                      "company_id": null
+                      "file_id": null
+                      "unit": null
+                      "field_strs": []
+                      "file": null
+                      "priorities": []
+                      "created_at": null
+                      "updated_at": null
+                    - "id": 62
+                      "name": "Глубина"
+                      "system_name": "length"
+                      "company_name": null
+                      "order_fileds": null
+                      "type": "int"
+                      "company_id": null
+                      "file_id": null
+                      "unit": null
+                      "field_strs": []
+                      "file": null
+                      "priorities": []
+                      "created_at": null
+                      "updated_at": null
+                    - "id": 63
+                      "name": "Высота"
+                      "system_name": "height"
+                      "company_name": null
+                      "order_fileds": null
+                      "type": "int"
+                      "company_id": null
+                      "file_id": null
+                      "unit": null
+                      "field_strs": []
+                      "file": null
+                      "priorities": []
+                      "created_at": null
+                      "updated_at": null
+                    - "id": 64
+                      "name": "Вес"
+                      "system_name": "weight"
+                      "company_name": null
+                      "order_fileds": null
+                      "type": "int"
+                      "company_id": null
+                      "file_id": null
+                      "unit": null
+                      "field_strs": []
+                      "file": null
+                      "priorities": []
+                      "created_at": null
+                      "updated_at": null
+                    - "id": 65
+                      "name": "Оценочная стоимость отправления"
+                      "system_name": "price"
+                      "company_name": null
+                      "order_fileds": null
+                      "type": "int"
+                      "company_id": null
+                      "file_id": null
+                      "unit": null
+                      "field_strs": []
+                      "file": null
+                      "priorities": []
+                      "created_at": null
+                      "updated_at": null
+                    - "id": 66
+                      "name": "Наложенный платеж"
+                      "system_name": "COD"
+                      "company_name": null
+                      "order_fileds": null
+                      "type": "int"
+                      "company_id": null
+                      "file_id": null
+                      "unit": null
+                      "field_strs": []
+                      "file": null
+                      "priorities": []
+                      "created_at": null
+                      "updated_at": null
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+    post:
+      tags:
+        - Кастомные поля - клиент
+      summary: Добавление поля
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+                - system_name
+                - type
+              properties:
+                name:
+                  type: string
+                  description: Название кастомного поля
+                  example: ""
+                system_name:
+                  type: string
+                  description: Системное название кастомного поля
+                  example: ""
+                type:
+                  type: string
+                  enum: [int, string]
+                  description: Тип кастомного поля (int - числовой, string - текстовый)
+                unit_id:
+                  type: integer
+                  description: Идентификатор единицы измерения
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "217e3cc5-e803-4c41-baf5-23b7a3a5d069"
+                "data":
+                  "field":
+                    "id": 1991
+                    "name": "name10"
+                    "system_name": "system_name11322"
+                    "company_name": null
+                    "order_fileds": null
+                    "type": "int"
+                    "company_id": null
+                    "file_id": null
+                    "unit":
+                      "name": "мм"
+                      "unit_category_id": 2
+                    "created_at": "2025-05-28T14:30:10+03:00"
+                    "updated_at": "2025-05-28T14:30:10+03:00"
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "f3c469be-b37b-4eb1-9958-24b5e7ade815"
+                "message": "У данной компании уже есть поле с данным кодом system_name11322"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/fields/{field_id}:
+    get:
+      tags:
+        - Кастомные поля - клиент
+      summary: Получить кастомное поле по ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: field_id
+          required: true
+          schema:
+            type: integer
+          description: ID кастомного поля
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "20260252-75d8-436e-8150-5efa36135d94"
+                "data":
+                  "field":
+                    "id": 1991
+                    "name": "name10"
+                    "system_name": "system_name11322"
+                    "company_name": null
+                    "order_fileds": null
+                    "type": "int"
+                    "company_id": null
+                    "file_id": null
+                    "unit":
+                      "name": "мм"
+                      "unit_category_id": 2
+                    "field_strs": []
+                    "file": null
+                    "priorities": []
+                    "created_at": "2025-05-28T14:30:10+03:00"
+                    "updated_at": "2025-05-28T14:30:10+03:00"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка - поле не найдено
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "4764ec2f-370c-45b0-8f70-8c19cda409a3"
+                "message": "Требуемый ресурс не найден"
+                "data": []  
+    post:
+      tags:
+        - Кастомные поля - клиент
+      summary: Редактировать кастомное поле
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: field_id
+          required: true
+          schema:
+            type: integer
+          description: ID кастомного поля
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - _method
+              properties:
+                name:
+                  type: string
+                  description: Название кастомного поля
+                  example: ""
+                system_name:
+                  type: string
+                  description: Системное название кастомного поля
+                  example: ""
+                unit_id:
+                  type: integer
+                  description: Идентификатор единицы измерения
+                  example: ""
+                _method:
+                  type: string
+                  enum: [PUT]
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "3f77a7fc-7284-4bd2-a069-898e46b5e9f2"
+                "data":
+                  "field":
+                    "id": 1992
+                    "name": "name10"
+                    "system_name": "system_name113224"
+                    "company_name": null
+                    "order_fileds": null
+                    "type": "int"
+                    "company_id": null
+                    "file_id": null
+                    "unit":
+                      "name": "мм"
+                      "unit_category_id": 2
+                    "created_at": "2025-05-28T14:49:31+03:00"
+                    "updated_at": "2025-05-28T14:49:31+03:00"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка - поле не найдено
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "4764ec2f-370c-45b0-8f70-8c19cda409a3"
+                "message": "Требуемый ресурс не найден"
+                "data": []  
+    delete:
+      tags:
+        - Кастомные поля - клиент
+      summary: Удалить кастомное поле
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: field_id
+          required: true
+          schema:
+            type: integer
+          description: ID кастомного поля
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "3ee8f1b1-2322-4bf4-a894-82378bcc647d"
+                "data":
+                  "field":
+                    "id": 1992
+                    "name": "name10"
+                    "system_name": "system_name113224"
+                    "order_fileds": null
+                    "type": "int"
+                    "company_id": null
+                    "file_id": null
+                    "created_at": "2025-05-28T14:49:31+03:00"
+                    "updated_at": "2025-05-28T15:23:56+03:00"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка - поле не найдено
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "4764ec2f-370c-45b0-8f70-8c19cda409a3"
+                "message": "Требуемый ресурс не найден"
+                "data": []            
 components:
   schemas:
     LoginWith2FA:
