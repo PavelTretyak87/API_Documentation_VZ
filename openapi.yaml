@@ -33027,6 +33027,1063 @@ paths:
                 "request_id": "4764ec2f-370c-45b0-8f70-8c19cda409a3"
                 "message": "Требуемый ресурс не найден"
                 "data": []            
+  /api/v1/custom_fields:
+    get:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Список объединений кастомных полей
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "7b7aa735-5de1-4e07-8595-341d9ee737d1"
+                "data":
+                  "custom_field":
+                    - "id": 34
+                      "status": 0
+                      "name": "Объединение веса 34"
+                      "type": "int"
+                      "company_id": 1
+                      "fields":
+                        - "id": 3
+                          "name": "dsf1"
+                          "system_name": "dsfsdf"
+                          "company_name": "HSR"
+                          "order_fileds": null
+                          "type": "int"
+                          "company_id": 1
+                          "file_id": null
+                          "unit": null
+                          "field_strs": []
+                          "file": null
+                          "created_at": "2024-08-26T18:05:28+03:00"
+                          "updated_at": "2024-08-28T14:02:12+03:00"
+                      "groups":
+                        - "id": 22
+                          "name": "ТВ-реклама"
+                          "custom_field_id": 34
+                          "values": []
+                        - "id": 23
+                          "name": "e343434"
+                          "custom_field_id": 34
+                          "values": []
+                      "created_at": "2024-10-08T12:03:34+03:00"
+                      "updated_at": "2024-11-06T11:44:13+03:00"
+                    - "id": 35
+                      "status": 0
+                      "name": "тест числовое поле"
+                      "type": "string"
+                      "company_id": 1
+                      "fields":
+                        - "id": 3
+                          "name": "dsf1"
+                          "system_name": "dsfsdf"
+                          "company_name": "HSR"
+                          "order_fileds": null
+                          "type": "int"
+                          "company_id": 1
+                          "file_id": null
+                          "unit": null
+                          "field_strs": []
+                          "file": null
+                          "created_at": "2024-08-26T18:05:28+03:00"
+                          "updated_at": "2024-08-28T14:02:12+03:00"
+                        - "id": 24
+                          "name": "ggg"
+                          "system_name": "ggg"
+                          "company_name": "HSR"
+                          "order_fileds": null
+                          "type": "string"
+                          "company_id": 1
+                          "file_id": null
+                          "unit": null
+                          "field_strs": []
+                          "file": null
+                          "created_at": "2024-08-27T16:10:44+03:00"
+                          "updated_at": "2024-08-27T16:10:44+03:00"
+                      "groups":
+                        - "id": 43
+                          "name": "444"
+                          "custom_field_id": 35
+                          "values": []
+                        - "id": 44,
+                          "name": "5555"
+                          "custom_field_id": 35
+                          "values": []
+                        - "id": 45
+                          "name": "yyyy"
+                          "custom_field_id": 35
+                          "values": []
+                        - "id": 46
+                          "name": "666"
+                          "custom_field_id": 35
+                          "values": []
+                      "created_at": "2024-12-24T14:30:18+03:00"
+                      "updated_at": "2024-12-25T10:17:37+03:00"
+                    - "id": 36
+                      "status": 0
+                      "name": "тест текстовое поле"
+                      "type": "string"
+                      "company_id": 1
+                      "fields":
+                        - "id": 2
+                          "name": "name5"
+                          "system_name": "system_name5"
+                          "company_name": "HSR"
+                          "order_fileds": null
+                          "type": "string"
+                          "company_id": 1
+                          "file_id": null
+                          "unit": null
+                          "field_strs": []
+                          "file": null
+                          "created_at": "2024-08-07T11:36:29+03:00"
+                          "updated_at": "2024-08-07T11:36:29+03:00"
+                      "groups":
+                        - "id": 24
+                          "name": "фвыфывфвф"
+                          "custom_field_id": 36
+                          "values": []
+                      "created_at": "2024-12-24T14:50:25+03:00"
+                      "updated_at": "2024-12-24T14:50:25+03:00"
+                    - "id": 37
+                      "status": 1
+                      "name": "3333"
+                      "type": "int"
+                      "company_id": 1
+                      "fields":
+                        - "id": 3
+                          "name": "dsf1"
+                          "system_name": "dsfsdf"
+                          "company_name": "HSR"
+                          "order_fileds": null
+                          "type": "int"
+                          "company_id": 1
+                          "file_id": null
+                          "unit": null
+                          "field_strs": []
+                          "file": null
+                          "created_at": "2024-08-26T18:05:28+03:00"
+                          "updated_at": "2024-08-28T14:02:12+03:00"
+                      "groups": []
+                      "created_at": "2024-12-25T10:00:35+03:00"
+                      "updated_at": "2024-12-25T15:07:57+03:00"
+                    - "id": 42
+                      "status": 3
+                      "name": "Test"
+                      "type": "int"
+                      "company_id": 62
+                      "fields": []
+                      "groups":
+                        - "id": 50
+                          "name": "test"
+                          "custom_field_id": 42
+                          "values": []
+                        - "id": 51
+                          "name": "test"
+                          "custom_field_id": 42
+                          "values": []
+                        - "id": 52
+                          "name": "test"
+                          "custom_field_id": 42
+                          "values": []
+                        - "id": 53
+                          "name": "test"
+                          "custom_field_id": 42
+                          "values": []
+                        - "id": 679
+                          "name": "test"
+                          "custom_field_id": 42
+                          "values": []
+                      "created_at": "2025-02-28T15:26:19+03:00"
+                      "updated_at": "2025-02-28T15:26:19+03:00"
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/custom_fields?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": null
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                    "current_page": 1
+                    "first_page_url": "https://dev-vz-api.3owls.su/api/v1/custom_fields?page=1"
+                    "from": 1
+                    "last_page": 1
+                    "last_page_url": "https://dev-vz-api.3owls.su/api/v1/custom_fields?page=1"
+                    "next_page_url": null
+                    "path": "https://dev-vz-api.3owls.su/api/v1/custom_fields"
+                    "per_page": 15
+                    "prev_page_url": null
+                    "to": 5
+                    "total": 5  
+        '401':
+            description: Ошибка аутентификации
+            content:
+              application/json:
+                example:
+                  "code": 401
+                  "status": "Unauthorized"
+                  "success": false
+                  "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                  "message": "Ошибка аутентификации."
+                  "data": []  
+    post:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Добавить новое объединение
+      security:
+        - bearerAuth: []  
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+                - type
+                - company_id
+              properties:
+                name:
+                  type: string
+                  description: Название кастомного поля
+                  example: ""
+                status:
+                  type: integer
+                  description: Статус (1 - Активный, 0 - Не активный)
+                  example: ""
+                type:
+                  type: string
+                  enum: [int, string]
+                  description: Тип кастомного поля (int - числовой, string - текстовый)
+                company_id:
+                  type: integer
+                  description: Идентификатор клиента
+                  example: ""
+              responses:
+                '201':
+                  description: Успешный ответ
+                  content:
+                    application/json:
+                      example:
+                        "code": 201
+                        "status": "Created"
+                        "success": true
+                        "request_id": "2b3fea11-80be-4bbf-bf89-3c732eb1fbad"
+                        "data":
+                          "custom_field":
+                            "id": 1931
+                            "status": 1
+                            "name": "Объединение веса 34"
+                            "type": "int"
+                            "company_id": 1
+                            "created_at": "2025-05-28T17:25:36+03:00"
+                            "updated_at": "2025-05-28T17:25:36+03:00"
+                '400':
+                  description: Ошибка в запросе
+                  content:
+                    application/json:
+                      example:
+                        "code": 400
+                        "status": "Bad Request"
+                        "success": false
+                        "request_id": "77c6bdbb-5fb7-4ac4-8dbd-7a54f2bec93b"
+                        "message": "Поле тип обязательно.|"
+                        "data":
+                          - "Поле тип обязательно."
+                '401':
+                  description: Ошибка аутентификации
+                  content:
+                    application/json:
+                      example:
+                        "code": 401
+                        "status": "Unauthorized"
+                        "success": false
+                        "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                        "message": "Ошибка аутентификации."
+                        "data": []
+  /api/v1/custom_fields/{custom_field_id}:
+    get:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Получить объединение по ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: custom_field_id
+          required: true
+          schema:
+            type: integer
+          description: ID объединения
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "18cd52f7-8676-4fec-9edf-259a4e4e82a3"
+                "data":
+                  "custom_field":
+                    "id": 1931
+                    "status": 1
+                    "name": "Объединение веса 34"
+                    "type": "int"
+                    "company_id": 1
+                    "fields": []
+                    "groups": []
+                    "created_at": "2025-05-28T17:25:36+03:00"
+                    "updated_at": "2025-05-28T17:25:36+03:00"  
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []  
+        '404':
+          description: Ошибка - объединение не найдено
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "a8998623-8ba1-4c9b-9caa-e3874371c398"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+    post:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Редактировать объединение
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: custom_field_id
+          required: true
+          schema:
+            type: integer
+          description: ID объединения
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+                - status
+                - _method
+                - company_id
+              properties:
+                name:
+                  type: string
+                  description: Название кастомного поля
+                  example: ""
+                status:
+                  type: integer
+                  description: Статус (1 - Активный, 0 - Не активный)
+                  example: ""
+                type:
+                  type: string
+                  enum: [int, string]
+                  description: Тип кастомного поля (int - числовой, string - текстовый)
+                company_id:
+                  type: integer
+                  description: Идентификатор клиента
+                  example: ""
+                _method:
+                  type: string
+                  enum: [PUT]   
+      responses:
+        '201':
+          description: Успешный ответ
+          content: 
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "4c33c10e-6b77-4588-9acb-fb59bb3d2e3b"
+                "data":
+                  "custom_field":
+                    "id": 1931
+                    "status": 1
+                    "name": "Объединение веса 1111234"
+                    "type": "int"
+                    "company_id": 1
+                    "created_at": "2025-05-28T17:25:36+03:00"
+                    "updated_at": "2025-05-29T09:40:46+03:00"
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "3536d288-a11c-4090-b76b-5fb3335c7c97"
+                "message": ""
+        401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []  
+        '404':
+          description: Ошибка - объединение не найдено
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "a8998623-8ba1-4c9b-9caa-e3874371c398"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+    delete:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Удалить объединение
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: custom_field_id
+          required: true
+          schema:
+            type: integer
+          description: ID объединения
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "401b5391-a0fa-4a37-a06b-59cb7d5d90cb"
+                "message": "deleted"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []  
+        '404':
+          description: Ошибка - объединение не найдено
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "a8998623-8ba1-4c9b-9caa-e3874371c398"
+                "message": "Требуемый ресурс не найден"
+                "data": []        
+  /api/v1/custom_fields/list/info:
+    get:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Получить список клиентов по типу - int/string
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: type
+          required: false
+          schema:
+            type: string
+            enum: [int, string]
+          description: Фильтр по типу (int - числовой, string - текстовый)
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "02f47a6f-0e21-40f4-9610-e53dbba1cf70"
+                "data":
+                  "fields":
+                    - "id": 2
+                      "name": "name5"
+                      "system_name": "system_name5"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 1
+                      "file_id": null
+                      "created_at": "2024-08-07T11:36:29+03:00"
+                      "updated_at": "2024-08-07T11:36:29+03:00"
+                    - "id": 20
+                      "name": "test1"
+                      "system_name": "test1"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 1
+                      "file_id": null
+                      "created_at": "2024-08-27T15:56:01+03:00"
+                      "updated_at": "2024-08-27T15:56:01+03:00"
+                    - "id": 24
+                      "name": "ggg"
+                      "system_name": "ggg"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 1
+                      "file_id": null
+                      "created_at": "2024-08-27T16:10:44+03:00"
+                      "updated_at": "2024-08-27T16:10:44+03:00"
+                    - "id": 36
+                      "name": "явапявап"
+                      "system_name": "явапявапявап"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 1
+                      "file_id": null
+                      "created_at": "2024-08-27T16:26:17+03:00"
+                      "updated_at": "2024-08-27T16:26:17+03:00"
+                    - "id": 44
+                      "name": "test11"
+                      "system_name": "test11_sys"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 1
+                      "file_id": null
+                      "created_at": "2024-09-03T11:12:34+03:00"
+                      "updated_at": "2024-09-03T11:12:34+03:00"
+                    - "id": 46
+                      "name": "test14"
+                      "system_name": "test14_sys"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 1
+                      "file_id": 601
+                      "created_at": "2024-09-03T11:15:02+03:00"
+                      "updated_at": "2024-09-03T11:15:02+03:00"
+                    - "id": 49
+                      "name": "test_1"
+                      "system_name": "test_1_sys"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 1
+                      "file_id": 602
+                      "created_at": "2024-09-06T12:16:29+03:00"
+                      "updated_at": "2024-09-06T12:16:29+03:00"
+                    - "id": 53
+                      "name": "тест кастомное поле 2"
+                      "system_name": "название 2"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 1
+                      "file_id": 623
+                      "created_at": "2024-09-10T15:22:56+03:00"
+                      "updated_at": "2024-09-10T15:24:12+03:00"
+                    - "id": 54
+                      "name": "фывфыв"
+                      "system_name": "фывфвы"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 1
+                      "file_id": null
+                      "created_at": "2024-09-10T15:27:51+03:00"
+                      "updated_at": "2024-09-10T15:27:51+03:00"
+                    - "id": 57
+                      "name": "name6"
+                      "system_name": "system_name6"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 1
+                      "file_id": null
+                      "created_at": "2024-09-25T12:09:05+03:00"
+                      "updated_at": "2024-09-25T12:09:05+03:00"
+                    - "id": 59
+                      "name": "Включая локации"
+                      "system_name": "location_in"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": null
+                      "file_id": null
+                      "created_at": null
+                      "updated_at": null
+                    - "id": 60
+                      "name": "Исключая локации"
+                      "system_name": "location_out"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": null
+                      "file_id": null
+                      "created_at": null
+                      "updated_at": null
+                    - "id": 78
+                      "name": "555"
+                      "system_name": "555"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 62
+                      "file_id": null
+                      "created_at": "2024-12-25T00:06:20+03:00"
+                      "updated_at": "2024-12-25T09:40:12+03:00"
+                    - "id": 79
+                      "name": "99"
+                      "system_name": "99"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 62
+                      "file_id": null
+                      "created_at": "2024-12-25T09:18:43+03:00"
+                      "updated_at": "2024-12-25T09:18:43+03:00"
+                    - "id": 82
+                      "name": "sdfsdf"
+                      "system_name": "pdf"
+                      "order_fileds": null
+                      "type": "string"
+                      "company_id": 62
+                      "file_id": null
+                      "created_at": "2024-12-25T17:09:04+03:00"
+                      "updated_at": "2024-12-25T17:09:04+03:00"
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/custom_fields/list/info?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": null
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta": 
+                    "current_page": 1
+                    "first_page_url": "https://dev-vz-api.3owls.su/api/v1/custom_fields/list/info?page=1"
+                    "from": 1
+                    "last_page": 1
+                    "last_page_url": "https://dev-vz-api.3owls.su/api/v1/custom_fields/list/info?page=1"
+                    "next_page_url": null
+                    "path": "https://dev-vz-api.3owls.su/api/v1/custom_fields/list/info"
+                    "per_page": 15
+                    "prev_page_url": null
+                    "to": 15
+                    "total": 15 
+        '401':
+            description: Ошибка аутентификации
+            content:
+              application/json:
+                example:
+                  "code": 401
+                  "status": "Unauthorized"
+                  "success": false
+                  "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                  "message": "Ошибка аутентификации."
+                  "data": [] 
+  /api/v1/custom_fields/union/add:
+    post:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Добавление кастомного поля в объединение
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - custom_field_id
+                - field_id
+              properties:
+                custom_field_id:
+                  type: integer
+                  description: ID обьединения кастомных полей
+                  example: ""
+                field_id:
+                  type: integer
+                  description: ID кастомного поля
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "c189613f-dc2c-4e39-a718-6bec314ffd78"
+                "data":
+                  "custom_field_union":
+                    "field_id": 1990
+                    "custom_field_id": 34
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "659eb91b-3f7c-42b9-a680-77a2b09c31c1"
+                "message": "Значение поля field id не существует.|"
+                "data":
+                  - "Значение поля field id не существует."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/custom_fields/union/delete/{custom_field_id}/{field_id}:
+    delete:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Удаление кастомного поля из объединения
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: custom_field_id
+          required: true
+          schema:
+            type: integer
+          description: ID объединения
+        - in: path
+          name: field_id
+          required: true
+          schema:
+            type: integer
+          description: ID кастомного поля
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "0737dcf9-35d7-4ed4-8352-87ef42f9e73a"
+                "message": "deleted"
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "19feed06-c2c5-4e08-b48a-2f7117bcc91e"
+                "message": "error"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/custom_fields/group/add:
+    post:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Создание группы в объединении
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - custom_field_id
+                - name
+              properties:
+                custom_field_id:
+                  type: integer
+                  description: ID обьединения кастомных полей
+                  example: ""
+                name:
+                  type: string
+                  description: Название группы
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "e5b533df-f466-4269-90ca-03e921f46a77"
+                "data":
+                  "custom_field_group":
+                    "id": 1942
+                    "name": "ТВ-реклама"
+                    "custom_field_id": 34  
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "72c2eaa7-f322-4910-a2d1-361cb914d5b8"
+                "message": "Поле имя обязательно.|Поле custom field id обязательно.|"
+                "data":
+                  - "Поле имя обязательно."
+                  - "Поле custom field id обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []     
+  /api/v1/custom_fields/group/{group_id}:
+    get:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Просмотр группы в объединении по ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: group_id
+          required: true
+          schema:
+            type: integer
+          description: ID группы в объединении
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "7505d283-0ea4-4c31-b473-ad815c559d44"
+                "data":
+                  "custom_field_group":
+                    "id": 1944
+                    "name": "ТВ-реклама"
+                    "values": []
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+    delete:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Удаление группы в объединении
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: group_id
+          required: true
+          schema:
+            type: integer
+          description: ID группы в объединении
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "0737dcf9-35d7-4ed4-8352-87ef42f9e73a"
+                "message": "deleted"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка - группа не найдена
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "8474ff56-0f3f-4681-8389-d63b6d00d071"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+  /api/v1/custom_fields/group/add/str:
+    post:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Добавление текстового значения в группу
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - custom_field_group_id
+                - field_value_str_id
+              properties:
+                custom_field_group_id:
+                  type: integer
+                  description: ID группы в обьединении кастомных полей
+                  example: ""
+                field_value_str_id:
+                  type: string
+                  description: ID текстового значения
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content: 
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "df2870db-0426-470b-adf8-fb570c5375a9"
+                "data":
+                  "custom_field_group_str":
+                    "id": 1940
+                    "custom_field_group_id": 22
+                    "field_value_str_id": 1
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "3a986dc5-b5dc-4c91-809b-9dbd5a7be61e"
+                "message": "Значение поля field value str id не существует.|"
+                "data":
+                  - "Значение поля field value str id не существует."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/custom_fields/group/delete/str/{custom_field_group_id}/{field_value_str_id}:
+    delete:
+      tags:
+        - Кастомные поля - Администрирование/Менеджерский
+      summary: Удаление текстового значения из группы
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: custom_field_group_id
+          required: true
+          schema:
+            type: integer
+          description: ID группы в обьединении кастомных полей
+        - in: path
+          name: field_value_str_id
+          required: true
+          schema:
+            type: integer
+          description: ID текстового значения
+      responses:
+        '202':
+          description: Успешный ответ
+          content: 
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "6356072c-b50e-4457-b9bc-3d1086227959"
+                "message": "deleted"
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "757eb3f2-efd2-4c20-970b-84b9b4f900d2"
+                "message": "error"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
 components:
   schemas:
     LoginWith2FA:
