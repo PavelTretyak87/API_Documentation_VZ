@@ -34152,7 +34152,7 @@ paths:
                 - unit_category_id
               properties:
                 name:
-                  type: integer
+                  type: string
                   description: Название
                   example: ""
                 unit_category_id:
@@ -34457,11 +34457,11 @@ paths:
                 - name
               properties:
                 name:
-                  type: integer
+                  type: string
                   description: Название
                   example: ""
                 short_name:
-                  type: integer
+                  type: string
                   description: Короткое название
                   example: ""
       responses:
@@ -34719,6 +34719,152 @@ paths:
                 "request_id": "802402eb-0239-4e4a-a870-7a5612060d48"
                 "message": "Требуемый ресурс не найден"
                 "data": [] 
+  /api/v1/incident_types:
+    get:
+      tags:
+        - Справочник единиц измерения - типы инцидентов
+      summary: Получить список типов инцидентов
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:  
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "c3cddef0-3e84-4d23-b0b2-32801d3abe71"
+                "data":
+                  "incident_types":
+                    - "id": 1
+                      "name": "Розыск наложенного платежа"
+                      "created_at": null
+                      "updated_at": "2024-09-05T06:52:23.000000Z"
+                    - "id": 2
+                      "name": "Утеря заказа"
+                      "created_at": null
+                      "updated_at": "2024-09-05T07:00:14.000000Z"
+                    - "id": 3
+                      "name": "Повреждение / порча содержимого заказа"
+                      "created_at": null
+                      "updated_at": "2024-09-05T07:01:17.000000Z"
+                    - "id": 4
+                      "name": "Утеря части заказа"
+                      "created_at": null
+                      "updated_at": "2024-09-05T07:01:46.000000Z"
+                    - "id": 5
+                      "name": "Возврат тарифа"
+                      "created_at": null
+                      "updated_at": "2024-09-05T07:02:08.000000Z"
+                    - "id": 39
+                      "name": "Снят с розыска"
+                      "created_at": null
+                      "updated_at": "2024-09-05T07:02:26.000000Z"
+                    - "id": 1819
+                      "name": "test1"
+                      "created_at": "2025-04-03T15:22:50.000000Z"
+                      "updated_at": "2025-04-03T15:22:50.000000Z"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+    post:
+      tags:
+        - Справочник единиц измерения - типы инцидентов
+      summary: Добавить новый тип инцидентов
+      security:
+        - bearerAuth: []  
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  description: Название
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "0073113a-b611-4a92-8d13-d6cfa5608da3"
+                "data":
+                  "incident_type":
+                    "id": 2092
+                    "name": "name12"
+                    "created_at": "2025-05-29T14:44:18.000000Z"
+                    "updated_at": "2025-05-29T14:44:18.000000Z"
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "e988695e-1074-4bb9-9cd5-28806d6495e5"
+                "message": "Поле имя обязательно.|"
+                "data":
+                  - "Поле имя обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/incident_types/{incident_type_id}:
+    get:
+      tags:
+        - Справочник единиц измерения - типы инцидентов
+      summary: Получить список типов инцидентов
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: incident_type_id
+          required: true
+          schema:
+            type: integer
+          description: ID типа инцидента
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "84a299a8-317f-4827-b22c-5e174e0c49e1"
+                "data":
+                  "incident_type":
+                    "id": 39
+                    "name": "Снят с розыска"
+                    "created_at": null
+                    "updated_at": "2024-09-05T07:02:26.000000Z" 
 components:
   schemas:
     LoginWith2FA:
