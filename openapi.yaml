@@ -29094,7 +29094,7 @@ paths:
     put:
       tags:
         - Приоритеты
-      description: Обновить приоритет
+      summary: Обновить приоритет
       security:
         - bearerAuth: []
       parameters:
@@ -29189,7 +29189,7 @@ paths:
     delete:
       tags:
         - Приоритеты
-      description: Удалить приоритет
+      summary: Удалить приоритет
       security:
         - bearerAuth: []
       parameters:
@@ -34084,6 +34084,293 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": []
+  /api/v1/units:
+    get:
+      tags:
+        - Ваш Заказ/Справочник единиц измерения - значения
+      summary: Удаление текстового значения из группы
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "089be51c-e34f-4c87-ae54-14a588d0c8f1"
+                "data":
+                  "units":
+                    - "id": 7
+                      "name": "м"
+                      "unit_category_id": 2
+                    - "id": 13
+                      "name": "км"
+                      "unit_category_id": 2
+                    - "id": 21
+                      "name": "мм"
+                      "unit_category_id": 2
+                    - "id": 33
+                      "name": "см"
+                      "unit_category_id": 2
+                    - "id": 37
+                      "name": "test2"
+                      "unit_category_id": 2
+                    - "id": 1806
+                      "name": "test11234ва"
+                      "unit_category_id": 2
+                    - "id": 1840
+                      "name": "test1"
+                      "unit_category_id": 2  
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+    post:
+      tags:
+        - Ваш Заказ/Справочник единиц измерения - значения
+      summary: Добавление значения
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+                - unit_category_id
+              properties:
+                name:
+                  type: integer
+                  description: Название
+                  example: ""
+                unit_category_id:
+                  type: integer
+                  description: ID категории значений
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            multipart/form-data:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "02e7b2fd-cf2e-4a34-b108-6c95110a861f"
+                "data":
+                  "unit":
+                    "id": 2079
+                    "name": "test2"
+                    "unit_category_id": 2
+        '400':
+          description: Ошибка в запросе
+          content:
+            multipart/form-data:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "7c3422c3-8187-42bd-82b4-91ea8f473756"
+                "message": "Поле имя обязательно.|Поле unit category id обязательно.|"
+                "data":
+                  - "Поле имя обязательно."
+                  - "Поле unit category id обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/units/{unit_id}:
+    get:
+      tags:
+        - Ваш Заказ/Справочник единиц измерения - значения
+      summary: Получить значение по ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: unit_id
+          required: true
+          schema:
+            type: integer
+          description: ID значения
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "cc8bba66-b7ad-422e-b14d-76c9058edb2e"
+                "data":
+                  "unit":
+                    "id": 37
+                    "name": "test2"
+                    "unit_category_id": 2
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка - значение не найдено
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "802402eb-0239-4e4a-a870-7a5612060d48"
+                "message": "Требуемый ресурс не найден"
+                "data": []
+    post:
+      tags:
+        - Ваш Заказ/Справочник единиц измерения - значения
+      summary: Редактировать значение
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: unit_id
+          required: true
+          schema:
+            type: integer
+          description: ID значения
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+                - unit_category_id
+                - _method
+              properties:
+                name:
+                  type: integer
+                  description: Название
+                  example: ""
+                unit_category_id:
+                  type: integer
+                  description: ID категории значений
+                  example: ""
+                _method:
+                  type: string
+                  enum: [PUT]
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "626c35f2-9bbf-4666-be8b-a7c13f563fb4"
+                "data":
+                  "unit":
+                    "id": 33
+                    "name": "test11234ва"
+                    "unit_category_id": 2  
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка - значение не найдено
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "802402eb-0239-4e4a-a870-7a5612060d48"
+                "message": "Требуемый ресурс не найден"
+                "data": []      
+    delete:
+      tags:
+        - Ваш Заказ/Справочник единиц измерения - значения
+      summary: Удалить значение
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: unit_id
+          required: true
+          schema:
+            type: integer
+          description: ID значения 
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "626c35f2-9bbf-4666-be8b-a7c13f563fb4"
+                "data":
+                  "unit":
+                    "id": 33
+                    "name": "test11234ва"
+                    "unit_category_id": 2  
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка - значение не найдено
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "802402eb-0239-4e4a-a870-7a5612060d48"
+                "message": "Требуемый ресурс не найден"
+                "data": []  
 components:
   schemas:
     LoginWith2FA:
