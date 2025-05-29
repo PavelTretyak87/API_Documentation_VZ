@@ -34087,7 +34087,7 @@ paths:
   /api/v1/units:
     get:
       tags:
-        - Ваш Заказ/Справочник единиц измерения - значения
+        - Справочник единиц измерения - значения
       summary: Удаление текстового значения из группы
       security:
         - bearerAuth: []
@@ -34137,7 +34137,7 @@ paths:
                 "data": []
     post:
       tags:
-        - Ваш Заказ/Справочник единиц измерения - значения
+        - Справочник единиц измерения - значения
       summary: Добавление значения
       security:
         - bearerAuth: []
@@ -34201,7 +34201,7 @@ paths:
   /api/v1/units/{unit_id}:
     get:
       tags:
-        - Ваш Заказ/Справочник единиц измерения - значения
+        - Справочник единиц измерения - значения
       summary: Получить значение по ID
       security:
         - bearerAuth: []
@@ -34251,7 +34251,7 @@ paths:
                 "data": []
     post:
       tags:
-        - Ваш Заказ/Справочник единиц измерения - значения
+        - Справочник единиц измерения - значения
       summary: Редактировать значение
       security:
         - bearerAuth: []
@@ -34323,7 +34323,7 @@ paths:
                 "data": []      
     delete:
       tags:
-        - Ваш Заказ/Справочник единиц измерения - значения
+        - Справочник единиц измерения - значения
       summary: Удалить значение
       security:
         - bearerAuth: []
@@ -34371,6 +34371,354 @@ paths:
                 "request_id": "802402eb-0239-4e4a-a870-7a5612060d48"
                 "message": "Требуемый ресурс не найден"
                 "data": []  
+  /api/v1/unit_categories:
+    get:
+      tags:
+        - Справочник единиц измерения - категории
+      summary: Получить список категорий
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "502a6133-4ca3-4287-81b4-860806a05ff3"
+                "data":
+                  "unit_categories":
+                    - "id": 2
+                      "name": "Единицы длины"
+                      "short_name": "длина"
+                      "units":
+                        - "id": 7
+                          "name": "м"
+                          "unit_category_id": 2
+                        - "id": 13
+                          "name": "км"
+                          "unit_category_id": 2
+                        - "id": 21
+                          "name": "мм"
+                          "unit_category_id": 2
+                        - "id": 37
+                          "name": "test2"
+                          "unit_category_id": 2
+                        - "id": 1806
+                          "name": "test11234ва"
+                          "unit_category_id": 2
+                        - "id": 1840
+                          "name": "test1"
+                          "unit_category_id": 2
+                        - "id": 2079
+                          "name": "test2"
+                          "unit_category_id": 2
+                      "created_at": "2024-08-07T08:29:44.000000Z"
+                      "updated_at": "2024-08-07T08:29:44.000000Z"
+                    - "id": 38
+                      "name": "test1"
+                      "short_name": "масса"
+                      "units": []
+                      "created_at": "2025-02-25T08:28:24.000000Z"
+                      "updated_at": "2025-02-25T08:28:24.000000Z"
+                    - "id": 39
+                      "name": "test1"
+                      "short_name": "масса"
+                      "units": []
+                      "created_at": "2025-02-25T08:28:46.000000Z"
+                      "updated_at": "2025-02-25T08:28:46.000000Z"
+                    - "id": 40
+                      "name": "test12"
+                      "short_name": "масса"
+                      "units": []
+                      "created_at": "2025-02-25T08:33:29.000000Z"
+                      "updated_at": "2025-02-25T08:33:29.000000Z"
+                    - "id": 1845
+                      "name": "test12"
+                      "short_name": "масса"
+                      "units": []
+                      "created_at": "2025-04-04T08:22:42.000000Z"
+                      "updated_at": "2025-04-04T08:22:44.000000Z"    
+    post:
+      tags:
+        - Справочник единиц измерения - категории
+      summary: Добавить категорию
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: integer
+                  description: Название
+                  example: ""
+                short_name:
+                  type: integer
+                  description: Короткое название
+                  example: ""
+      responses:
+        '201':
+          description:  Успешный ответ
+          content: 
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "eea4ce0b-a8d0-4458-9d8a-6462ef8c7bd1"
+                "data":
+                  "unit_category":
+                    "id": 2085
+                    "name": "test1"
+                    "short_name": "масса"
+                    "units": []
+                    "created_at": "2025-05-29T13:28:21.000000Z"
+                    "updated_at": "2025-05-29T13:28:21.000000Z"  
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "a01db369-9388-406d-98f5-288cc7b76cf0"
+                "message": "Поле имя обязательно.|"
+                "data":
+                  - "Поле имя обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []  
+  /api/v1/unit_categories/{category_id}:
+    get:
+      tags:
+        - Справочник единиц измерения - категории
+      summary: Получить категорию по ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+          description: ID категории
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "964f0834-b70e-49a3-9f1f-d269a62bd1c9"
+                "data":
+                  "unit_category":
+                    "id": 2
+                    "name": "Единицы длины"
+                    "short_name": "длина"
+                    "units":
+                      - "id": 7
+                        "name": "м"
+                        "unit_category_id": 2
+                      - "id": 13
+                        "name": "км"
+                        "unit_category_id": 2
+                      - "id": 21
+                        "name": "мм"
+                        "unit_category_id": 2
+                      - "id": 37
+                        "name": "test2"
+                        "unit_category_id": 2
+                      - "id": 1806
+                        "name": "test11234ва"
+                        "unit_category_id": 2
+                      - "id": 1840
+                        "name": "test1"
+                        "unit_category_id": 2
+                      - "id": 2079
+                        "name": "test2"
+                        "unit_category_id": 2
+                    "created_at": "2024-08-07T08:29:44.000000Z"
+                    "updated_at": "2024-08-07T08:29:44.000000Z"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка - категория не найдена
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "802402eb-0239-4e4a-a870-7a5612060d48"
+                "message": "Требуемый ресурс не найден"
+                "data": []  
+    post:
+      tags:
+        - Справочник единиц измерения - категории
+      summary: Редактировать категорию
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+          description: ID категории
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+                - _method
+              properties:
+                name:
+                  type: integer
+                  description: Название
+                  example: ""
+                short_name:
+                  type: integer
+                  description: Короткое название
+                  example: ""
+                _method:
+                  type: string
+                  enum: [PUT]
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "983a19b6-dc2f-4eac-b06d-7bfbc2ff73d9"
+                "data":
+                  "unit_category":
+                    "id": 2085
+                    "name": "test12"
+                    "short_name": "масса"
+                    "units": []
+                    "created_at": "2025-05-29T13:28:21.000000Z"
+                    "updated_at": "2025-05-29T13:48:45.000000Z"  
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "a01db369-9388-406d-98f5-288cc7b76cf0"
+                "message": "Поле имя обязательно.|"
+                "data":
+                  - "Поле имя обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
+        '404':
+          description: Ошибка - категория не найдена
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "802402eb-0239-4e4a-a870-7a5612060d48"
+                "message": "Требуемый ресурс не найден"
+                "data": [] 
+    delete:
+      tags:
+        - Справочник единиц измерения - категории
+      summary: Удалить категорию
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+          description: ID категории  
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "941a7725-5e28-4541-a87f-50b5ec664f16"
+                "data":
+                  "unit_category":
+                    "id": 2085
+                    "name": "test12"
+                    "short_name": "масса"
+                    "units": []
+                    "created_at": "2025-05-29T13:28:21.000000Z"
+                    "updated_at": "2025-05-29T13:48:45.000000Z"    
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
+        '404':
+          description: Ошибка - категория не найдена
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "802402eb-0239-4e4a-a870-7a5612060d48"
+                "message": "Требуемый ресурс не найден"
+                "data": [] 
 components:
   schemas:
     LoginWith2FA:
