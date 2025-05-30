@@ -35299,7 +35299,7 @@ paths:
                             "ogrn": "1137746372290"
                             "inn": "7722807332"
                             "kpp": "772201001"
-                            "token": "481|nk1Om1Ufj9L39Bki574OnjtqtTzmK5lVWl7FNC3rd99870e4"
+                            "token": "481|nk1Om1Ufj9L39Bki574OTzmK5lVWl7FNC3rd99870e4"
                             "fio": "Липин Сергей Евгеньевич"
                             "contact_person": "null"
                             "phone": "null"
@@ -35396,7 +35396,7 @@ paths:
                             "ogrn": "1137746372290"
                             "inn": "7722807332"
                             "kpp": "772201001"
-                            "token": "481|nk1Om1Ufj9L39Bki574OnjtqtTzmK5lVWl7FNC3rd99870e4"
+                            "token": "481|nk1Om1Ufj9L39BkitzmK5lVWl7Fd99870e4"
                             "fio": "Липин Сергей Евгеньевич"
                             "contact_person": "null"
                             "phone": "null"
@@ -35468,6 +35468,1178 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": []             
+  /api/v1/search_order/{search_order_id}:
+    post:
+      tags:
+        - Розыски
+      summary: Обновить розыск
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: search_order_id
+          required: true
+          schema:
+            type: integer
+          description: ID розыска
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                orders[0][id]:
+                  type: integer
+                  description: ID заказа. Если необходимо передать более одного, передавать как orders[1] и т.д.
+                  example: ""
+                orders[0][type_id]:
+                  type: integer
+                  description: Тип инцидента. Если необходимо передать более одного, передавать как orders[1] и т.д.
+                  example: ""
+                  nullable: true
+                orders[0][payment]:
+                  type: integer
+                  description: Оплата. Если необходимо передать более одного, передавать как orders[1] и т.д.
+                  example: ""
+                  nullable: true
+                orders[0][description]:
+                  type: string
+                  description: Описание инцидента. Если необходимо передать более одного, передавать как orders[1] и т.д.
+                  example: ""
+                  nullable: true
+                orders[0][comment]:
+                  type: string
+                  description: Комментарий. Если необходимо передать более одного, передавать как orders[1] и т.д.
+                  example: ""
+                  nullable: true
+                status:
+                  type: string
+                  enum: [inwork, closed]
+                  description: Статус розыска (inwork - в работе, closed - закрыт)
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "4c883b34-d675-4e52-ac74-c5fc6c2b8468"
+                "data":
+                  "search":
+                    "id": 238
+                    "type": "order"
+                    "status": "inwork"
+                    "status_text": "В работе"
+                    "period_from": "2025-03-01T00:00:00+03:00"
+                    "period_to": "2025-04-01T00:00:00+03:00"
+                    "delivery_id": 1
+                    "company_id": 1
+                    "claim_id": null
+                    "created_at": "2025-05-26T13:40:58+03:00"
+                    "updated_at": "2025-05-26T13:40:58+03:00"
+                    "total_left_payment": 5149
+                    "count_claim_orders": 0
+                    "search_orders":
+                      - "id": 24214
+                        "search_id": 238
+                        "order_id": 1479119
+                        "type_id": null
+                        "payment": null
+                        "description": null
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-04-16T00:00:00+03:00"
+                        "delivery_service_delay": 44
+                        "credit_order": 5149
+                        "credit_cod": 5149
+                        "credit": 5149
+                        "order":
+                          "id": 1479119
+                          "order_id": "250401-5543"
+                          "delivery_id": 1
+                          "company_id": 1
+                          "shpi": "240095179857"
+                          "track_number": "10101949699"
+                          "barcode": "240095179857"
+                          "order_np_sum": 5149
+                          "order_assessed_sum": 5149
+                          "mass": 1520
+                          "order_create_date": "2025-04-01T00:00:00+03:00"
+                          "order_send_date": "2025-04-01T00:00:00+03:00"
+                          "order_delivered_date": null
+                          "delivery_service_status_date": "2025-04-30T00:00:00+03:00"
+                          "delivery_service_status": "RETURN"
+                          "delivery_service_status_title": "Возврат в пути"
+                          "delivery_service_status_original": "NOT_DELIVERED"
+                          "registry_status": null
+                          "registry_status_title": null
+                          "registry_number": null
+                          "registry_id": null
+                          "finflow_id": null
+                          "created_at": "2025-04-21T12:07:02+03:00"
+                          "updated_at": "2025-05-08T18:42:43+03:00"
+                          "company":
+                            "id": 1
+                            "name": "HSR"
+                            "project_name": "ООО \"Хом шоппинг раша\""
+                            "active": true
+                            "rate_limit_calc": 10000000
+                            "rate_limit_reports": null
+                            "rate_limit_data": null
+                            "data_depth": 60
+                            "unit_account": 1
+                            "tariff_calculation": true
+                            "turn_off_sd": true
+                            "legal_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                            "actual_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                            "ogrn": "1137746372290"
+                            "inn": "7722807332"
+                            "kpp": "772201001"
+                            "token": "481|nk1Om1Ufj9L39Bki574OnjtqtTzmK5lVWl7FNC3rd99870e4"
+                            "fio": "Липин Сергей Евгеньевич"
+                            "contact_person": "null"
+                            "phone": "null"
+                            "email": "null"
+                            "web_site": "null"
+                            "name_storage": "ООО «Бета ПРО»"
+                            "address_storage": "111024, Москва, Кабельная 2-я ул., дом № 2, строение 6"
+                            "ogrn_storage": "undefined"
+                            "inn_storage": "7722317962"
+                            "kpp_storage": "772201001"
+                            "okpo_storage": "41561325"
+                            "debt": null
+                            "acquiring": "average"
+                            "acquiring_with_delivery": false
+                          "delivery":
+                            "id": 1
+                            "code": "sdek"
+                            "name": "СДЕК"
+                            "is_active": true
+                            "image_id": 265
+                            "with_nds": true
+                            "tariff_insurance": 0.5
+                            "tariff_acquiring_card": 3
+                            "tariff_acquiring_cash": 1.3
+                            "tariff_acquiring_sbp": 0
+                            "tariff_acquiring_average": 2
+                            "tariff_return": 23
+                            "wait_registry": 5
+                            "add_weekend_wait_registry": 1
+                            "add_weekend_max_delivery_time": 0
+                            "add_weekend_storage": 0
+                            "add_weekend_deadline_searches": 0
+                            "add_weekend_calc": 0
+                            "redemption_rub": 81
+                            "redemption_count": 83
+                            "deleted_at": null
+                            "pass_inputs":
+                              - "name": "login"
+                                "title": "Логин (client_id)"
+                              - "name": "password"
+                                "title": "Пароль (client_secret)"
+                        "claim_order": null    
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "c9b121f7-0778-4a66-b456-e2c4ccac41c3"
+                "message": "Значение поля статус отсутствует в списке разрешённых.|"
+                "data":
+                  - "Значение поля статус отсутствует в списке разрешённых."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []  
+        '404':
+          description: Ошибка - розыск не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "802402eb-0239-4e4a-a870-7a5612060d48"
+                "message": "Требуемый ресурс не найден"
+                "data": []     
+  /api/v1/search_orders:
+    get:
+      tags:
+        - Розыски
+      summary: Список розысков с фильтрами
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[type]
+          required: false
+          schema:
+            type: string
+            enum: [order, cod]
+          description: Фильтр по типу розысков - розыски заказов (order) или наложенных платежей (cod)
+        - in: query
+          name: filter[company_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID клиента
+        - in: query
+          name: filter[delivery_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID службы доставки
+        - in: query
+          name: filter[id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID розыска
+        - in: query
+          name: filter[status]
+          required: false
+          schema:
+            type: string
+            enum: [inwork, closed]
+          description: Фильтр по статусу (inwork - в работе, closed - закрыт)
+        - in: query
+          name: filter[period_from_after]
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Фильтр по дате "от"
+        - in: query
+          name: filter[period_to_before]
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Фильтр по дате "до"
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: string
+          description: Сортировка (id, delivery_id, company_id, delivery_name, company_name, period_from, period_to)
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "06f87af5-0ac6-41c5-abec-d5b28d311ac9"
+                "data":
+                  "searches":
+                    - "id": 205
+                      "type": "order"
+                      "status": "closed"
+                      "status_text": "Закрыт"
+                      "period_from": "2025-02-28T00:00:00+03:00"
+                      "period_to": "2025-02-28T00:00:00+03:00"
+                      "delivery_id": 1
+                      "company_id": 1
+                      "claim_id": null
+                      "created_at": "2025-04-10T11:18:02+03:00"
+                      "updated_at": "2025-04-14T14:03:13+03:00"
+                      "total_left_payment": 14933.41
+                      "count_claim_orders": 0
+                      "search_orders":
+                        - "id": 32
+                          "search_id": 205
+                          "order_id": 1074641
+                          "type_id": null
+                          "payment": null
+                          "description": null
+                          "comment": null
+                          "delivery_service_supposed_date": "2025-03-15T00:00:00+03:00"
+                          "delivery_service_delay": 76
+                          "credit_order": 10846.95
+                          "credit_cod": 10846.95
+                          "credit": 10846.95
+                          "order":
+                            "id": 1074641
+                            "order_id": "250227-0685"
+                            "delivery_id": 1
+                            "company_id": 1
+                            "shpi": "240094474059"
+                            "track_number": "10089985963"
+                            "barcode": "240094474059"
+                            "order_np_sum": 10846.95
+                            "order_assessed_sum": 10846.95
+                            "mass": 995
+                            "order_create_date": "2025-02-28T00:00:00+03:00"
+                            "order_send_date": "2025-02-28T00:00:00+03:00"
+                            "order_delivered_date": null
+                            "delivery_service_status_date": "2025-04-03T00:00:00+03:00"
+                            "delivery_service_status": "RETURNED"
+                            "delivery_service_status_title": "Возвращен"
+                            "delivery_service_status_original": "NOT_DELIVERED"
+                            "registry_status": null
+                            "registry_status_title": null
+                            "registry_number": null
+                            "registry_id": null
+                            "finflow_id": 1
+                            "created_at": "2025-02-28T06:15:59+03:00"
+                            "updated_at": "2025-05-09T06:20:56+03:00"
+                            "company":
+                              "id": 1
+                              "name": "HSR"
+                              "project_name": "ООО \"Хом шоппинг раша\""
+                              "active": true
+                              "rate_limit_calc": 10000000
+                              "rate_limit_reports": null
+                              "rate_limit_data": null
+                              "data_depth": 60
+                              "unit_account": 1
+                              "tariff_calculation": true
+                              "turn_off_sd": true
+                              "legal_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                              "actual_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                              "ogrn": "1137746372290"
+                              "inn": "7722807332"
+                              "kpp": "772201001"
+                              "token": "481|nk1Om1Ufj9L39574OnjtqtTzmK5lVWl7FNC3870e4"
+                              "fio": "Липин Сергей Евгеньевич"
+                              "contact_person": "null"
+                              "phone": "null"
+                              "email": "null"
+                              "web_site": "null"
+                              "name_storage": "ООО «Бета ПРО»"
+                              "address_storage": "111024, Москва, Кабельная 2-я ул., дом № 2, строение 6"
+                              "ogrn_storage": "undefined"
+                              "inn_storage": "7722317962"
+                              "kpp_storage": "772201001"
+                              "okpo_storage": "41561325"
+                              "debt": null
+                              "acquiring": "average"
+                              "acquiring_with_delivery": false
+                            "delivery": 
+                              "id": 1
+                              "code": "sdek"
+                              "name": "СДЕК"
+                              "is_active": true
+                              "image_id": 265
+                              "with_nds": true
+                              "tariff_insurance": 0.5
+                              "tariff_acquiring_card": 3
+                              "tariff_acquiring_cash": 1.3
+                              "tariff_acquiring_sbp": 0
+                              "tariff_acquiring_average": 2
+                              "tariff_return": 23
+                              "wait_registry": 5
+                              "add_weekend_wait_registry": 1
+                              "add_weekend_max_delivery_time": 0
+                              "add_weekend_storage": 0
+                              "add_weekend_deadline_searches": 0
+                              "add_weekend_calc": 0
+                              "redemption_rub": 81
+                              "redemption_count": 83
+                              "deleted_at": null
+                              "pass_inputs":
+                                - "name": "login"
+                                  "title": "Логин (client_id)"
+                                - "name": "password"
+                                  "title": "Пароль (client_secret)"
+                          "claim_order": null
+                        - "id": 33
+                          "search_id": 205
+                          "order_id": 1081169
+                          "type_id": null
+                          "payment": null
+                          "description": null
+                          "comment": null
+                          "delivery_service_supposed_date": "2025-03-15T00:00:00+03:00"
+                          "delivery_service_delay": 76
+                          "credit_order": 4086.46
+                          "credit_cod": 4086.46
+                          "credit": 4086.46
+                          "order":
+                            "id": 1081169
+                            "order_id": "250222-5564"
+                            "delivery_id": 1
+                            "company_id": 1
+                            "shpi": "240094481526"
+                            "track_number": "10090078684"
+                            "barcode": "240094481526"
+                            "order_np_sum": 4086.46
+                            "order_assessed_sum": 4086.46
+                            "mass": 1480
+                            "order_create_date": "2025-02-28T00:00:00+03:00"
+                            "order_send_date": "2025-02-28T00:00:00+03:00"
+                            "order_delivered_date": null
+                            "delivery_service_status_date": "2025-03-28T00:00:00+03:00"
+                            "delivery_service_status": "RETURNED"
+                            "delivery_service_status_title": "Возвращен"
+                            "delivery_service_status_original": "NOT_DELIVERED"
+                            "registry_status": null
+                            "registry_status_title": null
+                            "registry_number": null
+                            "registry_id": null
+                            "finflow_id": 1
+                            "created_at": "2025-03-02T06:41:27+03:00"
+                            "updated_at": "2025-05-08T10:36:13+03:00"
+                            "company": 
+                              "id": 1
+                              "name": "HSR"
+                              "project_name": "ООО \"Хом шоппинг раша\""
+                              "active": true
+                              "rate_limit_calc": 10000000
+                              "rate_limit_reports": null
+                              "rate_limit_data": null
+                              "data_depth": 60
+                              "unit_account": 1
+                              "tariff_calculation": true
+                              "turn_off_sd": true
+                              "legal_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                              "actual_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                              "ogrn": "1137746372290"
+                              "inn": "7722807332"
+                              "kpp": "772201001"
+                              "token": "481|nk1Odsfsdfsdfsdf9Bki574OnjtqtTzmK5lVWl7FNC3rd99870e4"
+                              "fio": "Липин Сергей Евгеньевич"
+                              "contact_person": "null"
+                              "phone": "null"
+                              "email": "null"
+                              "web_site": "null"
+                              "name_storage": "ООО «Бета ПРО»"
+                              "address_storage": "111024, Москва, Кабельная 2-я ул., дом № 2, строение 6"
+                              "ogrn_storage": "undefined"
+                              "inn_storage": "7722317962"
+                              "kpp_storage": "772201001"
+                              "okpo_storage": "41561325"
+                              "debt": null
+                              "acquiring": "average"
+                              "acquiring_with_delivery": false
+                            "delivery":
+                              "id": 1
+                              "code": "sdek"
+                              "name": "СДЕК"
+                              "is_active": true
+                              "image_id": 265
+                              "with_nds": true
+                              "tariff_insurance": 0.5
+                              "tariff_acquiring_card": 3
+                              "tariff_acquiring_cash": 1.3
+                              "tariff_acquiring_sbp": 0
+                              "tariff_acquiring_average": 2
+                              "tariff_return": 23
+                              "wait_registry": 5
+                              "add_weekend_wait_registry": 1
+                              "add_weekend_max_delivery_time": 0
+                              "add_weekend_storage": 0
+                              "add_weekend_deadline_searches": 0
+                              "add_weekend_calc": 0
+                              "redemption_rub": 81
+                              "redemption_count": 83
+                              "deleted_at": null
+                              "pass_inputs":
+                                - "name": "login"
+                                  "title": "Логин (client_id)"
+                                - "name": "password"
+                                  "title": "Пароль (client_secret)"
+                          "claim_order": null
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/search_orders?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": null
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                    "current_page": 1
+                    "first_page_url": "https://dev-vz-api.3owls.su/api/v1/search_orders?page=1"
+                    "from": 1
+                    "last_page": 1
+                    "last_page_url": "https://dev-vz-api.3owls.su/api/v1/search_orders?page=1"
+                    "next_page_url": null
+                    "path": "https://dev-vz-api.3owls.su/api/v1/search_orders"
+                    "per_page": 100
+                    "prev_page_url": null
+                    "to": 6
+                    "total": 6
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/search_orders_download:
+    get:
+      tags:
+        - Розыски
+      summary: Скачать файл с розысками
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: ids[0]
+          required: true
+          schema:
+            type: integer
+          description: ID розысков. Если необходимо скачать несколько розысков, передавать ids[1] и т.д.
+      responses:
+        '200':
+          description: Скачан файл с розысками в формате excel
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "6dee6121-88ee-4cf6-8413-d21b6009bb7f"
+                "message": "Значение поля ids.0 не существует.|"
+                "data":
+                  - "Значение поля ids.0 не существует."  
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/search_orders_delete:
+    post:
+      tags:
+        - Розыски
+      summary: Удалить розыск
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - ids
+              properties:
+                ids:
+                  type: array
+                  description: "ID розысков, которые нужно удалить"
+                  items:
+                    type: integer
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "72a16c1c-2d64-4fb8-9886-45fa1d4b7a5c"
+                "message": "Розыски успешно удалены"
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "6dee6121-88ee-4cf6-8413-d21b6009bb7f"
+                "message": "Значение поля ids.0 не существует.|"
+                "data":
+                  - "Значение поля ids.0 не существует."  
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []     
+  /api/v1/search_order/{search_order_id}/add:
+    post:
+      tags:
+        - Розыски
+      summary: Добавить заказ в розыск вручную
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: search_order_id
+          required: true
+          schema:
+            type: integer
+          description: ID розыска
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - orders
+                properties:
+                  orders:
+                    type: array
+                    description: "Параметры заказов"
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1040596
+                        order_id:
+                          type: string
+                          description: обязателен, если не указан shpi
+                          example: "250219-4784"
+                        shpi:
+                          type: string
+                          description: обязателен, если не указан order_id
+                          example: "240094294396"
+                        type_id:
+                          type: integer
+                          nullable: true
+                          example: 2
+                        payment:
+                          type: integer
+                          nullable: true
+                          example: 1111
+                        description:
+                          type: string
+                          example: "qweqweqe"
+                        comment:
+                          type: string
+                          example: "qqweqwe" 
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "cafd45c9-a760-444c-abcd-d49b3840ff55"
+                "data":
+                  "search":
+                    "id": 239
+                    "type": "order"
+                    "status": "inwork"
+                    "status_text": "В работе"
+                    "period_from": "2025-02-22T00:00:00+03:00"
+                    "period_to": "2025-02-23T00:00:00+03:00"
+                    "delivery_id": 1
+                    "company_id": 1
+                    "claim_id": null
+                    "created_at": "2025-05-30T10:33:35+03:00"
+                    "updated_at": "2025-05-30T10:33:35+03:00"
+                    "total_left_payment": 35334.75
+                    "count_claim_orders": 0
+                    "search_orders":
+                      - "id": 24215
+                        "search_id": 239
+                        "order_id": 1044658
+                        "type_id": null
+                        "payment": null
+                        "description": null
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-03-09T00:00:00+03:00"
+                        "delivery_service_delay": 82
+                        "credit_order": 4639
+                        "credit_cod": 4639
+                        "credit": 4639
+                        "order":
+                          "id": 1044658
+                          "order_id": "250220-0400"
+                          "delivery_id": 1
+                          "company_id": 1
+                          "shpi": "240094324046"
+                          "track_number": "10087690261"
+                          "barcode": "240094324046"
+                          "order_np_sum": 4639
+                          "order_assessed_sum": 4639
+                          "mass": 1565
+                          "order_create_date": "2025-02-22T00:00:00+03:00"
+                          "order_send_date": "2025-02-22T00:00:00+03:00"
+                          "order_delivered_date": "2025-04-03T00:00:00+03:00"
+                          "delivery_service_status_date": "2025-04-03T00:00:00+03:00"
+                          "delivery_service_status": "COMPLETE"
+                          "delivery_service_status_title": "Доставлен"
+                          "delivery_service_status_original": "DELIVERED"
+                          "registry_status": "without"
+                          "registry_status_title": "Нет реестра"
+                          "registry_number": null
+                          "registry_id": null
+                          "finflow_id": 1
+                          "created_at": "2025-02-22T06:36:26+03:00"
+                          "updated_at": "2025-04-10T05:00:07+03:00"
+                          "company":
+                            "id": 1
+                            "name": "HSR"
+                            "project_name": "ООО \"Хом шоппинг раша\""
+                            "active": true
+                            "rate_limit_calc": 10000000
+                            "rate_limit_reports": null
+                            "rate_limit_data": null
+                            "data_depth": 60
+                            "unit_account": 1
+                            "tariff_calculation": true
+                            "turn_off_sd": true
+                            "legal_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                            "actual_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                            "ogrn": "1137746372290"
+                            "inn": "7722807332"
+                            "kpp": "772201001"
+                            "token": "481|nk1Om1Ufj9L39dsfsfgdfgdgmK5lVWl7FNC3rd99870e4"
+                            "fio": "Липин Сергей Евгеньевич"
+                            "contact_person": "null"
+                            "phone": "null"
+                            "email": "null"
+                            "web_site": "null"
+                            "name_storage": "ООО «Бета ПРО»"
+                            "address_storage": "111024, Москва, Кабельная 2-я ул., дом № 2, строение 6"
+                            "ogrn_storage": "undefined"
+                            "inn_storage": "7722317962"
+                            "kpp_storage": "772201001"
+                            "okpo_storage": "41561325"
+                            "debt": null
+                            "acquiring": "average"
+                            "acquiring_with_delivery": false
+                          "delivery":
+                            "id": 1
+                            "code": "sdek"
+                            "name": "СДЕК"
+                            "is_active": true
+                            "image_id": 265
+                            "with_nds": true
+                            "tariff_insurance": 0.5
+                            "tariff_acquiring_card": 3
+                            "tariff_acquiring_cash": 1.3
+                            "tariff_acquiring_sbp": 0
+                            "tariff_acquiring_average": 2
+                            "tariff_return": 23
+                            "wait_registry": 5
+                            "add_weekend_wait_registry": 1
+                            "add_weekend_max_delivery_time": 0
+                            "add_weekend_storage": 0
+                            "add_weekend_deadline_searches": 0
+                            "add_weekend_calc": 0
+                            "redemption_rub": 81
+                            "redemption_count": 83
+                            "deleted_at": null
+                            "pass_inputs":
+                              - "name": "login"
+                                "title": "Логин (client_id)"
+                              - "name": "password"
+                                "title": "Пароль (client_secret)"
+                        "claim_order": null
+                      - "id": 24227
+                        "search_id": 239
+                        "order_id": 1040596
+                        "type_id": 2
+                        "payment": 1111
+                        "description": "qweqweqe"
+                        "comment": "qqweqwe"
+                        "delivery_service_supposed_date": "2025-03-08T00:00:00+03:00"
+                        "delivery_service_delay": 83
+                        "credit_order": 1752.85
+                        "credit_cod": 1752.85
+                        "credit": 2863.85
+                        "order":
+                          "id": 1040596
+                          "order_id": "250219-4784"
+                          "delivery_id": 1
+                          "company_id": 1
+                          "shpi": "240094294396"
+                          "track_number": "10087248851"
+                          "barcode": "240094294396"
+                          "order_np_sum": 2863.85
+                          "order_assessed_sum": 2863.85
+                          "mass": 1335
+                          "order_create_date": "2025-02-21T00:00:00+03:00"
+                          "order_send_date": "2025-02-21T00:00:00+03:00"
+                          "order_delivered_date": null
+                          "delivery_service_status_date": "2025-02-28T00:00:00+03:00"
+                          "delivery_service_status": "READY"
+                          "delivery_service_status_title": "Готов к выдаче"
+                          "delivery_service_status_original": "TAKEN_BY_COURIER"
+                          "registry_status": "with"
+                          "registry_status_title": "Реестр получен"
+                          "registry_number": null
+                          "registry_id": null
+                          "finflow_id": 9
+                          "created_at": "2025-02-20T23:30:41+03:00"
+                          "updated_at": "2025-04-29T15:35:40+03:00"
+                          "company":
+                            "id": 1
+                            "name": "HSR"
+                            "project_name": "ООО \"Хом шоппинг раша\""
+                            "active": true
+                            "rate_limit_calc": 10000000
+                            "rate_limit_reports": null
+                            "rate_limit_data": null
+                            "data_depth": 60
+                            "unit_account": 1
+                            "tariff_calculation": true
+                            "turn_off_sd": true
+                            "legal_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                            "actual_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                            "ogrn": "1137746372290"
+                            "inn": "7722807332"
+                            "kpp": "772201001"
+                            "token": "481|nk1Om1Ufj9L39Bki57dfgdfgdfgdfgzmK5lVWl7FNC3rd99870e4"
+                            "fio": "Липин Сергей Евгеньевич"
+                            "contact_person": "null"
+                            "phone": "null"
+                            "email": "null"
+                            "web_site": "null"
+                            "name_storage": "ООО «Бета ПРО»"
+                            "address_storage": "111024, Москва, Кабельная 2-я ул., дом № 2, строение 6"
+                            "ogrn_storage": "undefined"
+                            "inn_storage": "7722317962"
+                            "kpp_storage": "772201001"
+                            "okpo_storage": "41561325"
+                            "debt": null
+                            "acquiring": "average"
+                            "acquiring_with_delivery": false
+                          "delivery":
+                            "id": 1
+                            "code": "sdek"
+                            "name": "СДЕК"
+                            "is_active": true
+                            "image_id": 265
+                            "with_nds": true
+                            "tariff_insurance": 0.5
+                            "tariff_acquiring_card": 3
+                            "tariff_acquiring_cash": 1.3
+                            "tariff_acquiring_sbp": 0
+                            "tariff_acquiring_average": 2
+                            "tariff_return": 23
+                            "wait_registry": 5
+                            "add_weekend_wait_registry": 1
+                            "add_weekend_max_delivery_time": 0
+                            "add_weekend_storage": 0
+                            "add_weekend_deadline_searches": 0
+                            "add_weekend_calc": 0
+                            "redemption_rub": 81
+                            "redemption_count": 83
+                            "types":
+                              - "id": 1
+                                "delivery_id": 1
+                                "type": "curier"
+                                "max_width": 1000
+                                "max_length": 1000
+                                "max_height": 1000
+                                "max_weight": 30000
+                                "max_delivery_time": 15
+                                "max_side": 1000
+                                "max_sum_sides": 1500
+                                "max_cost": 150000
+                                "max_np": 150000
+                                "storage": 14
+                                "deadline_searches": 45
+                                "is_mobile": false
+                                "tariff_type": "3"
+                                "tariff_code": "137"
+                                "created_at": "2024-08-16T11:49:16+03:00"
+                                "updated_at": "2025-05-27T16:56:21+03:00"
+                                "deleted_at": null
+                              - "id": 2
+                                "delivery_id": 1
+                                "type": "pvz"
+                                "max_width": 1000
+                                "max_length": 1000
+                                "max_height": 1000
+                                "max_weight": 30000
+                                "max_delivery_time": 14
+                                "max_side": 1000
+                                "max_sum_sides": 1500
+                                "max_cost": 150000
+                                "max_np": 150000
+                                "storage": 14
+                                "deadline_searches": 45
+                                "is_mobile": false
+                                "tariff_type": "3"
+                                "tariff_code": "136"
+                                "created_at": "2024-08-16T11:49:16+03:00"
+                                "updated_at": "2025-05-27T16:56:21+03:00"
+                                "deleted_at": null
+                            "deleted_at": null,
+                            "pass_inputs":
+                              - "name": "login"
+                                "title": "Логин (client_id)"
+                              - "name": "password"
+                                "title": "Пароль (client_secret)"
+                        "claim_order": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "9a774fe1-48ba-42b7-9407-588976c58749"
+                "message": "Поле orders.0.order_id обязательно для заполнения, когда orders.0.shpi не указано.|Поле orders.0.shpi обязательно для заполнения, когда orders.0.order_id не указано.|"
+                "data":
+                  - "Поле orders.0.order_id обязательно для заполнения, когда orders.0.shpi не указано."
+                  - "Поле orders.0.shpi обязательно для заполнения, когда orders.0.order_id не указано."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/search_order/{search_order_id}/remove:
+    post:
+      tags:
+        - Розыски
+      summary: Удалить заказ из розыска
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: search_order_id
+          required: true
+          schema:
+            type: integer
+          description: ID розыска
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - orders
+                properties:
+                  orders:
+                    type: array
+                    description: "ID заказов"
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 24226
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "951db735-8e62-417e-94da-6ecbf9b4cd0e"
+                "data":
+                  "search":
+                    "id": 240
+                    "type": "order"
+                    "status": "inwork"
+                    "status_text": "В работе"
+                    "period_from": "2025-03-24T00:00:00+03:00"
+                    "period_to": "2025-04-30T00:00:00+03:00"
+                    "delivery_id": 4
+                    "company_id": 1
+                    "claim_id": null
+                    "created_at": "2025-05-30T11:50:26+03:00"
+                    "updated_at": "2025-05-30T11:50:26+03:00"
+                    "total_left_payment": 17750.66
+                    "count_claim_orders": 0
+                    "search_orders":
+                      - "id": 24222
+                        "search_id": 240
+                        "order_id": 1291701
+                        "type_id": null
+                        "payment": null
+                        "description": null
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-04-26T00:00:00+03:00"
+                        "delivery_service_delay": 34
+                        "credit_order": 4991.92
+                        "credit_cod": 4991.92
+                        "credit": 4991.92
+                        "order":
+                          "id": 1291701
+                          "order_id": "250320-2305"
+                          "delivery_id": 4
+                          "company_id": 1
+                          "shpi": "240095064204"
+                          "track_number": null
+                          "barcode": "A11282763"
+                          "order_np_sum": 4991.92
+                          "order_assessed_sum": 4991.92
+                          "mass": 1030
+                          "order_create_date": "2025-03-27T00:00:00+03:00"
+                          "order_send_date": "2025-03-27T00:00:00+03:00"
+                          "order_delivered_date": "2025-03-29T00:00:00+03:00"
+                          "delivery_service_status_date": "2025-03-29T00:00:00+03:00"
+                          "delivery_service_status": "RETURN"
+                          "delivery_service_status_title": "Возврат в пути"
+                          "delivery_service_status_original": "RETURNED"
+                          "registry_status": null
+                          "registry_status_title": null
+                          "registry_number": null
+                          "registry_id": null
+                          "finflow_id": 9
+                          "created_at": "2025-03-28T23:25:53+03:00"
+                          "updated_at": "2025-04-02T14:24:02+03:00"
+                          "company":
+                            "id": 1
+                            "name": "HSR"
+                            "project_name": "ООО \"Хом шоппинг раша\""
+                            "active": true
+                            "rate_limit_calc": 10000000
+                            "rate_limit_reports": null
+                            "rate_limit_data": null
+                            "data_depth": 60
+                            "unit_account": 1
+                            "tariff_calculation": true
+                            "turn_off_sd": true
+                            "legal_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                            "actual_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                            "ogrn": "1137746372290"
+                            "inn": "7722807332"
+                            "kpp": "772201001"
+                            "token": "481|nk1Om1Ufj9L39Bki574OnjtqtTzmK5lVWl7FNC3rd99870e4"
+                            "fio": "Липин Сергей Евгеньевич"
+                            "contact_person": "null"
+                            "phone": "null"
+                            "email": "null"
+                            "web_site": "null"
+                            "name_storage": "ООО «Бета ПРО»"
+                            "address_storage": "111024, Москва, Кабельная 2-я ул., дом № 2, строение 6"
+                            "ogrn_storage": "undefined"
+                            "inn_storage": "7722317962"
+                            "kpp_storage": "772201001"
+                            "okpo_storage": "41561325"
+                            "debt": null
+                            "acquiring": "average"
+                            "acquiring_with_delivery": false
+                          "delivery":
+                            "id": 4
+                            "code": "dalli"
+                            "name": "Dalli"
+                            "is_active": true
+                            "image_id": null
+                            "with_nds": true
+                            "tariff_insurance": 0.55
+                            "tariff_acquiring_card": 2.8
+                            "tariff_acquiring_cash": 1.8
+                            "tariff_acquiring_sbp": 0
+                            "tariff_acquiring_average": 2.3
+                            "tariff_return": 50
+                            "wait_registry": 3
+                            "add_weekend_wait_registry": 1
+                            "add_weekend_max_delivery_time": 0
+                            "add_weekend_storage": 0
+                            "add_weekend_deadline_searches": 0
+                            "add_weekend_calc": 0
+                            "redemption_rub": 84
+                            "redemption_count": 86
+                            "deleted_at": null
+                            "pass_inputs":
+                              - "name": "password"
+                                "title": "Токен"
+                        "claim_order": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "7f4ea0ff-697c-4f39-9d77-54f19d465889"
+                "message": "Значение поля orders.0.id не существует.|"
+                "data":
+                  - "Значение поля orders.0.id не существует."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []         
+  # дописать метод на загрузку таблицы в розыск
+  /api/v1/claim_order_create:
+    post:
+      tags:
+        - Претензионные заказы
+      summary: Создать претензионный заказ
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - search_type
+                - delivery_id
+                - company_id
+                - claim_orders[0][shpi]
+                - claim_orders[0][order_id]
+                - claim_orders[0][incident_type]
+                - claim_orders[0][description]
+              properties:
+                search_type:
+                  type: string
+                  enum: [order, cod]
+                  description: Тип (order - Заказы, cod - Наложенные платежи)
+                delivery_id:
+                  type: integer
+                  description: ID службы доставки
+                  example: ""
+                company_id:
+                  type: integer
+                  description: ID клиента
+                  example: ""
+                claim_orders[0][shpi]:
+                  type: string
+                  description: ШПИ. Если нужно передать более одного заказа, передавать claim_orders[1] и т.д.
+                  example: ""
+                claim_orders[0][order_id]:
+                  type: string
+                  description: Номер заказа. Если нужно передать более одного заказа, передавать claim_orders[1] и т.д.
+                  example: ""
 components:
   schemas:
     LoginWith2FA:
