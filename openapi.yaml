@@ -37278,28 +37278,496 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": [] 
-  # /api/v1/claims_create:
-  #   post:
-  #     tags:
-  #       - Претензии
-  #     summary: Создать претензию
-  #     security:
-  #       - bearerAuth: []
-  #     requestBody:
-  #       required: true
-  #       content:
-  #         multipart/form-data:
-  #           schema:
-  #             type: object
-  #             required:
-  #               - claim_order_ids[0]
-  #             properties:
-  #               claim_order_ids[0]:
-  #                 type: integer
-  #                 description: ID претензионного заказам
-  #                 example: ""
-  #     responses:
-
+  /api/v1/claims_create:
+    post:
+      tags:
+        - Претензии
+      summary: Создать претензию
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - claim_order_ids[0]
+              properties:
+                claim_order_ids[0]:
+                  type: integer
+                  description: ID претензионного заказам
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "689bacae-e5da-411c-aded-63f34e78b51f"
+                "data":
+                  "claims":
+                    - "id": 46
+                      "compensate_sum": 0
+                      "status": "in_work"
+                      "status_compensate": null
+                      "created_at": "2025-06-02T16:08:01+03:00"
+                      "updated_at": "2025-06-02T16:08:01+03:00"
+                      "claim_orders":
+                        - "id": 68
+                          "status": "in_claim"
+                          "type": "order"
+                          "claim_id": 46
+                          "created_at": "2025-04-21T15:37:35+03:00"
+                          "updated_at": "2025-06-02T16:08:01+03:00"
+                          "search_order":
+                            "id": 321
+                            "search_id": 210
+                            "order_id": 1361766
+                            "type_id": 2
+                            "payment": null
+                            "description": "ыффыв"
+                            "comment": "фыфыв"
+                            "delivery_service_supposed_date": "2025-04-16T00:00:00+03:00"
+                            "delivery_service_delay": 47
+                            "credit_order": 8896.51
+                            "credit_cod": 8896.51
+                            "credit": 8896.51
+                            "order":
+                              "id": 1361766
+                              "order_id": "250330-2947"
+                              "delivery_id": 2
+                              "company_id": 1
+                              "shpi": "240095145306"
+                              "track_number": "BBR345565931"
+                              "barcode": "240095145306"
+                              "order_np_sum": 8896.51
+                              "order_assessed_sum": 8896.51
+                              "mass": 1200
+                              "order_create_date": "2025-04-01T00:00:00+03:00"
+                              "order_send_date": "2025-04-01T00:00:00+03:00"
+                              "order_delivered_date": null
+                              "delivery_service_status_date": "2025-04-04T00:00:00+03:00"
+                              "delivery_service_status": "RETURNED"
+                              "delivery_service_status_title": "Возвращен"
+                              "delivery_service_status_original": "Передано на курьерскую доставку"
+                              "registry_status": null
+                              "registry_status_title": null
+                              "registry_number": null
+                              "registry_id": null
+                              "finflow_id": 1
+                              "created_at": "2025-04-01T12:48:50+03:00"
+                              "updated_at": "2025-05-08T10:46:13+03:00"
+                              "company":
+                                "id": 1
+                                "name": "HSR"
+                                "project_name": "ООО \"Хом шоппинг раша\""
+                                "active": true
+                                "rate_limit_calc": 10000000
+                                "rate_limit_reports": null
+                                "rate_limit_data": null
+                                "data_depth": 60
+                                "unit_account": 1
+                                "tariff_calculation": true
+                                "turn_off_sd": true
+                                "legal_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                                "actual_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                                "ogrn": "1137746372290"
+                                "inn": "7722807332"
+                                "kpp": "772201001"
+                                "token": "481|nk1Om1Ufj9L39Bki574OnjtqtTzmK5lVWl7FNC3rd99870e4"
+                                "fio": "Липин Сергей Евгеньевич"
+                                "contact_person": "null"
+                                "phone": "null"
+                                "email": "null"
+                                "web_site": "null"
+                                "name_storage": "ООО «Бета ПРО»"
+                                "address_storage": "111024, Москва, Кабельная 2-я ул., дом № 2, строение 6"
+                                "ogrn_storage": "undefined"
+                                "inn_storage": "7722317962"
+                                "kpp_storage": "772201001"
+                                "okpo_storage": "41561325"
+                                "debt": null
+                                "acquiring": "average"
+                                "acquiring_with_delivery": false
+                              "delivery":
+                                "id": 2
+                                "code": "boxberry"
+                                "name": "BoxBerry"
+                                "is_active": true
+                                "image_id": null
+                                "with_nds": true
+                                "tariff_insurance": 0.5
+                                "tariff_acquiring_card": 2.3
+                                "tariff_acquiring_cash": 1.6
+                                "tariff_acquiring_sbp": 0
+                                "tariff_acquiring_average": 1.95
+                                "tariff_return": 50
+                                "wait_registry": 1
+                                "add_weekend_wait_registry": 1
+                                "add_weekend_max_delivery_time": 0
+                                "add_weekend_storage": 0
+                                "add_weekend_deadline_searches": 0
+                                "add_weekend_calc": 0
+                                "redemption_rub": 80
+                                "redemption_count": 83
+                                "deleted_at": null
+                                "pass_inputs":
+                                  - "name": "password"
+                                    "title": "API токен"
+                              "claim":
+                                "id": 46
+                                "compensate_sum": 0
+                                "status": "in_work"
+                                "status_compensate": null
+                                "created_at": "2025-06-02T16:08:01+03:00"
+                                "updated_at": "2025-06-02T16:08:01+03:00"
+                      "credit": 8896.51
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "42bcdd20-3b34-4c1f-b5df-2ccfcad1e9ae"
+                "message": "Значение поля claim_order_ids.0.id не существует.|"
+                "data":
+                  - "Значение поля claim_order_ids.0.id не существует."  
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []       
+  /api/v1/claims:
+    get:
+      tags:
+        - Претензии
+      summary: Список претензий с фильтрами
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID претензии
+        - in: query
+          name: filter[company_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID клиента
+        - in: query
+          name: filter[delivery_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по ID службы доставки
+        - in: query
+          name: filter[status]
+          required: false
+          schema:
+            type: string
+            enum: [in_work, sent_manually, accepted_manually, declined_manually, completed_manually, cancelled_manually]
+          description: Фильтр по статусу претензии
+        - in: query
+          name: filter[status_compensate]
+          required: false
+          schema:
+            type: string
+            enum: [full, partially, declined]
+          description: Фильтр по статусу компенсации
+        - in: query
+          name: filter[period_from]
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Фильтр по дате "от"
+        - in: query
+          name: filter[period_to]
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Фильтр по дате "до"
+        - in: query
+          name: filter[incident_type]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по типу инцидента
+        - in: query
+          name: filter[search_type]
+          required: false
+          schema:
+            type: string
+            enum: [order, cod]
+          description: Фильтр по типу (Заказы/Платежи)
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "7e65c2e1-8747-4edb-90a1-e74aac728d11"
+                "data":
+                  "claims":
+                    - "id": 35
+                      "compensate_sum": 500
+                      "status": "accepted_manually"
+                      "status_compensate": "full"
+                      "created_at": "2025-05-05T10:48:16+03:00"
+                      "updated_at": "2025-05-05T16:43:32+03:00"
+                      "claim_orders":
+                        - "id": 106
+                          "status": "in_claim"
+                          "type": "order"
+                          "claim_id": 35
+                          "created_at": "2025-04-30T10:54:03+03:00"
+                          "updated_at": "2025-05-05T10:48:16+03:00"
+                          "search_order":
+                            "id": 22347
+                            "search_id": 230
+                            "order_id": 1178749
+                            "type_id": 3
+                            "payment": 500
+                            "description": "часть заказа испорчена при доставке"
+                            "comment": null
+                            "delivery_service_supposed_date": "2025-04-01T00:00:00+03:00"
+                            "delivery_service_delay": 62
+                            "credit_order": 11369.18
+                            "credit_cod": 11369.18
+                            "credit": 11869.18
+                            "order":
+                              "id": 1178749
+                              "order_id": "250214-8094"
+                              "delivery_id": 5
+                              "company_id": 1
+                              "shpi": "240094811322"
+                              "track_number": "e0fbfb87-5b45-3fbe-8c6b-529d2cb2b19e"
+                              "barcode": "40990094811322"
+                              "order_np_sum": 11869.18
+                              "order_assessed_sum": 11869.18
+                              "mass": 575
+                              "order_create_date": "2025-03-17T00:00:00+03:00"
+                              "order_send_date": "2025-03-17T00:00:00+03:00"
+                              "order_delivered_date": null
+                              "delivery_service_status_date": "2025-03-22T00:00:00+03:00"
+                              "delivery_service_status": "RETURNED"
+                              "delivery_service_status_title": "Возвращен"
+                              "delivery_service_status_original": "IN_PROCESS_PLACED_IN_POSTAMAT_LAST_MILE"
+                              "registry_status": null
+                              "registry_status_title": null
+                              "registry_number": null
+                              "registry_id": null
+                              "finflow_id": 9
+                              "created_at": "2025-03-19T20:52:56+03:00"
+                              "updated_at": "2025-05-08T13:56:59+03:00"
+                              "company":
+                                "id": 1
+                                "name": "HSR"
+                                "project_name": "ООО \"Хом шоппинг раша\""
+                                "active": true
+                                "rate_limit_calc": 10000000
+                                "rate_limit_reports": null
+                                "rate_limit_data": null
+                                "data_depth": 90
+                                "unit_account": 1
+                                "tariff_calculation": true
+                                "turn_off_sd": true
+                                "legal_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                                "actual_address": "111024, г. Москва, ул. 2-я Кабельная, дом 2, строение 6, этаж 4, помещ.2"
+                                "ogrn": "1137746372290"
+                                "inn": "7722807332"
+                                "kpp": "772201001"
+                                "token": "481|nk1Om1Ufj9L39Bki574OnjtqtTzmK5lVWl7FNC3rd99870e4"
+                                "fio": "Липин Сергей Евгеньевич"
+                                "contact_person": "null"
+                                "phone": "null"
+                                "email": "null"
+                                "web_site": "null"
+                                "name_storage": "ООО «Бета ПРО»"
+                                "address_storage": "111024, Москва, Кабельная 2-я ул., дом № 2, строение 6"
+                                "ogrn_storage": "undefined"
+                                "inn_storage": "7722317962"
+                                "kpp_storage": "772201001"
+                                "okpo_storage": "41561325"
+                                "debt": null
+                                "acquiring": "average"
+                                "acquiring_with_delivery": false
+                              "delivery":
+                                "id": 5
+                                "code": "fivepost"
+                                "name": "5Post"
+                                "is_active": true
+                                "image_id": null
+                                "with_nds": true
+                                "tariff_insurance": 0.5
+                                "tariff_acquiring_card": 1.88
+                                "tariff_acquiring_cash": 1.88
+                                "tariff_acquiring_sbp": 1.88
+                                "tariff_acquiring_average": 1.88
+                                "tariff_return": 0
+                                "wait_registry": 2
+                                "add_weekend_wait_registry": 1
+                                "add_weekend_max_delivery_time": 0
+                                "add_weekend_storage": 0
+                                "add_weekend_deadline_searches": 0
+                                "add_weekend_calc": 0
+                                "redemption_rub": 83
+                                "redemption_count": 86
+                                "deleted_at": null
+                                "pass_inputs":
+                                  - "name": "password"
+                                    "title": "Ключ к АПИ (API key)"
+                              "claim":
+                                "id": 35
+                                "compensate_sum": 500
+                                "status": "accepted_manually"
+                                "status_compensate": "full"
+                                "created_at": "2025-05-05T10:48:16+03:00"
+                                "updated_at": "2025-05-05T16:43:32+03:00"
+                      "credit": 11369.18
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "https://dev-vz-api.3owls.su/api/v1/claims?page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": null
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                    "current_page": 1
+                    "first_page_url": "https://dev-vz-api.3owls.su/api/v1/claims?page=1"
+                    "from": 1
+                    "last_page": 1
+                    "last_page_url": "https://dev-vz-api.3owls.su/api/v1/claims?page=1"
+                    "next_page_url": null
+                    "path": "https://dev-vz-api.3owls.su/api/v1/claims"
+                    "per_page": 100
+                    "prev_page_url": null
+                    "to": 1
+                    "total": 1     
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "7b544d5b-03e5-42e2-9344-571ed36dfe0c"
+                "message": "Значение поля filter.status compensate отсутствует в списке разрешённых.|"
+                "data":
+                  - "Значение поля filter.status compensate отсутствует в списке разрешённых."    
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []          
+  /api/v1/claims_update:
+    post:
+      tags:
+        - Претензии
+      summary: Редактировать претензию
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - claims[0][id]
+                - claims[0][status]
+                - claims[0][compensate_sum]
+                - claims[0][status_compensate]
+              properties:
+                claims[0][id]:
+                  type: integer
+                  description: ID претензии
+                  example: ""
+                claims[0][status]:
+                  type: string
+                  enum: [in_work, sent_manually, accepted_manually, declined_manually, completed_manually, cancelled_manually]
+                  description: Статус претензии
+                  nullable: true
+                claims[0][compensate_sum]:
+                  type: integer
+                  description: Сумма компенсации
+                  example: ""
+                  nullable: true
+                claims[0][status_compensate]:
+                  type: string
+                  enum: [full, partially, declined]
+                  description: Статус компенсации
+                  nullable: true
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "3406428f-f861-45d0-83f0-666801b4c5c7"
+                "data":
+                  "claims":
+                    - "id": 36
+                      "compensate_sum": 123.59
+                      "status": "accepted_manually"
+                      "status_compensate": "partially"
+                      "created_at": "2025-05-05T10:58:01+03:00"
+                      "updated_at": "2025-06-02T17:41:37+03:00" 
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "1b8f7a29-1cd6-4c44-82d1-b4297409750a"
+                "message": "Значение поля claims.0.status_compensate отсутствует в списке разрешённых.|"
+                "data":
+                  - "Значение поля claims.0.status_compensate отсутствует в списке разрешённых."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
 components:
   schemas:
     LoginWith2FA:
