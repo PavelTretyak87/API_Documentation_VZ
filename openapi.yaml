@@ -10,6 +10,223 @@ info:
 servers:
   - url: https://dev-vz-api.3owls.su
 paths:
+  /api/v1/registries_approve:
+    post:
+      tags:
+        - Ваш Заказ - публичный АПИ
+      summary: Подтверждение реестра
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - registries
+              properties:              
+                registries:
+                  type: array
+                  items: object
+                  required:
+                    - number
+                    - date
+                    - from
+                    - amount
+                  properties:
+                    number:
+                      type: string
+                      example: "80214642-1024-7778e19882-0340-4020-ae79-e6138b29092a"
+                    date:
+                      type: string
+                      example: "2024-10-18"
+                    from:
+                      type: string
+                      example: "5 ПОСТ ООО"
+                    amount:
+                      type: integer
+                      example: 9169252.39
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "c7f42957-c65e-44c1-a40a-249ec1dcc745"
+                "data": 
+                  "registries":
+                    - "id": 201
+                      "number": "fivepost_80214642-1024-7778e19882-0340-4020-ae79-e6138b29092a"
+                      "status": "accepted"
+                      "comment": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:  
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "d27064eb-755e-438c-829b-a2fe5c835994"
+                "message": "Поле registries.0.date обязательно.|Поле registries.0.number обязательно.|Поле registries.0.from обязательно.|Поле registries.0.amount обязательно.|"
+                "data":
+                  - "Поле registries.0.date обязательно."
+                  - "Поле registries.0.number обязательно."
+                  - "Поле registries.0.from обязательно."
+                  - "Поле registries.0.amount обязательно."
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 4d1b2b4e-eba1-4231-a119-a42911dba910
+                message: Ошибка аутентификации.
+                data: []
+  /api/v1/registries_pp:
+    get:
+      tags:
+        - Ваш Заказ - публичный АПИ
+      summary: Реестры для отправки платежного поручения
+      security:
+        - bearerAuth: []  
+      parameters:
+        - in: query
+          name: from
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Дата "от"
+        - in: query
+          name: from
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Дата "до"
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "306b1528-4fab-4a21-abe7-ac9782b943b5"
+                "data":
+                  - "company_name": "ООО \"Хом шоппинг раша\""
+                    "id": 80
+                    "number": "80214642-1024-69954001d5-7b62-48f2-b5ed-d4500d960229"
+                    "client_name": "HSR"
+                    "client_inn": "9722000285"
+                    "amount": 9488559.71
+                    "date": "2024-11-26 08:50:27"
+                    "contract_date": null
+                    "contract_number": null
+                    "rs": "123456678"
+                  - "company_name": "ООО \"Хом шоппинг раша\""
+                    "id": 81
+                    "number": "80214642-1024-7778e19882-0340-4020-ae79-e6138b29092a"
+                    "client_name": "HSR"
+                    "client_inn": "9722000285"
+                    "amount": 9169252.39
+                    "date": "2024-11-27 14:04:05"
+                    "contract_date": null
+                    "contract_number": null
+                    "rs": "123456678"    
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "fbddf8cb-76fe-4266-862e-ed956939f55d"
+                "message": "Поле from обязательно.|"
+                "data":
+                  - "Поле from обязательно."
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 4d1b2b4e-eba1-4231-a119-a42911dba910
+                message: Ошибка аутентификации.
+                data: []
+    post:
+      tags:
+        - Ваш Заказ - публичный АПИ
+      summary: Реестры для отправки платежного поручения
+      security:
+        - bearerAuth: [] 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - registries
+              properties:              
+                registries:
+                  type: array
+                  items: integer
+                  description: ID реестров
+                  example: [80, 81]
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "948a26c0-e21e-41db-90c4-3d040abe8130"
+                "data":
+                  "accepted":
+                    - 80
+                    - 81
+                  "not_accepted": [] 
+        '400':
+          description: Ошибка
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "4332cd68-55d8-47a3-aa7b-a1782375d33b"
+                "message": "Один или несколько реестров не удалось найти или подтвердить"
+                "data":
+                  "accepted":
+                    - 80
+                    - 81
+                  "not_accepted":
+                    - 82
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 4d1b2b4e-eba1-4231-a119-a42911dba910
+                message: Ошибка аутентификации.
+                data: []
   /api/v1/companies:
     get:
       tags:
@@ -37250,6 +37467,93 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": [] 
+  /api/v1/claim_orders_from_search_orders:
+    post:
+      tags:
+        - Претензионные заказы
+      summary: Создать претензионный заказ из заказов в розыске
+      security:
+        - bearerAuth: []    
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - search_orders[0][id]
+              properties:
+                search_orders[0][id]:
+                  type: integer
+                  description: ID заказа в розыске. Если нужно передать более одного, передавать search_orders[1][id] и т.д.
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "d9b64be6-5a5e-4013-af99-86d959c6e5de"
+                "data":
+                  "claim_orders":
+                    - "id": 135
+                      "status": "in_work"
+                      "type": "order"
+                      "claim_id": null
+                      "created_at": "2025-06-03T11:13:51+03:00"
+                      "updated_at": "2025-06-03T11:13:51+03:00"
+                      "search_order":
+                        "id": 24222
+                        "search_id": 240
+                        "order_id": 1291701
+                        "type_id": 2
+                        "payment": null
+                        "description": "описание1"
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-04-26T00:00:00+03:00"
+                        "delivery_service_delay": 38
+                    - "id": 136
+                      "status": "in_work"
+                      "type": "order"
+                      "claim_id": null
+                      "created_at": "2025-06-03T11:13:51+03:00"
+                      "updated_at": "2025-06-03T11:13:51+03:00"
+                      "search_order":
+                        "id": 24223
+                        "search_id": 240
+                        "order_id": 1654648
+                        "type_id": 2
+                        "payment": null
+                        "description": "описание2"
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-05-22T00:00:00+03:00"
+                        "delivery_service_delay": 12
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "7eef9fb0-fc0b-42bb-a127-6e4690c79b9d"
+                "message": "Значение поля search_orders.0.id не существует.|"
+                "data":
+                  - "Значение поля search_orders.0.id не существует." 
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
   /api/v1/claim_orders_download:
     get:
       tags:
@@ -37296,7 +37600,7 @@ paths:
               properties:
                 claim_order_ids[0]:
                   type: integer
-                  description: ID претензионного заказам
+                  description: ID претензионного заказа
                   example: ""
       responses:
         '201':
@@ -37989,7 +38293,1177 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": [] 
-           
+  /api/v1/claim/{claim_id}/remove:
+    post:
+      tags:
+        - Претензии
+      summary: Удалить заказы из претензии
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: claim_id
+          required: true
+          schema:
+            type: integer
+          description: ID претензии   
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - ids[0]
+              properties:
+                ids[0]:
+                  type: integer
+                  description: ID претензионного заказа. Если нужно удалить более одного заказа, передавать ids[1] и т.д.
+                  example: ""
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "1ff01e6a-a14c-4d9f-b221-40f3ea785c31"
+                "data":
+                  "claim":
+                    "id": 42,
+                    "compensate_sum": 0,
+                    "status": "in_work"
+                    "status_compensate": null,
+                    "created_at": "2025-05-19T11:37:23+03:00"
+                    "updated_at": "2025-05-19T11:37:23+03:00"
+                    "claim_orders":
+                      - "id": 120
+                        "status": "in_claim"
+                        "type": "order"
+                        "claim_id": 42
+                        "created_at": "2025-05-19T11:33:33+03:00"
+                        "updated_at": "2025-05-19T11:37:23+03:00"
+                        "search_order":
+                          "id": 23497
+                          "search_id": 234
+                          "order_id": 1630636
+                          "type_id": 2
+                          "payment": null
+                          "description": "\u0442\u0435\u0441\u0442"
+                          "comment": "\u0442\u0435\u0441\u0442"
+                          "delivery_service_supposed_date": "2025-05-02T00:00:00+03:00"
+                          "delivery_service_delay": 32
+                          "credit_order": 1249.5
+                          "credit_cod": 2898
+                          "credit": 1249.5
+                          "order":
+                            "id": 1630636
+                            "order_id": "2525601120289803"
+                            "delivery_id": 2
+                            "company_id": 84
+                            "shpi": "240096816936"
+                            "track_number": "ATZ346559207"
+                            "barcode": "240096816936"
+                            "order_np_sum": 2898
+                            "order_assessed_sum": 1249.5
+                            "mass": 185
+                            "order_create_date": "2025-04-17T00:00:00+03:00"
+                            "order_send_date": "2025-04-17T00:00:00+03:00"
+                            "order_delivered_date": "2025-05-28T00:00:00+03:00"
+                            "delivery_service_status_date": "2025-05-28T00:00:00+03:00"
+                            "delivery_service_status": "COMPLETE"
+                            "delivery_service_status_title": "\u0414\u043e\u0441\u0442\u0430\u0432\u043b\u0435\u043d"
+                            "delivery_service_status_original": "\u0412\u044b\u0434\u0430\u043d\u043e"
+                            "registry_status": "without"
+                            "registry_status_title": "\u041d\u0435\u0442 \u0440\u0435\u0435\u0441\u0442\u0440\u0430"
+                            "registry_number": null
+                            "registry_id": null
+                            "finflow_id": null
+                            "created_at": "2025-04-22T11:36:01+03:00"
+                            "updated_at": "2025-05-31T05:00:06+03:00"
+                            "company":
+                              "id": 84
+                              "name": "\u041e\u041e\u041e \u00ab\u0418\u041c\u0414\u00bb"
+                              "project_name": "\u041e\u041e\u041e \u00ab\u0418\u041c\u0414\u00bb"
+                              "active": true
+                              "rate_limit_calc": null
+                              "rate_limit_reports": null
+                              "rate_limit_data": null
+                              "data_depth": 30
+                              "unit_account": 1
+                              "tariff_calculation": true
+                              "turn_off_sd": false
+                              "legal_address": "111024, \u0433.\u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. 2-\u044f \u041a\u0430\u0431\u0435\u043b\u044c\u043d\u0430\u044f, \u0434\u043e\u043c 2, \u0441\u0442\u0440.19"
+                              "actual_address": "111024, \u0433.\u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. 2-\u044f \u041a\u0430\u0431\u0435\u043b\u044c\u043d\u0430\u044f, \u0434\u043e\u043c 2, \u0441\u0442\u0440.19"
+                              "ogrn": "1127746433462"
+                              "inn": "7722777825"
+                              "kpp": "772201001"
+                              "token": "1341|SpmnijBKqNdofqLBCsjnotUR3ryR8D7l0Kn2eXUJfa483e92"
+                              "fio": "\u0428\u0435\u043f\u0435\u043b\u0435\u0432 \u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440 \u0410\u043d\u0430\u0442\u043e\u043b\u044c\u0435\u0432\u0438\u0447"
+                              "contact_person": null
+                              "phone": null
+                              "email": null
+                              "web_site": null
+                              "name_storage": "\u041e\u041e\u041e \u00ab\u0411\u0435\u0442\u0430 \u041f\u0420\u041e\u00bb"
+                              "address_storage": "111024, \u041c\u043e\u0441\u043a\u0432\u0430, \u041a\u0430\u0431\u0435\u043b\u044c\u043d\u0430\u044f 2-\u044f \u0443\u043b., \u0434\u043e\u043c \u2116 2, \u0441\u0442\u0440\u043e\u0435\u043d\u0438\u0435 6"
+                              "ogrn_storage": null
+                              "inn_storage": "7722317962"
+                              "kpp_storage": "772201001"
+                              "okpo_storage": "41561325"
+                              "debt": null
+                              "acquiring": "average"
+                              "acquiring_with_delivery": false
+                            "delivery":
+                              "id": 2
+                              "code": "boxberry"
+                              "name": "BoxBerry"
+                              "is_active": true
+                              "image_id": null
+                              "with_nds": true
+                              "tariff_insurance": 0.5
+                              "tariff_acquiring_card": 2.3
+                              "tariff_acquiring_cash": 1.6
+                              "tariff_acquiring_sbp": 0
+                              "tariff_acquiring_average": 1.95
+                              "tariff_return": 50
+                              "wait_registry": 1
+                              "add_weekend_wait_registry": 1
+                              "add_weekend_max_delivery_time": 0
+                              "add_weekend_storage": 0
+                              "add_weekend_deadline_searches": 0
+                              "add_weekend_calc": 0
+                              "redemption_rub": 80
+                              "redemption_count": 83
+                              "law_name": "\u041e\u041e\u041e \"\u0411\u041e\u041a\u0421\u0411\u0415\u0420\u0420\u0418 \u0421\u041e\u0424\u0422\""
+                              "law_address": "\"620100, \u0420\u043e\u0441\u0441\u0438\u044f, \u0421\u0432\u0435\u0440\u0434\u043b\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c,  \u0433. \u0415\u043a\u0430\u0442\u0435\u0440\u0438\u043d\u0431\u0443\u0440\u0433, \u0443\u043b. \u0421\u0438\u0431\u0438\u0440\u0441\u043a\u0438\u0439 \u0442\u0440\u0430\u043a\u0442,  \u0434.12, \u0441\u0442\u0440.1, \u043e\u0444 501 \""
+                              "fact_address": "\"620100, \u0420\u043e\u0441\u0441\u0438\u044f, \u0421\u0432\u0435\u0440\u0434\u043b\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c,  \u0433. \u0415\u043a\u0430\u0442\u0435\u0440\u0438\u043d\u0431\u0443\u0440\u0433, \u0443\u043b. \u0421\u0438\u0431\u0438\u0440\u0441\u043a\u0438\u0439 \u0442\u0440\u0430\u043a\u0442,  \u0434.12, \u0441\u0442\u0440.1, \u043e\u0444 501\""
+                              "inn": "6685157931"
+                              "ogrn": "1196658000615"
+                              "kpp": "668501001"
+                              "bank_name": "\u0423\u0420\u0410\u041b\u042c\u0421\u041a\u0418\u0419 \u0424\u0418\u041b\u0418\u0410\u041b \u0410\u041e \"\u0420\u0410\u0419\u0424\u0424\u0410\u0419\u0417\u0415\u041d\u0411\u0410\u041d\u041a\" \u0433. \u0415\u043a\u0430\u0442\u0435\u0440\u0438\u043d\u0431\u0443\u0440\u0433"
+                              "bank_bik": "046577906"
+                              "bank_rs": "40702810104000022703"
+                              "bank_ks": "30101810100000000906"
+                              "gendir": "\u0422\u0430\u0433\u0443\u043d\u043e\u0432\u0430 \u0412\u0435\u0440\u043e\u043d\u0438\u043a\u0430 \u041d\u0438\u043a\u043e\u043b\u0430\u0435\u0432\u043d\u0430"
+                              "phone": "(343) 385-87-24"
+                              "contact": "\u041f\u0438\u043c\u043e\u043d\u043e\u0432\u0430 \u0415\u043a\u0430\u0442\u0435\u0440\u0438\u043d\u0430"
+                              "email": "e_pimonova@boxberry.ru"
+                              "site": null
+                              "contracts":
+                                - "id": 9
+                                  "delivery_id": 2
+                                  "number": "2110\/23"
+                                  "basis": "5.1.2"
+                                  "from": "2023-09-27T00:00:00+03:00"
+                                  "to": "2025-05-24T00:00:00+03:00"
+                                  "dops": []
+                                  "created_at": "2024-10-24T16:16:48+03:00"
+                                  "updated_at": "2024-10-24T16:16:48+03:00"
+                                  "deleted_at": null
+                                - "id": 10
+                                  "delivery_id": 2
+                                  "number": "2110\/23"
+                                  "basis": "5.1.2"
+                                  "from": "2023-09-27T00:00:00+03:00"
+                                  "to": "2025-05-24T00:00:00+03:00"
+                                  "dops": []
+                                  "created_at": "2024-10-24T16:17:45+03:00"
+                                  "updated_at": "2024-10-24T16:17:45+03:00"
+                                  "deleted_at": null
+                                - "id": 11
+                                  "delivery_id": 2
+                                  "number": "2110\/23"
+                                  "basis": "5.1.2"
+                                  "from": "2023-09-27T00:00:00+03:00"
+                                  "to": "2025-05-24T00:00:00+03:00"
+                                  "dops": []
+                                  "created_at": "2024-10-24T16:21:49+03:00"
+                                  "updated_at": "2024-10-24T16:21:49+03:00"
+                                  "deleted_at": null
+                                - "id": 12
+                                  "delivery_id": 2
+                                  "number": "2110\/23"
+                                  "basis": "5.1.2"
+                                  "from": "2023-09-27T00:00:00+03:00"
+                                  "to": "2025-05-24T00:00:00+03:00"
+                                  "dops": []
+                                  "created_at": "2024-10-24T16:23:02+03:00"
+                                  "updated_at": "2024-10-24T16:23:02+03:00"
+                                  "deleted_at": null
+                                - "id": 13
+                                  "delivery_id": 2
+                                  "number": "2110\/23"
+                                  "basis": "5.1.2"
+                                  "from": "2023-09-27T00:00:00+03:00"
+                                  "to": "2025-05-24T00:00:00+03:00"
+                                  "dops": []
+                                  "created_at": "2024-10-24T16:23:07+03:00"
+                                  "updated_at": "2024-10-24T16:23:07+03:00"
+                                  "deleted_at": null
+                                - "id": 1939
+                                  "delivery_id": 2
+                                  "number": "sdfdfg"
+                                  "basis": "adas dfgg  wrwer"
+                                  "from": "2023-12-31T00:00:00+03:00"
+                                  "to": "2024-12-31T00:00:00+03:00"
+                                  "dops": []
+                                  "created_at": "2025-05-23T09:35:41+03:00"
+                                  "updated_at": "2025-05-23T09:35:41+03:00"
+                                  "deleted_at": null
+                                - "id": 1940
+                                  "delivery_id": 2
+                                  "number": "sdfdfg"
+                                  "basis": "adas dfgg  wrwer"
+                                  "from": "2023-12-31T00:00:00+03:00"
+                                  "to": "2024-12-31T00:00:00+03:00"
+                                  "dops": []
+                                  "created_at": "2025-05-23T10:04:35+03:00"
+                                  "updated_at": "2025-05-23T10:04:35+03:00"
+                                  "deleted_at": null
+                              "deleted_at": null
+                              "pass_inputs":
+                                - "name": "password"
+                                  "title": "API \u0442\u043e\u043a\u0435\u043d"
+                            "claim":
+                              "id": 42
+                              "compensate_sum": 0
+                              "status": "in_work"
+                              "status_compensate": null
+                              "created_at": "2025-05-19T11:37:23+03:00"
+                              "updated_at": "2025-05-19T11:37:23+03:00"
+                    "credit": 1249.5                  
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "783cbe83-68ee-41f3-89b2-4e8de13ae465"
+                "message": "Нельзя удалить все претензионные заказы из претензии. Воспользуйтесь аннулированием претензии."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+        '404':
+          description: Ошибка в запросе - претензия не найдена
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "89288320-e69e-4022-9867-e2667fbd0fd0"
+                "message": "Требуемый ресурс не найден"
+                "data": []    
+  /api/v1/role_permission_list:
+    get:
+      tags:
+        - Роли и доступы
+      summary: Список ролей и доступов
+      security:
+        - bearerAuth: []  
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "450a01de-e83a-45fb-b6ae-2f897cfb1e39"
+                "data":
+                  "permissions":
+                    - "id": 1
+                      "name": "analytic"
+                    - "id": 2
+                      "name": "template"
+                    - "id": 3
+                      "name": "priority"
+                    - "id": 4
+                      "name": "edit_registries"
+                    - "id": 5
+                      "name": "get_priorities"
+                    - "id": 6
+                      "name": "get_priority"
+                    - "id": 7
+                      "name": "delete_priority"
+                    - "id": 8
+                      "name": "create_priority"
+                    - "id": 9
+                      "name": "edit_priority"
+                    - "id": 10
+                      "name": "get_props"
+                    - "id": 11
+                      "name": "create_prop"
+                    - "id": 12
+                      "name": "delete_prop"
+                    - "id": 13
+                      "name": "get_templates"
+                    - "id": 14
+                      "name": "get_template"
+                    - "id": 15
+                      "name": "create_template"
+                    - "id": 16
+                      "name": "edit_template"
+                    - "id": 17
+                      "name": "delete_template"
+                    - "id": 19
+                      "name": "get_template_statistic"
+                    - "id": 20
+                      "name": "create_template_check"
+                    - "id": 21
+                      "name": "get_order_info"
+                    - "id": 22
+                      "name": "get_orders"
+                    - "id": 23
+                      "name": "get_orders_by_deliveries"
+                    - "id": 24
+                      "name": "get_companies_list"
+                    - "id": 25
+                      "name": "create_company"
+                    - "id": 26
+                      "name": "get_company"
+                    - "id": 27
+                      "name": "edit_company"
+                    - "id": 28
+                      "name": "delete_company"
+                    - "id": 29
+                      "name": "get_payment_systems_list"
+                    - "id": 30
+                      "name": "create_payment_system"
+                    - "id": 31
+                      "name": "get_payment_system"
+                    - "id": 32
+                      "name": "edit_payment_system"
+                    - "id": 33
+                      "name": "delete_payment_system"
+                    - "id": 34
+                      "name": "get_company_settings_list"
+                    - "id": 35
+                      "name": "create_company_setting"
+                    - "id": 36
+                      "name": "get_company_setting"
+                    - "id": 37
+                      "name": "edit_company_setting"
+                    - "id": 38
+                      "name": "delete_company_setting"
+                    - "id": 39
+                      "name": "get_role_permission_list"
+                    - "id": 40
+                      "name": "get_users_list"
+                    - "id": 41
+                      "name": "create_user"
+                    - "id": 42
+                      "name": "get_user"
+                    - "id": 43
+                      "name": "edit_user"
+                    - "id": 44
+                      "name": "delete_user"
+                    - "id": 45
+                      "name": "create_user_group_action"
+                    - "id": 46
+                      "name": "get_company_payment_system"
+                    - "id": 47
+                      "name": "create_company_payment_system"
+                    - "id": 48
+                      "name": "get_company_deliveries_list"
+                    - "id": 49
+                      "name": "create_company_delivery"
+                    - "id": 50
+                      "name": "get_company_delivery"
+                    - "id": 51
+                      "name": "edit_company_delivery"
+                    - "id": 52
+                      "name": "delete_company_delivery"
+                    - "id": 53
+                      "name": "get_delivery_systems"
+                    - "id": 54
+                      "name": "get_company_delivery_system"
+                    - "id": 55
+                      "name": "create_company_delivery_system"
+                    - "id": 56
+                      "name": "create_delivery_calculate"
+                    - "id": 57
+                      "name": "get_passwords_list"
+                    - "id": 58
+                      "name": "create_password"
+                    - "id": 59
+                      "name": "get_password"
+                    - "id": 60
+                      "name": "edit_password"
+                    - "id": 61
+                      "name": "delete_password"
+                    - "id": 62
+                      "name": "get_registries_export"
+                    - "id": 63
+                      "name": "create_registries"
+                    - "id": 64
+                      "name": "get_registries_list"
+                    - "id": 65
+                      "name": "get_registry_id"
+                    - "id": 66
+                      "name": "create_registry_upload_delivery_code"
+                    - "id": 67
+                      "name": "create_registry_upload_user"
+                    - "id": 68
+                      "name": "create_registry_upload_delivery"
+                    - "id": 69
+                      "name": "create_registry_upload_approve"
+                    - "id": 70
+                      "name": "get_registry_download"
+                    - "id": 71
+                      "name": "get_registry_errors"
+                    - "id": 72
+                      "name": "get_registry_errors_update"
+                    - "id": 73
+                      "name": "get_acts"
+                    - "id": 74
+                      "name": "create_act"
+                    - "id": 75
+                      "name": "get_acts_download"
+                    - "id": 76
+                      "name": "get_act_download_execute"
+                    - "id": 77
+                      "name": "get_act_download_agency_free"
+                    - "id": 78
+                      "name": "get_act_id"
+                    - "id": 79
+                      "name": "create_act_upload"
+                    - "id": 80
+                      "name": "get_costs"
+                    - "id": 81
+                      "name": "create_cost"
+                    - "id": 82
+                      "name": "add_cost"
+                    - "id": 83
+                      "name": "get_directories_list"
+                    - "id": 84
+                      "name": "create_directory"
+                    - "id": 85
+                      "name": "get_directory"
+                    - "id": 86
+                      "name": "edit_directory"
+                    - "id": 87
+                      "name": "delete_directory"
+                    - "id": 88
+                      "name": "get_fields_list"
+                    - "id": 89
+                      "name": "create_field"
+                    - "id": 90
+                      "name": "get_field_id"
+                    - "id": 91
+                      "name": "edit_field"
+                    - "id": 92
+                      "name": "delete_field"
+                    - "id": 93
+                      "name": "access_fields_upload"
+                    - "id": 94
+                      "name": "get_custom_fields"
+                    - "id": 95
+                      "name": "create_custom_field"
+                    - "id": 96
+                      "name": "get_custom_field_id"
+                    - "id": 97
+                      "name": "edit_custom_field_id"
+                    - "id": 98
+                      "name": "delete_custom_field"
+                    - "id": 99
+                      "name": "get_custom_fields_list_info"
+                    - "id": 100
+                      "name": "create_custom_field_union"
+                    - "id": 101
+                      "name": "delete_custom_field_union"
+                    - "id": 102
+                      "name": "get_custom_field_group_id"
+                    - "id": 103
+                      "name": "create_custom_field_group"
+                    - "id": 104
+                      "name": "delete_custom_field_group_id"
+                    - "id": 105
+                      "name": "create_custom_field_group_str"
+                    - "id": 106
+                      "name": "delete_custom_field_group_str"
+                    - "id": 107
+                      "name": "get_file_download"
+                    - "id": 108
+                      "name": "get_file_id"
+                    - "id": 109
+                      "name": "get_claims_list"
+                    - "id": 111
+                      "name": "get_claim"
+                    - "id": 112
+                      "name": "edit_claim"
+                    - "id": 113
+                      "name": "delete_claim"
+                    - "id": 114
+                      "name": "create_claim"
+                    - "id": 115
+                      "name": "create_template_find"
+                    - "id": 116
+                      "name": "get_accesses"
+                    - "id": 117
+                      "name": "get_delivery_settings_list"
+                    - "id": 118
+                      "name": "create_delivery_setting"
+                    - "id": 119
+                      "name": "get_delivery_setting"
+                    - "id": 120
+                      "name": "edit_delivery_setting"
+                    - "id": 121
+                      "name": "delete_delivery_setting"
+                    - "id": 122
+                      "name": "edit_delivery"
+                    - "id": 123
+                      "name": "get_deliveries"
+                    - "id": 124
+                      "name": "get_company_delivery_types"
+                    - "id": 125
+                      "name": "edit_company_delivery_types"
+                    - "id": 126
+                      "name": "create_company_delivery_rules"
+                    - "id": 127
+                      "name": "edit_company_delivery_rules"
+                    - "id": 128
+                      "name": "get_registry_id_export"
+                    - "id": 129
+                      "name": "create_warehouses"
+                    - "id": 130
+                      "name": "get_warehouses_types"
+                    - "id": 131
+                      "name": "show_warehouses"
+                    - "id": 132
+                      "name": "delete_warehouse"
+                    - "id": 133
+                      "name": "edit_warehouse"
+                    - "id": 134
+                      "name": "get_warehouse"
+                    - "id": 135
+                      "name": "get_warehouses"
+                    - "id": 136
+                      "name": "get_company_contracts"
+                    - "id": 137
+                      "name": "create_delivery_contract"
+                    - "id": 138
+                      "name": "update_delivery_contract"
+                    - "id": 139
+                      "name": "delete_delivery_contract"
+                    - "id": 140
+                      "name": "create_delivery_contract_dop"
+                    - "id": 141
+                      "name": "update_delivery_contract_dop"
+                    - "id": 142
+                      "name": "delete_delivery_contract_dop"
+                    - "id": 143
+                      "name": "create_delivery"
+                    - "id": 144
+                      "name": "delete_delivery"
+                    - "id": 145
+                      "name": "download_geo_exceptions"
+                    - "id": 146
+                      "name": "upload_sdek_tariffs"
+                    - "id": 147
+                      "name": "create_company_contract"
+                    - "id": 148
+                      "name": "update_company_contract"
+                    - "id": 149
+                      "name": "delete_company_contract"
+                    - "id": 150
+                      "name": "create_company_contract_dop"
+                    - "id": 151
+                      "name": "update_company_contract_dop"
+                    - "id": 152
+                      "name": "delete_company_contract_dop"
+                    - "id": 153
+                      "name": "get_company_admin_auth"
+                    - "id": 154
+                      "name": "create_company_admin_auth"
+                    - "id": 155
+                      "name": "update_company_admin_auth"
+                    - "id": 156
+                      "name": "delete_company_admin_auth"
+                    - "id": 157
+                      "name": "get_act_download_np"
+                    - "id": 158
+                      "name": "get_act_agency"
+                    - "id": 159
+                      "name": "get_search_order_suitables"
+                    - "id": 160
+                      "name": "create_search_order"
+                    - "id": 161
+                      "name": "edit_search_order"
+                    - "id": 162
+                      "name": "delete_search_order"
+                    - "id": 163
+                      "name": "read_search_order"
+                    - "id": 164
+                      "name": "update_search_order"
+                    - "id": 165
+                      "name": "create_claim_order"
+                    - "id": 166
+                      "name": "read_claim_order"
+                    - "id": 167
+                      "name": "update_claim_order"
+                    - "id": 168
+                      "name": "delete_claim_order"
+                    - "id": 169
+                      "name": "read_claim"
+                    - "id": 170
+                      "name": "update_claim"
+                  "roles": 
+                    - "admin"
+                    - "manager"
+                    - "client_admin"
+                    - "client_manager"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/accesses:
+    get:
+      tags:
+        - Роли и доступы
+      summary: Получение ролей по блокам
+      security:
+        - bearerAuth: []  
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "da65c759-e48b-425b-8ae1-b49433d5287a"
+                "data":
+                  "accesses":
+                    - "id": 1
+                      "name": "admin_templates"
+                      "title": "Шаблоны"
+                      "child_roles": []
+                    - "id": 2
+                      "name": "admin_priorities"
+                      "title": "Приоритеты"
+                      "child_roles": []
+                    - "id": 4
+                      "name": "admin_reference"
+                      "title": "Справка"
+                      "child_roles": []
+                    - "id": 7
+                      "name": "admin_claims"
+                      "title": "Претензии"
+                      "child_roles":
+                        - "id": 8
+                          "name": "admin_claims_search"
+                          "title": "Розыск"
+                          "child_roles":
+                            - "id": 9
+                              "name": "admin_claims_search_orders"
+                              "title": "Заказы"
+                              "child_roles": []
+                            - "id": 10
+                              "name": "admin_claims_search_payments"
+                              "title": "Платежи"
+                              "child_roles": []
+                    - "id": 11
+                      "name": "admin_claims_orders"
+                      "title": "Претензионные заказы"
+                      "child_roles":
+                        - "id": 12
+                          "name": "admin_claims_orders_orders"
+                          "title": "Заказы"
+                          "child_roles": []
+                        - "id": 13
+                          "name": "admin_claims_orders_payments"
+                          "title": "Платежи"
+                          "child_roles": []
+                    - "id": 14
+                      "name": "admin_claims_claims"
+                      "title": "Претензии"
+                      "child_roles":
+                        - "id": 15
+                          "name": "admin_claims_claims_orders"
+                          "title": "Заказы"
+                          "child_roles": []
+                        - "id": 16
+                          "name": "admin_claims_claims_payments"
+                          "title": "Платежи"
+                          "child_roles": []
+                    - "id": 21
+                      "name": "admin_finance"
+                      "title": "Финансы"
+                      "child_roles":
+                        - "id": 22
+                          "name": "admin_finance_registries"
+                          "title": "Реестры"
+                          "child_roles": 
+                            - "id": 23
+                              "name": "admin_finance_registries_incoming"
+                              "title": "Входящие"
+                              "child_roles": []
+                            - "id": 24
+                              "name": "admin_finance_registries_outgoing"
+                              "title": "Исходящие"
+                              "child_roles": []
+                    - "id": 25
+                      "name": "admin_finance_acts"
+                      "title": "Акты"
+                      "child_roles": 
+                        - "id": 26
+                          "name": "admin_finance_acts_incoming"
+                          "title": "Входящие"
+                          "child_roles": []
+                        - "id": 27
+                          "name": "admin_finance_acts_outgoing"
+                          "title": "Исходящие"
+                          "child_roles": []
+                    - "id": 28
+                      "name": "admin_finance_cost_setting"
+                      "title": "Настройки стоимости"
+                      "child_roles": []
+                    - "id": 32
+                      "name": "admin_admin"
+                      "title": "Администрирование"
+                      "child_roles":
+                        - "id": 33
+                          "name": "admin_admin_technical"
+                          "title": "Технический"
+                          "child_roles": []
+                        - "id": 34
+                          "name": "admin_admin_management"
+                          "title": "Управленческий"
+                          "child_roles": []
+                        - "id": 35
+                          "name": "admin_admin_manager"
+                          "title": "Менеджерский"
+                          "child_roles": []
+                    - "id": 41
+                      "name": "admin_manager"
+                      "title": "Менеджерский"
+                      "child_roles":
+                        - "id": 42
+                          "name": "admin_manager_deliveries"
+                          "title": "Службы доставки"
+                          "child_roles": []
+                        - "id": 43
+                          "name": "admin_manager_companies"
+                          "title": "Клиенты"
+                          "child_roles": []
+                        - "id": 44
+                          "name": "admin_manager_registries"
+                          "title": "Реестры"
+                          "child_roles": []
+                        - "id": 45
+                          "name": "admin_manager_templates"
+                          "title": "Шаблоны"
+                          "child_roles": []
+                        - "id": 52
+                          "name": "admin_manager_acts"
+                          "title": "Акты"
+                          "child_roles": []
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/passwords:
+    get:
+      tags:
+        - Технические доступы
+      summary: Получение списка параметров
+      security:
+        - bearerAuth: []  
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "ac9aef9c-046c-47e2-94b5-50251ed7a47c"
+                "data":
+                  "passwords":
+                    - "id": 1
+                      "type": "registries_email"
+                      "login": "reestr@v-zakaz.ru"
+                      "password": "QW34rt23#"
+                      "additional": "{imap.beget.com:993/imap/ssl}INBOX"
+                      "title": "2025-02-17"
+                      "types":
+                        - "name": "E-mail"
+                          "type": "registries_email"
+                        - "name": "Пароли SDEK"
+                          "type": "delivery_sdek"
+                        - "name": "Пароли BOXBERRY"
+                          "type": "delivery_boxberry"
+                        - "name": "Пароли LPOST"
+                          "type": "delivery_lpost"
+                        - "name": "Пароли DAKKI"
+                          "type": "delivery_dalli"
+                        - "name": "Пароли FIVEPOST"
+                          "type": "delivery_fivepost"
+                        - "name": "Пароли YANDEX"
+                          "type": "delivery_yandex"
+                        - "name": "Пароли CSE"
+                          "type": "delivery_cse"
+                        - "name": "Пароли DADATA"
+                          "type": "password_dadata"
+                        - "name": "Пароли API"
+                          "type": "password_api"
+                        - "name": "Пароли склада Беты"
+                          "type": "warehouse_beta"
+                        - "name": "Общий пароль"
+                          "type": "deliveries"
+                    - "id": 2
+                      "type": "delivery_boxberry"
+                      "login": "111"
+                      "password": "1e8bd45248468cf09dfe8d2acc9fe9e5"
+                      "additional": ""
+                      "title": null
+                      "types": 
+                        - "name": "E-mail"
+                          "type": "registries_email"
+                        - "name": "Пароли SDEK"
+                          "type": "delivery_sdek"
+                        - "name": "Пароли BOXBERRY"
+                          "type": "delivery_boxberry"
+                        - "name": "Пароли LPOST"
+                          "type": "delivery_lpost"
+                        - "name": "Пароли DAKKI"
+                          "type": "delivery_dalli"
+                        - "name": "Пароли FIVEPOST"
+                          "type": "delivery_fivepost"
+                        - "name": "Пароли YANDEX"
+                          "type": "delivery_yandex"
+                        - "name": "Пароли CSE"
+                          "type": "delivery_cse"
+                        - "name": "Пароли DADATA"
+                          "type": "password_dadata"
+                        - "name": "Пароли API"
+                          "type": "password_api"
+                        - "name": "Пароли склада Беты"
+                          "type": "warehouse_beta"
+                        - "name": "Общий пароль"
+                          "type": "deliveries"
+                    - "id": 3
+                      "type": "delivery_sdek"
+                      "login": "DZu5NACNB0A8OIxIyJ6MhjhT3yGuNNjq"
+                      "password": "66zXiNLc5Bkqi6Htp2AYEswfuUfU8rHP"
+                      "additional": null
+                      "title": null
+                      "types": 
+                        - "name": "E-mail"
+                          "type": "registries_email"
+                        - "name": "Пароли SDEK"
+                          "type": "delivery_sdek"
+                        - "name": "Пароли BOXBERRY"
+                          "type": "delivery_boxberry"
+                        - "name": "Пароли LPOST"
+                          "type": "delivery_lpost"
+                        - "name": "Пароли DAKKI"
+                          "type": "delivery_dalli"
+                        - "name": "Пароли FIVEPOST"
+                          "type": "delivery_fivepost"
+                        - "name": "Пароли YANDEX"
+                          "type": "delivery_yandex"
+                        - "name": "Пароли CSE"
+                          "type": "delivery_cse"
+                        - "name": "Пароли DADATA"
+                          "type": "password_dadata"
+                        - "name": "Пароли API"
+                          "type": "password_api"
+                        - "name": "Пароли склада Беты"
+                          "type": "warehouse_beta"
+                        - "name": "Общий пароль"
+                          "type": "deliveries"
+                    - "id": 4
+                      "type": "delivery_fivepost"
+                      "login": null
+                      "password": "44106406-9b93-4280-b4b0-ccc267a67a39"
+                      "additional": null
+                      "title": null
+                      "types": 
+                        - "name": "E-mail"
+                          "type": "registries_email"
+                        - "name": "Пароли SDEK"
+                          "type": "delivery_sdek"
+                        - "name": "Пароли BOXBERRY"
+                          "type": "delivery_boxberry"
+                        - "name": "Пароли LPOST"
+                          "type": "delivery_lpost"
+                        - "name": "Пароли DAKKI"
+                          "type": "delivery_dalli"
+                        - "name": "Пароли FIVEPOST"
+                          "type": "delivery_fivepost"
+                        - "name": "Пароли YANDEX"
+                          "type": "delivery_yandex"
+                        - "name": "Пароли CSE"
+                          "type": "delivery_cse"
+                        - "name": "Пароли DADATA"
+                          "type": "password_dadata"
+                        - "name": "Пароли API"
+                          "type": "password_api"
+                        - "name": "Пароли склада Беты"
+                          "type": "warehouse_beta"
+                        - "name": "Общий пароль"
+                          "type": "deliveries"
+                    - "id": 5
+                      "type": "delivery_lpost"
+                      "login": null
+                      "password": "J392ejF2W7jP4JvC"
+                      "additional": ""
+                      "title": null
+                      "types": 
+                        - "name": "E-mail"
+                          "type": "registries_email"
+                        - "name": "Пароли SDEK"
+                          "type": "delivery_sdek"
+                        - "name": "Пароли BOXBERRY"
+                          "type": "delivery_boxberry"
+                        - "name": "Пароли LPOST"
+                          "type": "delivery_lpost"
+                        - "name": "Пароли DAKKI"
+                          "type": "delivery_dalli"
+                        - "name": "Пароли FIVEPOST"
+                          "type": "delivery_fivepost"
+                        - "name": "Пароли YANDEX"
+                          "type": "delivery_yandex"
+                        - "name": "Пароли CSE"
+                          "type": "delivery_cse"
+                        - "name": "Пароли DADATA"
+                          "type": "password_dadata"
+                        - "name": "Пароли API"
+                          "type": "password_api"
+                        - "name": "Пароли склада Беты"
+                          "type": "warehouse_beta"
+                        - "name": "Общий пароль"
+                          "type": "deliveries"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+    post:
+      tags:
+        - Технические доступы
+      summary: Получение списка параметров
+      security:
+        - bearerAuth: []   
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - type
+                - password
+                - company_id
+              properties:
+                type:
+                  type: string
+                  description: Тип параметра
+                  enum: [registries_email, delivery_sdek, delivery_boxberry, delivery_lpost, delivery_dalli, delivery_fivepost, delivery_yandex, delivery_cse, password_dadata, password_api, warehouse_beta, deliveries]
+                password:
+                  type: string
+                  description: Значение параметра
+                  example: ""
+                additional:
+                  type: string
+                  description: Дополнительно
+                  example: ""
+                title:
+                  type: string
+                  description: Название параметра
+                  example: ""
+                login:
+                  type: string
+                  description: Логин
+                  example: ""
+                company_id:
+                  type: integer
+                  description: ID клиента
+                  example: ""
+      responses:
+        '201':
+          description: Успешный ответ  
+          content:
+            application/json:
+              example:
+                "code": 201
+                "status": "Created"
+                "success": true
+                "request_id": "0cde872c-29c4-4c61-8f67-4d6d1c1423c7"
+                "data":
+                  "passwords":
+                    "id": 72
+                    "type": "password_api"
+                    "login": "test31"
+                    "password": "111"
+                    "additional": "additional"
+                    "title": "title"
+                    "types":
+                      - "name": "E-mail"
+                        "type": "registries_email"
+                      - "name": "Пароли SDEK"
+                        "type": "delivery_sdek"
+                      - "name": "Пароли BOXBERRY"
+                        "type": "delivery_boxberry"
+                      - "name": "Пароли LPOST"
+                        "type": "delivery_lpost"
+                      - "name": "Пароли DAKKI"
+                        "type": "delivery_dalli"
+                      - "name": "Пароли FIVEPOST"
+                        "type": "delivery_fivepost"
+                      - "name": "Пароли YANDEX"
+                        "type": "delivery_yandex"
+                      - "name": "Пароли CSE"
+                        "type": "delivery_cse"
+                      - "name": "Пароли DADATA"
+                        "type": "password_dadata"
+                      - "name": "Пароли API"
+                        "type": "password_api"
+                      - "name": "Пароли склада Беты"
+                        "type": "warehouse_beta"
+                      - "name": "Общий пароль"
+                        "type": "deliveries"
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "1fe1e1a0-c667-4f85-a4e0-9916e6ded58b"
+                "message": "Поле пароль обязательно.|Поле company id обязательно.|Такое значение поля type и company_id уже существует.|"
+                "data":
+                  - "Поле пароль обязательно."
+                  - "Поле company id обязательно."
+                  - "Такое значение поля type и company_id уже существует."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/passwords/{password_id}:
+    get:
+      tags:
+        - Технические доступы
+      summary: Получение параметра по ID
+      security:
+        - bearerAuth: []  
+      parameters:
+        - in: path
+          name: password_id
+          required: true
+          schema:
+            type: integer
+          description: ID параметра
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:  
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "7b340d6e-eed8-42cd-9ae8-48b49b12586e"
+                "data":
+                  "password":
+                    "id": 2
+                    "type": "delivery_boxberry"
+                    "login": "111"
+                    "password": "1e8bd45248468cf09dfe8d2acc9fe9e5"
+                    "additional": ""
+                    "title": null
+                    "types":
+                      - "name": "E-mail"
+                        "type": "registries_email"
+                      - "name": "Пароли SDEK"
+                        "type": "delivery_sdek"
+                      - "name": "Пароли BOXBERRY"
+                        "type": "delivery_boxberry"
+                      - "name": "Пароли LPOST"
+                        "type": "delivery_lpost"
+                      - "name": "Пароли DAKKI"
+                        "type": "delivery_dalli"
+                      - "name": "Пароли FIVEPOST"
+                        "type": "delivery_fivepost"
+                      - "name": "Пароли YANDEX"
+                        "type": "delivery_yandex"
+                      - "name": "Пароли CSE"
+                        "type": "delivery_cse"
+                      - "name": "Пароли DADATA"
+                        "type": "password_dadata"
+                      - "name": "Пароли API"
+                        "type": "password_api"
+                      - "name": "Пароли склада Беты"
+                        "type": "warehouse_beta"
+                      - "name": "Общий пароль"
+                        "type": "deliveries"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
+        '404':
+          description: Ошибка в запросе - параметр не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "89288320-e69e-4022-9867-e2667fbd0fd0"
+                "message": "Требуемый ресурс не найден"
+                "data": []     
 components:
   schemas:
     LoginWith2FA:
