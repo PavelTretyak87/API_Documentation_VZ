@@ -37768,6 +37768,228 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": [] 
+  /api/v1/claims_download_word/{claim_id}:
+    get:
+      tags:
+        - Претензии
+      summary: Скачать word-файл претензии (из поп-апа)
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: claim_id
+          required: true
+          schema:
+            type: integer
+          description: ID претензии
+      responses:
+        '200':
+          description: Скачан файл претензии в формате word  
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
+        '404':
+          description: Ошибка - претензия не найдена
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "46615617-7510-4143-a829-1fb81c41f8e6"
+                "message": "Требуемый ресурс не найден"
+                "data": []      
+  /api/v1/claims_export_data/{claim_id}:
+    get:
+      tags:
+        - Претензии
+      summary: Показать информацию о претензии
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: claim_id
+          required: true
+          schema:
+            type: integer
+          description: ID претензии
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "e3b62ed7-8318-45bf-9841-2e95986dd9ba"
+                "data":
+                  "pages":
+                    "2110/23":
+                      "contract_number": "2110/23"
+                      "company":
+                        "name": "ООО «Ваш заказ»"
+                        "name_short": "ООО «Ваш заказ»"
+                        "legal_address": "111024, Москва г, вн.тер.г. муниципальный округ Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15"
+                        "ogrn": "044525225"
+                        "inn": "9722000285"
+                        "kpp": "772201001"
+                        "bik": "044525225"
+                        "rs": "40702810138000272396"
+                        "ks": "30101810400000000225"
+                        "bank_owner_name": "ПАО Сбербанк г.Москва"
+                        "legal_face": "Липин Сергей Евгеньевич"
+                        "legal_face_label": "Генеральный директор"
+                      "delivery":
+                        "name": "ООО \"БОКСБЕРРИ СОФТ\""
+                        "name_short": "ООО \"БОКСБЕРРИ СОФТ\""
+                        "legal_address": "\"620100, Россия, Свердловская область,  г. Екатеринбург, ул. Сибирский тракт,  д.12, стр.1, оф 501 \""
+                        "ogrn": "1196658000615"
+                        "inn": "ИНН 6685157931"
+                        "kpp": "668501001"
+                        "legal_face": "Тагунова Вероника Николаевна"
+                        "legal_face_label": "Генеральный директор"
+                        "with_nds": true
+                      "delivery_contract":
+                        "number": "2110/23"
+                        "from": "27 сентября 2023"
+                      "orders":
+                        - "order_id": "250218-0217"
+                          "shpi": "240094385735"
+                          "incident_type": "Повреждение / порча содержимого заказа"
+                          "contract_basis": "5.1.2"
+                          "incident_description": "йцуйуц"
+                          "payment": 4159
+                      "total_payment": 4159
+                      "compensate_sum_total_currency": 4159
+                      "compensate_sum_total_coins": 0
+                      "compensate_sum_total_finance_string": "четыре тысячи сто пятьдесят девять рублей 00 копеек"
+                      "claim_id": 15
+                      "claim_from": "2025-04-17T17:14:21+03:00"
+                      "claim_status": "in_work"
+                      "claim_status_title": "В работе"
+                      "with_nds": true
+                      "with_nds_label": "включая НДС"
+                      "claim_compensate_status": "partially"
+                      "claim_compensate_status_title": "Частичная компенсация"
+                    "sdfdfg":
+                      "contract_number": "sdfdfg"
+                      "company":
+                        "name": "ООО «Ваш заказ»"
+                        "name_short": "ООО «Ваш заказ»"
+                        "legal_address": "111024, Москва г, вн.тер.г. муниципальный округ Лефортово, ул 2-я Кабельная, д. 2, стр. 6, помещ. 15"
+                        "ogrn": "044525225"
+                        "inn": "9722000285"
+                        "kpp": "772201001"
+                        "bik": "044525225"
+                        "rs": "40702810138000272396"
+                        "ks": "30101810400000000225"
+                        "bank_owner_name": "ПАО Сбербанк г.Москва"
+                        "legal_face": "Липин Сергей Евгеньевич"
+                        "legal_face_label": "Генеральный директор"
+                      "delivery":
+                        "name": "ООО \"БОКСБЕРРИ СОФТ\""
+                        "name_short": "ООО \"БОКСБЕРРИ СОФТ\""
+                        "legal_address": "\"620100, Россия, Свердловская область,  г. Екатеринбург, ул. Сибирский тракт,  д.12, стр.1, оф 501 \""
+                        "ogrn": "1196658000615"
+                        "inn": "ИНН 6685157931"
+                        "kpp": "668501001"
+                        "legal_face": "Тагунова Вероника Николаевна"
+                        "legal_face_label": "Генеральный директор"
+                        "with_nds": true
+                      "delivery_contract": 
+                        "number": "2110/23"
+                        "from": "27 сентября 2023"
+                      "orders":
+                        - "order_id": "250218-0217"
+                          "shpi": "240094385735"
+                          "incident_type": "Повреждение / порча содержимого заказа"
+                          "contract_basis": "5.1.2"
+                          "incident_description": "йцуйуц"
+                          "payment": 4159
+                      "total_payment": 4159
+                      "compensate_sum_total_currency": 4159
+                      "compensate_sum_total_coins": 0
+                      "compensate_sum_total_finance_string": "четыре тысячи сто пятьдесят девять рублей 00 копеек"
+                      "claim_id": 15
+                      "claim_from": "2025-04-17T17:14:21+03:00"
+                      "claim_status": "in_work"
+                      "claim_status_title": "В работе"
+                      "with_nds": true
+                      "with_nds_label": "включая НДС"
+                      "claim_compensate_status": "partially"
+                      "claim_compensate_status_title": "Частичная компенсация"    
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
+        '404':
+          description: Ошибка - претензия не найдена
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "46615617-7510-4143-a829-1fb81c41f8e6"
+                "message": "Требуемый ресурс не найден"
+                "data": []     
+  /api/v1/claims_export:
+    get:
+      tags:
+        - Претензии
+      summary: Скачать excel-файл списка претензий (из таблицы)
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: ids[0]
+          required: true
+          schema:
+            type: integer
+          description: ID претензии. Если претензий более чем одна, нужно передавать ids[1] и т.д. 
+      responses:
+        '200':
+          description: Скачан файл списка претензий в формате excel  
+        '400':
+          description: Ошибка - претензия не найдена
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "6e84ba7b-853e-49ca-bdb0-dce3b4821d81"
+                "message": "Значение поля ids.0 не существует.|"
+                "data":
+                  - "Значение поля ids.0 не существует."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
+           
 components:
   schemas:
     LoginWith2FA:
