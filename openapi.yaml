@@ -28,25 +28,27 @@ paths:
               properties:              
                 registries:
                   type: array
-                  items: object
-                  required:
-                    - number
-                    - date
-                    - from
-                    - amount
-                  properties:
-                    number:
-                      type: string
-                      example: "80214642-1024-7778e19882-0340-4020-ae79-e6138b29092a"
-                    date:
-                      type: string
-                      example: "2024-10-18"
-                    from:
-                      type: string
-                      example: "5 ПОСТ ООО"
-                    amount:
-                      type: integer
-                      example: 9169252.39
+                  items:
+                    type: object
+                    required:
+                      - number
+                      - date
+                      - from
+                      - amount
+                    properties:
+                      number:
+                        type: string
+                        example: "80214642-1024-7778e19882-0340-4020-ae79-e6138b29092a"
+                      date:
+                        type: string
+                        format: date
+                        example: "2024-10-18"
+                      from:
+                        type: string
+                        example: "5 ПОСТ ООО"
+                      amount:
+                        type: number
+                        example: 9169252.39
       responses:
         '200':
           description: Успешный ответ
@@ -182,7 +184,8 @@ paths:
               properties:              
                 registries:
                   type: array
-                  items: integer
+                  items:
+                    type: integer
                   description: ID реестров
                   example: [80, 81]
       responses:
