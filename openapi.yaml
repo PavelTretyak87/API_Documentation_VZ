@@ -317,15 +317,18 @@ paths:
                   type: array
                   items:
                     type: object
-                  properties:
-                    order_id:
-                      type: string
-                      description: Номер заказа
-                      example: "241225-5343"
-                    finflow_id:
-                      type: integer
-                      description: ID фин.потока
-                      example: 7
+                    required:
+                      - order_id
+                      - finflow_id
+                    properties:
+                      order_id:
+                        type: string
+                        description: Номер заказа
+                        example: "241225-5343"
+                      finflow_id:
+                        type: integer
+                        description: ID фин.потока
+                        example: 7
       responses:
         '202':
           description: Успешный ответ
