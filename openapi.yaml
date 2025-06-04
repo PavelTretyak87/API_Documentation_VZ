@@ -234,6 +234,134 @@ paths:
                 request_id: 4d1b2b4e-eba1-4231-a119-a42911dba910
                 message: Ошибка аутентификации.
                 data: []
+  /api/v1/weekends:
+    post:
+      tags:
+        - Ваш Заказ - публичный АПИ
+      summary: Загрузка выходных дней
+      security:
+        - bearerAuth: [] 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - weekends
+              properties:              
+                weekends:
+                  type: array
+                  items:
+                    type: string
+                  description: Даты выходных дней
+                  example: ["2024-01-01", "2024-01-02", "2024-01-03", "2024-01-04", "2024-01-05", "2024-01-06"]  
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "e61aba3e-4753-4758-bcc3-56fa183a0117"
+                "data":
+                  "uploaded":
+                    - "2023-01-01"
+                    - "2023-01-02"
+                    - "2023-01-03"
+                    - "2023-01-04"
+                    - "2023-01-05"
+                    - "2023-01-06"
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "fbddf8cb-76fe-4266-862e-ed956939f55d"
+                "message": "Поле weekends обязательно.|"
+                "data":
+                  - "Поле weekends обязательно."
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 4d1b2b4e-eba1-4231-a119-a42911dba910
+                message: Ошибка аутентификации.
+                data: []
+  /api/v1/order_finflows:
+    post:
+      tags:
+          - Ваш Заказ - публичный АПИ
+      summary: Указать финпотоки заказам
+      security:
+        - bearerAuth: [] 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - orders
+              properties:              
+                orders:
+                  type: array
+                  items:
+                    type: object
+                  properties:
+                    order_id:
+                      type: string
+                      description: Номер заказа
+                      example: "241225-5343"
+                    finflow_id:
+                      type: integer
+                      description: ID фин.потока
+                      example: 7
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "f39dd82f-4543-420f-9993-1d9f6e74d911"
+                "data":
+                  "orders":
+                    "241211-7214": 32     
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:   
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "966797e3-9f28-4617-ab50-1f12e94d7d5a"
+                "message": "Неверный запрос."
+                "data":
+                  - "Значение поля orders.0.finflow_id не существует."   
+        '401':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              example:
+                code: 401
+                status: Unauthorized
+                success: false
+                request_id: 4d1b2b4e-eba1-4231-a119-a42911dba910
+                message: Ошибка аутентификации.
+                data: []
   /api/v1/companies:
     get:
       tags:
