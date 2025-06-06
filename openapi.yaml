@@ -7,6 +7,7 @@ info:
     - Добавлены используемые на проекте методы (06.06.2025)
 servers:
   - url: https://dev-vz-api.3owls.su
+  - url: https://mz.3owls.su
 paths:
   /api/v1/delivery_calculate:
     post:
@@ -39857,7 +39858,7 @@ paths:
     post:
       tags:
         - Технические доступы
-      summary: Получение списка параметров
+      summary: Создать параметр
       security:
         - bearerAuth: []   
       requestBody:
