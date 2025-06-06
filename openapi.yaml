@@ -4,9 +4,7 @@ info:
   version: 1.0.0
   description: |
     ## История изменений:
-    - Тест запись 1
-    - Тест запись 2
-    - Тест запись 3
+    - Добавлены используемые на проекте методы (06.06.2025)
 servers:
   - url: https://dev-vz-api.3owls.su
 paths:
@@ -37449,13 +37447,54 @@ paths:
               properties:
                 claim_orders[0][id]:
                   type: integer
-                  description: ID претензионного заказа
+                  description: ID претензионного заказа. Если нужно передать более одного, передавать claim_orders[1] и т.д.
                   example: ""
                 claim_orders[0][status]:
                   type: string
                   enum: [in_work, in_claim, uncompensate, unclaimed, cancelled, payed]
-                  description: ID службы доставки
-                  example: ""  
+                  description: ID службы доставки. Если нужно передать более одного, передавать claim_orders[1] и т.д.
+                  example: ""
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "eec3605e-b56c-42b0-9bb8-092a52bbb948"
+                "data":
+                  "claim_orders":
+                    - "id": 130
+                      "status": "in_work"
+                      "type": "order"
+                      "claim_id": null
+                      "created_at": "2025-06-02T11:34:03+03:00"
+                      "updated_at": "2025-06-06T09:34:19+03:00"    
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "9c9d2093-ced1-4f63-967c-cf188c9ece44"
+                "message": "Поле claim_orders.0.id обязательно.|"
+                "data":
+                  - "Поле claim_orders.0.id обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []  
   /api/v1/claim_orders_upload_file:
     post:
       tags:
@@ -40003,6 +40042,57 @@ paths:
                 "request_id": "89288320-e69e-4022-9867-e2667fbd0fd0"
                 "message": "Требуемый ресурс не найден"
                 "data": []     
+  /api/v1/file/{file_id}:
+    get:
+      tags:
+        - Файл
+      summary: Получение файла по ID
+      security:
+        - bearerAuth: []  
+      parameters:
+        - in: path
+          name: file_id
+          required: true
+          schema:
+            type: integer
+          description: ID файла
+      responses:
+        '200':
+          description: Файл скачан
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "fee4dc10-2e13-4c8a-b341-e615b60ed6f1"
+                "message": "Значение поля id не существует.|"
+                "data":
+                  - "Значение поля id не существует."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []   
+        '404':
+          description: Ошибка - файл не найден
+          content:
+            application/json:
+              example:
+                "code": 404
+                "status": "Not Found"
+                "success": false
+                "request_id": "3444624e-b36a-42bd-9c3a-881d9a7c8975"
+                "message": "Требуемый ресурс не найден"
+                "data": []
 components:
   schemas:
     LoginWith2FA:
