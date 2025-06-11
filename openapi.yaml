@@ -37327,7 +37327,348 @@ paths:
                 "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
                 "message": "Ошибка аутентификации."
                 "data": []         
-  # дописать метод на загрузку таблицы в розыск - он сломался, не работает ни на деве, ни на проде, не могу посмотреть какой должен быть ответ
+  /api/v1/search_order_upload/{search_id}:
+    post:
+      tags:
+        - Розыски
+      summary: Загрузить файл в розыск
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: search_id
+          required: true
+          schema:
+            type: integer
+          description: ID розыска
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - search_order_file
+                properties:
+                  search_order_file:
+                    type: string
+                    format: binary
+                    description: Файл для загрузки
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "282a666a-1090-44ff-85f2-1cc12638f015"
+                "data":
+                  "search":
+                    "id": 240
+                    "type": "order"
+                    "status": "inwork"
+                    "status_text": "В работе"
+                    "period_from": "2025-02-10T00:00:00+03:00"
+                    "period_to": "2025-03-22T00:00:00+03:00"
+                    "delivery_id": 5
+                    "company_id": 1
+                    "claim_id": null
+                    "created_at": "2025-06-11T15:55:29+03:00"
+                    "updated_at": "2025-06-11T15:55:29+03:00"
+                    "total_left_payment": 100342.43
+                    "count_claim_orders": 0
+                    "search_orders":
+                      - "id": 26870
+                        "search_id": 240
+                        "order_id": 842108
+                        "type_id": null
+                        "payment": null
+                        "description": null
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-03-14T00:00:00+03:00"
+                        "delivery_service_delay": 89
+                        "credit_order": 11266
+                        "credit_cod": 11266
+                        "credit": 11266
+                        "order":
+                          "id": 842108
+                          "order_id": "241210-4208"
+                          "delivery_id": 5
+                          "company_id": 1
+                          "shpi": "240092787971"
+                          "track_number": "4d11d435-0030-3ac3-81ff-928157703e66"
+                          "barcode": "40990092787971"
+                          "order_np_sum": 11266
+                          "order_assessed_sum": 11266
+                          "mass": 5400
+                          "order_create_date": "2024-12-18T00:00:00+03:00"
+                          "order_send_date": "2025-02-27T00:00:00+03:00"
+                          "order_delivered_date": null
+                          "delivery_service_status_date": "2025-02-27T00:00:00+03:00"
+                          "delivery_service_status": "DELIVERY"
+                          "delivery_service_status_title": "В пути"
+                          "delivery_service_status_original": "IN_PROCESS_LOST_REVERSE_LAST_MILE"
+                          "registry_status": null
+                          "registry_status_title": null
+                          "registry_number": null
+                          "registry_id": null
+                          "finflow_id": 9
+                          "created_at": "2024-12-26T16:32:10+03:00"
+                          "updated_at": "2025-06-11T14:17:13+03:00"
+                        "claim_order": null
+                      - "id": 26871
+                        "search_id": 240
+                        "order_id": 983564
+                        "type_id": null
+                        "payment": null
+                        "description": null
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-03-26T00:00:00+03:00"
+                        "delivery_service_delay": 77
+                        "credit_order": 4861.99
+                        "credit_cod": 4861.99
+                        "credit": 4861.99
+                        "order":
+                          "id": 983564
+                          "order_id": "250201-5148"
+                          "delivery_id": 5
+                          "company_id": 1
+                          "shpi": "240093905357"
+                          "track_number": "5d6dad9d-b608-3ed9-a4ce-db0607a67c9f"
+                          "barcode": "40990093905357"
+                          "order_np_sum": 4861.99
+                          "order_assessed_sum": 4861.99
+                          "mass": 960
+                          "order_create_date": "2025-02-04T00:00:00+03:00"
+                          "order_send_date": "2025-03-11T00:00:00+03:00"
+                          "order_delivered_date": null
+                          "delivery_service_status_date": "2025-03-11T00:00:00+03:00"
+                          "delivery_service_status": "DELIVERY"
+                          "delivery_service_status_title": "В пути"
+                          "delivery_service_status_original": "UNCLAIMED_LOST_LAST_MILE"
+                          "registry_status": null
+                          "registry_status_title": null
+                          "registry_number": null
+                          "registry_id": null
+                          "finflow_id": 1
+                          "created_at": "2025-02-06T03:12:23+03:00"
+                          "updated_at": "2025-06-11T14:17:13+03:00"
+                        "claim_order": null
+                      - "id": 26872
+                        "search_id": 240
+                        "order_id": 1016489
+                        "type_id": null
+                        "payment": null
+                        "description": null
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-02-28T00:00:00+03:00"
+                        "delivery_service_delay": 103
+                        "credit_order": 6398.61
+                        "credit_cod": 6398.61
+                        "credit": 6398.61
+                        "order":
+                          "id": 1016489
+                          "order_id": "250210-6131"
+                          "delivery_id": 5
+                          "company_id": 1
+                          "shpi": "240094095065"
+                          "track_number": "78e7e040-b856-382b-91f9-0606ac1e772e"
+                          "barcode": "40990094095065"
+                          "order_np_sum": 6398.61
+                          "order_assessed_sum": 6398.61
+                          "mass": 385
+                          "order_create_date": "2025-02-13T00:00:00+03:00"
+                          "order_send_date": "2025-02-13T00:00:00+03:00"
+                          "order_delivered_date": null
+                          "delivery_service_status_date": "2025-03-07T00:00:00+03:00"
+                          "delivery_service_status": "DELIVERY"
+                          "delivery_service_status_title": "В пути"
+                          "delivery_service_status_original": "INTERRUPTED_LOST_LAST_MILE"
+                          "registry_status": null
+                          "registry_status_title": null
+                          "registry_number": null
+                          "registry_id": null
+                          "finflow_id": 1
+                          "created_at": "2025-02-17T06:30:10+03:00"
+                          "updated_at": "2025-06-11T14:17:13+03:00"
+                        "claim_order": null
+                      - "id": 26873
+                        "search_id": 240
+                        "order_id": 1015614
+                        "type_id": null
+                        "payment": null
+                        "description": null
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-02-28T00:00:00+03:00"
+                        "delivery_service_delay": 103
+                        "credit_order": 4055.05
+                        "credit_cod": 4055.05
+                        "credit": 4055.05
+                        "order": 
+                          "id": 1015614
+                          "order_id": "250212-2108"
+                          "delivery_id": 5
+                          "company_id": 1
+                          "shpi": "240094097535"
+                          "track_number": "acb46e7e-a159-35ef-ba9f-17ade060ff40"
+                          "barcode": "40990094097535"
+                          "order_np_sum": 4055.05
+                          "order_assessed_sum": 4055.05
+                          "mass": 1340
+                          "order_create_date": "2025-02-13T00:00:00+03:00"
+                          "order_send_date": "2025-02-13T00:00:00+03:00"
+                          "order_delivered_date": null
+                          "delivery_service_status_date": "2025-02-12T00:00:00+03:00"
+                          "delivery_service_status": "CREATED"
+                          "delivery_service_status_title": "Передан в СД"
+                          "delivery_service_status_original": "APPROVED_APPROVED_"
+                          "registry_status": null
+                          "registry_status_title": null
+                          "registry_number": null
+                          "registry_id": null
+                          "finflow_id": 1
+                          "created_at": "2025-02-17T06:23:25+03:00"
+                          "updated_at": "2025-06-11T14:17:13+03:00"
+                        "claim_order": null
+                      - "id": 26874
+                        "search_id": 240
+                        "order_id": 1015389
+                        "type_id": null
+                        "payment": null
+                        "description": null
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-02-28T00:00:00+03:00"
+                        "delivery_service_delay": 103
+                        "credit_order": 2421.77
+                        "credit_cod": 2421.77
+                        "credit": 2421.77
+                        "order":
+                          "id": 1015389
+                          "order_id": "250212-5493"
+                          "delivery_id": 5
+                          "company_id": 1
+                          "shpi": "240094101837"
+                          "track_number": "ccf18d70-e004-36b6-a920-48d20b52f70f"
+                          "barcode": "40990094101837"
+                          "order_np_sum": 2421.77
+                          "order_assessed_sum": 2421.77
+                          "mass": 655
+                          "order_create_date": "2025-02-13T00:00:00+03:00"
+                          "order_send_date": "2025-02-13T00:00:00+03:00"
+                          "order_delivered_date": null
+                          "delivery_service_status_date": "2025-02-12T00:00:00+03:00"
+                          "delivery_service_status": "CREATED"
+                          "delivery_service_status_title": "Передан в СД"
+                          "delivery_service_status_original": "APPROVED_APPROVED_"
+                          "registry_status": null
+                          "registry_status_title": null
+                          "registry_number": null
+                          "registry_id": null
+                          "finflow_id": 1
+                          "created_at": "2025-02-17T06:21:49+03:00"
+                          "updated_at": "2025-06-11T14:17:13+03:00"
+                        "claim_order": null
+                      - "id": 26875
+                        "search_id": 240
+                        "order_id": 1014845
+                        "type_id": null
+                        "payment": null
+                        "description": null
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-02-28T00:00:00+03:00"
+                        "delivery_service_delay": 103
+                        "credit_order": 5994.2
+                        "credit_cod": 5994.2
+                        "credit": 5994.2
+                        "order":
+                          "id": 1014845
+                          "order_id": "250212-7989"
+                          "delivery_id": 5
+                          "company_id": 1
+                          "shpi": "240094107024"
+                          "track_number": "faea82de-353d-342c-b9a0-c232f9e3593d"
+                          "barcode": "40990094107024"
+                          "order_np_sum": 5994.2
+                          "order_assessed_sum": 5994.2
+                          "mass": 560
+                          "order_create_date": "2025-02-13T00:00:00+03:00"
+                          "order_send_date": "2025-02-13T00:00:00+03:00"
+                          "order_delivered_date": null
+                          "delivery_service_status_date": "2025-02-12T00:00:00+03:00"
+                          "delivery_service_status": "CREATED"
+                          "delivery_service_status_title": "Передан в СД"
+                          "delivery_service_status_original": "APPROVED_APPROVED_"
+                          "registry_status": null
+                          "registry_status_title": null
+                          "registry_number": null
+                          "registry_id": null
+                          "finflow_id": 1
+                          "created_at": "2025-02-17T06:17:35+03:00"
+                          "updated_at": "2025-06-11T14:17:13+03:00"
+                        "claim_order": null
+                      - "id": 26876
+                        "search_id": 240
+                        "order_id": 1019774
+                        "type_id": null
+                        "payment": null
+                        "description": null
+                        "comment": null
+                        "delivery_service_supposed_date": "2025-03-01T00:00:00+03:00"
+                        "delivery_service_delay": 102
+                        "credit_order": 6129.58
+                        "credit_cod": 6129.58
+                        "credit": 6129.58
+                        "order":
+                          "id": 1019774
+                          "order_id": "250213-1331"
+                          "delivery_id": 5
+                          "company_id": 1
+                          "shpi": "240094117807"
+                          "track_number": "294f0b8d-01b2-3a42-ab36-cf1ae9553f6d"
+                          "barcode": "40990094117807"
+                          "order_np_sum": 6129.58
+                          "order_assessed_sum": 6129.58
+                          "mass": 5690
+                          "order_create_date": "2025-02-14T00:00:00+03:00"
+                          "order_send_date": "2025-02-14T00:00:00+03:00"
+                          "order_delivered_date": null
+                          "delivery_service_status_date": "2025-03-23T00:00:00+03:00"
+                          "delivery_service_status": "DELIVERY"
+                          "delivery_service_status_title": "В пути"
+                          "delivery_service_status_original": "UNCLAIMED_LOST_REVERSE_LAST_MILE"
+                          "registry_status": null
+                          "registry_status_title": null
+                          "registry_number": null
+                          "registry_id": null
+                          "finflow_id": 1
+                          "created_at": "2025-02-19T06:33:51+03:00"
+                          "updated_at": "2025-06-11T14:17:13+03:00"
+                        "claim_order": null
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "80b451a6-9e07-4ff2-8395-4c2ce039de1e"
+                "message": "Поле search order file обязательно.|"
+                "data":
+                  - "Поле search order file обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []             
   /api/v1/claim_order_create:
     post:
       tags:
