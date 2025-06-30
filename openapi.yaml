@@ -40435,6 +40435,622 @@ paths:
                 "request_id": "3444624e-b36a-42bd-9c3a-881d9a7c8975"
                 "message": "Требуемый ресурс не найден"
                 "data": []
+  /api/v1/logs:
+    get:
+      tags:
+        - Логи
+      summary: Получение логов
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[index]
+          required: true
+          schema:
+            type: string
+            enum: [rest]
+          description: Обязательный параметр
+        - in: query
+          name: filter[ip]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по ip
+        - in: query
+          name: filter[after]
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Дата отправки запроса после
+        - in: query
+          name: filter[before]
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Дата отправки запроса до
+        - in: query
+          name: filter[uuid]
+          required: false
+          schema:
+            type: string
+          description: Идентификатор запроса. Требуется точное совпадение
+        - in: query
+          name: filter[level]
+          required: false
+          schema:
+            type: string
+          description: Номер уровня логов. Требуется точное совпадение
+        - in: query
+          name: filter[level_name]
+          required: false
+          schema:
+            type: string
+          description: Имя уровня логов. Требуется точное совпадение
+        - in: query
+          name: filter[user_id]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по id пользователя
+        - in: query
+          name: filter[company_id]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по id клиента
+        - in: query
+          name: filter[response_status]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по статусу ответа
+        - in: query
+          name: filter[response_code]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по коду ответа
+        - in: query
+          name: filter[response_success]
+          required: false
+          schema:
+            type: boolean
+          description: Фильтр по успешным / не успешным ответам. True - успешные / False - не успешные
+        - in: query
+          name: filter[method]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по методу
+        - in: query
+          name: filter[request_path]
+          required: false
+          schema:
+            type: string
+          description: Частичное совпадение
+        - in: query
+          name: filter[request_query]
+          required: false
+          schema:
+            type: string
+          description: Частичное совпадение
+        - in: query
+          name: filter[request_body]
+          required: false
+          schema:
+            type: string
+          description: Частичное совпадение
+        - in: query
+          name: filter[request_headers]
+          required: false
+          schema:
+            type: string
+          description: Частичное совпадение
+        - in: query
+          name: filter[request_raw]
+          required: false
+          schema:
+            type: string
+          description: Частичное совпадение
+        - in: query
+          name: filter[response_headers]
+          required: false
+          schema:
+            type: string
+          description: Частичное совпадение
+        - in: query
+          name: filter[response_data]
+          required: false
+          schema:
+            type: string
+          description: Частичное совпадение
+        - in: query
+          name: filter[response_message]
+          required: false
+          schema:
+            type: string
+          description: Частичное совпадение
+        - in: query
+          name: filter[response_raw]
+          required: false
+          schema:
+            type: string
+          description: Частичное совпадение
+        - in: query
+          name: filter[url]
+          required: false
+          schema:
+            type: string
+          description: Фильтр по адресу. Частичное совпадение
+        - in: query
+          name: filter[time_more]
+          required: false
+          schema:
+            type: string
+          description: Время выполнения больше
+        - in: query
+          name: filter[time_less]
+          required: false
+          schema:
+            type: string
+          description: Время выполнения меньше
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: string
+          description: Страница для пагинации
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: string
+          description: Сортировка. date - сортировка по дате; time - сортировка по времени выполнения
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "18e442fb-3167-45b8-9f27-f3cf5b5a1a53"
+                "data":
+                  "logs":
+                    - "index": "logs_api_rest"
+                      "id": "JZ0wMpYBPKSQhAxGAtwh"
+                      "direction": "in"
+                      "uuid": "bba68460-daa3-433c-b6bf-9ac97646d39c"
+                      "ip": "62.113.110.145"
+                      "score": 3.2458186
+                      "date": "2025-04-14T05:45:29+03:00"
+                      "level": 200
+                      "level_name": "INFO"
+                      "url": "https://mz.test212.ru/api/v1/delivery/contracts"
+                      "user_id": 116
+                      "company_id": 100
+                      "request_path": "api/v1/delivery/contracts"
+                      "request_query": null
+                      "request_body": null
+                      "request_headers": "authorization:Bearer 1534|qyX8RvqcVc23Q8Ni9cI8knBab81f0b3; content-type:application/json; accept-encoding:deflate, gzip, br, zstd; accept:*/*; host:mz.test212.ru; "
+                      "request_raw": null
+                      "response_headers": "Cache-Control:no-cache, private; Date:Mon, 14 Apr 2025 02:45:29 GMT; Content-Type:application/json; "
+                      "response_status": "OK"
+                      "response_code": 200
+                      "response_data": null
+                      "response_message": null
+                      "response_success": true
+                      "response_raw": "{\"code\":200,\"status\":\"OK\",\"success\":true,\"request_id\":\"bba68460-daa3-433c-b6bf-9ac97646d39c\",\"data\":{\"contract\":[{\"id\":7,\"delivery_id\":1,\"number\":\"ВЗ-1\",\"basis\":\"4.4\",\"from\":\"2022-09-05T00:00:00+03:00\",\"to\":\"2025-09-05T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-24T15:59:11+03:00\",\"updated_at\":\"2024-11-05T11:46:27+03:00\",\"deleted_at\":null},{\"id\":8,\"delivery_id\":1,\"number\":\"ВЗ-1\",\"basis\":\"4.4\",\"from\":\"2022-09-05T00:00:00+03:00\",\"to\":\"2025-09-05T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-24T15:59:45+03:00\",\"updated_at\":\"2024-10-24T15:59:45+03:00\",\"deleted_at\":null},{\"id\":9,\"delivery_id\":2,\"number\":\"2110\\/23\",\"basis\":\"5.1.2\",\"from\":\"2023-09-27T00:00:00+03:00\",\"to\":\"2025-05-24T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-24T16:16:48+03:00\",\"updated_at\":\"2024-10-24T16:16:48+03:00\",\"deleted_at\":null},{\"id\":10,\"delivery_id\":2,\"number\":\"2110\\/23\",\"basis\":\"5.1.2\",\"from\":\"2023-09-27T00:00:00+03:00\",\"to\":\"2025-05-24T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-24T16:17:45+03:00\",\"updated_at\":\"2024-10-24T16:17:45+03:00\",\"deleted_at\":null},{\"id\":11,\"delivery_id\":2,\"number\":\"2110\\/23\",\"basis\":\"5.1.2\",\"from\":\"2023-09-27T00:00:00+03:00\",\"to\":\"2025-05-24T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-24T16:21:49+03:00\",\"updated_at\":\"2024-10-24T16:21:49+03:00\",\"deleted_at\":null},{\"id\":12,\"delivery_id\":2,\"number\":\"2110\\/23\",\"basis\":\"5.1.2\",\"from\":\"2023-09-27T00:00:00+03:00\",\"to\":\"2025-05-24T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-24T16:23:02+03:00\",\"updated_at\":\"2024-10-24T16:23:02+03:00\",\"deleted_at\":null},{\"id\":13,\"delivery_id\":2,\"number\":\"2110\\/23\",\"basis\":\"5.1.2\",\"from\":\"2023-09-27T00:00:00+03:00\",\"to\":\"2025-05-24T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-24T16:23:07+03:00\",\"updated_at\":\"2024-10-24T16:23:07+03:00\",\"deleted_at\":null},{\"id\":14,\"delivery_id\":5,\"number\":\"ИБ-10042023\",\"basis\":\"5.1.2\",\"from\":\"2023-04-10T00:00:00+03:00\",\"to\":\"2025-04-10T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-29T16:09:27+03:00\",\"updated_at\":\"2024-12-18T11:10:19+03:00\",\"deleted_at\":null},{\"id\":15,\"delivery_id\":5,\"number\":\"№ИБ-10042023\",\"basis\":\"5\",\"from\":\"2023-04-10T00:00:00+03:00\",\"to\":\"2025-04-10T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-29T16:53:08+03:00\",\"updated_at\":\"2024-10-29T16:53:08+03:00\",\"deleted_at\":null},{\"id\":16,\"delivery_id\":5,\"number\":\"№ИБ-10042023\",\"basis\":\"5\",\"from\":\"2023-04-10T00:00:00+03:00\",\"to\":\"2025-04-10T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-29T16:53:12+03:00\",\"updated_at\":\"2024-10-29T16:53:12+03:00\",\"deleted_at\":null},{\"id\":17,\"delivery_id\":5,\"number\":\"№ИБ-10042023\",\"basis\":\"5\",\"from\":\"2023-04-10T00:00:00+03:00\",\"to\":\"2025-04-10T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-29T16:53:35+03:00\",\"updated_at\":\"2024-10-29T16:53:35+03:00\",\"deleted_at\":null},{\"id\":18,\"delivery_id\":5,\"number\":\"№ИБ-10042023\",\"basis\":\"5\",\"from\":\"2023-04-10T00:00:00+03:00\",\"to\":\"2025-04-10T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-29T16:54:35+03:00\",\"updated_at\":\"2024-10-29T16:54:35+03:00\",\"deleted_at\":null},{\"id\":19,\"delivery_id\":5,\"number\":\"№ИБ-10042023\",\"basis\":\"5\",\"from\":\"2023-04-10T00:00:00+03:00\",\"to\":\"2025-04-10T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-29T16:55:16+03:00\",\"updated_at\":\"2024-10-29T16:55:16+03:00\",\"deleted_at\":null},{\"id\":20,\"delivery_id\":5,\"number\":\"№ИБ-10042023\",\"basis\":\"5\",\"from\":\"2023-04-10T00:00:00+03:00\",\"to\":\"2025-04-10T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-29T16:55:32+03:00\",\"updated_at\":\"2024-10-29T16:55:32+03:00\",\"deleted_at\":null},{\"id\":21,\"delivery_id\":5,\"number\":\"№ИБ-10042023\",\"basis\":\"5\",\"from\":\"2023-04-10T00:00:00+03:00\",\"to\":\"2025-04-10T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-29T16:57:21+03:00\",\"updated_at\":\"2024-10-29T16:57:21+03:00\",\"deleted_at\":null},{\"id\":22,\"delivery_id\":4,\"number\":\"5063-06-23\",\"basis\":\"5.1.2\",\"from\":\"2024-10-10T00:00:00+03:00\",\"to\":\"2026-10-10T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-29T17:30:20+03:00\",\"updated_at\":\"2024-12-18T15:19:48+03:00\",\"deleted_at\":null},{\"id\":23,\"delivery_id\":4,\"number\":\"7896541\",\"basis\":\"55\",\"from\":\"2024-10-10T00:00:00+03:00\",\"to\":\"2026-10-10T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-29T17:30:37+03:00\",\"updated_at\":\"2024-10-29T17:30:37+03:00\",\"deleted_at\":null},{\"id\":24,\"delivery_id\":4,\"number\":\"7896541\",\"basis\":\"55\",\"from\":\"2024-10-10T00:00:00+03:00\",\"to\":\"2026-10-10T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-10-29T17:31:13+03:00\",\"updated_at\":\"2024-10-29T17:31:13+03:00\",\"deleted_at\":null},{\"id\":25,\"delivery_id\":6,\"number\":\"1\",\"basis\":\"1\",\"from\":\"2024-11-13T00:00:00+03:00\",\"to\":\"2025-01-25T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-11-05T11:49:00+03:00\",\"updated_at\":\"2024-11-05T11:49:00+03:00\",\"deleted_at\":null},{\"id\":26,\"delivery_id\":6,\"number\":\"1\",\"basis\":\"1\",\"from\":\"2024-11-13T00:00:00+03:00\",\"to\":\"2025-01-25T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-11-05T11:49:16+03:00\",\"updated_at\":\"2024-11-05T11:49:16+03:00\",\"deleted_at\":null},{\"id\":27,\"delivery_id\":6,\"number\":\"1\",\"basis\":\"1\",\"from\":\"2024-11-13T00:00:00+03:00\",\"to\":\"2025-01-25T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-11-05T11:49:29+03:00\",\"updated_at\":\"2024-11-05T11:49:29+03:00\",\"deleted_at\":null},{\"id\":28,\"delivery_id\":6,\"number\":\"1\",\"basis\":\"1\",\"from\":\"2024-11-13T00:00:00+03:00\",\"to\":\"2025-01-25T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-11-05T11:49:55+03:00\",\"updated_at\":\"2024-11-05T11:49:55+03:00\",\"deleted_at\":null},{\"id\":29,\"delivery_id\":6,\"number\":\"1\",\"basis\":\"1\",\"from\":\"2024-11-13T00:00:00+03:00\",\"to\":\"2025-01-25T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-11-05T11:50:00+03:00\",\"updated_at\":\"2024-11-05T11:50:00+03:00\",\"deleted_at\":null},{\"id\":30,\"delivery_id\":7,\"number\":\"556-СЭС\\/ИМ\",\"basis\":\"5.1.2\",\"from\":\"2023-09-28T00:00:00+03:00\",\"to\":\"2028-09-28T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-11-07T13:14:06+03:00\",\"updated_at\":\"2024-11-07T13:16:35+03:00\",\"deleted_at\":null},{\"id\":31,\"delivery_id\":7,\"number\":\"556-СЭС\\/ИМ\",\"basis\":\"5.1\",\"from\":\"2023-09-28T00:00:00+03:00\",\"to\":\"2028-09-28T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2024-11-07T13:15:58+03:00\",\"updated_at\":\"2024-11-07T13:15:58+03:00\",\"deleted_at\":null},{\"id\":32,\"delivery_id\":6,\"number\":\"2344567\",\"basis\":\"dfgfdg dfggd  dfgdfg\",\"from\":\"2024-12-21T00:00:00+03:00\",\"to\":\"2025-12-21T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2025-02-27T10:22:33+03:00\",\"updated_at\":\"2025-02-27T10:22:33+03:00\",\"deleted_at\":null},{\"id\":34,\"delivery_id\":6,\"number\":\"rsdfdfg\",\"basis\":\"adas dfgg  wrwer\",\"from\":\"2024-12-31T00:00:00+03:00\",\"to\":\"2024-12-31T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2025-02-28T12:55:57+03:00\",\"updated_at\":\"2025-02-28T12:55:57+03:00\",\"deleted_at\":null},{\"id\":35,\"delivery_id\":6,\"number\":\"rsdfdasdfg\",\"basis\":\"adagg  wrwer\",\"from\":\"2024-12-31T00:00:00+03:00\",\"to\":\"2025-12-31T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2025-02-28T12:58:10+03:00\",\"updated_at\":\"2025-02-28T12:58:10+03:00\",\"deleted_at\":null},{\"id\":36,\"delivery_id\":6,\"number\":\"rsdfdasdfg\",\"basis\":\"adagg  wrwer\",\"from\":\"2024-12-31T00:00:00+03:00\",\"to\":\"2025-12-31T00:00:00+03:00\",\"dops\":[],\"created_at\":\"2025-02-28T12:58:25+03:00\",\"updated_at\":\"2025-02-28T12:58:25+03:00\",\"deleted_at\":null},{\"id\":37,\"delivery_id\":6,\"number\":\"rsdfdasdfg\",\"basis\":\"adagg  wrwer\",\"from\":\"2024-12-31T00:00:00+03:00\",\"to\":\"2025-12-31T00:00:00+03:00\",\"dops\":[{\"id\":2138,\"delivery_contract_id\":37,\"number\":\"rsdfdfg\",\"from\":\"2023-12-31T00:00:00+03:00\",\"to\":\"2024-12-31T00:00:00+03:00\",\"is_used\":false,\"created_at\":\"2025-04-14T04:53:19+03:00\",\"updated_at\":\"2025-04-14T04:53:19+03:00\",\"deleted_at\":null},{\"id\":2139,\"delivery_contract_id\":37,\"number\":\"rsdfdfg\",\"from\":\"2023-12-31T00:00:00+03:00\",\"to\":\"2024-12-31T00:00:00+03:00\",\"is_used\":false,\"created_at\":\"2025-04-14T05:23:19+03:00\",\"updated_at\":\"2025-04-14T05:23:19+03:00\",\"deleted_at\":null}],\"created_at\":\"2025-02-28T12:58:33+03:00\",\"updated_at\":\"2025-02-28T12:58:33+03:00\",\"deleted_at\":null}],\"links\":[{\"url\":null,\"label\":\"&laquo; Назад\",\"active\":false},{\"url\":\"https:\\/\\/mz.test212.ru\\/api\\/v1\\/delivery\\/contracts?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Вперёд &raquo;\",\"active\":false}],\"meta\":{\"current_page\":1,\"first_page_url\":\"https:\\/\\/mz.test212.ru\\/api\\/v1\\/delivery\\/contracts?page=1\",\"from\":1,\"last_page\":1,\"last_page_url\":\"https:\\/\\/mz.test212.ru\\/api\\/v1\\/delivery\\/contracts?page=1\",\"next_page_url\":null,\"path\":\"https:\\/\\/mz.test212.ru\\/api\\/v1\\/delivery\\/contracts\",\"per_page\":1000,\"prev_page_url\":null,\"to\":30,\"total\":30}}}"
+                      "time": 1
+                      "method": "GET"
+                    - "index": "logs_api_rest"
+                      "id": "Jp0wMpYBPKSQhAxGBdzB"
+                      "direction": "in"
+                      "uuid": "32a3b9b4-cf61-4800-a2e5-b2864f0bb773"
+                      "ip": "62.113.110.145"
+                      "score": 3.2458186
+                      "date": "2025-04-14T05:45:30+03:00"
+                      "level": 200
+                      "level_name": "INFO"
+                      "url": "https://mz.test212.ru/api/v1/deliveries"
+                      "user_id": 116
+                      "company_id": 100
+                      "request_path": "api/v1/deliveries"
+                      "request_query": null
+                      "request_body": null
+                      "request_headers": "authorization:Bearer 1534|qyX8RvqcVgGn3OfSl7deqUsN9hc23Q8Ni9cI8knBab81f0b3; content-type:application/json; accept-encoding:deflate, gzip, br, zstd; accept:*/*; host:mz.test212.ru; "
+                      "request_raw": null
+                      "response_headers": "Cache-Control:no-cache, private; Date:Mon, 14 Apr 2025 02:45:30 GMT; Content-Type:application/json; "
+                      "response_status": "OK"
+                      "response_code": 200
+                      "response_data": null
+                      "response_message": null
+                      "response_success": true
+                      "response_raw": "{\"code\":200,\"status\":\"OK\",\"success\":true,\"request_id\":\"32a3b9b4-cf61-4800-a2e5-b2864f0bb773\",\"data\":{\"deliveries\":[{\"id\":1,\"code\":\"sdek\",\"name\":\"СДЕК\",\"is_active\":true,\"image_id\":265,\"with_nds\":true,\"tariff_insurance\":0.5,\"tariff_acquiring_card\":3,\"tariff_acquiring_cash\":1.3,\"tariff_acquiring_sbp\":0,\"tariff_acquiring_average\":2,\"tariff_return\":23,\"wait_registry\":5,\"add_weekend_wait_registry\":1,\"add_weekend_max_delivery_time\":0,\"add_weekend_storage\":0,\"add_weekend_deadline_searches\":0,\"add_weekend_calc\":0,\"redemption_rub\":81,\"redemption_count\":83,\"law_name\":\"ООО \\\"СДЭК-ГЛОБАЛ\\\"\",\"law_address\":\"630007, Новосибирская область, город Новосибирск, Кривощековская ул., д. 15 к. 1, этаж 1,2\",\"fact_address\":\"\\\"111250, Москва, проезд Завода Серп и Молот, 3 корп.2\\\"\",\"inn\":\"7722327689\",\"ogrn\":\"1157746448463\",\"kpp\":\"540601001\",\"bank_name\":\"Филиал «Новосибирский» АО «АЛЬФА-БАНК» г. Новосибирск\",\"bank_bik\":\"045004774\",\"bank_rs\":\"40702810323000003506\",\"bank_ks\":\"30101810600000000774\",\"gendir\":\"Пиксаев Вячеслав Викторович\",\"phone\":\"8 (495) 797-8108\",\"contact\":\"Кузнецова Евгения\",\"email\":\"tender@cdek.ru\",\"site\":\"https:\\/\\/www.cdek.ru\\/\",\"image\":null,\"types\":[{\"id\":1,\"delivery_id\":1,\"type\":\"curier\",\"max_width\":1000,\"max_length\":1000,\"max_height\":1000,\"max_weight\":30000,\"max_delivery_time\":15,\"max_side\":1000,\"max_sum_sides\":1500,\"max_cost\":150000,\"max_np\":150000,\"storage\":14,\"deadline_searches\":45,\"is_mobile\":false,\"tariff_type\":\"3\",\"tariff_code\":\"137\",\"geo_exceptions\":[],\"created_at\":\"2024-08-16T11:49:16+03:00\",\"updated_at\":\"2025-04-04T09:07:47+03:00\",\"deleted_at\":null},{\"id\":2,\"delivery_id\":1,\"type\":\"pvz\",\"max_width\":1000,\"max_length\":1000,\"max_height\":1000,\"max_weight\":30000,\"max_delivery_time\":14,\"max_side\":1000,\"max_sum_sides\":1500,\"max_cost\":150000,\"max_np\":150000,\"storage\":14,\"deadline_searches\":45,\"is_mobile\":false,\"tariff_type\":\"3\",\"tariff_code\":\"136\",\"geo_exceptions\":[],\"created_at\":\"2024-08-16T11:49:16+03:00\",\"updated_at\":\"2025-04-04T09:07:47+03:00\",\"deleted_at\":null}],\"deleted_at\":null,\"pass_inputs\":[{\"name\":\"login\",\"title\":\"Логин (client_id)\"},{\"name\":\"password\",\"title\":\"Пароль (client_secret)\"}]},{\"id\":2,\"code\":\"boxberry\",\"name\":\"BoxBerry\",\"is_active\":true,\"image_id\":null,\"with_nds\":true,\"tariff_insurance\":0.5,\"tariff_acquiring_card\":2.3,\"tariff_acquiring_cash\":1.6,\"tariff_acquiring_sbp\":0,\"tariff_acquiring_average\":1.95,\"tariff_return\":50,\"wait_registry\":1,\"add_weekend_wait_registry\":1,\"add_weekend_max_delivery_time\":0,\"add_weekend_storage\":0,\"add_weekend_deadline_searches\":0,\"add_weekend_calc\":0,\"redemption_rub\":80,\"redemption_count\":83,\"law_name\":\"ООО \\\"БОКСБЕРРИ СОФТ\\\"\",\"law_address\":\"\\\"620100, Россия, Свердловская область,  г. Екатеринбург, ул. Сибирский тракт,  д.12, стр.1, оф 501 \\\"\",\"fact_address\":\"\\\"620100, Россия, Свердловская область,  г. Екатеринбург, ул. Сибирский тракт,  д.12, стр.1, оф 501\\\"\",\"inn\":\"6685157931\",\"ogrn\":\"1196658000615\",\"kpp\":\"668501001\",\"bank_name\":\"УРАЛЬСКИЙ ФИЛИАЛ АО \\\"РАЙФФАЙЗЕНБАНК\\\" г. Екатеринбург\",\"bank_bik\":\"046577906\",\"bank_rs\":\"40702810104000022703\",\"bank_ks\":\"30101810100000000906\",\"gendir\":\"Тагунова Вероника Николаевна\",\"phone\":\"(343) 385-87-24\",\"contact\":\"Пимонова Екатерина\",\"email\":\"e_pimonova@boxberry.ru\",\"site\":null,\"image\":null,\"types\":[{\"id\":3,\"delivery_id\":2,\"type\":\"curier\",\"max_width\":1200,\"max_length\":1200,\"max_height\":1200,\"max_weight\":15000,\"max_delivery_time\":15,\"max_side\":1200,\"max_sum_sides\":2500,\"max_cost\":300000,\"max_np\":300000,\"storage\":14,\"deadline_searches\":45,\"is_mobile\":false,\"tariff_type\":\"4\",\"tariff_code\":\"\",\"geo_exceptions\":[],\"created_at\":\"2024-08-16T11:49:16+03:00\",\"updated_at\":\"2025-03-12T15:49:33+03:00\",\"deleted_at\":null},{\"id\":4,\"delivery_id\":2,\"type\":\"pvz\",\"max_width\":1200,\"max_length\":1200,\"max_height\":1200,\"max_weight\":15000,\"max_delivery_time\":15,\"max_side\":1200,\"max_sum_sides\":2500,\"max_cost\":300000,\"max_np\":300000,\"storage\":14,\"deadline_searches\":45,\"is_mobile\":false,\"tariff_type\":\"4\",\"tariff_code\":\"\",\"geo_exceptions\":[],\"created_at\":\"2024-08-16T11:49:16+03:00\",\"updated_at\":\"2025-03-12T15:49:33+03:00\",\"deleted_at\":null}],\"deleted_at\":null,\"pass_inputs\":[{\"name\":\"password\",\"title\":\"API токен\"}]},{\"id\":3,\"code\":\"lpost\",\"name\":\"LPost\",\"is_active\":true,\"image_id\":null,\"with_nds\":true,\"tariff_insurance\":0.5,\"tariff_acquiring_card\":0,\"tariff_acquiring_cash\":0,\"tariff_acquiring_sbp\":0,\"tariff_acquiring_average\":0,\"tariff_return\":0,\"wait_registry\":15,\"add_weekend_wait_registry\":0,\"add_weekend_max_delivery_time\":0,\"add_weekend_storage\":0,\"add_weekend_deadline_searches\":0,\"add_weekend_calc\":0,\"redemption_rub\":85,\"redemption_count\":85,\"law_name\":null,\"law_address\":null,\"fact_address\":null,\"inn\":null,\"ogrn\":null,\"kpp\":null,\"bank_name\":null,\"bank_bik\":null,\"bank_rs\":null,\"bank_ks\":null,\"gendir\":null,\"phone\":null,\"contact\":null,\"email\":null,\"site\":null,\"image\":null,\"types\":[{\"id\":5,\"delivery_id\":3,\"type\":\"curier\",\"max_width\":null,\"max_length\":null,\"max_height\":null,\"max_weight\":null,\"max_delivery_time\":null,\"max_side\":null,\"max_sum_sides\":null,\"max_cost\":null,\"max_np\":null,\"storage\":null,\"deadline_searches\":null,\"is_mobile\":false,\"tariff_type\":\"200\",\"tariff_code\":null,\"geo_exceptions\":[],\"created_at\":\"2024-08-16T11:49:16+03:00\",\"updated_at\":\"2024-08-16T11:49:16+03:00\",\"deleted_at\":null},{\"id\":6,\"delivery_id\":3,\"type\":\"pvz\",\"max_width\":null,\"max_length\":null,\"max_height\":null,\"max_weight\":null,\"max_delivery_time\":null,\"max_side\":null,\"max_sum_sides\":null,\"max_cost\":null,\"max_np\":null,\"storage\":null,\"deadline_searches\":null,\"is_mobile\":false,\"tariff_type\":\"200\",\"tariff_code\":null,\"geo_exceptions\":[],\"created_at\":\"2024-08-16T11:49:16+03:00\",\"updated_at\":\"2024-08-16T11:49:16+03:00\",\"deleted_at\":null}],\"deleted_at\":null,\"pass_inputs\":[{\"name\":\"password\",\"title\":\"Секрет партнера (secret)\"}]},{\"id\":4,\"code\":\"dalli\",\"name\":\"Dalli\",\"is_active\":true,\"image_id\":null,\"with_nds\":true,\"tariff_insurance\":0.55,\"tariff_acquiring_card\":2.8,\"tariff_acquiring_cash\":1.8,\"tariff_acquiring_sbp\":0,\"tariff_acquiring_average\":2.3,\"tariff_return\":50,\"wait_registry\":3,\"add_weekend_wait_registry\":1,\"add_weekend_max_delivery_time\":0,\"add_weekend_storage\":0,\"add_weekend_deadline_searches\":0,\"add_weekend_calc\":0,\"redemption_rub\":84,\"redemption_count\":86,\"law_name\":\"ООО \\\"ДАЛЛИ-СЕРВИС\\\"\",\"law_address\":\"119361, город Москва, Озёрная ул., д. 42, помещ. II комната 16\",\"fact_address\":\"119361, город Москва, Озёрная ул., д. 42, помещ. II комната 16\",\"inn\":\"7736662574\",\"ogrn\":\"1137746670930\",\"kpp\":\"772901001\",\"bank_name\":\"АО \\\"АЛЬФА-БАНК\\\"  г. Москва\",\"bank_bik\":\"044525593\",\"bank_rs\":\"40702810502030000816\",\"bank_ks\":\"30101810200000000593\",\"gendir\":\"Колесников Евгений Геннадьевич\",\"phone\":\"(495) 646-86-82\",\"contact\":\"Лунев Андрей\",\"email\":\"info@dalli-service.com\",\"site\":\"www.dalli-service.com\",\"image\":null,\"types\":[{\"id\":7,\"delivery_id\":4,\"type\":\"curier\",\"max_width\":1000,\"max_length\":1000,\"max_height\":1000,\"max_weight\":15000,\"max_delivery_time\":30,\"max_side\":1000,\"max_sum_sides\":1700,\"max_cost\":300000,\"max_np\":300000,\"storage\":30,\"deadline_searches\":30,\"is_mobile\":false,\"tariff_type\":\"58\",\"tariff_code\":\"KUR\",\"geo_exceptions\":[],\"created_at\":\"2024-08-16T11:49:16+03:00\",\"updated_at\":\"2025-04-04T09:07:33+03:00\",\"deleted_at\":null}],\"deleted_at\":null,\"pass_inputs\":[{\"name\":\"password\",\"title\":\"Токен\"}]},{\"id\":5,\"code\":\"fivepost\",\"name\":\"5Post\",\"is_active\":true,\"image_id\":null,\"with_nds\":true,\"tariff_insurance\":0.5,\"tariff_acquiring_card\":1.88,\"tariff_acquiring_cash\":1.88,\"tariff_acquiring_sbp\":1.88,\"tariff_acquiring_average\":1.88,\"tariff_return\":0,\"wait_registry\":2,\"add_weekend_wait_registry\":1,\"add_weekend_max_delivery_time\":0,\"add_weekend_storage\":0,\"add_weekend_deadline_searches\":0,\"add_weekend_calc\":0,\"redemption_rub\":83,\"redemption_count\":86,\"law_name\":\"ООО \\\"5 ПОСТ\\\"\",\"law_address\":\"109029,Москва, ул. Средняя Калитниковская,д.28, стр.4, этаж 1, помещение VIII,комната №7\",\"fact_address\":\"109029, г Москва, ул. Средняя Калитниковская, дом 28 ст. 4\",\"inn\":\"7722461620\",\"ogrn\":\"1187746567568\",\"kpp\":\"772201001\",\"bank_name\":\"АО «АЛЬФА-БАНК»\",\"bank_bik\":\"044525593\",\"bank_rs\":\"40702810701850000978\",\"bank_ks\":\"30101810200000000593\",\"gendir\":\"Триумфов Тимофей Алексеевич\",\"phone\":\"+7 (495) 662-88-88\",\"contact\":\"Ханжинова Валерия\",\"email\":\"fivepost@x5.ru\",\"site\":\"https:\\/\\/fivepost.ru\\/\",\"image\":null,\"types\":[{\"id\":10,\"delivery_id\":5,\"type\":\"pvz\",\"max_width\":750,\"max_length\":650,\"max_height\":700,\"max_weight\":15000,\"max_delivery_time\":15,\"max_side\":null,\"max_sum_sides\":null,\"max_cost\":300000,\"max_np\":300000,\"storage\":15,\"deadline_searches\":45,\"is_mobile\":false,\"tariff_type\":\"85\",\"tariff_code\":\"1\",\"geo_exceptions\":[],\"created_at\":\"2024-08-16T11:49:16+03:00\",\"updated_at\":\"2025-01-23T15:46:52+03:00\",\"deleted_at\":null}],\"deleted_at\":null,\"pass_inputs\":[{\"name\":\"password\",\"title\":\"Ключ к АПИ (API key)\"}]},{\"id\":6,\"code\":\"yandex\",\"name\":\"Yandex\",\"is_active\":true,\"image_id\":null,\"with_nds\":true,\"tariff_insurance\":1.2,\"tariff_acquiring_card\":2.3,\"tariff_acquiring_cash\":3.1,\"tariff_acquiring_sbp\":1.2,\"tariff_acquiring_average\":1.23,\"tariff_return\":2.3,\"wait_registry\":6,\"add_weekend_wait_registry\":1,\"add_weekend_max_delivery_time\":0,\"add_weekend_storage\":0,\"add_weekend_deadline_searches\":0,\"add_weekend_calc\":0,\"redemption_rub\":12,\"redemption_count\":23,\"law_name\":\"sfsdf\",\"law_address\":\"sdfgdfg\",\"fact_address\":\"ghjgh\",\"inn\":\"123345\",\"ogrn\":\"234345\",\"kpp\":\"32234543\",\"bank_name\":\"fdgcv\",\"bank_bik\":\"3242\",\"bank_rs\":\"234234\",\"bank_ks\":\"234234\",\"gendir\":\"sddfg dgfdfg  hgfhfgh\",\"phone\":\"243234\",\"contact\":\"dfsdfghdfg\",\"email\":\"sdffsd@dgfdgh.cvcv\",\"site\":\"sdfsdf.fg\",\"image\":null,\"types\":[{\"id\":12,\"delivery_id\":6,\"type\":\"pvz\",\"max_width\":456,\"max_length\":234,\"max_height\":123,\"max_weight\":567,\"max_delivery_time\":4,\"max_side\":null,\"max_sum_sides\":null,\"max_cost\":123456,\"max_np\":234456,\"storage\":1,\"deadline_searches\":5,\"is_mobile\":false,\"tariff_type\":\"113\",\"tariff_code\":null,\"geo_exceptions\":[{\"id\":241,\"delivery_type_id\":12,\"geo_id\":176,\"created_at\":\"2025-02-27T10:22:33+03:00\",\"updated_at\":\"2025-02-27T10:22:33+03:00\"}],\"created_at\":\"2024-08-16T11:49:16+03:00\",\"updated_at\":\"2025-02-28T12:49:59+03:00\",\"deleted_at\":null}],\"deleted_at\":null,\"pass_inputs\":[{\"name\":\"password\",\"title\":\"Токен для API\"}]},{\"id\":7,\"code\":\"cse\",\"name\":\"Cse\",\"is_active\":true,\"image_id\":null,\"with_nds\":true,\"tariff_insurance\":0.5,\"tariff_acquiring_card\":2.3,\"tariff_acquiring_cash\":1.7,\"tariff_acquiring_sbp\":0,\"tariff_acquiring_average\":2,\"tariff_return\":50,\"wait_registry\":6,\"add_weekend_wait_registry\":1,\"add_weekend_max_delivery_time\":0,\"add_weekend_storage\":0,\"add_weekend_deadline_searches\":0,\"add_weekend_calc\":0,\"redemption_rub\":78,\"redemption_count\":82,\"law_name\":\"ООО \\\"Стор-Экспресс Сервис\\\"\",\"law_address\":\"115088, г. Москва, вн. тер. г. муниципальный округ Южнопортовый, ул. Шарикоподшипниковская, д.13, стр.3\",\"fact_address\":\"115088, г. Москва, вн. тер. г. муниципальный округ Южнопортовый, ул. Шарикоподшипниковская, д.13, стр.3\",\"inn\":\"7723457987\",\"ogrn\":\"1167746637794\",\"kpp\":\"772301001\",\"bank_name\":\"ФИЛИАЛ \\\"ЦЕНТРАЛЬНЫЙ\\\" БАНКА ВТБ (ПАО)\",\"bank_bik\":\"044525187\",\"bank_rs\":\"40702810219150005234\",\"bank_ks\":\"30101810145250000411\",\"gendir\":\"Смирнов Илья Сергеевич\",\"phone\":\"+7 (495) 748-77-48\",\"contact\":\"Суворова Наталья\",\"email\":\"store.express@cse.ru\",\"site\":\"https:\\/\\/www.cse.ru\\/\",\"image\":null,\"types\":[{\"id\":13,\"delivery_id\":7,\"type\":\"curier\",\"max_width\":1500,\"max_length\":1500,\"max_height\":1500,\"max_weight\":30000,\"max_delivery_time\":15,\"max_side\":1000,\"max_sum_sides\":3000,\"max_cost\":300000,\"max_np\":300000,\"storage\":15,\"deadline_searches\":45,\"is_mobile\":false,\"tariff_type\":\"109\",\"tariff_code\":null,\"geo_exceptions\":[],\"created_at\":\"2024-08-16T11:49:16+03:00\",\"updated_at\":\"2025-03-06T15:47:56+03:00\",\"deleted_at\":null}],\"deleted_at\":null,\"pass_inputs\":[{\"name\":\"login\",\"title\":\"Логин\"},{\"name\":\"password\",\"title\":\"Пароль\"}]}]}}"
+                      "time": 1
+                      "method": "GET"
+                  "links":
+                    - "url": null
+                      "label": "&laquo; Назад"
+                      "active": false
+                    - "url": "https://mz.test212.ru/api/v1/logs?filter%5Bindex%5D=rest&filter%5Bip%5D=62.113.110.145&page=1"
+                      "label": "1"
+                      "active": true
+                    - "url": "https://mz.test212.ru/api/v1/logs?filter%5Bindex%5D=rest&filter%5Bip%5D=62.113.110.145&page=2"
+                      "label": "2"
+                      "active": false
+                    - "url": "https://mz.test212.ru/api/v1/logs?filter%5Bindex%5D=rest&filter%5Bip%5D=62.113.110.145&page=2"
+                      "label": "Вперёд &raquo;"
+                      "active": false
+                  "meta":
+                    "current_page": 1
+                    "first_page_url": "https://mz.test212.ru/api/v1/logs?filter%5Bindex%5D=rest&filter%5Bip%5D=62.113.110.145&page=1"
+                    "from": 1
+                    "last_page": 2
+                    "last_page_url": "https://mz.test212.ru/api/v1/logs?filter%5Bindex%5D=rest&filter%5Bip%5D=62.113.110.145&page=2"
+                    "next_page_url": "https://mz.test212.ru/api/v1/logs?filter%5Bindex%5D=rest&filter%5Bip%5D=62.113.110.145&page=2"
+                    "path": "https://mz.test212.ru/api/v1/logs?filter%5Bindex%5D=rest&filter%5Bip%5D=62.113.110.145"
+                    "per_page": 2
+                    "prev_page_url": null
+                    "to": 50
+                    "total": 10000
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "7b544d5b-03e5-42e2-9344-571ed36dfe0c"
+                "message": "ЗПоле filter.index обязательно.|"
+                "data":
+                  - "Поле filter.index обязательно."
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/orders/download_stat_filter:
+    get:
+      tags:
+        - Аналитика
+      summary: Выгрузить список по фильтру
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[btw][0][0]
+          required: true
+          schema:
+            type: string
+          description: Название фильтра
+        - in: query
+          name: filter[btw][0][1]
+          required: true
+          schema:
+            type: string
+          description: Нижняя граница фильтра
+        - in: query
+          name: filter[btw][0][2]
+          required: true
+          schema:
+            type: string
+          description: Верхняя граница фильтра
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+              examples:  
+                sample:
+                  summary: Пример CSV-файла
+                  value: |
+                    "Номер заказа",Клиент,"Служба доставки",ШПИ,Трек-номер,"Вид отправления","Статус службы доставки","Дата статуса службы доставки","Дата создания заказа","Дата отправки заказа","Дата доставки заказа","Сумма НП","Сумма оценочной стоимости","Дата оплаты","Статус оплаты","Возвратная накладная","Дата возвратной накладной",Регион,"Адрес доставки","Вес физический","Объемный вес","Номер претензии","Дата претензии","Дата оплаты претензии","Дней в пути в регион","Дата прибытия в регион","Срок хранения в регионе в к.д. до выкупа/возврата","Дней в пути до получателя","Дней в пути на возврат","Дата возврата заказа"
+                    250212-0977,HSR,5Post,240094093871,8938d543-198b-3257-b3e1-cabe98efe152,,UNCLAIMED_LOST_REVERSE_LAST_MILE,2025-05-06T21:00:00.000000Z,2025-02-12T21:00:00.000000Z,2025-05-06T21:00:00.000000Z,,4922.02,4922.02,,Неоплачен,,,"Ярославская обл",,1340,,,,,,,,,,,,
+                    250225-7513,HSR,5Post,240097639683,20d32c00-8864-367e-9016-db7a79e50bd2,,DONE_PICKED_UP_LAST_MILE,2025-05-12T21:00:00.000000Z,2025-05-09T21:00:00.000000Z,2025-05-09T21:00:00.000000Z,2025-05-12T21:00:00.000000Z,4659,4659,,Неоплачен,,,"г Санкт-Петербург",,325,,,,,,,,,,,,
+                    250321-1584,HSR,5Post,240094950026,aa7f6d52-4b0a-3b76-a131-2b4509805d82,,UNCLAIMED_LOST_REVERSE_LAST_MILE,2025-05-05T21:00:00.000000Z,2025-03-21T21:00:00.000000Z,2025-05-05T21:00:00.000000Z,,7228.34,7228.34,,Неоплачен,,,"Новосибирская обл",,2860,,,,,,,,,,,,
+                    250405-0976,HSR,5Post,240095318252,70cebb0c-0571-3f91-97ac-c73bc6d66762,,UNCLAIMED_SHIPPED_REVERSE_LAST_MILE,2025-05-04T21:00:00.000000Z,2025-04-08T21:00:00.000000Z,2025-05-04T21:00:00.000000Z,,2514.44,2514.44,,Неоплачен,,,"Вологодская обл","Вологодская обл Никольский р-н деревня Ирданово  д. 76",375,,,,,,,,,,,,
+                    250307-6223,HSR,5Post,240097359820,f90dbe7b-3825-3efd-97d8-60787e486a05,,,,2025-05-01T21:00:00.000000Z,2025-05-01T21:00:00.000000Z,,15820.54,15820.54,,Неоплачен,,,"Новосибирская обл",,4660,,,,,,,,,,"2025-06-07 00:00:00",,
+                    250331-6373,HSR,5Post,240097408750,6ae2e9c5-d83f-35fb-b45d-b63f8d157937,,DONE_PICKED_UP_LAST_MILE,2025-05-15T21:00:00.000000Z,2025-05-02T21:00:00.000000Z,2025-05-02T21:00:00.000000Z,2025-05-15T21:00:00.000000Z,3623.81,3623.81,,Неоплачен,,,"Ханты-Мансийский Автономный округ - Югра",,595,,,,,,,,,,,,
+                    250412-4373,HSR,5Post,240097639672,085e0964-fe80-3ac1-b05f-eae90bfd490f,,UNCLAIMED_RETURNED_TO_PARTNER_REVERSE_FIRST_MILE,2025-06-09T21:00:00.000000Z,2025-05-07T21:00:00.000000Z,2025-05-07T21:00:00.000000Z,,3481.32,3481.32,,Неоплачен,,,"г Санкт-Петербург",,265,,,,,,,,,,"2025-06-11 00:00:00",,
+                    250412-3055,HSR,5Post,240097490887,24615e99-728e-37f2-9ce2-9e6f2070774b,,DONE_PICKED_UP_LAST_MILE,2025-05-09T21:00:00.000000Z,2025-05-03T21:00:00.000000Z,2025-05-03T21:00:00.000000Z,2025-05-09T21:00:00.000000Z,1843.7,1843.7,,Неоплачен,,,"г Санкт-Петербург",,640,,,,,,,,,,,,
+                    250412-1606,HSR,5Post,240097393427,29280f33-d018-3483-a5da-c0dadfa6088e,,DONE_PICKED_UP_LAST_MILE,2025-05-09T21:00:00.000000Z,2025-05-02T21:00:00.000000Z,2025-05-02T21:00:00.000000Z,2025-05-09T21:00:00.000000Z,4476.34,4476.34,,Неоплачен,,,"Омская обл",,525,,,,,,,,,,,,
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "7b544d5b-03e5-42e2-9344-571ed36dfe0c"
+                "message": "Должно быть ограничение либо по конкретным заказам либо по диапазону отправки заказа, но не более 185 дней|"
+                "data":
+                  - "Должно быть ограничение либо по конкретным заказам либо по диапазону отправки заказа, но не более 185 дней"    
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
+  /api/v1/orders/download_stat_checked:
+    post:
+      tags:
+        - Аналитика
+      summary: Выгрузить по списку ID
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter:
+                  type: object
+                  properties:
+                    id:
+                      type: array
+                      items:
+                        type: integer
+                      description: Список ID
+                      example: [1, 2, 3]
+                  description: Массив идентификаторов
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+              examples:  
+                sample:
+                  summary: Пример CSV-файла
+                  value: |
+                    "Номер заказа",Клиент,"Служба доставки",ШПИ,Трек-номер,"Вид отправления","Статус службы доставки","Дата статуса службы доставки","Дата создания заказа","Дата отправки заказа","Дата доставки заказа","Сумма НП","Сумма оценочной стоимости","Дата оплаты","Статус оплаты","Возвратная накладная","Дата возвратной накладной",Регион,"Адрес доставки","Вес физический","Объемный вес","Номер претензии","Дата претензии","Дата оплаты претензии","Дней в пути в регион","Дата прибытия в регион","Срок хранения в регионе в к.д. до выкупа/возврата","Дней в пути до получателя","Дней в пути на возврат","Дата возврата заказа"
+                    231208-4911,HSR,5Post,240079835896,ad326bb0-af03-3f08-b105-81f3986cd057,,UNCLAIMED_RETURNED_TO_PARTNER_REVERSE_FIRST_MILE,2024-01-12T21:00:00.000000Z,2023-12-09T21:00:00.000000Z,2023-12-09T21:00:00.000000Z,,1559.6,1559.6,,Оплачен,,,"Нижегородская обл","Нижегородская обл Кстовский р-н г Кстово ул Больничная д. 18",480,,,,,,,,,,"2024-01-17 00:00:00",,
+                    231207-8516,HSR,BoxBerry,240079835895,BBR285569917,,Выдано,2023-12-22T21:00:00.000000Z,2023-12-07T21:00:00.000000Z,2023-12-07T21:00:00.000000Z,2023-12-22T21:00:00.000000Z,1537.28,1537.28,,Неоплачен,,,"Респ Карелия","Респ Карелия  г Петрозаводск р-н Первомайский Первомайский пр-кт д. 41, кв. 17",640,,,,,,,,,,,,
+                    231207-3852,HSR,5Post,240079835894,192bdf87-69ef-3e46-9d27-51af36757181,,DONE_PICKED_UP_LAST_MILE,2023-12-14T21:00:00.000000Z,2023-12-09T21:00:00.000000Z,2023-12-09T21:00:00.000000Z,2023-12-14T21:00:00.000000Z,1546.22,1546.22,,Неоплачен,,,"Респ Карелия","Респ Карелия  г Петрозаводск р-н Первомайский Первомайский пр-кт д. 41, кв. 17",340,,,,,,,,,,,,
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "7b544d5b-03e5-42e2-9344-571ed36dfe0c"
+                "message": "Поле фильтр обязательно.|"
+                "data":
+                  - "Поле фильтр обязательно."    
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/orders/stat/claims_job:
+    get:
+      tags:
+        - Аналитика
+      summary: Претензионная работа
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter.company[0][id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по клиенту. Если нужно передать более одного, использовать filter.company[1][id] и т.д.
+        - in: query
+          name: filter.delivery[0][id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по службе доставки
+        - in: query
+          name: filter.created_period_from
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Дата отгрузки "от"
+        - in: query
+          name: filter.created_period_to
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Дата отгрузки "до"
+        - in: query
+          name: filter.claimed_period_from
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Период поданных претензий "от"
+        - in: query
+          name: filter.claimed_period_to
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Период поданных претензий "до"
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "98d85df7-c2c2-45e9-8b85-4c3d7c930334"
+                "data":
+                  "data":
+                      "orders_in_claims_count": 1
+                      "orders_in_claims_sum": 5185
+                      "orders_in_searches_count": 3613
+                      "orders_in_searches_sum": 25090680.420000017
+                      "orders_claims_compensated_count": 1
+                      "orders_claims_compensated_sum": 1000
+                      "orders_claims_declined_count": 0
+                      "orders_claims_declined_sum": 0
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/orders/stat:
+    get:
+      tags:
+        - Аналитика
+      summary: Статистика заказов по СД
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[btw][0][0]
+          required: true
+          schema:
+            type: string
+          description: Обязательный фильтр
+        - in: query
+          name: filter[btw][0][1]
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Начало периода
+        - in: query
+          name: filter[btw][0][2]
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Конец периода
+        - in: query
+          name: filter[company_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по клиенту
+        - in: query
+          name: filter[delivery_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по СД
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "054f50fc-a93c-4d18-b259-7d095618d557"
+                "data":
+                  "stat":
+                    - "delivery_id": 5
+                      "cnt": 420089
+                      "redeemed": "189295"
+                      "returned": "61617"
+                      "in_process": "168944"
+                      "sent_sum": 2145986586.76
+                      "redeemed_sum": 972676613.92
+                      "returned_sum": 343667473.72
+                      "searched": "0"
+                      "delivery_service_status_title": null
+                      "registry_status_title": null
+                    - "delivery_id": 4
+                      "cnt": 51067
+                      "redeemed": "27089"
+                      "returned": "7331"
+                      "in_process": "16635"
+                      "sent_sum": 338584119.18
+                      "redeemed_sum": 171973230.61
+                      "returned_sum": 53632679.65
+                      "searched": "1"
+                      "delivery_service_status_title": null
+                      "registry_status_title": null
+                    - "delivery_id": 1
+                      "cnt": 32846
+                      "redeemed": "15712"
+                      "returned": "5736"
+                      "in_process": "11479"
+                      "sent_sum": 206511184.29
+                      "redeemed_sum": 98628183.18
+                      "returned_sum": 39917355.45
+                      "searched": "7"
+                      "delivery_service_status_title": null
+                      "registry_status_title": null
+                    - "delivery_id": 2
+                      "cnt": 12475
+                      "redeemed": "3750"
+                      "returned": "2376"
+                      "in_process": "6261"
+                      "sent_sum": 77896486.13
+                      "redeemed_sum": 23566831.95
+                      "returned_sum": 16336761.69
+                      "searched": "4"
+                      "delivery_service_status_title": null
+                      "registry_status_title": null
+                    - "delivery_id": 7
+                      "cnt": 863
+                      "redeemed": "375"
+                      "returned": "169"
+                      "in_process": "296"
+                      "sent_sum": 8215541.25
+                      "redeemed_sum": 3785865.86
+                      "returned_sum": 1697437.04
+                      "searched": "0"
+                      "delivery_service_status_title": null
+                      "registry_status_title": null
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
 components:
   schemas:
     LoginWith2FA:
