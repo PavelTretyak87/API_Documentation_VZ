@@ -1,10 +1,11 @@
 openapi: 3.0.0
 info:
   title: Ваш Заказ - документация API
-  version: 1.0.0
+  version: 1.0.1
   description: |
     ## История изменений:
     - Добавлены используемые на проекте методы (06.06.2025)
+    - Добавлены методы аналитического блока (01.07.2025)
 servers:
   - url: https://dev-vz-api.3owls.su
   - url: https://mz.3owls.su
@@ -41040,6 +41041,230 @@ paths:
                       "searched": "0"
                       "delivery_service_status_title": null
                       "registry_status_title": null
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
+  /api/v1/orders/stat/export:
+    get:
+      tags:
+        - Аналитика
+      summary: Скачать отчет статистики заказов по СД
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[btw][0][0]
+          required: true
+          schema:
+            type: string
+          description: Обязательный фильтр
+        - in: query
+          name: filter[btw][0][1]
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Начало периода
+        - in: query
+          name: filter[btw][0][2]
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Конец периода
+      responses:
+        '200':
+          description: Скачан файл excel
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
+  /api/v1/orders/stat_times:
+    get:
+      tags:
+        - Аналитика
+      summary: Статистика по срокам
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[btw][0][0]
+          required: true
+          schema:
+            type: string
+          description: Обязательный фильтр
+        - in: query
+          name: filter[btw][0][1]
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Начало периода
+        - in: query
+          name: filter[btw][0][2]
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Конец периода
+        - in: query
+          name: filter[company_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по клиенту
+        - in: query
+          name: filter[delivery_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по СД
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 200
+                "status": "OK"
+                "success": true
+                "request_id": "63c0ee07-4ef1-40bb-92da-c90e5c01171a"
+                "data":
+                  "stat":
+                    - "delivery_id": 4
+                      "name": "Dalli"
+                      "max_delivery_time": 30
+                      "max_storage_time": 30
+                      "max_pay_wait": 3
+                      "ontheway": "2.1513"
+                      "wait": "0.6374"
+                      "complete": "3.0128"
+                      "returned": "4.9318"
+                      "returned_way": "8.5648"
+                      "paid": "2.2736"
+                      "delivery_service_status_title": null
+                      "registry_status_title": null
+                    - "delivery_id": 5
+                      "name": "5Post"
+                      "max_delivery_time": 15
+                      "max_storage_time": 15
+                      "max_pay_wait": 2
+                      "ontheway": "3.6595"
+                      "wait": "3.6895"
+                      "complete": "5.7342"
+                      "returned": "28.8716"
+                      "returned_way": "14.0813"
+                      "paid": "2.0013"
+                      "delivery_service_status_title": null
+                      "registry_status_title": null
+                    - "delivery_id": 1
+                      "name": "СДЕК"
+                      "max_delivery_time": 15
+                      "max_storage_time": 14
+                      "max_pay_wait": 5
+                      "ontheway": "5.6160"
+                      "wait": "1.0313"
+                      "complete": "6.5198"
+                      "returned": "20.5502"
+                      "returned_way": "26.6037"
+                      "paid": "3.2915"
+                      "delivery_service_status_title": null
+                      "registry_status_title": null
+                    - "delivery_id": 2
+                      "name": "BoxBerry"
+                      "max_delivery_time": 15
+                      "max_storage_time": 14
+                      "max_pay_wait": 1
+                      "ontheway": "5.3647"
+                      "wait": "3.0033"
+                      "complete": "8.1081"
+                      "returned": "21.6667"
+                      "returned_way": "27.9512"
+                      "paid": "1.0847"
+                      "delivery_service_status_title": null
+                      "registry_status_title": null
+                    - "delivery_id": 7
+                      "name": "Cse"
+                      "max_delivery_time": 30
+                      "max_storage_time": 15
+                      "max_pay_wait": 6
+                      "ontheway": "2.0000"
+                      "wait": "0.0000"
+                      "complete": "2.0000"
+                      "returned": null
+                      "returned_way": null
+                      "paid": null
+                      "delivery_service_status_title": null
+                      "registry_status_title": null
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": [] 
+  /api/v1/orders/stat_times/export:
+    get:
+      tags:
+        - Аналитика
+      summary: Скачать отчет статистики по срокам
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: filter[btw][0][0]
+          required: true
+          schema:
+            type: string
+          description: Обязательный фильтр
+        - in: query
+          name: filter[btw][0][1]
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Начало периода
+        - in: query
+          name: filter[btw][0][2]
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Конец периода
+        - in: query
+          name: filter[company_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по клиенту
+        - in: query
+          name: filter[delivery_id]
+          required: false
+          schema:
+            type: integer
+          description: Фильтр по СД
+      responses: 
+        '200':
+            description: Скачан файл excel
         '401':
           description: Ошибка аутентификации
           content:
