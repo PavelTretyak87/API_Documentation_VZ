@@ -29,16 +29,20 @@ paths:
               properties:              
                 from_zip:
                   type: string
-                  description: Почтовый индекс отправителя. Обязателен, если не указаны параметры from_fias и from_kladr
+                  description: Почтовый индекс отправителя. Обязателен, если не указаны параметры from_fias, from_kladr, from_code
                   example: "101000"
                 from_fias:
                   type: string
-                  description: ФИАС отправителя. Обязателен, если не указаны параметры from_zip и from_kladr
+                  description: ФИАС отправителя. Обязателен, если не указаны параметры from_zip, from_kladr, from_code
                   example: "0c5b2444-70a0-4932-980c-b4dc0d3f02b5"
                 from_kladr:
                   type: string
-                  description: КЛАДР отправителя. Обязателен, если не указаны параметры from_fias и from_zip
+                  description: КЛАДР отправителя. Обязателен, если не указаны параметры from_fias, from_zip, from_code
                   example: "7700000000000"
+                from_code:
+                  type: string
+                  description: Идентификатор отправителя из таблицы geos. Обязателен, если не указаны параметры from_zip, from_fias, from_kladr
+                  example: "99"
                 to_address:
                   type: string
                   description: Адрес доставки
@@ -124,8 +128,7 @@ paths:
                       "weight": 0.8402000000000001
                       "template": null
                       "pvzs":
-                        "15":
-                          "name": "5post. Касса в магазине «Пятёрочка»"
+                        - "name": "5post. Касса в магазине «Пятёрочка»"
                           "code": "68da5f68-239f-4d00-a21e-025ffeea62f3"
                           "address": "Москва г, Большая Академическая ул, 13А"
                           "zip": "125130"
@@ -137,8 +140,7 @@ paths:
                           "distance": 241
                           "city": "г Москва"
                           "additional": ""
-                        "20": 
-                          "name": "5post. Касса в магазине «Пятёрочка»"
+                        - "name": "5post. Касса в магазине «Пятёрочка»"
                           "code": "8335b4f2-254a-40fa-8a69-bc3e7cfab847"
                           "address": "Москва г, Большая Академическая ул, 24к1"
                           "zip": "127299"
@@ -150,8 +152,7 @@ paths:
                           "distance": 491
                           "city": "г Москва"
                           "additional": ""
-                        "11": 
-                          "name": "5post. Касса в магазине «Пятёрочка»"
+                        - "name": "5post. Касса в магазине «Пятёрочка»"
                           "code": "5e12915c-f9f2-4323-94cc-ff664af4f001"
                           "address": "Москва г, Зои и Александра Космодемьянских ул, 11-15 стр.1А"
                           "zip": "125130"
@@ -163,8 +164,7 @@ paths:
                           "distance": 607
                           "city": "г Москва"
                           "additional": ""
-                        "55":
-                          "name": "5post. Касса в магазине «Перекрёсток»"
+                        - "name": "5post. Касса в магазине «Перекрёсток»"
                           "code": "97756cff-7297-4711-b838-57b8ee31a4c8"
                           "address": "Москва г, Новопетровская ул, 6"
                           "zip": "125130"
@@ -176,105 +176,17 @@ paths:
                           "distance": 694
                           "city": "г Москва"
                           "additional": ""
-                        "34":
-                          "name": "5post. Касса в магазине «Пятёрочка»"
+                        - "name": "5post. Касса в магазине «Пятёрочка»"
                           "code": "e14a44b5-9ebe-49c7-9b76-9c5345046504"
                           "address": "Москва г, Зои и Александра Космодемьянских ул, 14/10"
                           "zip": "125130"
                           "latitude": 55.820961
                           "longitude": 37.512129
                           "schedule": "Пн 08:00:00-23:00:00, Вт 08:00:00-23:00:00, Ср 08:00:00-23:00:00, Чт 08:00:00-23:00:00, Пт 08:00:00-23:00:00, Сб 08:00:00-23:00:00, Вс 08:00:00-23:00:00"
-                          "delivery_id": 5
-                          "city_id": 91
-                          "distance": 715
+                          "delivery_id": 5,
+                          "city_id": 91,
+                          "distance": 715,
                           "city": "г Москва"
-                          "additional": ""
-                    - "name": "Посылка склад-склад"
-                      "code": "136"
-                      "description": "ПВЗ"
-                      "from": 1
-                      "to": 1
-                      "type": "pvz"
-                      "delivery_code": "sdek"
-                      "storage_days": 14
-                      "total_price": 220.3
-                      "price": 142.8
-                      "insurance": 7.5
-                      "acquiring": 70
-                      "weight_price": 226.57000000000002
-                      "return_price": 6.27
-                      "redemption": 81
-                      "to_weight": 0
-                      "weight_price_weight": 0
-                      "redemption_weight": 0.7614
-                      "storage_days_weight": 0
-                      "weight": 0.7614
-                      "template": null
-                      "pvzs": 
-                        "4":
-                          "name": "MSK345, Москва, ул. Большая Академическая"
-                          "code": "MSK345"
-                          "address": "ул. Большая Академическая, 13А стр. 2"
-                          "zip": "125130"
-                          "latitude": 55.822933
-                          "longitude": 37.525665
-                          "schedule": "Пн-Пт 10:00-21:00, Сб-Вс 10:00-18:00"
-                          "delivery_id": 1
-                          "city_id": 99
-                          "distance": 255
-                          "city": "Москва"
-                          "additional": ""
-                        "36":
-                          "name": "MSK2402, Москва, ул. Коптевская"
-                          "code": "MSK2402"
-                          "address": "ул. Коптевская, 22"
-                          "zip": "125239"
-                          "latitude": 55.832195
-                          "longitude": 37.52
-                          "schedule": "Пн-Пт 10:00-21:00, Сб-Вс 10:00-20:00"
-                          "delivery_id": 1
-                          "city_id": 99
-                          "distance": 1269
-                          "city": "Москва"
-                          "additional": ""
-                        "15":
-                          "name": "MSK1527, Москва, ул. Зои и Александра Космодемьянских"
-                          "code": "MSK1527"
-                          "address": "ул. Зои и Александра Космодемьянских, 4к1"
-                          "zip": "125171"
-                          "latitude": 55.818104
-                          "longitude": 37.50213
-                          "schedule": "Пн-Вс 09:00-21:00"
-                          "delivery_id": 1
-                          "city_id": 99
-                          "distance": 1377
-                          "city": "Москва"
-                          "additional": ""
-                        "30": 
-                          "name": "MSK2248, Москва, СОБОЛЕВСКИЙ ПРОЕЗД"
-                          "code": "MSK2248"
-                          "address": "СОБОЛЕВСКИЙ ПРОЕЗД, 22 стр. 1"
-                          "zip": "125239"
-                          "latitude": 55.83381
-                          "longitude": 37.52314
-                          "schedule": "Пн-Вс 08:00-23:00"
-                          "delivery_id": 1
-                          "city_id": 99
-                          "distance": 1429
-                          "city": "Москва"
-                          "additional": ""
-                        "11":
-                          "name": "MSK1017, Москва, пр. Старопетровский"
-                          "code": "MSK1017"
-                          "address": "пр. Старопетровский, 1, стр.2, п.33"
-                          "zip": "125130"
-                          "latitude": 55.82369
-                          "longitude": 37.500942
-                          "schedule": "Пн-Пт 10:00-21:00, Сб-Вс 10:00-20:00"
-                          "delivery_id": 1
-                          "city_id": 99
-                          "distance": 1446
-                          "city": "Москва"
                           "additional": ""
                     - "name": null
                       "code": "1"
@@ -288,18 +200,17 @@ paths:
                       "price": 132
                       "insurance": 7.5
                       "acquiring": 68.25
-                      "weight_price": 220.95
-                      "return_price": 13.2
-                      "redemption": 80
+                      "weight_price": 221.61
+                      "return_price": 13.86
+                      "redemption": 79
                       "to_weight": 0
-                      "weight_price_weight": 0.0068439212502537415
-                      "redemption_weight": 0.752
+                      "weight_price_weight": 0
+                      "redemption_weight": 0
                       "storage_days_weight": 0
-                      "weight": 0.7588439212502538
-                      "template": null
+                      "weight": 0
+                      "template": 300
                       "pvzs":
-                        "35":
-                          "name": "Москва Большая Академическая_07618_С"
+                        - "name": "Москва Большая Академическая_07618_С"
                           "code": "07618"
                           "address": "127299, Москва г, Большая Академическая ул, д.6, корпус 1"
                           "zip": "127299"
@@ -311,8 +222,7 @@ paths:
                           "distance": 290
                           "city": "Москва"
                           "additional": ""
-                        "9": 
-                          "name": "Москва Зои и Александра Космодемьянских_01673_С"
+                        - "name": "Москва Зои и Александра Космодемьянских_01673_С"
                           "code": "01673"
                           "address": "125130, Москва г, Зои и Александра Космодемьянских ул, д.26/21, строение 1"
                           "zip": "125130"
@@ -324,8 +234,7 @@ paths:
                           "distance": 418
                           "city": "Москва"
                           "additional": ""
-                        "6":
-                          "name": "Москва Зои и Александра Космодемьянских_01250_С"
+                        - "name": "Москва Зои и Александра Космодемьянских_01250_С"
                           "code": "01250"
                           "address": "125130, Москва г, Зои и Александра Космодемьянских ул, д.35/1"
                           "zip": "125130"
@@ -337,8 +246,7 @@ paths:
                           "distance": 563
                           "city": "Москва"
                           "additional": ""
-                        "4":
-                          "name": "Москва Коптевская_01029_С"
+                        - "name": "Москва Коптевская_01029_С"
                           "code": "01029"
                           "address": "125239, Москва г, Коптевская ул, д.16, корпус 2"
                           "zip": "125239"
@@ -350,8 +258,7 @@ paths:
                           "distance": 947
                           "city": "Москва"
                           "additional": ""
-                        "33":
-                          "name": "Москва 2-й Новоподмосковный_07555_С"
+                        - "name": "Москва 2-й Новоподмосковный_07555_С"
                           "code": "07555"
                           "address": "127299, Москва г, 2-й Новоподмосковный пер, д.3а"
                           "zip": "127299"
