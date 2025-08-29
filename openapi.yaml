@@ -33695,6 +33695,69 @@ paths:
                 "request_id": "4764ec2f-370c-45b0-8f70-8c19cda409a3"
                 "message": "Требуемый ресурс не найден"
                 "data": []            
+  /api/v1/order_fields:
+    post:
+      tags:
+        - Кастомные поля - клиент
+      summary: Указать дополнительные признаки заказам (кастомные поля)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orders: 
+                  type: array
+                  description: Список заказов
+                  example: 
+                    - "order_id": "2516968850938903"
+                      "field": "color"
+                      "value": "Зеленый"
+                    - "order_id": "2516968850938903"
+                      "field": "numbers"
+                      "value": 200
+      responses:
+        '202':
+          description: Успешный ответ
+          content:
+            application/json:
+              example:
+                "code": 202
+                "status": "Accepted"
+                "success": true
+                "request_id": "cbf2f248-6e24-41b6-ada1-44c06984129b"
+                "data":
+                  "orders":
+                    - "order_id": "2516968850938903"
+                      "system_name": "color"
+                      "value": "Зеленый"
+                    - "order_id": "2516968850938903"
+                      "system_name": "numbers"
+                      "value": "200.00"
+        '400':
+          description: Ошибка в запросе
+          content:
+            application/json:
+              example:
+                "code": 400
+                "status": "Bad Request"
+                "success": false
+                "request_id": "7a7b2bec-53d9-4659-af15-e3984ef663df"
+                "message": "Не найдено признака: number"
+        '401':
+          description: Ошибка аутентификации
+          content:
+            application/json:
+              example:
+                "code": 401
+                "status": "Unauthorized"
+                "success": false
+                "request_id": "2a4ccb48-d772-4dc8-a239-f4b757ccdf96"
+                "message": "Ошибка аутентификации."
+                "data": []
   /api/v1/custom_fields:
     get:
       tags:
